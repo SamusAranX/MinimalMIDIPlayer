@@ -10,6 +10,7 @@
 		56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */; };
 		56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */; };
 		56D6A8D61C3437AA0071DEF4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56D6A8D41C3437AA0071DEF4 /* MainMenu.xib */; };
+		56D6A8F21C3438C00071DEF4 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D6A8F11C3438C00071DEF4 /* MainWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,7 @@
 		56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56D6A8D51C3437AA0071DEF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		56D6A8D71C3437AA0071DEF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56D6A8F11C3438C00071DEF4 /* MainWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 				56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */,
 				56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */,
 				56D6A8D41C3437AA0071DEF4 /* MainMenu.xib */,
+				56D6A8F11C3438C00071DEF4 /* MainWindow.swift */,
 				56D6A8D71C3437AA0071DEF4 /* Info.plist */,
 			);
 			path = MinimalMIDIPlayer;
@@ -128,6 +131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D6A8F21C3438C00071DEF4 /* MainWindow.swift in Sources */,
 				56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +273,7 @@
 				56D6A8DC1C3437AA0071DEF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
