@@ -16,7 +16,8 @@ A very simple app that does what is says on the tin. Also it has the worst name 
 
 ## Known issues
 * Because this is based on Apple’s own AVMIDIPlayer, customizability is basically non-existent. This thing can play MIDI files with custom soundfonts and that’s it.
-* Currently, this app only checks for SF2 files in the same folder. DLS support will come later.
+* ~~Currently, this app only checks for SF2 files in the same folder. DLS support will come later.~~ Added in v1.1
+* This app will ignore all files that are dropped onto its dock icon. This, too, will be possible in a later version.
 
 ## Feedback and support
 Just tweet at me [@SamusAranX](https://twitter.com/SamusAranX) or [drop me a mail](mailto:hallo@peterwunder.de).
