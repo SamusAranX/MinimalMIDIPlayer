@@ -19,24 +19,32 @@ class MainWindow: NSWindow {
 		
 		let filenameOnly = (filename as NSString).lastPathComponent
 		let midURL = NSURL(fileURLWithPath: filename)
-		var sf2URL: NSURL?
+		var soundFontURL: NSURL?
 		
 		do {
 			let fileDirectory = midURL.URLByDeletingLastPathComponent
 			let nameWithoutExt = NSString(string: midURL.lastPathComponent!).stringByDeletingPathExtension.stringByRemovingPercentEncoding!
-			Swift.print(nameWithoutExt)
-			let potentialSF2 = fileDirectory!.path! + "/" +  nameWithoutExt + ".sf2"
-			Swift.print(potentialSF2)
+			
+			// Super cheap way of checking for accompanying soundfonts incoming
+			let potentialSoundFonts = [
+				"\(fileDirectory!.path!)/\(nameWithoutExt).sf2", // Soundfonts with same name as the MIDI file
+				"\(fileDirectory!.path!)/\(nameWithoutExt).dls",
+				"\(fileDirectory!.path!)/\(fileDirectory!.lastPathComponent!).sf2", // Soundfonts with same name as containing folder
+				"\(fileDirectory!.path!)/\(fileDirectory!.lastPathComponent!).dls"
+			]
+//			Swift.print("potentialSoundFonts: \(potentialSoundFonts)")
 			
 			let fileManager = NSFileManager.defaultManager()
-			if fileManager.fileExistsAtPath(potentialSF2) {
-				sf2URL = NSURL(fileURLWithPath: potentialSF2)
-			} else {
-				sf2URL = nil
+			soundFontURL = nil
+			for psf in potentialSoundFonts {
+				if fileManager.fileExistsAtPath(psf) {
+					soundFontURL = NSURL(fileURLWithPath: psf)
+					break
+				}
 			}
-			Swift.print(sf2URL)
+			Swift.print("soundFontURL: \(soundFontURL)")
 			
-			try midiPlayer = AVMIDIPlayer(contentsOfURL: midURL, soundBankURL: sf2URL)
+			try midiPlayer = AVMIDIPlayer(contentsOfURL: midURL, soundBankURL: soundFontURL)
 			midiPlayer.prepareToPlay()
 			midiPlayer.play() {
 				Swift.print("Finished playing.")
