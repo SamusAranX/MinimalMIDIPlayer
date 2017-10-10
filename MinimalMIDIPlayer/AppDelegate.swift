@@ -25,11 +25,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func application(sender: NSApplication, openFile filename: String) -> Bool {
 		Swift.print("openFile: \(filename)")
 		
-		// Check if OS X think that this file is a MIDI file
+		// Check if macOS thinks that this file is a MIDI file
 		do {
-			let fileUTI = try NSWorkspace.sharedWorkspace().typeOfFile(filename)
-			if UTTypeConformsTo(fileUTI, kUTTypeMIDIAudio) {
-				window.loadFile(filename)
+            let fileUTI = try NSWorkspace.shared.type(ofFile: filename)
+            
+			if UTTypeConformsTo(fileUTI as CFString, kUTTypeMIDIAudio) {
+				window.loadFile(filename: filename)
 				return true // It is, load the file
 			}
 		} catch let error as NSError {
@@ -44,10 +45,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationWillTerminate(aNotification: NSNotification) {
 		// Insert code here to tear down your application
 	}
-	
-	func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
-		return true
-	}
+    
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
+    }
 
 
 }

@@ -18,43 +18,43 @@ class MainWindow: NSWindow {
 		Swift.print("loadFile: \(filename)")
 		
 		let filenameOnly = (filename as NSString).lastPathComponent
-		let midURL = NSURL(fileURLWithPath: filename)
-		var soundFontURL: NSURL?
+		let midURL = URL(fileURLWithPath: filename)
+		var soundFontURL: URL?
 		
 		do {
-			let fileDirectory = midURL.URLByDeletingLastPathComponent
-			let nameWithoutExt = NSString(string: midURL.lastPathComponent!).stringByDeletingPathExtension.stringByRemovingPercentEncoding!
+			let fileDirectory = midURL.deletingLastPathComponent()
+			let nameWithoutExt = NSString(string: midURL.lastPathComponent).deletingPathExtension.removingPercentEncoding
 			
 			// Super cheap way of checking for accompanying soundfonts incoming
 			let potentialSoundFonts = [
-				"\(fileDirectory!.path!)/\(nameWithoutExt).sf2", // Soundfonts with same name as the MIDI file
-				"\(fileDirectory!.path!)/\(nameWithoutExt).dls",
-				"\(fileDirectory!.path!)/\(fileDirectory!.lastPathComponent!).sf2", // Soundfonts with same name as containing folder
-				"\(fileDirectory!.path!)/\(fileDirectory!.lastPathComponent!).dls"
+				"\(fileDirectory.path)/\(nameWithoutExt!).sf2", // Soundfonts with same name as the MIDI file
+				"\(fileDirectory.path)/\(nameWithoutExt!).dls",
+				"\(fileDirectory.path)/\(fileDirectory.lastPathComponent).sf2", // Soundfonts with same name as containing folder
+				"\(fileDirectory.path)/\(fileDirectory.lastPathComponent).dls"
 			]
 //			Swift.print("potentialSoundFonts: \(potentialSoundFonts)")
 			
-			let fileManager = NSFileManager.defaultManager()
+			let fileManager = FileManager.default
 			soundFontURL = nil
 			for psf in potentialSoundFonts {
-				if fileManager.fileExistsAtPath(psf) {
-					soundFontURL = NSURL(fileURLWithPath: psf)
+                if fileManager.fileExists(atPath: psf) {
+					soundFontURL = URL(fileURLWithPath: psf)
 					break
 				}
 			}
-			Swift.print("soundFontURL: \(soundFontURL)")
-			
-			try midiPlayer = AVMIDIPlayer(contentsOfURL: midURL, soundBankURL: soundFontURL)
+			Swift.print("soundFontURL: \(soundFontURL!)")
+            
+            try midiPlayer = AVMIDIPlayer(contentsOf: midURL, soundBankURL: soundFontURL)
 			midiPlayer.prepareToPlay()
 			midiPlayer.play() {
 				Swift.print("Finished playing.")
-				self.playPauseButton.state = NSOffState
+				self.playPauseButton.state = NSControl.StateValue.off
 			}
-			playPauseButton.state = NSOnState
-			playPauseButton.enabled = true
+			playPauseButton.state = NSControl.StateValue.on
+			playPauseButton.isEnabled = true
 			self.title = filenameOnly
 		} catch let error as NSError {
-			playPauseButton.enabled = false
+			playPauseButton.isEnabled = false
 			Swift.print("Error playing MIDI file: \(error.localizedDescription)")
 		}
 	}
@@ -64,21 +64,21 @@ class MainWindow: NSWindow {
 		let types = [ "mid", "midi" ]
 		panel.allowedFileTypes = types;
 		panel.allowsMultipleSelection = false;
-		if panel.runModal() == NSFileHandlingPanelOKButton {
-			self.loadFile(panel.URL!.path!)
+		if panel.runModal() == NSApplication.ModalResponse.OK {
+            self.loadFile(filename: panel.url!.path)
 		}
 	}
 
 	@IBAction func buttonPressed(sender: AnyObject) {
-		if midiPlayer != nil && midiPlayer.playing {
+		if midiPlayer != nil && midiPlayer.isPlaying {
 			midiPlayer.stop()
-			playPauseButton.state = NSOffState
+			playPauseButton.state = NSControl.StateValue.off
 			return
-		} else if midiPlayer != nil && !midiPlayer.playing {
+		} else if midiPlayer != nil && !midiPlayer.isPlaying {
 			midiPlayer.prepareToPlay()
 			midiPlayer.play() {
 				Swift.print("Finished playing.")
-				self.playPauseButton.state = NSOffState
+				self.playPauseButton.state = NSControl.StateValue.off
 			}
 		}
 	}
