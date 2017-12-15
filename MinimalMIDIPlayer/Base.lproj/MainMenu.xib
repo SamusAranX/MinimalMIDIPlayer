@@ -672,17 +672,18 @@
         <window title="MinimalMIDIPlayer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="MinimalMIDIPlayerWindow" animationBehavior="default" id="QvC-M9-y7g" customClass="MainWindow" customModule="MinimalMIDIPlayer" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="273" height="132"/>
+            <rect key="contentRect" x="335" y="390" width="279" height="132"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="273" height="132"/>
+            <value key="maxSize" type="size" width="280" height="132"/>
+            <view key="contentView" misplaced="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="281" height="132"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bv8-BE-cIW">
-                        <rect key="frame" x="8" y="35" width="257" height="21"/>
+                        <rect key="frame" x="8" y="35" width="265" height="21"/>
                         <subviews>
                             <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dvY-8S-GZQ">
-                                <rect key="frame" x="-6" y="-7" width="139" height="32"/>
+                                <rect key="frame" x="-6" y="-7" width="143" height="32"/>
                                 <buttonCell key="cell" type="push" title="Play" alternateTitle="Pause" bezelStyle="rounded" imagePosition="left" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pn1-NT-GTe">
                                     <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -692,7 +693,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gKt-0M-Lnk">
-                                <rect key="frame" x="125" y="-7" width="138" height="32"/>
+                                <rect key="frame" x="129" y="-7" width="142" height="32"/>
                                 <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" imagePosition="left" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yWk-9x-bme">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -712,10 +713,10 @@
                         </customSpacing>
                     </stackView>
                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HfN-9q-fjv">
-                        <rect key="frame" x="8" y="8" width="257" height="19"/>
+                        <rect key="frame" x="8" y="8" width="265" height="19"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UMl-OC-w2M">
-                                <rect key="frame" x="-2" y="3" width="36" height="14"/>
+                                <rect key="frame" x="-2" y="3" width="40" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Speed" id="NaM-qE-sXQ">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -723,16 +724,16 @@
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fhd-i6-wrP">
-                                <rect key="frame" x="36" y="0.0" width="171" height="18"/>
+                                <rect key="frame" x="40" y="0.0" width="171" height="18"/>
                                 <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="6" doubleValue="3" tickMarkPosition="above" numberOfTickMarks="7" allowsTickMarkValuesOnly="YES" sliderType="linear" id="hFX-PB-qwW"/>
                                 <connections>
                                     <action selector="speedSliderMoved:" target="QvC-M9-y7g" id="hg2-ce-Gs6"/>
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sL6-Kv-T3t">
-                                <rect key="frame" x="211" y="0.0" width="46" height="19"/>
+                                <rect key="frame" x="215" y="0.0" width="50" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="njO-0i-a9C"/>
+                                    <constraint firstAttribute="width" constant="50" id="njO-0i-a9C"/>
                                 </constraints>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" title="1.00×" bezelStyle="round" id="Abx-vw-Ec4">
                                     <font key="font" metaFont="smallSystem"/>
@@ -753,7 +754,7 @@
                         </customSpacing>
                     </stackView>
                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wAQ-yR-t3W">
-                        <rect key="frame" x="8" y="64" width="257" height="18"/>
+                        <rect key="frame" x="8" y="64" width="265" height="18"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a5O-sA-3QO">
                                 <rect key="frame" x="-2" y="2" width="36" height="14"/>
@@ -767,10 +768,10 @@
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Dym-dd-brA">
-                                <rect key="frame" x="32" y="-1" width="193" height="20"/>
+                                <rect key="frame" x="32" y="-1" width="201" height="20"/>
                             </progressIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aO0-YS-euL">
-                                <rect key="frame" x="223" y="2" width="36" height="14"/>
+                                <rect key="frame" x="231" y="2" width="36" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="l5k-Pz-tKT"/>
                                 </constraints>
@@ -793,7 +794,7 @@
                         </customSpacing>
                     </stackView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v2k-J2-17Q">
-                        <rect key="frame" x="6" y="89" width="261" height="14"/>
+                        <rect key="frame" x="6" y="89" width="269" height="14"/>
                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Default Soundfont" id="FHX-Qy-3YP">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -801,7 +802,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h7N-Zh-T18">
-                        <rect key="frame" x="6" y="105" width="261" height="17"/>
+                        <rect key="frame" x="6" y="105" width="269" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Hit ⌘O to open a MIDI file" id="4R9-aL-795">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
