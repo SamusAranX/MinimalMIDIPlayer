@@ -5,7 +5,9 @@ A very simple app that does what is says on the tin. Also it has the worst name 
 * Has a very minimal interface
 * Plays MIDI files
 * If there’s a soundfont with the same name as the MIDI file, MinimalMIDIPlayer will use that. Otherwise it’ll just use the macOS standard soundfont.
-* You can open files with ⌘O, drop files on the app icon and the dock icon, or set this app as the default for all MIDI files: ![MinimalMIDIPlayer as default app](https://cloud.githubusercontent.com/assets/676069/13197115/1fb342b0-d7e4-11e5-95ae-7f825b58cfd2.png)
+* You can open files with ⌘O, drop files on the app icon and the dock icon, or set this app as the default for all MIDI files: 
+
+![MinimalMIDIPlayer as default app](https://cloud.githubusercontent.com/assets/676069/13197115/1fb342b0-d7e4-11e5-95ae-7f825b58cfd2.png)
 
 ## Requirements
 * OS X 10.12+

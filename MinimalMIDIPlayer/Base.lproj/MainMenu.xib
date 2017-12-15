@@ -793,15 +793,15 @@
                             <real value="3.4028234663852886e+38"/>
                         </customSpacing>
                     </stackView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v2k-J2-17Q">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v2k-J2-17Q">
                         <rect key="frame" x="6" y="89" width="269" height="14"/>
-                        <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Default Soundfont" id="FHX-Qy-3YP">
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Default Soundfont" id="FHX-Qy-3YP">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h7N-Zh-T18">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h7N-Zh-T18">
                         <rect key="frame" x="6" y="105" width="269" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Hit ⌘O to open a MIDI file" id="4R9-aL-795">
                             <font key="font" metaFont="system"/>
@@ -818,14 +818,14 @@
                     <constraint firstItem="Bv8-BE-cIW" firstAttribute="top" secondItem="wAQ-yR-t3W" secondAttribute="bottom" constant="8" id="QKv-Za-oVT"/>
                     <constraint firstAttribute="trailing" secondItem="h7N-Zh-T18" secondAttribute="trailing" constant="8" id="X6f-qg-NEm"/>
                     <constraint firstItem="HfN-9q-fjv" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="8" id="bZt-Bt-XV0"/>
+                    <constraint firstAttribute="trailing" secondItem="v2k-J2-17Q" secondAttribute="trailing" constant="8" id="c7j-jl-sUT"/>
                     <constraint firstAttribute="bottom" secondItem="HfN-9q-fjv" secondAttribute="bottom" constant="8" id="fEV-Au-QMS"/>
                     <constraint firstAttribute="trailing" secondItem="Bv8-BE-cIW" secondAttribute="trailing" constant="8" id="fyF-wj-iOG"/>
                     <constraint firstItem="HfN-9q-fjv" firstAttribute="top" secondItem="Bv8-BE-cIW" secondAttribute="bottom" constant="8" id="iWJ-Q5-WOo"/>
                     <constraint firstAttribute="trailing" secondItem="wAQ-yR-t3W" secondAttribute="trailing" constant="8" id="j3b-5G-gWG"/>
                     <constraint firstItem="h7N-Zh-T18" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="jNk-SL-e8G"/>
-                    <constraint firstItem="v2k-J2-17Q" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="8" id="jhN-xx-gdQ"/>
                     <constraint firstItem="h7N-Zh-T18" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="8" id="kqE-Cu-3dn"/>
-                    <constraint firstAttribute="trailing" secondItem="v2k-J2-17Q" secondAttribute="trailing" constant="8" id="uiS-BD-9bb"/>
+                    <constraint firstItem="v2k-J2-17Q" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="8" id="nYR-Us-tE2"/>
                     <constraint firstItem="v2k-J2-17Q" firstAttribute="top" secondItem="h7N-Zh-T18" secondAttribute="bottom" constant="2" id="wNl-FH-DJ0"/>
                     <constraint firstItem="v2k-J2-17Q" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="xEN-oq-uKT"/>
                 </constraints>
