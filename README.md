@@ -29,6 +29,7 @@ The latest download can be found in the Releases tab: https://github.com/SamusAr
 * ~~This app will ignore all files that are dropped onto its dock icon. This, too, will be possible in a later version.~~ *Added in v1.2*
 * Currently, the only way to use another soundfont is to rename it. Future versions will make the use of custom soundfonts easier.
 * When pausing and un-pausing playback, some sounds might be silent until they get played again. This is normal behavior.
+* The Notification Center's Now Playing section sometimes displays the wrong track duration. This is because the Now Playing API is shit and sadly, completely out of my control.
 
 ## Feedback and support
 Just tweet at me [@SamusAranX](https://twitter.com/SamusAranX) or [drop me a mail](mailto:hallo@peterwunder.de).
