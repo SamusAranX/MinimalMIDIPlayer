@@ -63,6 +63,12 @@
             ReferencedContainer = "container:MinimalMIDIPlayer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "&quot;/Users/peterwunder/Music/VGM Stuff/Ripped Music/DSiWare/Nintendo DSi Shop/TWL_SHOP_BGM.mid&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

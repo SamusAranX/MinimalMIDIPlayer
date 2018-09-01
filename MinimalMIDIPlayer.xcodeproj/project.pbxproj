@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		561776F1213AB08D003BF843 /* NSFont+Alternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561776F0213AB08D003BF843 /* NSFont+Alternates.swift */; };
+		563D9FC21FF46E95008DE194 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563D9FC11FF46E95008DE194 /* MediaPlayer.framework */; };
+		567025A0213AC9B2007C4F72 /* DocIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5670259F213AC9B2007C4F72 /* DocIcon.icns */; };
+		569D77F32004F0010028D9C2 /* PWMIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */; };
 		56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */; };
 		56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */; };
 		56D6A8D61C3437AA0071DEF4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56D6A8D41C3437AA0071DEF4 /* MainMenu.xib */; };
@@ -14,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		561776F0213AB08D003BF843 /* NSFont+Alternates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Alternates.swift"; sourceTree = "<group>"; };
+		563D9FC11FF46E95008DE194 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		5670259F213AC9B2007C4F72 /* DocIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DocIcon.icns; sourceTree = "<group>"; };
+		569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWMIDIPlayer.swift; sourceTree = "<group>"; };
 		56D6A8CD1C3437AA0071DEF4 /* MinimalMIDIPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalMIDIPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -27,17 +35,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				563D9FC21FF46E95008DE194 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		563D9FC01FF46E95008DE194 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				563D9FC11FF46E95008DE194 /* MediaPlayer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		569D77EC2004D3850028D9C2 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				5670259F213AC9B2007C4F72 /* DocIcon.icns */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		56D6A8C41C3437AA0071DEF4 = {
 			isa = PBXGroup;
 			children = (
 				56D6A8CF1C3437AA0071DEF4 /* MinimalMIDIPlayer */,
 				56D6A8CE1C3437AA0071DEF4 /* Products */,
+				563D9FC01FF46E95008DE194 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,11 +78,14 @@
 		56D6A8CF1C3437AA0071DEF4 /* MinimalMIDIPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				569D77EC2004D3850028D9C2 /* Icons */,
 				56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */,
+				561776F0213AB08D003BF843 /* NSFont+Alternates.swift */,
 				56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */,
 				56D6A8D41C3437AA0071DEF4 /* MainMenu.xib */,
 				56D6A8F11C3438C00071DEF4 /* MainWindow.swift */,
 				56D6A8D71C3437AA0071DEF4 /* Info.plist */,
+				569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */,
 			);
 			path = MinimalMIDIPlayer;
 			sourceTree = "<group>";
@@ -94,6 +123,11 @@
 					56D6A8CC1C3437AA0071DEF4 = {
 						CreatedOnToolsVersion = 7.2;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -121,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */,
+				567025A0213AC9B2007C4F72 /* DocIcon.icns in Resources */,
 				56D6A8D61C3437AA0071DEF4 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +167,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				561776F1213AB08D003BF843 /* NSFont+Alternates.swift in Sources */,
+				569D77F32004F0010028D9C2 /* PWMIDIPlayer.swift in Sources */,
 				56D6A8F21C3438C00071DEF4 /* MainWindow.swift in Sources */,
 				56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */,
 			);
@@ -195,7 +232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -242,7 +279,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -260,7 +297,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -277,7 +314,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

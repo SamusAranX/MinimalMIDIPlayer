@@ -15,6 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		Swift.print("applicationDidFinishLaunching")
+        Swift.print(kUTTypeMIDIAudio)
+        
+        self.window!.windowOpened()
 //		NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowClosed:", name: NSWindowWillCloseNotification, object: window)
 	}
 	
@@ -28,6 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		let alert = NSAlert()
 		alert.addButton(withTitle: "OK")
+        
 		alert.alertStyle = .critical
 		
 		// Check if macOS thinks that this file is a MIDI file
@@ -35,8 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			let fileUTI = try NSWorkspace.shared.type(ofFile: filename)
 			
 			if UTTypeConformsTo(fileUTI as CFString, kUTTypeMIDIAudio) {
-				let files = window.loadFiles(filename)
-				window.playFiles(midiFile: files.midi, soundFontFile: files.sf)
+                let midiFile = URL(fileURLWithPath: filename)
+				window.openFile(midiFile: midiFile)
 				return true // It is, load and play the files
 			}
 		} catch let error as NSError {
