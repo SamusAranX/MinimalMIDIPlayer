@@ -12,19 +12,6 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBOutlet weak var window: MainWindow!
-
-	func applicationDidFinishLaunching(_ notification: Notification) {
-		Swift.print("applicationDidFinishLaunching")
-        Swift.print(kUTTypeMIDIAudio)
-        
-        self.window!.windowOpened()
-//		NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowClosed:", name: NSWindowWillCloseNotification, object: window)
-	}
-	
-//	func windowClosed(aNotification: NSNotification) {
-//		window.setFrameAutosaveName(window.representedFilename)
-//		print("Window closed")
-//	}
 	
 	func application(_ sender: NSApplication, openFile filename: String) -> Bool {
 		Swift.print("openFile: \(filename)")
@@ -40,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			
 			if UTTypeConformsTo(fileUTI as CFString, kUTTypeMIDIAudio) {
                 let midiFile = URL(fileURLWithPath: filename)
-				window.openFile(midiFile: midiFile)
+				self.window.openFile(midiFile: midiFile)
 				return true // It is, load and play the files
 			}
 		} catch let error as NSError {

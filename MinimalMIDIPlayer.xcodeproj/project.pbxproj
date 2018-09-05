@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		561776F1213AB08D003BF843 /* NSFont+Alternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561776F0213AB08D003BF843 /* NSFont+Alternates.swift */; };
+		562283DF213D1C4D008F550E /* DocIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 562283DE213D1C4D008F550E /* DocIcon.icns */; };
 		563D9FC21FF46E95008DE194 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563D9FC11FF46E95008DE194 /* MediaPlayer.framework */; };
-		567025A0213AC9B2007C4F72 /* DocIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5670259F213AC9B2007C4F72 /* DocIcon.icns */; };
 		569D77F32004F0010028D9C2 /* PWMIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */; };
 		56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */; };
 		56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */; };
@@ -19,8 +19,8 @@
 
 /* Begin PBXFileReference section */
 		561776F0213AB08D003BF843 /* NSFont+Alternates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Alternates.swift"; sourceTree = "<group>"; };
+		562283DE213D1C4D008F550E /* DocIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DocIcon.icns; sourceTree = "<group>"; };
 		563D9FC11FF46E95008DE194 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		5670259F213AC9B2007C4F72 /* DocIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DocIcon.icns; sourceTree = "<group>"; };
 		569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWMIDIPlayer.swift; sourceTree = "<group>"; };
 		56D6A8CD1C3437AA0071DEF4 /* MinimalMIDIPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalMIDIPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 		569D77EC2004D3850028D9C2 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				5670259F213AC9B2007C4F72 /* DocIcon.icns */,
+				562283DE213D1C4D008F550E /* DocIcon.icns */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -79,13 +79,13 @@
 			isa = PBXGroup;
 			children = (
 				569D77EC2004D3850028D9C2 /* Icons */,
-				56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */,
-				561776F0213AB08D003BF843 /* NSFont+Alternates.swift */,
 				56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */,
 				56D6A8D41C3437AA0071DEF4 /* MainMenu.xib */,
+				56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */,
+				561776F0213AB08D003BF843 /* NSFont+Alternates.swift */,
+				569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */,
 				56D6A8F11C3438C00071DEF4 /* MainWindow.swift */,
 				56D6A8D71C3437AA0071DEF4 /* Info.plist */,
-				569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */,
 			);
 			path = MinimalMIDIPlayer;
 			sourceTree = "<group>";
@@ -117,11 +117,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Peter Wunder";
 				TargetAttributes = {
 					56D6A8CC1C3437AA0071DEF4 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -155,7 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */,
-				567025A0213AC9B2007C4F72 /* DocIcon.icns in Resources */,
+				562283DF213D1C4D008F550E /* DocIcon.icns in Resources */,
 				56D6A8D61C3437AA0071DEF4 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,12 +201,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -253,12 +256,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -301,6 +306,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -318,6 +324,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

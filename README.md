@@ -4,6 +4,7 @@ A very simple app that does what is says on the tin. Also it has the worst name 
 ## Features
 * Plays MIDI files
 * If there’s a soundfont with the same name as the MIDI file, MinimalMIDIPlayer will use that. Otherwise it’ll just use the macOS standard soundfont.
+* That behavior can be overridden to load custom soundfonts
 * Supports macOS Mojave's new Dark Mode
 * Supports the Notification Center's Now Playing widget as well as the newer MacBook Pro's Touch Bar
 * Keyboard shortcuts!
@@ -29,11 +30,12 @@ The latest download can be found in the Releases tab: https://github.com/SamusAr
 
 ## Known issues
 * Because this is based on Apple’s own AVMIDIPlayer, customizability is basically non-existent. This thing can play MIDI files with custom soundfonts and that’s it.
-* ~~Currently, this app only checks for SF2 files in the same folder. DLS support will come later.~~ *Added in v1.1*
-* ~~This app will ignore all files that are dropped onto its dock icon. This, too, will be possible in a later version.~~ *Added in v1.2*
-* Currently, the only way to use another soundfont is to rename it. Future versions will make the use of custom soundfonts easier.
-* When pausing and un-pausing playback, some sounds might be silent until they get played again. This is not expected behavior and not a bug.
+* ~~Currently, this app only checks for SF2 files in the same folder. DLS support will come later.~~ ***Added in v1.1***
+* ~~This app will ignore all files that are dropped onto its dock icon. This, too, will be possible in a later version.~~ ***Added in v1.2***
+* ~~Currently, the only way to use another soundfont is to rename it. Future versions will make the use of custom soundfonts easier.~~ ***Added in v1.5***
+* When pausing and un-pausing playback, some sounds might be silent until they get played again. This is expected behavior and not a bug.
 * When using the Touch Bar or the Now Playing widget to skip to another part of the track, the track might sound out of tune. This can happen if the MIDI you're listening to uses lots of Pitch Bends and is expected behavior.
+* The Notification Center's Now Playing section sometimes get out of sync with the currently playing track. This is because the Now Playing API is buggy and more or less expected behavior.
 
 ## Feedback and support
 Just tweet at me [@SamusAranX](https://twitter.com/SamusAranX) or [drop me a mail](mailto:hallo@peterwunder.de).
