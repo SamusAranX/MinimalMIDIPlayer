@@ -60,7 +60,7 @@
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pX5-Eh-rnR">
-                                        <rect key="frame" x="16" y="78" width="213" height="70"/>
+                                        <rect key="frame" x="16" y="78" width="226" height="70"/>
                                         <textFieldCell key="cell" controlSize="small" id="pln-te-Ghz">
                                             <font key="font" metaFont="smallSystem"/>
                                             <string key="title">Normally, when you hit Play in a player window, all other player windows get paused. Cacophony Mode disables this behavior, allowing multiple player windows to play at the same time.</string>
@@ -360,7 +360,7 @@
                                 <rect key="frame" x="20" y="16" width="310" height="140"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pqD-9q-5vb" customClass="HyperlinkTextField">
-                                        <rect key="frame" x="-2" y="76" width="313" height="64"/>
+                                        <rect key="frame" x="-2" y="76" width="314" height="64"/>
                                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="HAx-HL-6NF">
                                             <font key="font" metaFont="cellTitle"/>
                                             <string key="title">When Apple replaced QuickTime Player 7 with the currently shipping version, they also removed support for MIDI file playback. This app aims to be a good, if not better replacement.</string>
@@ -562,7 +562,7 @@
                                                 <rect key="frame" x="63" y="0.0" width="124" height="32"/>
                                                 <subviews>
                                                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njy-C9-CBO" userLabel="Previous Button">
-                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="32"/>
+                                                        <rect key="frame" x="0.0" y="8" width="24" height="16"/>
                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="PreviousButton" imagePosition="only" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="qxB-IB-gu4">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -572,7 +572,7 @@
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HcG-tJ-197">
-                                                        <rect key="frame" x="50" y="0.0" width="24" height="32"/>
+                                                        <rect key="frame" x="50" y="3" width="24" height="26"/>
                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="PlayButton" imagePosition="only" alignment="center" alternateImage="PauseButton" enabled="NO" imageScaling="proportionallyDown" inset="2" id="e20-Jm-Fmi">
                                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -582,7 +582,7 @@
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w8M-xB-XSZ" userLabel="Stop Button">
-                                                        <rect key="frame" x="100" y="0.0" width="24" height="32"/>
+                                                        <rect key="frame" x="100" y="4" width="24" height="24"/>
                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="StopButton" imagePosition="only" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="Sda-cw-a1g">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -615,10 +615,10 @@
                                         </constraints>
                                     </customView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f39-I2-twC">
-                                        <rect key="frame" x="48" y="23" width="189" height="20"/>
+                                        <rect key="frame" x="47" y="23" width="191" height="20"/>
                                         <subviews>
                                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="zXh-zg-b6l">
-                                                <rect key="frame" x="0.0" y="1" width="118" height="18"/>
+                                                <rect key="frame" x="0.0" y="1" width="120" height="18"/>
                                                 <popUpButtonCell key="cell" type="inline" title="Default Soundfont" bezelStyle="inline" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="Q7Y-od-Qzw" id="rrc-5Q-Iek">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
@@ -650,7 +650,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7tP-u3-Bnb">
-                                                <rect key="frame" x="123" y="1" width="68" height="18"/>
+                                                <rect key="frame" x="125" y="1" width="68" height="18"/>
                                                 <buttonCell key="cell" type="check" title="Override" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="lzp-Yr-p4c">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
@@ -749,12 +749,15 @@
                 </viewController>
                 <customObject id="An2-fc-PD9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customView id="HZY-CW-1nr">
-                    <rect key="frame" x="0.0" y="0.0" width="36" height="24"/>
+                    <rect key="frame" x="0.0" y="0.0" width="32" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SJo-x9-tZR">
-                            <rect key="frame" x="6" y="3" width="25" height="19"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" title="📣︎" id="qAf-nQ-kjP">
+                            <rect key="frame" x="-2" y="3" width="36" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="neJ-Z8-u8Y"/>
+                            </constraints>
+                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="📣" id="qAf-nQ-kjP">
                                 <font key="font" metaFont="system" size="15"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -762,8 +765,8 @@
                         </textField>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="SJo-x9-tZR" firstAttribute="centerX" secondItem="HZY-CW-1nr" secondAttribute="centerX" id="kHv-Xw-FQN"/>
-                        <constraint firstItem="SJo-x9-tZR" firstAttribute="centerY" secondItem="HZY-CW-1nr" secondAttribute="centerY" id="qgL-xx-pp5"/>
+                        <constraint firstItem="SJo-x9-tZR" firstAttribute="centerY" secondItem="HZY-CW-1nr" secondAttribute="centerY" id="Rk8-6r-6dW"/>
+                        <constraint firstItem="SJo-x9-tZR" firstAttribute="centerX" secondItem="HZY-CW-1nr" secondAttribute="centerX" id="wtP-Yg-Opd"/>
                     </constraints>
                 </customView>
             </objects>
