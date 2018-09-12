@@ -9,6 +9,7 @@
 import Cocoa
 import MediaPlayer
 
+@available(OSX 10.12.2, *)
 class NowPlayingCentral: NSObject {
 	
 	static let shared = NowPlayingCentral()

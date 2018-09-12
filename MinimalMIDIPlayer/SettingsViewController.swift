@@ -30,7 +30,7 @@ class SettingsViewController: NSViewController {
 		
 		NSDocumentController.shared.closeAllDocuments(withDelegate: nil, didCloseAllSelector: nil, contextInfo: nil)
 		
-		if Settings.shared.cacophonyMode {
+		if #available(OSX 10.12.2, *), Settings.shared.cacophonyMode {
 			NowPlayingCentral.shared.playbackState = .unknown
 			NowPlayingCentral.shared.resetNowPlayingInfo()
 		}

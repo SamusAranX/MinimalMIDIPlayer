@@ -79,7 +79,9 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	override func viewWillDisappear() {
 		self.midiPlayer?.stop()
 		
-		NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
+		if #available(OSX 10.12.2, *) {
+			NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
+		}
 		
 		self.midiPlayer = nil
 	}
@@ -388,7 +390,9 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			}
 		}
 		
-		NowPlayingCentral.shared.playbackState = .playing
+		if #available(OSX 10.12.2, *) {
+			NowPlayingCentral.shared.playbackState = .playing
+		}
 	}
 	
 	func playbackStopped(paused: Bool) {

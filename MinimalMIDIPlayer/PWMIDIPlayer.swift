@@ -36,7 +36,9 @@ class PWMIDIPlayer: AVMIDIPlayer {
     
     override var rate: Float {
         didSet {
-			NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyPlaybackRate : NSNumber(value: self.rate)])
+			if #available(OSX 10.12.2, *) {
+				NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyPlaybackRate : NSNumber(value: self.rate)])
+			}
             self.delegate?.playbackSpeedChanged(speed: self.rate)
         }
     }
@@ -88,7 +90,9 @@ class PWMIDIPlayer: AVMIDIPlayer {
     convenience init(withMIDI midiFile: URL, andSoundfont soundfontFile: URL? = nil) throws {
 		try self.init(contentsOf: midiFile, soundBankURL: soundfontFile)
 		
-		NowPlayingCentral.shared.addToPlayers(player: self)
+		if #available(OSX 10.12.2, *) {
+			NowPlayingCentral.shared.addToPlayers(player: self)
+		}
 		
 		self.currentMIDI = midiFile
 		self.currentSoundfont = soundfontFile
@@ -97,7 +101,9 @@ class PWMIDIPlayer: AVMIDIPlayer {
     deinit {
 		Swift.print("PWMIDIPlayer: deinit")
 		
-		NowPlayingCentral.shared.playbackState = .stopped
+		if #available(OSX 10.12.2, *) {
+			NowPlayingCentral.shared.playbackState = .stopped
+		}
 		
 		self.progressTimer?.invalidate()
 		self.progressTimer = nil
@@ -110,7 +116,9 @@ class PWMIDIPlayer: AVMIDIPlayer {
             return
         }
 		
-		NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyElapsedPlaybackTime : NSNumber(value: self.currentPosition)])
+		if #available(OSX 10.12.2, *) {
+			NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyElapsedPlaybackTime : NSNumber(value: self.currentPosition)])
+		}
 		
         self.delegate?.playbackPositionChanged(position: self.currentPosition, duration: self.duration)
     }
@@ -128,7 +136,10 @@ class PWMIDIPlayer: AVMIDIPlayer {
 			DispatchQueue.main.async {
 				if (self.currentPosition >= self.duration - 0.1) {
 					self.progressTimer?.invalidate()
-					NowPlayingCentral.shared.playbackState = .stopped
+					
+					if #available(OSX 10.12.2, *) {
+						NowPlayingCentral.shared.playbackState = .stopped
+					}
 					self.delegate?.playbackEnded()
 				}
 			}
@@ -139,11 +150,11 @@ class PWMIDIPlayer: AVMIDIPlayer {
         self.progressTimer = Timer.scheduledTimer(withTimeInterval: 0.125, repeats: true, block: timerDidFire)
 		self.progressTimer!.tolerance = 0.125 / 8
 		
-		if !Settings.shared.cacophonyMode {
-			NowPlayingCentral.shared.resetNowPlayingInfo()
-			NowPlayingCentral.shared.makeActive(player: self)
-			NowPlayingCentral.shared.initNowPlayingInfo(for: self)
-			NowPlayingCentral.shared.playbackState = .playing
+		if #available(OSX 10.12.2, *), !Settings.shared.cacophonyMode {
+				NowPlayingCentral.shared.resetNowPlayingInfo()
+				NowPlayingCentral.shared.makeActive(player: self)
+				NowPlayingCentral.shared.initNowPlayingInfo(for: self)
+				NowPlayingCentral.shared.playbackState = .playing
 		}
 		
         self.delegate?.playbackStarted(firstTime: self.currentPosition == 0)
@@ -155,7 +166,9 @@ class PWMIDIPlayer: AVMIDIPlayer {
 		
         self.progressTimer?.invalidate()
 		
-        NowPlayingCentral.shared.playbackState = .paused
+		if #available(OSX 10.12.2, *) {
+        	NowPlayingCentral.shared.playbackState = .paused
+		}
 		
 		self.delegate?.playbackStopped(paused: true)
 	}
@@ -166,7 +179,10 @@ class PWMIDIPlayer: AVMIDIPlayer {
         self.progressTimer?.invalidate()
 		
 		self.currentPosition = 0
-        NowPlayingCentral.shared.playbackState = .stopped
+		
+		if #available(OSX 10.12.2, *) {
+        	NowPlayingCentral.shared.playbackState = .stopped
+		}
         
 		self.delegate?.playbackStopped(paused: false)
     }
