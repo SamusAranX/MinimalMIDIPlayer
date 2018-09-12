@@ -30,16 +30,13 @@ class PWMIDIPlayer: AVMIDIPlayer {
     var currentMIDI: URL?
     var currentSoundfont: URL?
     
-    var nowPlayingInfo: MPNowPlayingInfoCenter?
-    var commandCenter: MPRemoteCommandCenter?
-    
     weak var delegate: PWMIDIPlayerDelegate?
     
-    fileprivate var progressTimer: Timer?
+    private var progressTimer: Timer?
     
     override var rate: Float {
         didSet {
-            self.nowPlayingInfo?.nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = NSNumber(value: self.rate)
+			NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyPlaybackRate : NSNumber(value: self.rate)])
             self.delegate?.playbackSpeedChanged(speed: self.rate)
         }
     }
@@ -49,16 +46,18 @@ class PWMIDIPlayer: AVMIDIPlayer {
             self.delegate?.playbackPositionChanged(position: self.currentPosition, duration: self.duration)
         }
     }
-    
+	
+	/// A Boolean value that indicates whether the sequence is paused.
     var isPaused: Bool {
         get {
             return !self.isPlaying && !self.isStopped
         }
     }
 	
+	/// A Boolean value that indicates whether the sequence is stopped.
 	var isStopped: Bool {
 		get {
-			return !self.isPlaying && self.currentPosition >= self.duration - 0.1
+			return !self.isPlaying && self.currentPosition >= self.duration - 0.01
 		}
 	}
     
@@ -88,63 +87,20 @@ class PWMIDIPlayer: AVMIDIPlayer {
 	
     convenience init(withMIDI midiFile: URL, andSoundfont soundfontFile: URL? = nil) throws {
 		try self.init(contentsOf: midiFile, soundBankURL: soundfontFile)
-        
-        self.nowPlayingInfo = MPNowPlayingInfoCenter.default()
-        self.commandCenter = MPRemoteCommandCenter.shared()
+		
+		NowPlayingCentral.shared.addToPlayers(player: self)
 		
 		self.currentMIDI = midiFile
 		self.currentSoundfont = soundfontFile
-        
-        let midiTitle = self.currentMIDI!.deletingPathExtension().lastPathComponent
-        let midiAlbumTitle = self.currentSoundfont?.deletingPathExtension().lastPathComponent ?? self.currentMIDI!.deletingLastPathComponent().lastPathComponent
-        let midiArtist = "MinimalMIDIPlayer" // heh
-		
-        var nowPlayingInfo: [String : Any] = [
-            MPNowPlayingInfoPropertyMediaType: NSNumber(value: MPNowPlayingInfoMediaType.audio.rawValue),
-            MPNowPlayingInfoPropertyIsLiveStream: NSNumber(booleanLiteral: false),
-            
-            MPNowPlayingInfoPropertyDefaultPlaybackRate: NSNumber(floatLiteral: 1.0),
-            MPNowPlayingInfoPropertyPlaybackProgress: NSNumber(floatLiteral: 0.0),
-            
-            MPMediaItemPropertyTitle: midiTitle,
-            MPMediaItemPropertyAlbumTitle: midiAlbumTitle,
-            MPMediaItemPropertyArtist: midiArtist,
-            
-            MPMediaItemPropertyPlaybackDuration: NSNumber(value: self.duration)
-        ]
-        
-        if #available(OSX 10.13.2, *) {
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 800, height: 800), requestHandler: {
-                (size: CGSize) -> NSImage in
-                
-                return NSImage(named: "AlbumArt")!
-            })
-        }
-        
-        self.nowPlayingInfo?.nowPlayingInfo = nowPlayingInfo
-        
-        self.commandCenter?.playCommand.addTarget(self, action: #selector(playCommand(event:)))
-        self.commandCenter?.pauseCommand.addTarget(self, action: #selector(pauseCommand(event:)))
-        self.commandCenter?.togglePlayPauseCommand.addTarget(self, action: #selector(togglePlayPauseCommand(event:)))
-        self.commandCenter?.changePlaybackPositionCommand.addTarget(self, action: #selector(changePlaybackPositionCommand(event:)))
-        self.commandCenter?.previousTrackCommand.addTarget(self, action: #selector(previousTrackCommand(event:)))
-        self.commandCenter?.nextTrackCommand.addTarget(self, action: #selector(nextTrackCommand(event:)))
 	}
     
     deinit {
-		Swift.print("deinit")
+		Swift.print("PWMIDIPlayer: deinit")
+		
+		NowPlayingCentral.shared.playbackState = .stopped
 		
 		self.progressTimer?.invalidate()
 		self.progressTimer = nil
-		
-		self.nowPlayingInfo?.nowPlayingInfo = nil
-		
-		self.commandCenter?.playCommand.removeTarget(self)
-		self.commandCenter?.pauseCommand.removeTarget(self)
-		self.commandCenter?.togglePlayPauseCommand.removeTarget(self)
-		self.commandCenter?.changePlaybackPositionCommand.removeTarget(self)
-		self.commandCenter?.previousTrackCommand.removeTarget(self)
-		self.commandCenter?.nextTrackCommand.removeTarget(self)
 		
 		self.delegate = nil
     }
@@ -153,56 +109,13 @@ class PWMIDIPlayer: AVMIDIPlayer {
         guard let _timer = self.progressTimer, _timer.isValid else {
             return
         }
-        
-        self.nowPlayingInfo?.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: self.currentPosition)
+		
+		NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyElapsedPlaybackTime : NSNumber(value: self.currentPosition)])
+		
         self.delegate?.playbackPositionChanged(position: self.currentPosition, duration: self.duration)
     }
-    
-    ///
-    /// COMMAND CENTER COMMANDS
-    ///
-    
-    @objc func playCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-        Swift.print("Play command")
-        self.play()
-        return .success
-    }
-    
-    @objc func pauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-        Swift.print("Pause command")
-        self.pause()
-        return .success
-    }
-    
-    @objc func togglePlayPauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-        Swift.print("Play/Pause command")
-        self.togglePlayPause()
-        return .success
-    }
-    
-    @objc func changePlaybackPositionCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-        let changePositionEvent = event as! MPChangePlaybackPositionCommandEvent
-        self.currentPosition = changePositionEvent.positionTime
-        return .success
-    }
-    
-    @objc func previousTrackCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-        Swift.print("Previous track command")
-        self.stop()
-        self.currentPosition = 0
-        self.play()
-        return .success
-    }
-    
-    @objc func nextTrackCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-        Swift.print("Next track command")
-        self.stop()
-        return .success
-    }
-    
-    ///
-    /// OVERRIDES AND CONVENIENCE METHODS
-    ///
+	
+	// MARK: - Overrides and convenience methods
     
     override func prepareToPlay() {
         super.prepareToPlay()
@@ -215,7 +128,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 			DispatchQueue.main.async {
 				if (self.currentPosition >= self.duration - 0.1) {
 					self.progressTimer?.invalidate()
-					self.nowPlayingInfo?.playbackState = .stopped
+					NowPlayingCentral.shared.playbackState = .stopped
 					self.delegate?.playbackEnded()
 				}
 			}
@@ -225,8 +138,14 @@ class PWMIDIPlayer: AVMIDIPlayer {
         
         self.progressTimer = Timer.scheduledTimer(withTimeInterval: 0.125, repeats: true, block: timerDidFire)
 		self.progressTimer!.tolerance = 0.125 / 8
-        
-        self.nowPlayingInfo?.playbackState = .playing
+		
+		if !Settings.shared.cacophonyMode {
+			NowPlayingCentral.shared.resetNowPlayingInfo()
+			NowPlayingCentral.shared.makeActive(player: self)
+			NowPlayingCentral.shared.initNowPlayingInfo(for: self)
+			NowPlayingCentral.shared.playbackState = .playing
+		}
+		
         self.delegate?.playbackStarted(firstTime: self.currentPosition == 0)
     }
 	
@@ -236,7 +155,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 		
         self.progressTimer?.invalidate()
 		
-        self.nowPlayingInfo?.playbackState = .paused
+        NowPlayingCentral.shared.playbackState = .paused
 		
 		self.delegate?.playbackStopped(paused: true)
 	}
@@ -247,7 +166,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
         self.progressTimer?.invalidate()
 		
 		self.currentPosition = 0
-        self.nowPlayingInfo?.playbackState = .stopped
+        NowPlayingCentral.shared.playbackState = .stopped
         
 		self.delegate?.playbackStopped(paused: false)
     }

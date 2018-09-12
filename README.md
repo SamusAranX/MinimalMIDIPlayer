@@ -12,7 +12,8 @@ A very simple app that does what is says on the tin. Also it has the worst name 
 	* <kbd>↑</kbd> and <kbd>↓</kbd> adjust the playback speed
 	* <kbd>←</kbd> resets the playback position to the start of the track
 	* <kbd>→</kbd> stops the playback
-* You can open files with ⌘O, drop files on the app icon and the dock icon, or set this app as the default for all MIDI files: 
+	* Alternatively, use the standard media keys
+* You can open files with ⌘O, drop files on the app icon and the dock icon, or set this app as the default for all MIDI files:
 
 ![MinimalMIDIPlayer as default app](https://user-images.githubusercontent.com/676069/44947578-21d2b680-ae0f-11e8-93d5-596cce9c3f91.png)
 

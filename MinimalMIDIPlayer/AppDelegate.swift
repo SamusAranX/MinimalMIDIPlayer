@@ -10,48 +10,6 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-	@IBOutlet weak var window: MainWindow!
 	
-	func application(_ sender: NSApplication, openFile filename: String) -> Bool {
-		Swift.print("openFile: \(filename)")
-		
-		let alert = NSAlert()
-		alert.addButton(withTitle: "OK")
-        
-		alert.alertStyle = .critical
-		
-		// Check if macOS thinks that this file is a MIDI file
-		do {
-			let fileUTI = try NSWorkspace.shared.type(ofFile: filename)
-			
-			if UTTypeConformsTo(fileUTI as CFString, kUTTypeMIDIAudio) {
-                let midiFile = URL(fileURLWithPath: filename)
-				self.window.openFile(midiFile: midiFile)
-				return true // It is, load and play the files
-			}
-		} catch let error as NSError {
-			alert.messageText = "Error checking file"
-			alert.informativeText = error.localizedDescription
-			alert.runModal()
-			return false // There was an error
-		}
-		
-		alert.messageText = "Error checking file"
-		alert.informativeText = "This is not a valid MIDI file."
-		alert.runModal()
-		
-		return false // It's not, abort
-	}
-
-	func applicationWillTerminate(aNotification: NSNotification) {
-		// Insert code here to tear down your application
-	}
-    
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-        return true
-    }
-
-
 }
 

@@ -8,7 +8,10 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
-			<array/>
+			<array>
+				<string>mid</string>
+				<string>midi</string>
+			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>DocIcon</string>
 			<key>CFBundleTypeName</key>
@@ -23,6 +26,8 @@
 			</array>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>$(PRODUCT_MODULE_NAME).MIDIDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -38,19 +43,19 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5</string>
+	<string>1.6</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>116</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2015−2018 Peter Wunder. All rights reserved.</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<key>NSMainStoryboardFile</key>
+	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

@@ -10,7 +10,7 @@ import Cocoa
 
 extension NSFont {
     
-    fileprivate func addAttributes(attributes: [[NSFontDescriptor.FeatureKey: Any]]) -> NSFont? {
+    private func addAttributes(attributes: [[NSFontDescriptor.FeatureKey: Any]]) -> NSFont? {
         let fontAttributes = self.fontDescriptor.fontAttributes
         var featureSettings = fontAttributes[.featureSettings] as? [[NSFontDescriptor.FeatureKey:Any]] ?? []
         
@@ -26,7 +26,7 @@ extension NSFont {
         return NSFont(descriptor: desc, size: self.pointSize)
     }
     
-    fileprivate func enableStylisticAlternate(ss: Int) -> NSFont? {
+    private func enableStylisticAlternate(ss: Int) -> NSFont? {
         let alternates = [
             kStylisticAltOneOnSelector, kStylisticAltTwoOnSelector, kStylisticAltThreeOnSelector, kStylisticAltFourOnSelector, kStylisticAltFiveOnSelector,
             kStylisticAltSixOnSelector, kStylisticAltSevenOnSelector, kStylisticAltEightOnSelector, kStylisticAltNineOnSelector, kStylisticAltTenOnSelector,
@@ -46,7 +46,7 @@ extension NSFont {
         return self.addAttributes(attributes: featureSettings)
     }
     
-    fileprivate func disableStylisticAlternate(ss: Int) -> NSFont? {
+    private func disableStylisticAlternate(ss: Int) -> NSFont? {
         let alternates = [
             kStylisticAltOneOffSelector, kStylisticAltTwoOffSelector, kStylisticAltThreeOffSelector, kStylisticAltFourOffSelector, kStylisticAltFiveOffSelector,
             kStylisticAltSixOffSelector, kStylisticAltSevenOffSelector, kStylisticAltEightOffSelector, kStylisticAltNineOffSelector, kStylisticAltTenOffSelector,
@@ -126,5 +126,14 @@ extension NSFont {
         
         return self.addAttributes(attributes: featureSettings)
     }
+	
+	var superscript: NSFont? {
+		let featureSettings = [[
+			NSFontDescriptor.FeatureKey.typeIdentifier: kVerticalPositionType,
+			NSFontDescriptor.FeatureKey.selectorIdentifier: kSuperiorsSelector
+		]]
+		
+		return self.addAttributes(attributes: featureSettings)
+	}
     
 }
