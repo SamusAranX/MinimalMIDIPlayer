@@ -20,7 +20,8 @@ A very simple app that does what is says on the tin.
 ![MinimalMIDIPlayer as default app](https://user-images.githubusercontent.com/676069/45409818-880dd380-b670-11e8-8ad6-49f6b97abcd3.png)
 
 ## Requirements
-* OS X 10.13+
+* macOS 10.12+
+	* On macOS 10.12, media controls will not be available. They require macOS 10.13 or newer.
 
 ## Screenshots
 

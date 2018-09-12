@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import AVFoundation
 
 enum MIDIDocumentError: Error {
 	case noAutosavesAllowed
@@ -42,8 +43,8 @@ class MIDIDocument: NSDocument {
 	}
 	
 	override func read(from url: URL, ofType typeName: String) throws {
-		// do nothing, I guess.
-		// I'll use NSDocument's fileURL property instead
+		// this will throw if the MIDI isn't valid, aborting the document opening process
+		// good thing AVMIDIPlayer is so lightweight or having to do this would really suck
+		let _ = try AVMIDIPlayer(contentsOf: url, soundBankURL: nil)
 	}
-
 }
