@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56057E68214959BF008946EB /* GenerateThumbnailForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 56057E67214959BF008946EB /* GenerateThumbnailForURL.m */; };
+		56057E6A214959BF008946EB /* GeneratePreviewForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 56057E69214959BF008946EB /* GeneratePreviewForURL.m */; };
+		56057E6C214959BF008946EB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 56057E6B214959BF008946EB /* main.c */; };
+		56057E7321495F35008946EB /* Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 56057E7221495F35008946EB /* Shared.h */; };
 		5612BAE821414F3C00AA1882 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612BAE721414F3C00AA1882 /* Settings.swift */; };
 		561776F1213AB08D003BF843 /* NSFont+Alternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561776F0213AB08D003BF843 /* NSFont+Alternates.swift */; };
 		562283DF213D1C4D008F550E /* DocIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 562283DE213D1C4D008F550E /* DocIcon.icns */; };
+		563C821F214DA32F00B0D41E /* MinimalMIDIQL.qlgenerator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56057E65214959BF008946EB /* MinimalMIDIQL.qlgenerator */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		563C822A214DCA6E00B0D41E /* NSFont+LineHeight.h in Headers */ = {isa = PBXBuildFile; fileRef = 563C8229214DCA6E00B0D41E /* NSFont+LineHeight.h */; };
+		563C822C214DCA8900B0D41E /* NSFont+LineHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 563C822B214DCA8900B0D41E /* NSFont+LineHeight.m */; };
 		563D9FC21FF46E95008DE194 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563D9FC11FF46E95008DE194 /* MediaPlayer.framework */; };
+		565642B8214D9E8E0036D76C /* AlbumArtQuickLookBigger.png in Resources */ = {isa = PBXBuildFile; fileRef = 565642B7214D9E8E0036D76C /* AlbumArtQuickLookBigger.png */; };
 		56654136214045C100283C85 /* MIDIDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56654135214045C100283C85 /* MIDIDocument.swift */; };
 		5669F2EB21425B400034D3ED /* NowPlayingCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */; };
 		5669F2ED214294F50034D3ED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F2EC214294F50034D3ED /* SettingsViewController.swift */; };
@@ -25,12 +33,35 @@
 		56FEF16621411AC000813975 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF16521411AC000813975 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		565642B5214D9CF90036D76C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../Library/QuickLook;
+			dstSubfolderSpec = 13;
+			files = (
+				563C821F214DA32F00B0D41E /* MinimalMIDIQL.qlgenerator in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		5603C1EC2147B99E00BADF57 /* MinimalMIDIPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalMIDIPlayer.entitlements; sourceTree = "<group>"; };
+		56057E3B214958BF008946EB /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		56057E65214959BF008946EB /* MinimalMIDIQL.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MinimalMIDIQL.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		56057E67214959BF008946EB /* GenerateThumbnailForURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenerateThumbnailForURL.m; sourceTree = "<group>"; };
+		56057E69214959BF008946EB /* GeneratePreviewForURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeneratePreviewForURL.m; sourceTree = "<group>"; };
+		56057E6B214959BF008946EB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		56057E6D214959BF008946EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56057E7221495F35008946EB /* Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shared.h; sourceTree = "<group>"; };
 		5612BAE721414F3C00AA1882 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		561776F0213AB08D003BF843 /* NSFont+Alternates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Alternates.swift"; sourceTree = "<group>"; };
 		562283DE213D1C4D008F550E /* DocIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DocIcon.icns; sourceTree = "<group>"; };
+		563C8229214DCA6E00B0D41E /* NSFont+LineHeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFont+LineHeight.h"; sourceTree = "<group>"; };
+		563C822B214DCA8900B0D41E /* NSFont+LineHeight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFont+LineHeight.m"; sourceTree = "<group>"; };
 		563D9FC11FF46E95008DE194 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		565642B7214D9E8E0036D76C /* AlbumArtQuickLookBigger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumArtQuickLookBigger.png; sourceTree = "<group>"; };
 		56654135214045C100283C85 /* MIDIDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIDocument.swift; sourceTree = "<group>"; };
 		5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCentral.swift; sourceTree = "<group>"; };
 		5669F2EC214294F50034D3ED /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +82,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		56057E62214959BF008946EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56D6A8CA1C3437AA0071DEF4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,11 +100,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		56057E66214959BF008946EB /* MinimalMIDIQL */ = {
+			isa = PBXGroup;
+			children = (
+				565642B7214D9E8E0036D76C /* AlbumArtQuickLookBigger.png */,
+				563C8229214DCA6E00B0D41E /* NSFont+LineHeight.h */,
+				563C822B214DCA8900B0D41E /* NSFont+LineHeight.m */,
+				56057E7221495F35008946EB /* Shared.h */,
+				56057E67214959BF008946EB /* GenerateThumbnailForURL.m */,
+				56057E69214959BF008946EB /* GeneratePreviewForURL.m */,
+				56057E6B214959BF008946EB /* main.c */,
+				56057E6D214959BF008946EB /* Info.plist */,
+			);
+			path = MinimalMIDIQL;
+			sourceTree = "<group>";
+		};
 		563D9FC01FF46E95008DE194 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				56AB757F213FD146009ECFB1 /* AVFoundation.framework */,
 				563D9FC11FF46E95008DE194 /* MediaPlayer.framework */,
+				56057E3B214958BF008946EB /* Quartz.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -83,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				56D6A8CF1C3437AA0071DEF4 /* MinimalMIDIPlayer */,
+				56057E66214959BF008946EB /* MinimalMIDIQL */,
 				56D6A8CE1C3437AA0071DEF4 /* Products */,
 				563D9FC01FF46E95008DE194 /* Frameworks */,
 			);
@@ -92,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				56D6A8CD1C3437AA0071DEF4 /* MinimalMIDIPlayer.app */,
+				56057E65214959BF008946EB /* MinimalMIDIQL.qlgenerator */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,7 +196,38 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		56057E60214959BF008946EB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56057E7321495F35008946EB /* Shared.h in Headers */,
+				563C822A214DCA6E00B0D41E /* NSFont+LineHeight.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		56057E64214959BF008946EB /* MinimalMIDIQL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56057E6E214959BF008946EB /* Build configuration list for PBXNativeTarget "MinimalMIDIQL" */;
+			buildPhases = (
+				56057E60214959BF008946EB /* Headers */,
+				56057E61214959BF008946EB /* Sources */,
+				56057E62214959BF008946EB /* Frameworks */,
+				56057E63214959BF008946EB /* Resources */,
+				56057E71214959C4008946EB /* Run Script (Auto-increase Build Number) */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MinimalMIDIQL;
+			productName = MinimalMIDIQL;
+			productReference = 56057E65214959BF008946EB /* MinimalMIDIQL.qlgenerator */;
+			productType = "com.apple.product-type.bundle";
+		};
 		56D6A8CC1C3437AA0071DEF4 /* MinimalMIDIPlayer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56D6A8DA1C3437AA0071DEF4 /* Build configuration list for PBXNativeTarget "MinimalMIDIPlayer" */;
@@ -149,6 +236,7 @@
 				56D6A8CA1C3437AA0071DEF4 /* Frameworks */,
 				56D6A8CB1C3437AA0071DEF4 /* Resources */,
 				56B9E1E02146D4C9007914DB /* ShellScript */,
+				565642B5214D9CF90036D76C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -166,13 +254,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Peter Wunder";
 				TargetAttributes = {
+					56057E64214959BF008946EB = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					56D6A8CC1C3437AA0071DEF4 = {
 						CreatedOnToolsVersion = 7.2;
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
 							com.apple.Sandbox = {
 								enabled = 0;
 							};
@@ -194,11 +288,20 @@
 			projectRoot = "";
 			targets = (
 				56D6A8CC1C3437AA0071DEF4 /* MinimalMIDIPlayer */,
+				56057E64214959BF008946EB /* MinimalMIDIQL */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		56057E63214959BF008946EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				565642B8214D9E8E0036D76C /* AlbumArtQuickLookBigger.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56D6A8CB1C3437AA0071DEF4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,6 +315,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		56057E71214959C4008946EB /* Run Script (Auto-increase Build Number) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script (Auto-increase Build Number)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
 		56B9E1E02146D4C9007914DB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +353,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		56057E61214959BF008946EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56057E68214959BF008946EB /* GenerateThumbnailForURL.m in Sources */,
+				56057E6A214959BF008946EB /* GeneratePreviewForURL.m in Sources */,
+				56057E6C214959BF008946EB /* main.c in Sources */,
+				563C822C214DCA8900B0D41E /* NSFont+LineHeight.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56D6A8C91C3437AA0071DEF4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,6 +386,53 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		56057E6F214959BF008946EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4YJ6956B5Q;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MinimalMIDIQL/Info.plist;
+				INSTALL_PATH = /Library/QuickLook;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIQL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = qlgenerator;
+			};
+			name = Debug;
+		};
+		56057E70214959BF008946EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4YJ6956B5Q;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MinimalMIDIQL/Info.plist;
+				INSTALL_PATH = /Library/QuickLook;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIQL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = qlgenerator;
+			};
+			name = Release;
+		};
 		56D6A8D81C3437AA0071DEF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -300,7 +479,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -349,7 +528,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -368,12 +547,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4YJ6956B5Q;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -393,12 +572,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4YJ6956B5Q;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -410,6 +589,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		56057E6E214959BF008946EB /* Build configuration list for PBXNativeTarget "MinimalMIDIQL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56057E6F214959BF008946EB /* Debug */,
+				56057E70214959BF008946EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		56D6A8C81C3437AA0071DEF4 /* Build configuration list for PBXProject "MinimalMIDIPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

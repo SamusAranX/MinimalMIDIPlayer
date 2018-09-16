@@ -60,7 +60,7 @@
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pX5-Eh-rnR">
-                                        <rect key="frame" x="16" y="78" width="226" height="70"/>
+                                        <rect key="frame" x="16" y="78" width="213" height="70"/>
                                         <textFieldCell key="cell" controlSize="small" id="pln-te-Ghz">
                                             <font key="font" metaFont="smallSystem"/>
                                             <string key="title">Normally, when you hit Play in a player window, all other player windows get paused. Cacophony Mode disables this behavior, allowing multiple player windows to play at the same time.</string>
@@ -360,7 +360,7 @@
                                 <rect key="frame" x="20" y="16" width="310" height="140"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pqD-9q-5vb" customClass="HyperlinkTextField">
-                                        <rect key="frame" x="-2" y="76" width="314" height="64"/>
+                                        <rect key="frame" x="-2" y="76" width="313" height="64"/>
                                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="HAx-HL-6NF">
                                             <font key="font" metaFont="cellTitle"/>
                                             <string key="title">When Apple replaced QuickTime Player 7 with the currently shipping version, they also removed support for MIDI file playback. This app aims to be a good, if not better replacement.</string>
@@ -555,70 +555,59 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Yhn-Cb-XfF">
-                                        <rect key="frame" x="17" y="47" width="250" height="32"/>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="26" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kms-Hb-hIL" userLabel="Button Stack View">
+                                        <rect key="frame" x="80" y="47" width="124" height="32"/>
                                         <subviews>
-                                            <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="26" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kms-Hb-hIL" userLabel="Button Stack View">
-                                                <rect key="frame" x="63" y="0.0" width="124" height="32"/>
-                                                <subviews>
-                                                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njy-C9-CBO" userLabel="Previous Button">
-                                                        <rect key="frame" x="0.0" y="8" width="24" height="16"/>
-                                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="PreviousButton" imagePosition="only" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="qxB-IB-gu4">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="previousButtonPressed:" target="DCZ-VH-yTc" id="zZZ-gK-z33"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HcG-tJ-197">
-                                                        <rect key="frame" x="50" y="3" width="24" height="26"/>
-                                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="PlayButton" imagePosition="only" alignment="center" alternateImage="PauseButton" enabled="NO" imageScaling="proportionallyDown" inset="2" id="e20-Jm-Fmi">
-                                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="playPauseButtonPressed:" target="DCZ-VH-yTc" id="0dM-vu-G3D"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w8M-xB-XSZ" userLabel="Stop Button">
-                                                        <rect key="frame" x="100" y="4" width="24" height="24"/>
-                                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="StopButton" imagePosition="only" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="Sda-cw-a1g">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="stopButtonPressed:" target="DCZ-VH-yTc" id="vzi-3M-03f"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="Lc9-FN-A7g"/>
-                                                </constraints>
-                                                <visibilityPriorities>
-                                                    <integer value="1000"/>
-                                                    <integer value="1000"/>
-                                                    <integer value="1000"/>
-                                                </visibilityPriorities>
-                                                <customSpacing>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                </customSpacing>
-                                            </stackView>
+                                            <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njy-C9-CBO" userLabel="Previous Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="24" height="32"/>
+                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="PreviousButton" imagePosition="only" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="qxB-IB-gu4">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="previousButtonPressed:" target="DCZ-VH-yTc" id="zZZ-gK-z33"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HcG-tJ-197">
+                                                <rect key="frame" x="50" y="0.0" width="24" height="32"/>
+                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="PlayButton" imagePosition="only" alignment="center" alternateImage="PauseButton" enabled="NO" imageScaling="proportionallyDown" inset="2" id="e20-Jm-Fmi">
+                                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="playPauseButtonPressed:" target="DCZ-VH-yTc" id="0dM-vu-G3D"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w8M-xB-XSZ" userLabel="Stop Button">
+                                                <rect key="frame" x="100" y="0.0" width="24" height="32"/>
+                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="StopButton" imagePosition="only" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="Sda-cw-a1g">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="stopButtonPressed:" target="DCZ-VH-yTc" id="vzi-3M-03f"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="kms-Hb-hIL" firstAttribute="centerX" secondItem="Yhn-Cb-XfF" secondAttribute="centerX" id="7to-M0-Hmk"/>
-                                            <constraint firstAttribute="width" constant="250" id="aSr-PZ-14l"/>
-                                            <constraint firstAttribute="height" constant="32" id="mQ4-2M-0Eb"/>
-                                            <constraint firstItem="kms-Hb-hIL" firstAttribute="centerY" secondItem="Yhn-Cb-XfF" secondAttribute="centerY" id="x8m-tD-qsv"/>
+                                            <constraint firstAttribute="height" constant="32" id="Lc9-FN-A7g"/>
                                         </constraints>
-                                    </customView>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f39-I2-twC">
-                                        <rect key="frame" x="47" y="23" width="191" height="20"/>
+                                        <rect key="frame" x="48" y="23" width="189" height="20"/>
                                         <subviews>
                                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="zXh-zg-b6l">
-                                                <rect key="frame" x="0.0" y="1" width="120" height="18"/>
+                                                <rect key="frame" x="0.0" y="1" width="118" height="18"/>
                                                 <popUpButtonCell key="cell" type="inline" title="Default Soundfont" bezelStyle="inline" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="Q7Y-od-Qzw" id="rrc-5Q-Iek">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
@@ -650,7 +639,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7tP-u3-Bnb">
-                                                <rect key="frame" x="125" y="1" width="68" height="18"/>
+                                                <rect key="frame" x="123" y="1" width="68" height="18"/>
                                                 <buttonCell key="cell" type="check" title="Override" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="lzp-Yr-p4c">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
@@ -672,7 +661,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="Qqu-0O-aBN" userLabel="Speed Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="284" height="19"/>
+                                        <rect key="frame" x="5" y="0.0" width="274" height="19"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y7E-hW-ZsB">
                                                 <rect key="frame" x="-2" y="3" width="38" height="14"/>
@@ -683,14 +672,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qlD-dZ-bKM">
-                                                <rect key="frame" x="43" y="0.0" width="178" height="18"/>
+                                                <rect key="frame" x="38" y="0.0" width="178" height="18"/>
                                                 <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="14" doubleValue="7" tickMarkPosition="above" numberOfTickMarks="15" allowsTickMarkValuesOnly="YES" sliderType="linear" id="ZMV-CU-JU0"/>
                                                 <connections>
                                                     <action selector="speedSliderMoved:" target="DCZ-VH-yTc" id="ACV-dA-g80"/>
                                                 </connections>
                                             </slider>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xqc-g7-6HX">
-                                                <rect key="frame" x="230" y="0.0" width="54" height="19"/>
+                                                <rect key="frame" x="220" y="0.0" width="54" height="19"/>
                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" title="1.00×" bezelStyle="round" id="OIA-Ic-i30">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
