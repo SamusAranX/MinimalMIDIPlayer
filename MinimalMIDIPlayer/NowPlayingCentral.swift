@@ -75,7 +75,7 @@ class NowPlayingCentral: NSObject {
 	
 	func resetNowPlayingInfo() {
 		MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
-		self.playbackState = .stopped
+		self.playbackState = .unknown
 	}
 	
 	func initNowPlayingInfo(for midiPlayer: PWMIDIPlayer) {

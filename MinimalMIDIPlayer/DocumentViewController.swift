@@ -366,9 +366,8 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 	}
 	
-	func playbackStarted(firstTime: Bool) {
-		Swift.print("Playback started from the beginning: \(firstTime)")
-		self.playPauseButton.state = .on
+	func playbackWillStart(firstTime: Bool) {
+		Swift.print("Playback will start from the beginning: \(firstTime)")
 		
 		guard let thisWindow = self.view.window else {
 			// this should never fail, but I'm not messing with forced unwraps
@@ -389,6 +388,11 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 				}
 			}
 		}
+	}
+	
+	func playbackStarted(firstTime: Bool) {
+		Swift.print("Playback started from the beginning: \(firstTime)")
+		self.playPauseButton.state = .on
 		
 		if #available(OSX 10.12.2, *) {
 			NowPlayingCentral.shared.playbackState = .playing

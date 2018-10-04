@@ -13,7 +13,8 @@ import MediaPlayer
 protocol PWMIDIPlayerDelegate: class {
 	
     func filesLoaded(midi: URL, soundFont: URL?)
-    
+	
+	func playbackWillStart(firstTime: Bool)
     func playbackStarted(firstTime: Bool)
     
     func playbackPositionChanged(position: TimeInterval, duration: TimeInterval)
@@ -132,6 +133,8 @@ class PWMIDIPlayer: AVMIDIPlayer {
     }
 	
     override func play(_ completionHandler: AVMIDIPlayerCompletionHandler? = nil) {
+		self.delegate?.playbackWillStart(firstTime: self.currentPosition == 0)
+		
 		super.play() {
 			DispatchQueue.main.async {
 				if (self.currentPosition >= self.duration - 0.1) {
@@ -151,10 +154,10 @@ class PWMIDIPlayer: AVMIDIPlayer {
 		self.progressTimer!.tolerance = 0.125 / 8
 		
 		if #available(OSX 10.12.2, *), !Settings.shared.cacophonyMode {
-				NowPlayingCentral.shared.resetNowPlayingInfo()
-				NowPlayingCentral.shared.makeActive(player: self)
-				NowPlayingCentral.shared.initNowPlayingInfo(for: self)
-				NowPlayingCentral.shared.playbackState = .playing
+			NowPlayingCentral.shared.resetNowPlayingInfo()
+			NowPlayingCentral.shared.makeActive(player: self)
+			NowPlayingCentral.shared.initNowPlayingInfo(for: self)
+			NowPlayingCentral.shared.playbackState = .playing
 		}
 		
         self.delegate?.playbackStarted(firstTime: self.currentPosition == 0)
