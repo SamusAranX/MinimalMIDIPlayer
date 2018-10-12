@@ -67,6 +67,7 @@
 		569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWMIDIPlayer.swift; sourceTree = "<group>"; };
 		56A0BD7B21400569006095CE /* DocumentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		56A0BD7D214005A4006095CE /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
+		56A3A10E21707E7F008ABA6A /* MinimalMIDIPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalMIDIPlayer.entitlements; sourceTree = "<group>"; };
 		56AB757F213FD146009ECFB1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		56B0821B213FF7A900A3CC70 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		56D6A8CD1C3437AA0071DEF4 /* MinimalMIDIPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalMIDIPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +155,7 @@
 		56D6A8CF1C3437AA0071DEF4 /* MinimalMIDIPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				56A3A10E21707E7F008ABA6A /* MinimalMIDIPlayer.entitlements */,
 				56FEF15E21411A4800813975 /* Extensions */,
 				56FEF158214119D800813975 /* HyperlinkTextField */,
 				569D77EC2004D3850028D9C2 /* Icons */,
@@ -263,7 +265,7 @@
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -393,7 +395,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4254J4CMHQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MinimalMIDIQL/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
@@ -401,6 +406,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIQL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Debug;
@@ -414,13 +421,18 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4254J4CMHQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MinimalMIDIQL/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIQL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Release;
@@ -533,7 +545,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4254J4CMHQ;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -541,6 +557,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MinimalMIDIPlayer/HyperlinkTextField/MinimalMIDIPlayer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -553,7 +570,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4254J4CMHQ;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -561,6 +582,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MinimalMIDIPlayer/HyperlinkTextField/MinimalMIDIPlayer-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
