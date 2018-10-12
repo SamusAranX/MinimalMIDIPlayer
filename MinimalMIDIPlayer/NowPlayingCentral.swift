@@ -26,11 +26,12 @@ class NowPlayingCentral: NSObject {
 	}
 	
 	private var players: [PWMIDIPlayer] = []
+	private var activePlayer: PWMIDIPlayer? {
+		return self.players.last
+	}
 	
 	override init() {
 		super.init()
-		
-		Swift.print("Next stop: Now Playing Central")
 		
 		MPRemoteCommandCenter.shared().playCommand.addTarget(self, action: #selector(playCommand(event:)))
 		MPRemoteCommandCenter.shared().pauseCommand.addTarget(self, action: #selector(pauseCommand(event:)))
@@ -41,34 +42,50 @@ class NowPlayingCentral: NSObject {
 		MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = false
 	}
 	
-	// MARK: - View Controller Management
+	// MARK: - Player Management
 	
+	/// Adds a player to the internal list of players if it isn't there already
+	/// and then promotes it to be the active player, pausing all others.
+	/// - Parameters:
+	///     - player: The player to be added
 	func makeActive(player: PWMIDIPlayer) {
-		if let playerIdx = self.players.firstIndex(of: player) {
+		if self.players.contains(player), let playerIdx = self.players.firstIndex(of: player) {
 			self.players.remove(at: playerIdx)
 		}
 		
-		self.players.insert(player, at: 0)
-	}
-	
-	func addToPlayers(player: PWMIDIPlayer) {
-		if self.players.contains(player) {
-			self.players.append(player)
-		}
-	}
-	
-	func removeFromPlayers(player: PWMIDIPlayer?) {
-		if let player = player, let playerIdx = self.players.firstIndex(of: player) {
-			self.players.remove(at: playerIdx)
-			
-			if self.players.isEmpty {
-				self.resetNowPlayingInfo()
+		self.players.append(player)
+		Swift.print("Moved player for \(player.currentMIDI!.lastPathComponent) to end of the list")
+		
+		// Pause every PWMIDIPlayer instance except this one
+		// but only if Cacophony Mode isn't enabled
+		if !Settings.shared.cacophonyMode {
+			for player in self.players.dropLast() {
+				if player.isPlaying {
+					player.pause()
+				}
 			}
 		}
 	}
 	
-	var activePlayer: PWMIDIPlayer? {
-		return self.players.first
+	/// Removes a player from the internal list of players and sets the Now Playing
+	/// data to that of the next player in the list, if present
+	/// - Parameters:
+	///     - player: The player to be removed
+	func removeFromPlayers(player: PWMIDIPlayer?) {
+		if let player = player, let playerIdx = self.players.firstIndex(of: player) {
+			// Reset Now Playing info going in
+			if player == self.activePlayer {
+				self.resetNowPlayingInfo()
+			}
+			
+			// Actually remove the player
+			self.players.remove(at: playerIdx)
+			
+			// If there is a next player in the list, load its Now Playing data
+			if let lastPlayer = self.players.last {
+				self.initNowPlayingInfo(for: lastPlayer)
+			}
+		}
 	}
 	
 	// MARK: - Now Playing Control
@@ -83,11 +100,9 @@ class NowPlayingCentral: NSObject {
 			return
 		}
 		
-		MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
-		
 		let midiTitle = midiPlayer.currentMIDI!.deletingPathExtension().lastPathComponent
 		let midiAlbumTitle = midiPlayer.currentSoundfont?.deletingPathExtension().lastPathComponent ?? midiPlayer.currentMIDI!.deletingLastPathComponent().lastPathComponent
-		let midiArtist = "MinimalMIDIPlayer" // heh
+		let midiArtist = "MinimalMIDIPlayer" // shameless advertising
 		
 		var nowPlayingInfo: [String : Any] = [
 			MPNowPlayingInfoPropertyMediaType: NSNumber(value: MPNowPlayingInfoMediaType.audio.rawValue),
@@ -100,7 +115,8 @@ class NowPlayingCentral: NSObject {
 			MPMediaItemPropertyAlbumTitle: midiAlbumTitle,
 			MPMediaItemPropertyArtist: midiArtist,
 
-			MPMediaItemPropertyPlaybackDuration: NSNumber(value: midiPlayer.duration)
+			MPMediaItemPropertyPlaybackDuration: NSNumber(value: midiPlayer.duration),
+			MPNowPlayingInfoPropertyElapsedPlaybackTime: NSNumber(value: midiPlayer.currentPosition)
 		]
 
 		if #available(OSX 10.13.2, *) {
@@ -110,10 +126,16 @@ class NowPlayingCentral: NSObject {
 				return NSImage(named: "AlbumArt")!
 			})
 		}
-		
-//		Swift.print(nowPlayingInfo)
 
 		MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+		
+		if midiPlayer.isPlaying {
+			self.playbackState = .playing
+		} else if midiPlayer.isPaused {
+			self.playbackState = .paused
+		} else if midiPlayer.isStopped {
+			self.playbackState = .stopped
+		}
 	}
 	
 	func updateNowPlayingInfo(for midiPlayer: PWMIDIPlayer, with updatedDict: [String : Any]) {
@@ -187,7 +209,5 @@ class NowPlayingCentral: NSObject {
 		}
 		return .noActionableNowPlayingItem
 	}
-	
-//	class func 
 
 }

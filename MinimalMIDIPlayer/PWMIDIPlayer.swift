@@ -91,20 +91,12 @@ class PWMIDIPlayer: AVMIDIPlayer {
     convenience init(withMIDI midiFile: URL, andSoundfont soundfontFile: URL? = nil) throws {
 		try self.init(contentsOf: midiFile, soundBankURL: soundfontFile)
 		
-		if #available(OSX 10.12.2, *) {
-			NowPlayingCentral.shared.addToPlayers(player: self)
-		}
-		
 		self.currentMIDI = midiFile
 		self.currentSoundfont = soundfontFile
 	}
     
     deinit {
 		Swift.print("PWMIDIPlayer: deinit")
-		
-		if #available(OSX 10.12.2, *) {
-			NowPlayingCentral.shared.playbackState = .stopped
-		}
 		
 		self.progressTimer?.invalidate()
 		self.progressTimer = nil
@@ -118,6 +110,9 @@ class PWMIDIPlayer: AVMIDIPlayer {
         }
 		
 		if #available(OSX 10.12.2, *) {
+			// Updating the entire Now Playing dictionary here because macOS's caching(?) really fucks with us here
+			// If I rely on the OS to keep track of song names, durations and whatnot, we'll desync in about 0.02 seconds
+			NowPlayingCentral.shared.initNowPlayingInfo(for: self)
 			NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyElapsedPlaybackTime : NSNumber(value: self.currentPosition)])
 		}
 		
@@ -133,6 +128,10 @@ class PWMIDIPlayer: AVMIDIPlayer {
     }
 	
     override func play(_ completionHandler: AVMIDIPlayerCompletionHandler? = nil) {
+		if #available(OSX 10.12.2, *) {
+			NowPlayingCentral.shared.makeActive(player: self)
+		}
+		
 		self.delegate?.playbackWillStart(firstTime: self.currentPosition == 0)
 		
 		super.play() {
@@ -154,8 +153,6 @@ class PWMIDIPlayer: AVMIDIPlayer {
 		self.progressTimer!.tolerance = 0.125 / 8
 		
 		if #available(OSX 10.12.2, *), !Settings.shared.cacophonyMode {
-			NowPlayingCentral.shared.resetNowPlayingInfo()
-			NowPlayingCentral.shared.makeActive(player: self)
 			NowPlayingCentral.shared.initNowPlayingInfo(for: self)
 			NowPlayingCentral.shared.playbackState = .playing
 		}

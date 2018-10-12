@@ -74,15 +74,16 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		self.durationTimeLabel.font = self.durationTimeLabel.font?.monospacedNumbers
 		
 		self.overrideSFToggled(self.overrideSFCheckbox)
+		
+		self.cacophonyIconView.toolTip = "Cacophony Mode enabled"
 	}
 	
-	override func viewWillDisappear() {
-		self.midiPlayer?.stop()
-		
+	func windowWillClose(_ notification: Notification) {
 		if #available(OSX 10.12.2, *) {
 			NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
 		}
 		
+		self.midiPlayer?.stop()
 		self.midiPlayer = nil
 	}
 	
@@ -208,10 +209,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			self.stopButton.isEnabled = true
 			
 			self.playbackPositionChanged(position: 0, duration: self.midiPlayer!.duration)
-			
-			if Settings.shared.autoplay {
-				self.midiPlayer!.play()
-			}
 		} catch let error as NSError {
 			NSAlert.runModal(title: "Error opening file", message: error.localizedDescription, style: .critical)
 		}
@@ -368,35 +365,11 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	
 	func playbackWillStart(firstTime: Bool) {
 		Swift.print("Playback will start from the beginning: \(firstTime)")
-		
-		guard let thisWindow = self.view.window else {
-			// this should never fail, but I'm not messing with forced unwraps
-			return
-		}
-		
-		// Pause every PWMIDIPlayer instance except this one
-		// but only if Cacophony Mode isn't enabled
-		let thisDocument = NSDocumentController.shared.document(for: thisWindow)
-		for case let document as MIDIDocument in NSDocumentController.shared.documents {
-			if document == thisDocument {
-				continue
-			}
-			
-			if let midiPlayer = document.viewController?.midiPlayer {
-				if midiPlayer.isPlaying && !Settings.shared.cacophonyMode {
-					midiPlayer.pause()
-				}
-			}
-		}
 	}
 	
 	func playbackStarted(firstTime: Bool) {
 		Swift.print("Playback started from the beginning: \(firstTime)")
 		self.playPauseButton.state = .on
-		
-		if #available(OSX 10.12.2, *) {
-			NowPlayingCentral.shared.playbackState = .playing
-		}
 	}
 	
 	func playbackStopped(paused: Bool) {

@@ -10,9 +10,10 @@ import Cocoa
 
 protocol WindowControllerDelegate {
 	func keyDown(with event: NSEvent)
+	func windowWillClose(_ notification: Notification)
 }
 
-class DocumentWindowController: NSWindowController {
+class DocumentWindowController: NSWindowController, NSWindowDelegate {
 	
 	var delegate: WindowControllerDelegate?
 	
@@ -39,6 +40,10 @@ class DocumentWindowController: NSWindowController {
 				self.window!.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
 			}
 		}
+	}
+	
+	func windowWillClose(_ notification: Notification) {
+		self.delegate?.windowWillClose(notification)
 	}
 	
 	override func keyDown(with event: NSEvent) {
