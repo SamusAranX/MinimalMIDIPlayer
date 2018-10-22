@@ -35,11 +35,19 @@ class NowPlayingCentral: NSObject {
 		
 		MPRemoteCommandCenter.shared().playCommand.addTarget(self, action: #selector(playCommand(event:)))
 		MPRemoteCommandCenter.shared().pauseCommand.addTarget(self, action: #selector(pauseCommand(event:)))
-		MPRemoteCommandCenter.shared().stopCommand.addTarget(self, action: #selector(stopCommand(event:)))
+//		MPRemoteCommandCenter.shared().stopCommand.addTarget(self, action: #selector(stopCommand(event:)))
 		MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(togglePlayPauseCommand(event:)))
 		MPRemoteCommandCenter.shared().changePlaybackPositionCommand.addTarget(self, action: #selector(changePlaybackPositionCommand(event:)))
-		MPRemoteCommandCenter.shared().previousTrackCommand.addTarget(self, action: #selector(previousTrackCommand(event:)))
+//		MPRemoteCommandCenter.shared().previousTrackCommand.addTarget(self, action: #selector(previousTrackCommand(event:)))
+		MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled = false
 		MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = false
+		
+		MPRemoteCommandCenter.shared().skipBackwardCommand.addTarget(self, action: #selector(skipBackwardCommand(event:)))
+		MPRemoteCommandCenter.shared().skipForwardCommand.addTarget(self, action: #selector(skipForwardCommand(event:)))
+		MPRemoteCommandCenter.shared().skipBackwardCommand.preferredIntervals = [NSNumber(integerLiteral: 10)];
+		MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [NSNumber(integerLiteral: 10)];
+		MPRemoteCommandCenter.shared().skipBackwardCommand.isEnabled = true;
+		MPRemoteCommandCenter.shared().skipForwardCommand.isEnabled = true;
 	}
 	
 	// MARK: - Player Management
@@ -54,7 +62,6 @@ class NowPlayingCentral: NSObject {
 		}
 		
 		self.players.append(player)
-		Swift.print("Moved player for \(player.currentMIDI!.lastPathComponent) to end of the list")
 		
 		// Pause every PWMIDIPlayer instance except this one
 		// but only if Cacophony Mode isn't enabled
@@ -90,6 +97,7 @@ class NowPlayingCentral: NSObject {
 	
 	// MARK: - Now Playing Control
 	
+	/// Resets the Now Playing info dictionary to nil and sets the playback state to unknown
 	func resetNowPlayingInfo() {
 		MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
 		self.playbackState = .unknown
@@ -133,7 +141,7 @@ class NowPlayingCentral: NSObject {
 			self.playbackState = .playing
 		} else if midiPlayer.isPaused {
 			self.playbackState = .paused
-		} else if midiPlayer.isStopped {
+		} else if midiPlayer.isAtEndOfTrack {
 			self.playbackState = .stopped
 		}
 	}
@@ -179,7 +187,7 @@ class NowPlayingCentral: NSObject {
 	}
 	
 	@objc func togglePlayPauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		Swift.print("Play/ Pause command")
+		Swift.print("Play/Pause command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.togglePlayPause()
 			return .success
@@ -187,24 +195,26 @@ class NowPlayingCentral: NSObject {
 		return .noActionableNowPlayingItem
 	}
 	
-	@objc func changePlaybackPositionCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		if let changePositionEvent = event as? MPChangePlaybackPositionCommandEvent,
-		   let activePlayer = self.activePlayer,
-		   !Settings.shared.cacophonyMode {
-			activePlayer.currentPosition = changePositionEvent.positionTime
+	@objc func changePlaybackPositionCommand(event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
+		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
+			activePlayer.currentPosition = event.positionTime
 			return .success
 		}
 		
 		return .noActionableNowPlayingItem
 	}
 	
-	@objc func previousTrackCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		Swift.print("Previous track command")
-		// Rewind: stop, set currentPosition to 0, play
+	@objc func skipBackwardCommand(event: MPSkipIntervalCommandEvent) -> MPRemoteCommandHandlerStatus {
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
-			activePlayer.stop()
-			activePlayer.currentPosition = 0
-			activePlayer.play()
+			activePlayer.rewind(secs: event.interval)
+			return .success
+		}
+		return .noActionableNowPlayingItem
+	}
+	
+	@objc func skipForwardCommand(event: MPSkipIntervalCommandEvent) -> MPRemoteCommandHandlerStatus {
+		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
+			activePlayer.fastForward(secs: event.interval)
 			return .success
 		}
 		return .noActionableNowPlayingItem

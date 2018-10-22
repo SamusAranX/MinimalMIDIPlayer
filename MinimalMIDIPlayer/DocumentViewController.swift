@@ -12,9 +12,9 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	
 	@IBOutlet weak var backgroundFXView: NSVisualEffectView!
 	
-	@IBOutlet weak var previousButton: NSButton!
+	@IBOutlet weak var rewindButton: NSButton!
 	@IBOutlet weak var playPauseButton: NSButton!
-	@IBOutlet weak var stopButton: NSButton!
+	@IBOutlet weak var fastForwardButton: NSButton!
 	@IBOutlet weak var cacophonyIconView: NSView!
 	
 	@IBOutlet weak var soundfontMenu: NSPopUpButton!
@@ -23,7 +23,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	
 	@IBOutlet weak var progressTimeLabel: NSTextField!
 	@IBOutlet weak var durationTimeLabel: NSTextField!
-	@IBOutlet weak var progressTimeBar: NSProgressIndicator!
+	@IBOutlet weak var progressTimeSlider: NSSlider!
 	
 	@IBOutlet weak var speedSlider: NSSlider!
 	@IBOutlet weak var speedLabel: NSTextField!
@@ -43,8 +43,10 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 1 + 1/3, 1.5, 1 + 2/3, 2.0]
 	var playbackSpeed: Float = 1.0
 	
+	var pausedDueToDraggingKnob: Bool = false
+	
 	enum SoundfontMenuType: Int {
-		case macdef = 0
+		case macdefault = 0
 		case recent = 1
 		case custom = 2
 		case unknown = 1000
@@ -99,7 +101,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			// only restart playback if soundfont actually changed
 			let selectedSoundfont = self.getSelectedSoundfont()
 			
-			if (self.guessedSoundfont == nil && selectedSoundfont.soundfontType == .macdef) ||
+			if (self.guessedSoundfont == nil && selectedSoundfont.soundfontType == .macdefault) ||
 			   (self.guessedSoundfont == selectedSoundfont.soundfont) {
 				return
 			}
@@ -127,15 +129,44 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 	}
 	
-	@IBAction func previousButtonPressed(_ sender: NSButton) {
-		let playerWasRunning = self.midiPlayer?.isPlaying
+	@IBAction func positionSliderMoved(_ sender: NSSlider) {
+		let positionPercent = sender.doubleValue / 100
 		
-		self.midiPlayer?.stop()
-		self.midiPlayer?.currentPosition = 0
-		
-		if let pwr = playerWasRunning, pwr {
-			self.midiPlayer?.play()
+		guard let midiPlayer = self.midiPlayer else {
+			return
 		}
+		
+		if let currentEvent = sender.window?.currentEvent {
+			switch (currentEvent.type) {
+			case .leftMouseDown:
+				Swift.print("left mouse down")
+				if midiPlayer.isPlaying {
+					midiPlayer.pause()
+					self.pausedDueToDraggingKnob = true
+				}
+			case .leftMouseDragged:
+				Swift.print("left mouse drag")
+				self.playbackPositionChanged(position: positionPercent * midiPlayer.duration, duration: midiPlayer.duration)
+			case .leftMouseUp:
+				Swift.print("left mouse up")
+				// this has to occur before resuming playback
+				// if .currentPosition is set after resuming playback
+				// you risk being deafened by *extremely* loud pops
+				midiPlayer.currentPosition = midiPlayer.duration * positionPercent
+				
+				if self.pausedDueToDraggingKnob && !midiPlayer.isAtEndOfTrack {
+					midiPlayer.play()
+					self.pausedDueToDraggingKnob = false
+				}
+				
+			default:
+				Swift.print("Unknown type \(currentEvent.type.rawValue)")
+			}
+		}
+	}
+	
+	@IBAction func rewindButtonPressed(_ sender: NSButton) {
+		self.midiPlayer?.rewind(secs: 10)
 	}
 	
 	@IBAction func playPauseButtonPressed(_ sender: NSButton) {
@@ -157,8 +188,8 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 	}
 	
-	@IBAction func stopButtonPressed(_ sender: NSButton) {
-		self.midiPlayer?.stop()
+	@IBAction func fastForwardButtonPressed(_ sender: NSButton) {
+		self.midiPlayer?.fastForward(secs: 10)
 	}
 	
 	@IBAction func speedSliderMoved(_ sender: NSSlider) {
@@ -174,47 +205,69 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	// MARK: - App logic
 	
 	func openFile(midiURL: URL) {
-		do {
-			let newGuessedSoundfont = PWMIDIPlayer.guessSoundfontPath(forMIDI: midiURL)
-			var newActiveSoundfont = newGuessedSoundfont
+		guard let window = self.view.window, let document = NSDocumentController.shared.document(for: window) as? MIDIDocument else {
+			// this might happen if another soundfont is selected after file that's being played is renamed
+			NSAlert.runModal(title: "Error loading file", message: "Something went wrong. Please try reopening the file.", style: .critical)
 			
-			if self.overrideSFCheckbox.state == .on {
-				newActiveSoundfont = self.getSelectedSoundfont().soundfont
+			// attempt to close anyway
+			self.view.window?.close()
+			return
+		}
+		
+		let newGuessedSoundfont = document.midiPresenter.presentedItemURL
+		var newActiveSoundfont = newGuessedSoundfont
+		
+		if self.overrideSFCheckbox.state == .on {
+			newActiveSoundfont = self.getSelectedSoundfont().soundfont
+		}
+		
+		if !FileManager.default.fileExists(atPath: midiURL.path) {
+			NSAlert.runModal(title: "Error opening file", message: "Couldn't open MIDI file.\nSearch path: \(midiURL.path)", style: .critical)
+			NSDocumentController.shared.document(for: window)?.close()
+			return
+		}
+		if let sf = newActiveSoundfont, !FileManager.default.fileExists(atPath: sf.path) {
+			NSAlert.runModal(title: "Error opening file", message: "Couldn't open Soundfont file", style: .critical)
+			NSDocumentController.shared.document(for: window)?.close()
+			return
+		}
+		
+		let coordinator = NSFileCoordinator(filePresenter: document.midiPresenter)
+		coordinator.coordinate(readingItemAt: document.midiPresenter.primaryPresentedItemURL!, options: [], error: nil) {
+			url in
+			
+			do {
+				let newMidiPlayer = try PWMIDIPlayer(withMIDI: url, andSoundfont: newActiveSoundfont)
+				
+				self.guessedSoundfont = newGuessedSoundfont
+				self.activeSoundfont = newActiveSoundfont
+				
+				// TODO: Check if this is still needed
+				self.midiPlayer?.stop()
+				self.midiPlayer = nil
+				
+				self.midiPlayer = newMidiPlayer
+				self.midiPlayer!.delegate = self
+				
+				// required, because .prepareToPlay triggers a callback that we need
+				self.midiPlayer!.prepareToPlay()
+				
+				DispatchQueue.main.async {
+					self.rewindButton.isEnabled = true
+					self.fastForwardButton.isEnabled = true
+					
+					self.playbackPositionChanged(position: 0, duration: self.midiPlayer!.duration)
+				}
+			} catch let error as NSError {
+				NSAlert.runModal(title: "Error opening file", message: error.localizedDescription, style: .critical)
+				NSDocumentController.shared.document(for: window)?.close()
 			}
-			
-			if !FileManager.default.fileExists(atPath: midiURL.path) {
-				NSAlert.runModal(title: "Error opening file", message: "Couldn't open MIDI file.\nSearch path: \(midiURL.path)", style: .critical)
-				return
-			}
-			if let sf = newActiveSoundfont, !FileManager.default.fileExists(atPath: sf.path) {
-				NSAlert.runModal(title: "Error opening file", message: "Couldn't open Soundfont file", style: .critical)
-				return
-			}
-			
-			let newMidiPlayer = try PWMIDIPlayer(withMIDI: midiURL, andSoundfont: newActiveSoundfont)
-			
-			self.guessedSoundfont = newGuessedSoundfont
-			self.activeSoundfont = newActiveSoundfont
-			
-			self.midiPlayer?.stop()
-			self.midiPlayer = nil
-			
-			self.midiPlayer = newMidiPlayer
-			self.midiPlayer!.delegate = self
-			
-			// required, because .prepareToPlay triggers a callback that we need
-			self.midiPlayer!.prepareToPlay()
-			
-			self.previousButton.isEnabled = true
-			self.stopButton.isEnabled = true
-			
-			self.playbackPositionChanged(position: 0, duration: self.midiPlayer!.duration)
-		} catch let error as NSError {
-			NSAlert.runModal(title: "Error opening file", message: error.localizedDescription, style: .critical)
 		}
 	}
 	
 	func openDocument(midiDoc: MIDIDocument) {
+		Swift.print("openDocument!")
+		
 		guard let midiURL = midiDoc.fileURL else {
 			Swift.print("Document fileURL is nil")
 			return
@@ -227,7 +280,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		if let selectedItem = self.soundfontMenu.selectedItem,
 		   let selectedType = SoundfontMenuType(rawValue: selectedItem.tag) {
 			switch (selectedType) {
-			case .macdef:
+			case .macdefault:
 				return (nil, selectedType)
 			case .recent:
 				let recentIndex = self.soundfontMenu.indexOfSelectedItem - SOUNDFONTS_RECENT_START
@@ -262,7 +315,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		
 		let defaultSFItem = NSMenuItem()
 		defaultSFItem.title = "Default Soundfont"
-		defaultSFItem.tag = SoundfontMenuType.macdef.rawValue
+		defaultSFItem.tag = SoundfontMenuType.macdefault.rawValue
 		self.soundfontMenu.menu!.addItem(defaultSFItem)
 		self.soundfontMenu.select(defaultSFItem)
 		
@@ -311,9 +364,9 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		case 0x31: // space
 			self.midiPlayer?.togglePlayPause()
 		case 0x7B: // arrow left
-			self.midiPlayer?.currentPosition = 0
+			self.midiPlayer?.rewind(secs: 10)
 		case 0x7C: // arrow right
-			self.midiPlayer?.stop()
+			self.midiPlayer?.fastForward(secs: 10)
 		case 0x7D: // arrow down
 			if self.speedSlider.integerValue > Int(self.speedSlider.minValue) {
 				self.speedSlider.integerValue -= 1
@@ -364,11 +417,10 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 	
 	func playbackWillStart(firstTime: Bool) {
-		Swift.print("Playback will start from the beginning: \(firstTime)")
+		
 	}
 	
 	func playbackStarted(firstTime: Bool) {
-		Swift.print("Playback started from the beginning: \(firstTime)")
 		self.playPauseButton.state = .on
 	}
 	
@@ -377,9 +429,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 	
 	func playbackEnded() {
-		Swift.print("Playback ended, resetting position to the beginning")
-		
-		self.midiPlayer?.currentPosition = 0
 		self.playPauseButton.state = .off
 	}
 	
@@ -387,7 +436,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		DispatchQueue.main.async {
 			let progress = position / duration
 			
-			self.progressTimeBar.doubleValue = progress * 100
+			self.progressTimeSlider.doubleValue = progress * 100
 			
 			self.progressTimeLabel.stringValue = self.dcFormatter.string(from: position)!
 			

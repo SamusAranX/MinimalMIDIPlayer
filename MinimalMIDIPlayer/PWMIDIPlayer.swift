@@ -16,12 +16,12 @@ protocol PWMIDIPlayerDelegate: class {
 	
 	func playbackWillStart(firstTime: Bool)
     func playbackStarted(firstTime: Bool)
-    
+	
     func playbackPositionChanged(position: TimeInterval, duration: TimeInterval)
-    
+	
     func playbackStopped(paused: Bool)
     func playbackEnded()
-    
+	
     func playbackSpeedChanged(speed: Float)
     
 }
@@ -34,6 +34,8 @@ class PWMIDIPlayer: AVMIDIPlayer {
     weak var delegate: PWMIDIPlayerDelegate?
     
     private var progressTimer: Timer?
+	
+	private let endOfTrackTolerance = 0.1
     
     override var rate: Float {
         didSet {
@@ -53,14 +55,14 @@ class PWMIDIPlayer: AVMIDIPlayer {
 	/// A Boolean value that indicates whether the sequence is paused.
     var isPaused: Bool {
         get {
-            return !self.isPlaying && !self.isStopped
+            return !self.isPlaying && !self.isAtEndOfTrack
         }
     }
 	
 	/// A Boolean value that indicates whether the sequence is stopped.
-	var isStopped: Bool {
+	var isAtEndOfTrack: Bool {
 		get {
-			return !self.isPlaying && self.currentPosition >= self.duration - 0.01
+			return !self.isPlaying && self.currentPosition >= self.duration - self.endOfTrackTolerance
 		}
 	}
     
@@ -101,6 +103,8 @@ class PWMIDIPlayer: AVMIDIPlayer {
 		self.progressTimer?.invalidate()
 		self.progressTimer = nil
 		
+		self.currentSoundfont?.stopAccessingSecurityScopedResource()
+		
 		self.delegate = nil
     }
     
@@ -132,11 +136,15 @@ class PWMIDIPlayer: AVMIDIPlayer {
 			NowPlayingCentral.shared.makeActive(player: self)
 		}
 		
+		if (self.currentPosition >= self.duration - self.endOfTrackTolerance) {
+			self.currentPosition = 0
+		}
+		
 		self.delegate?.playbackWillStart(firstTime: self.currentPosition == 0)
 		
 		super.play() {
 			DispatchQueue.main.async {
-				if (self.currentPosition >= self.duration - 0.1) {
+				if (self.currentPosition >= self.duration - self.endOfTrackTolerance) {
 					self.progressTimer?.invalidate()
 					
 					if #available(OSX 10.12.2, *) {
@@ -186,14 +194,24 @@ class PWMIDIPlayer: AVMIDIPlayer {
         
 		self.delegate?.playbackStopped(paused: false)
     }
+	
+	func rewind(secs: TimeInterval) {
+		let newPos = max(0, self.currentPosition - secs)
+		self.currentPosition = newPos
+	}
+	
+	func fastForward(secs: TimeInterval) {
+		let newPos = min(self.currentPosition + secs, self.duration)
+		self.currentPosition = newPos
+	}
     
     func togglePlayPause() {
-        if (self.isPaused) {
+        if (self.isPaused || self.isAtEndOfTrack) {
             self.play()
         } else if (self.isPlaying) {
             self.pause()
         } else {
-            print("Play/pause misfire?")
+			self.stop()
         }
     }
 }

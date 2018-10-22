@@ -11,4 +11,8 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	
+	@IBAction func closeAllWindows(_ sender: NSMenuItem) {
+		NSDocumentController.shared.closeAllDocuments(withDelegate: nil, didCloseAllSelector: nil, contextInfo: nil)
+	}
+	
 }

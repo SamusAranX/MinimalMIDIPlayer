@@ -18,7 +18,6 @@ class SettingsViewController: NSViewController {
 		
 		self.autoplayCheckbox.state = Settings.shared.autoplay ? .on : .off
 		self.cacophonyModeCheckbox.state = Settings.shared.cacophonyMode ? .on : .off
-        // Do view setup here.
     }
     
 	@IBAction func autoplayCheckboxToggled(_ sender: NSButton) {

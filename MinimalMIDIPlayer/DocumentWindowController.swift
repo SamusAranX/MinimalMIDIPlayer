@@ -32,11 +32,9 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
 			
 			if #available(OSX 10.14, *) {
 				// Since Interface Builder doesn't "know" Dark Aqua yet with the 10.13 SDK, this has to be done in code
-				Swift.print("Dark Aqua")
 				self.window!.appearance = NSAppearance(named: NSAppearance.Name.darkAqua)
 			} else {
 				// Pseudo-"dark mode" on 10.13
-				Swift.print("Vibrant Dark")
 				self.window!.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
 			}
 		}
