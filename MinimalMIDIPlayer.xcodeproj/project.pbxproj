@@ -213,11 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56057E6E214959BF008946EB /* Build configuration list for PBXNativeTarget "MinimalMIDIQL" */;
 			buildPhases = (
+				56057E71214959C4008946EB /* Run Script (Auto-increase Build Number) */,
 				56057E60214959BF008946EB /* Headers */,
 				56057E61214959BF008946EB /* Sources */,
 				56057E62214959BF008946EB /* Frameworks */,
 				56057E63214959BF008946EB /* Resources */,
-				56057E71214959C4008946EB /* Run Script (Auto-increase Build Number) */,
 			);
 			buildRules = (
 			);
@@ -232,10 +232,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56D6A8DA1C3437AA0071DEF4 /* Build configuration list for PBXNativeTarget "MinimalMIDIPlayer" */;
 			buildPhases = (
+				56B9E1E02146D4C9007914DB /* ShellScript */,
 				56D6A8C91C3437AA0071DEF4 /* Sources */,
 				56D6A8CA1C3437AA0071DEF4 /* Frameworks */,
 				56D6A8CB1C3437AA0071DEF4 /* Resources */,
-				56B9E1E02146D4C9007914DB /* ShellScript */,
 				565642B5214D9CF90036D76C /* CopyFiles */,
 			);
 			buildRules = (

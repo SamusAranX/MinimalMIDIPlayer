@@ -529,6 +529,13 @@
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IvW-tF-KiY">
                                                 <rect key="frame" x="34" y="2" width="198" height="15"/>
+                                                <gestureRecognizers>
+                                                    <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Z38-5k-rtW">
+                                                        <connections>
+                                                            <action selector="clickRecognizerTriggered:" target="DCZ-VH-yTc" id="05V-kR-9gi"/>
+                                                        </connections>
+                                                    </clickGestureRecognizer>
+                                                </gestureRecognizers>
                                                 <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="T9V-qQ-ZRV"/>
                                                 <connections>
                                                     <action selector="positionSliderMoved:" target="DCZ-VH-yTc" id="BI3-6t-0Vn"/>

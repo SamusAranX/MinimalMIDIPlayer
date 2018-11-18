@@ -119,6 +119,11 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 	}
 	
+	@IBAction func clickRecognizerTriggered(_ sender: NSClickGestureRecognizer) {
+		print("click recognized!")
+		// TODO: handle trackpad taps
+	}
+	
 	@IBAction func durationLabelClicked(_ sender: NSClickGestureRecognizer) {
 		durationCountDown = !durationCountDown
 		
@@ -139,16 +144,16 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		if let currentEvent = sender.window?.currentEvent {
 			switch (currentEvent.type) {
 			case .leftMouseDown:
-				Swift.print("left mouse down")
+//				Swift.print("left mouse down")
 				if midiPlayer.isPlaying {
 					midiPlayer.pause()
 					self.pausedDueToDraggingKnob = true
 				}
 			case .leftMouseDragged:
-				Swift.print("left mouse drag")
+//				Swift.print("left mouse drag")
 				self.playbackPositionChanged(position: positionPercent * midiPlayer.duration, duration: midiPlayer.duration)
 			case .leftMouseUp:
-				Swift.print("left mouse up")
+//				Swift.print("left mouse up")
 				// this has to occur before resuming playback
 				// if .currentPosition is set after resuming playback
 				// you risk being deafened by *extremely* loud pops
