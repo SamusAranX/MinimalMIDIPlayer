@@ -10,8 +10,7 @@ A very simple app that does what is says on the tin.
 * Keyboard shortcuts!
 	* <kbd>Space</kbd> toggles playback
 	* <kbd>↑</kbd> and <kbd>↓</kbd> adjust the playback speed
-	* <kbd>←</kbd> resets the playback position to the start of the track
-	* <kbd>→</kbd> stops the playback
+	* <kbd>←</kbd> and <kbd>→</kbd> respectively skip backwards or ahead by 10 seconds
 	* Alternatively, use the standard media keys
 * You can open files with ⌘O, drop files on the app icon and the dock icon, or set this app as the default for all MIDI files:
 
