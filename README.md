@@ -1,14 +1,12 @@
 # MinimalMIDIPlayer
-
-![About window header](https://user-images.githubusercontent.com/676069/45408048-8857a000-b66b-11e8-85de-f6381ecc2f81.png)
 A very simple app that does what is says on the tin.
 
 ## Features
 * Plays MIDI files
 * If there’s a soundfont with the same name as the MIDI file, MinimalMIDIPlayer will use that. Otherwise it’ll just use the macOS standard soundfont.
-* That behavior can be overridden to load custom soundfonts
+	* This behavior can be overridden to load custom soundfonts
 * Supports macOS Mojave's new Dark Mode (by using it all the time like QuickTime Player)
-* Supports the Notification Center's Now Playing widget as well as the newer MacBook Pro's Touch Bar
+* Supports the Notification Center's Now Playing widget as well as the MacBook Pro's Touch Bar
 * Keyboard shortcuts!
 	* <kbd>Space</kbd> toggles playback
 	* <kbd>↑</kbd> and <kbd>↓</kbd> adjust the playback speed
@@ -24,12 +22,10 @@ A very simple app that does what is says on the tin.
 	* On macOS 10.12, media controls will not be available. They require macOS 10.13 or newer.
 
 ## Screenshots
-
-![Playing e1m1.mid](https://user-images.githubusercontent.com/676069/45410932-3e72b800-b673-11e8-8df8-5de9a935094c.png)
+![Playing e1m1.mid](https://user-images.githubusercontent.com/676069/50861150-24828100-1398-11e9-8c0d-af94397676b7.png)
 ![The Now Playing widget in the Notification Center](https://user-images.githubusercontent.com/676069/45410936-40d51200-b673-11e8-84b4-085dde88cf44.png)
 
 ## Downloads
-
 The latest download can be found in the Releases tab: https://github.com/SamusAranX/MinimalMIDIPlayer/releases/latest
 
 ## Known issues
