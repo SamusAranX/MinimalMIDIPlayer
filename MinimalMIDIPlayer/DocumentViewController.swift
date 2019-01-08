@@ -83,6 +83,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	func windowWillClose(_ notification: Notification) {
 		if #available(OSX 10.12.2, *) {
 			NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
+			Swift.print("Removed from NPC")
 		}
 		
 		self.midiPlayer?.stop()
@@ -121,7 +122,13 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	
 	@IBAction func clickRecognizerTriggered(_ sender: NSClickGestureRecognizer) {
 		print("click recognized!")
-		// TODO: handle trackpad taps
+		let mousePoint = sender.location(in: self.progressTimeSlider)
+		
+		let progFactor = mousePoint.x / self.progressTimeSlider.bounds.width
+		let newProgress = self.progressTimeSlider.maxValue * Double(progFactor)
+		
+		self.progressTimeSlider.doubleValue = newProgress
+		self.positionSliderMoved(progressTimeSlider)
 	}
 	
 	@IBAction func durationLabelClicked(_ sender: NSClickGestureRecognizer) {
@@ -249,6 +256,10 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 				
 				// TODO: Check if this is still needed
 				self.midiPlayer?.stop()
+				if #available(OSX 10.12.2, *) {
+					// remove old player from Now Playing Central to get rid of "phantom" players
+					NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
+				}
 				self.midiPlayer = nil
 				
 				self.midiPlayer = newMidiPlayer

@@ -188,6 +188,7 @@ class NowPlayingCentral: NSObject {
 	
 	@objc func togglePlayPauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
 		Swift.print("Play/Pause command")
+		
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.togglePlayPause()
 			return .success
