@@ -12,7 +12,7 @@ class Settings {
 	
 	static let shared = Settings()
 	
-	var cacophonyMode: Bool {
+	var autoplay: Bool {
 		get {
 			return UserDefaults.standard.bool(forKey: #function)
 		}
@@ -22,7 +22,17 @@ class Settings {
 		}
 	}
 	
-	var autoplay: Bool {
+	var looseSFMatching: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: #function)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: #function)
+			UserDefaults.standard.synchronize()
+		}
+	}
+	
+	var cacophonyMode: Bool {
 		get {
 			return UserDefaults.standard.bool(forKey: #function)
 		}
@@ -35,6 +45,7 @@ class Settings {
 	private init() {
 		UserDefaults.standard.register(defaults: [
 			"autoplay": false,
+			"looseSFMatching": false,
 			"cacophonyMode": false
 		])
 	}

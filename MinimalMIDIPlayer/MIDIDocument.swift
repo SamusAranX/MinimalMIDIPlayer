@@ -13,11 +13,11 @@ class MIDIFilePresenter: NSObject, NSFilePresenter {
 	private var midiPath: URL!
 	private var soundfontPath: URL?
 	
-	convenience init(path: URL) {
+	convenience init(path: URL, sfPath: URL?) {
 		self.init()
-		
+
 		self.midiPath = path
-		self.soundfontPath = PWMIDIPlayer.guessSoundfontPath(forMIDI: path)
+		self.soundfontPath = sfPath
 	}
 	
 	var files: [URL] {
@@ -71,10 +71,6 @@ class MIDIDocument: NSDocument {
 		}
 	}
 	
-	// MARK: - NSFilePresenter
-	
-	
-	
 	// MARK: - NSDocument
 	
 	override func read(from url: URL, ofType typeName: String) throws {
@@ -84,7 +80,9 @@ class MIDIDocument: NSDocument {
 		self.midiPath = url
 		self.soundfontPath = PWMIDIPlayer.guessSoundfontPath(forMIDI: url)
 		
-		self.midiPresenter = MIDIFilePresenter(path: url)
+		Swift.print("mididocument read")
+		
+		self.midiPresenter = MIDIFilePresenter(path: url, sfPath: self.soundfontPath)
 		NSFileCoordinator.addFilePresenter(self.midiPresenter)
 	}
 	

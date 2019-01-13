@@ -67,18 +67,22 @@ class PWMIDIPlayer: AVMIDIPlayer {
 	}
     
     class func guessSoundfontPath(forMIDI midiFile: URL) -> URL? {
-        let fileDirectory = midiFile.deletingLastPathComponent()
-        let nameWithoutExt = NSString(string: midiFile.lastPathComponent).deletingPathExtension.removingPercentEncoding
+        let midiDirectory = midiFile.deletingLastPathComponent()
+		guard let nameWithoutExt = NSString(string: midiFile.lastPathComponent).deletingPathExtension.removingPercentEncoding else {
+			return nil
+		}
         
-        // Super cheap way of checking for accompanying soundfonts
+		// Super cheap way of checking for accompanying soundfonts:
+		// Just check for soundfonts that have the same name as the MIDI file
+		// or the containing directory
         let potentialSoundFonts = [
             // Soundfonts with same name as the MIDI file
-            "\(fileDirectory.path)/\(nameWithoutExt!).sf2",
-            "\(fileDirectory.path)/\(nameWithoutExt!).dls",
+            "\(midiDirectory.path)/\(nameWithoutExt).sf2",
+            "\(midiDirectory.path)/\(nameWithoutExt).dls",
             
-            // Soundfonts with same name as containing folder
-            "\(fileDirectory.path)/\(fileDirectory.lastPathComponent).sf2",
-            "\(fileDirectory.path)/\(fileDirectory.lastPathComponent).dls"
+            // Soundfonts with same name as containing directory
+            "\(midiDirectory.path)/\(midiDirectory.lastPathComponent).sf2",
+            "\(midiDirectory.path)/\(midiDirectory.lastPathComponent).dls"
         ]
         
         for psf in potentialSoundFonts {
@@ -86,7 +90,31 @@ class PWMIDIPlayer: AVMIDIPlayer {
                 return URL(fileURLWithPath: psf)
             }
         }
-        
+		
+		if Settings.shared.looseSFMatching {
+			// Busting out the old Levenshtein string distance
+			// as a "looser" soundfont detection method
+			Swift.print("starting loose soundfont search")
+			do {
+				let directoryContents = try FileManager.default.contentsOfDirectory(at: midiDirectory, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+				
+				let soundFontURLs = directoryContents.filter {
+					$0.pathExtension.lowercased() == "dls" || $0.pathExtension.lowercased() == "sf2"
+				}
+				
+				return soundFontURLs.min {
+					let fileA = $0.lastPathComponent
+					let fileB = $1.lastPathComponent
+					
+					return Levenshtein.distanceBetween(aStr: fileA, and: nameWithoutExt) <
+					Levenshtein.distanceBetween(aStr: fileB, and: nameWithoutExt)
+				}
+			} catch {
+				Swift.print(error.localizedDescription)
+			}
+		}
+		
+		Swift.print("no soundfont found")
         return nil
     }
 	

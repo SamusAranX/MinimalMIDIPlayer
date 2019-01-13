@@ -229,6 +229,15 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		let newGuessedSoundfont = document.midiPresenter.presentedItemURL
 		var newActiveSoundfont = newGuessedSoundfont
 		
+		// TODO: figure out how scoped bookmarks work
+//		do {
+//			let bookmarkData = try newActiveSoundfont?.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess])
+//		} catch {
+//			NSAlert.runModal(title: "Error creating bookmark", message: "you dun fucked up", style: .critical)
+//			NSDocumentController.shared.document(for: window)?.close()
+//			return
+//		}
+		
 		if self.overrideSFCheckbox.state == .on {
 			newActiveSoundfont = self.getSelectedSoundfont().soundfont
 		}

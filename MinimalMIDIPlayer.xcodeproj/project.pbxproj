@@ -26,6 +26,7 @@
 		56A0BD7C21400569006095CE /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7B21400569006095CE /* DocumentWindowController.swift */; };
 		56A0BD7E214005A4006095CE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7D214005A4006095CE /* DocumentViewController.swift */; };
 		56B0821C213FF7A900A3CC70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56B0821B213FF7A900A3CC70 /* Main.storyboard */; };
+		56B1E12C21EBA619002CEBB3 /* Levenshtein.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B1E12B21EBA619002CEBB3 /* Levenshtein.swift */; };
 		56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */; };
 		56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */; };
 		56FEF1572141181B00813975 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF1562141181B00813975 /* AboutViewController.swift */; };
@@ -70,6 +71,7 @@
 		56A3A10E21707E7F008ABA6A /* MinimalMIDIPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalMIDIPlayer.entitlements; sourceTree = "<group>"; };
 		56AB757F213FD146009ECFB1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		56B0821B213FF7A900A3CC70 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		56B1E12B21EBA619002CEBB3 /* Levenshtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levenshtein.swift; sourceTree = "<group>"; };
 		56D6A8CD1C3437AA0071DEF4 /* MinimalMIDIPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalMIDIPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		56B1E12A21EBA603002CEBB3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				56B1E12B21EBA619002CEBB3 /* Levenshtein.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		56D6A8C41C3437AA0071DEF4 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +167,7 @@
 			children = (
 				56A3A10E21707E7F008ABA6A /* MinimalMIDIPlayer.entitlements */,
 				56FEF15E21411A4800813975 /* Extensions */,
+				56B1E12A21EBA603002CEBB3 /* Helpers */,
 				56FEF158214119D800813975 /* HyperlinkTextField */,
 				569D77EC2004D3850028D9C2 /* Icons */,
 				56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */,
@@ -379,6 +390,7 @@
 				5612BAE821414F3C00AA1882 /* Settings.swift in Sources */,
 				5669F2EB21425B400034D3ED /* NowPlayingCentral.swift in Sources */,
 				56654136214045C100283C85 /* MIDIDocument.swift in Sources */,
+				56B1E12C21EBA619002CEBB3 /* Levenshtein.swift in Sources */,
 				5669F2ED214294F50034D3ED /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
