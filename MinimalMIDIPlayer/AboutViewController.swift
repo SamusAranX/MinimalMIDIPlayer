@@ -35,7 +35,7 @@ class AboutViewController: NSViewController {
 		if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
 			let buildNum = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
 			
-			var versionString = "v\(version)"
+			var versionString = version
 			let startIndex = versionString.endIndex
 			versionString += buildNum
 			let endIndex = versionString.endIndex
@@ -83,8 +83,8 @@ class AboutViewController: NSViewController {
 		twitterLabel.attributedStringValue = twitterAttrString
 	}
 	
-	override func viewDidAppear() {
-		super.viewDidAppear()
+	override func viewWillAppear() {
+		super.viewWillAppear()
 		
 		if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
 			self.view.window?.title = "About \(appName)"
