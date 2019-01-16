@@ -28,13 +28,14 @@ A very simple app that does what is says on the tin.
 The latest download can be found in the Releases tab: https://github.com/SamusAranX/MinimalMIDIPlayer/releases/latest
 
 ## Known issues
-* Because this is based on Apple’s own AVMIDIPlayer, customizability is basically non-existent. This thing can play MIDI files with custom soundfonts and that’s it.
-* ~~Currently, this app only checks for SF2 files in the same folder. DLS support will come later.~~ ***Added in v1.1***
-* ~~This app will ignore all files that are dropped onto its dock icon. This, too, will be possible in a later version.~~ ***Added in v1.2***
-* ~~Currently, the only way to use another soundfont is to rename it. Future versions will make the use of custom soundfonts easier.~~ ***Added in v1.5***
+* Because this is based on Apple’s own AVMIDIPlayer, customizability is basically non-existent. This app can play MIDI files with custom soundfonts and that’s it.
+* Some soundfonts may cause **very** loud pops when starting playback. This is a bug in Apple's AVMIDIPlayer.
 * When pausing and un-pausing playback, some sounds might be silent until they get played again. This is expected behavior and not a bug.
 * When using the Touch Bar or the Now Playing widget to skip to another part of the track, the track might sound out of tune. This can happen if the MIDI you're listening to uses lots of Pitch Bends and is expected behavior.
 * The Notification Center's Now Playing section sometimes gets out of sync with the currently playing track. This is because the Now Playing API is buggy and more or less expected behavior.
+* ~~Currently, this app only checks for SF2 files in the same folder. DLS support will come later.~~ ***Added in v1.1***
+* ~~This app will ignore all files that are dropped onto its dock icon. This, too, will be possible in a later version.~~ ***Added in v1.2***
+* ~~Currently, the only way to use another soundfont is to rename it. Future versions will make the use of custom soundfonts easier.~~ ***Added in v1.5***
 
 ## Feedback and support
 Just tweet at me [@SamusAranX](https://twitter.com/SamusAranX) or [drop me a mail](mailto:hallo@peterwunder.de).
