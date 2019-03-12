@@ -7,12 +7,23 @@
 //
 
 import Cocoa
+import Preferences
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	
+	let preferencesWindowController = PreferencesWindowController(
+		viewControllers: [
+			GeneralPreferenceViewController()
+		]
+	)
+	
 	@IBAction func closeAllWindows(_ sender: NSMenuItem) {
 		NSDocumentController.shared.closeAllDocuments(withDelegate: nil, didCloseAllSelector: nil, contextInfo: nil)
+	}
+	
+	@IBAction func showPreferencesWindow(_ sender: NSMenuItem) {
+		preferencesWindowController.showWindow()
 	}
 	
 }

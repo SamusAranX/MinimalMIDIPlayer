@@ -44,8 +44,11 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
 		self.delegate?.windowWillClose(notification)
 	}
 	
+	let forwardedKeyCodes: [UInt16] = [0x31, 0x7B, 0x7C, 0x7D, 0x7E]
 	override func keyDown(with event: NSEvent) {
-		super.keyDown(with: event)
+		if !forwardedKeyCodes.contains(event.keyCode) {
+			super.keyDown(with: event)
+		}
 		
 		self.delegate?.keyDown(with: event)
 	}

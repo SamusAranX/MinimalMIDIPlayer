@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GeneralPreferenceViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target">
+            <connections>
+                <outlet property="autoplayCheckbox" destination="bVT-g8-F5S" id="gYn-3g-hmy"/>
+                <outlet property="cacophonyModeCheckbox" destination="oiN-3R-g8Q" id="sh9-Ns-7Yd"/>
+                <outlet property="looseSFMatchingCheckbox" destination="3XJ-aK-vzd" id="BId-Qt-PCr"/>
+                <outlet property="view" destination="L7j-Se-ayO" id="m0X-yC-lKF"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <view id="L7j-Se-ayO">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="332"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ylH-pH-AJG">
+                    <rect key="frame" x="77" y="20" width="260" height="292"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bVT-g8-F5S">
+                            <rect key="frame" x="-2" y="276" width="120" height="18"/>
+                            <buttonCell key="cell" type="check" title="Enable Autoplay" bezelStyle="regularSquare" imagePosition="left" inset="2" id="hUq-ct-obw">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="autoplayCheckboxToggled:" target="-2" id="Lv9-8c-II4"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3XJ-aK-vzd">
+                            <rect key="frame" x="-2" y="254" width="224" height="18"/>
+                            <buttonCell key="cell" type="check" title="Enable loose soundfont matching" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OoG-0S-G04">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="soundfontCheckboxToggled:" target="-2" id="PcP-X4-dZt"/>
+                            </connections>
+                        </button>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HAx-I2-qi2">
+                            <rect key="frame" x="16" y="178" width="240" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="L9t-TN-fql"/>
+                            </constraints>
+                            <textFieldCell key="cell" controlSize="small" id="cqN-q1-f7b">
+                                <font key="font" metaFont="smallSystem"/>
+                                <string key="title">MinimalMIDIPlayer already does its best to match MIDI files and soundfonts, but sometimes finding a soundfont is hard.
+With this option, approximate filename matches will also be considered.</string>
+                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oiN-3R-g8Q">
+                            <rect key="frame" x="-2" y="154" width="151" height="18"/>
+                            <buttonCell key="cell" type="check" title="📣 Cacophony Mode" bezelStyle="regularSquare" imagePosition="left" inset="2" id="GTu-LI-YZM">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="cacophonyCheckboxToggled:" target="-2" id="bJt-zr-llI"/>
+                            </connections>
+                        </button>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="C8w-Qz-Shy">
+                            <rect key="frame" x="16" y="78" width="240" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="dnu-o5-5ST"/>
+                            </constraints>
+                            <textFieldCell key="cell" controlSize="small" id="pCP-1R-M4S">
+                                <font key="font" metaFont="smallSystem"/>
+                                <string key="title">Normally, when you hit Play in a player window, all other player windows are paused. Cacophony Mode disables this behavior, allowing multiple player windows to play at the same time.</string>
+                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-oq-wU9">
+                            <rect key="frame" x="16" y="0.0" width="240" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="rAP-oL-qwZ"/>
+                            </constraints>
+                            <textFieldCell key="cell" controlSize="small" id="su8-wr-AYM">
+                                <font key="font" metaFont="smallSystemBold"/>
+                                <string key="title">Enabling Cacophony Mode will disable support for the Now Playing widget and media keys. Toggling it will close all open players to reset the Now Playing system.</string>
+                                <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ygf-oq-wU9" firstAttribute="leading" secondItem="ylH-pH-AJG" secondAttribute="leading" constant="18" id="9SJ-tT-aHq"/>
+                        <constraint firstAttribute="width" constant="260" id="KYT-na-gcK"/>
+                        <constraint firstItem="C8w-Qz-Shy" firstAttribute="leading" secondItem="ylH-pH-AJG" secondAttribute="leading" constant="18" id="Sp1-6X-maS"/>
+                        <constraint firstItem="HAx-I2-qi2" firstAttribute="leading" secondItem="ylH-pH-AJG" secondAttribute="leading" constant="18" id="oA1-mG-BSc"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="ylH-pH-AJG" firstAttribute="top" secondItem="L7j-Se-ayO" secondAttribute="top" constant="20" id="Fy1-R4-Hwl"/>
+                <constraint firstItem="ylH-pH-AJG" firstAttribute="centerX" secondItem="L7j-Se-ayO" secondAttribute="centerX" id="RWM-s0-5pZ"/>
+            </constraints>
+            <point key="canvasLocation" x="129" y="173"/>
+        </view>
+    </objects>
+</document>

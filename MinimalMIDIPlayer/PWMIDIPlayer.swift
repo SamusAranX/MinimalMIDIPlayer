@@ -68,7 +68,9 @@ class PWMIDIPlayer: AVMIDIPlayer {
     
     class func guessSoundfontPath(forMIDI midiFile: URL) -> URL? {
         let midiDirectory = midiFile.deletingLastPathComponent()
-		guard let nameWithoutExt = NSString(string: midiFile.lastPathComponent).deletingPathExtension.removingPercentEncoding else {
+		let midiDirParent = midiDirectory.deletingLastPathComponent()
+		
+		guard let fileNameWithoutExt = NSString(string: midiFile.lastPathComponent).deletingPathExtension.removingPercentEncoding else {
 			return nil
 		}
         
@@ -77,18 +79,25 @@ class PWMIDIPlayer: AVMIDIPlayer {
 		// or the containing directory
         let potentialSoundFonts = [
             // Soundfonts with same name as the MIDI file
-            "\(midiDirectory.path)/\(nameWithoutExt).sf2",
-            "\(midiDirectory.path)/\(nameWithoutExt).dls",
+            "\(midiDirectory.path)/\(fileNameWithoutExt).sf2",
+            "\(midiDirectory.path)/\(fileNameWithoutExt).dls",
             
             // Soundfonts with same name as containing directory
             "\(midiDirectory.path)/\(midiDirectory.lastPathComponent).sf2",
-            "\(midiDirectory.path)/\(midiDirectory.lastPathComponent).dls"
+            "\(midiDirectory.path)/\(midiDirectory.lastPathComponent).dls",
+			
+			// Soundfonts with same name as the parent directory
+			"\(midiDirParent.path)/\(midiDirParent.lastPathComponent).sf2",
+			"\(midiDirParent.path)/\(midiDirParent.lastPathComponent).dls"
         ]
         
         for psf in potentialSoundFonts {
             if FileManager.default.fileExists(atPath: psf) {
+				Swift.print("Soundfont found: \(psf)")
                 return URL(fileURLWithPath: psf)
-            }
+			} else {
+//				Swift.print("\(psf) does not exist")
+			}
         }
 		
 		if Settings.shared.looseSFMatching {
@@ -106,8 +115,8 @@ class PWMIDIPlayer: AVMIDIPlayer {
 					let fileA = $0.lastPathComponent
 					let fileB = $1.lastPathComponent
 					
-					return Levenshtein.distanceBetween(aStr: fileA, and: nameWithoutExt) <
-					Levenshtein.distanceBetween(aStr: fileB, and: nameWithoutExt)
+					return Levenshtein.distanceBetween(aStr: fileA, and: fileNameWithoutExt) <
+					Levenshtein.distanceBetween(aStr: fileB, and: fileNameWithoutExt)
 				}
 			} catch {
 				Swift.print(error.localizedDescription)
@@ -242,4 +251,5 @@ class PWMIDIPlayer: AVMIDIPlayer {
 			self.stop()
         }
     }
+	
 }

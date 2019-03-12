@@ -1,5 +1,5 @@
 # MinimalMIDIPlayer
-A very simple app that does what is says on the tin.
+A very simple app that does what it says on the tin.
 
 ## Features
 * Plays MIDI files

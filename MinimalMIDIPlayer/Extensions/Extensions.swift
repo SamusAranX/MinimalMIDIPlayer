@@ -36,8 +36,28 @@ extension String {
 	}
 }
 
+extension String: LocalizedError {
+	public var errorDescription: String? { return self }
+}
+
 extension NSViewController {
 	static func load<T>(from bundle: Bundle? = nil) -> T where T: NSViewController {
 		return T(nibName: T.className(), bundle: bundle)
 	}
+}
+
+extension Array where Element: Numeric & Comparable {
+
+	func closest(to givenValue: Element) -> Element {
+		let sorted = self.sorted(by: <)
+
+		let over = sorted.first(where: { $0 >= givenValue })!
+		let under = sorted.last(where: { $0 <= givenValue })!
+
+		let diffOver = over - givenValue
+		let diffUnder = givenValue - under
+
+		return (diffOver < diffUnder) ? over : under
+	}
+
 }

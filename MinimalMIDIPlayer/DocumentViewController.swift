@@ -218,7 +218,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	
 	func openFile(midiURL: URL) {
 		guard let window = self.view.window, let document = NSDocumentController.shared.document(for: window) as? MIDIDocument else {
-			// this might happen if another soundfont is selected after file that's being played is renamed
+			// this might happen if another soundfont is selected after a file that's being played is renamed
 			NSAlert.runModal(title: "Error loading file", message: "Something went wrong. Please try reopening the file.", style: .critical)
 			
 			// attempt to close anyway
@@ -228,15 +228,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		
 		let newGuessedSoundfont = document.midiPresenter.presentedItemURL
 		var newActiveSoundfont = newGuessedSoundfont
-		
-		// TODO: figure out how scoped bookmarks work
-//		do {
-//			let bookmarkData = try newActiveSoundfont?.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess])
-//		} catch {
-//			NSAlert.runModal(title: "Error creating bookmark", message: "you dun fucked up", style: .critical)
-//			NSDocumentController.shared.document(for: window)?.close()
-//			return
-//		}
 		
 		if self.overrideSFCheckbox.state == .on {
 			newActiveSoundfont = self.getSelectedSoundfont().soundfont
@@ -380,6 +371,12 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		customSFItem.title = "Load Custom Soundfont…"
 		customSFItem.tag = SoundfontMenuType.custom.rawValue
 		self.soundfontMenu.menu!.addItem(customSFItem)
+	}
+	
+	// MARK: - Prevent error beeps when the space bar is pressed
+	
+	override var acceptsFirstResponder: Bool {
+		return true
 	}
 	
 	// MARK: - WindowControllerDelegate
