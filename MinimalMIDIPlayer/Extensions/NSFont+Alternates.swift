@@ -65,6 +65,15 @@ extension NSFont {
         
         return self.addAttributes(attributes: featureSettings)
     }
+	
+	var traditionalNumbers: NSFont? {
+		let featureSettings = [[
+			NSFontDescriptor.FeatureKey.typeIdentifier: kNumberCaseType,
+			NSFontDescriptor.FeatureKey.selectorIdentifier: kLowerCaseNumbersSelector
+			]]
+		
+		return self.addAttributes(attributes: featureSettings)
+	}
     
     var monospacedNumbers: NSFont? {
         let featureSettings = [[
@@ -93,15 +102,6 @@ extension NSFont {
         return self.addAttributes(attributes: featureSettings)
     }
     
-    var traditionalNumbers: NSFont? {
-        let featureSettings = [[
-            NSFontDescriptor.FeatureKey.typeIdentifier: kNumberCaseType,
-            NSFontDescriptor.FeatureKey.selectorIdentifier: kLowerCaseNumbersSelector
-        ]]
-        
-        return self.addAttributes(attributes: featureSettings)
-    }
-    
     var openSixAndNine: NSFont? {
         return self.enableStylisticAlternate(ss: 1)
     }
@@ -109,6 +109,10 @@ extension NSFont {
     var openFour: NSFont? {
         return self.enableStylisticAlternate(ss: 2)
     }
+	
+	var verticallyCenteredColon: NSFont? {
+		return self.enableStylisticAlternate(ss: 3)
+	}
     
     var highLegibility: NSFont? {
         return self.enableStylisticAlternate(ss: 6)

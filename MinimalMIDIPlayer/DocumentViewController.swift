@@ -69,14 +69,15 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			self.recentSoundfonts = storedRecentSFArr.map { return URL(string: $0)! }
 		}
 		
-		// make all numerical labels use tabular figures
+		// make all numerical labels use nice fonts
 		// also do it here because windowOpened() is executed when the window is already visible
-		self.speedLabel.font = self.speedLabel.font?.monospacedNumbers
-		self.progressTimeLabel.font = self.progressTimeLabel.font?.monospacedNumbers
-		self.durationTimeLabel.font = self.durationTimeLabel.font?.monospacedNumbers
+		if let readableSF = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize).monospacedNumbers?.verticallyCenteredColon {
+			self.speedLabel.font = readableSF
+			self.progressTimeLabel.font = readableSF
+			self.durationTimeLabel.font = readableSF
+		}
 		
 		self.overrideSFToggled(self.overrideSFCheckbox)
-		
 		self.cacophonyIconView.toolTip = "Cacophony Mode enabled"
 	}
 	

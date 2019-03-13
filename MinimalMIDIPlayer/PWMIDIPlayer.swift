@@ -95,8 +95,6 @@ class PWMIDIPlayer: AVMIDIPlayer {
             if FileManager.default.fileExists(atPath: psf) {
 				Swift.print("Soundfont found: \(psf)")
                 return URL(fileURLWithPath: psf)
-			} else {
-//				Swift.print("\(psf) does not exist")
 			}
         }
 		
