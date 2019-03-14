@@ -93,7 +93,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
         
         for psf in potentialSoundFonts {
             if FileManager.default.fileExists(atPath: psf) {
-				Swift.print("Soundfont found: \(psf)")
+				print("Soundfont found: \(psf)")
                 return URL(fileURLWithPath: psf)
 			}
         }
@@ -101,7 +101,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 		if Settings.shared.looseSFMatching {
 			// Busting out the old Levenshtein string distance
 			// as a "looser" soundfont detection method
-			Swift.print("starting loose soundfont search")
+			print("starting loose soundfont search")
 			do {
 				let directoryContents = try FileManager.default.contentsOfDirectory(at: midiDirectory, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
 				
@@ -117,11 +117,11 @@ class PWMIDIPlayer: AVMIDIPlayer {
 					Levenshtein.distanceBetween(aStr: fileB, and: fileNameWithoutExt)
 				}
 			} catch {
-				Swift.print(error.localizedDescription)
+				print(error.localizedDescription)
 			}
 		}
 		
-		Swift.print("no soundfont found")
+		print("no soundfont found")
         return nil
     }
 	
@@ -133,7 +133,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 	}
     
     deinit {
-		Swift.print("PWMIDIPlayer: deinit")
+		print("PWMIDIPlayer: deinit")
 		
 		self.progressTimer?.invalidate()
 		self.progressTimer = nil

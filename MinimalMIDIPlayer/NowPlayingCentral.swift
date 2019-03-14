@@ -159,7 +159,7 @@ class NowPlayingCentral: NSObject {
 	// MARK: - MPRemoteCommandEvent Handlers
 	
 	@objc func playCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		Swift.print("Play command")
+		print("Play command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.play()
 			return .success
@@ -169,7 +169,7 @@ class NowPlayingCentral: NSObject {
 	}
 	
 	@objc func pauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		Swift.print("Pause command")
+		print("Pause command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.pause()
 			return .success
@@ -178,7 +178,7 @@ class NowPlayingCentral: NSObject {
 	}
 	
 	@objc func stopCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		Swift.print("Stop command")
+		print("Stop command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.stop()
 			return .success
@@ -187,7 +187,7 @@ class NowPlayingCentral: NSObject {
 	}
 	
 	@objc func togglePlayPauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		Swift.print("Play/Pause command")
+		print("Play/Pause command")
 		
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.togglePlayPause()

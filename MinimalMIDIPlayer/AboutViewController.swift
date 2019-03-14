@@ -12,14 +12,17 @@ class AboutViewController: NSViewController {
 	
 	@IBOutlet weak var appNameLabel: NSTextField!
 	@IBOutlet weak var versionLabel: NSTextField!
-	@IBOutlet weak var buildLabel: NSTextField!
 	@IBOutlet weak var copyrightLabel: NSTextField!
 	@IBOutlet weak var aboutTextLabel: HyperlinkTextField!
+	
+	@IBOutlet var acknowledgementTextView: NSTextView!
 	
 	@IBOutlet weak var githubLabel: HyperlinkTextField!
 	@IBOutlet weak var bugsLabel: HyperlinkTextField!
 	@IBOutlet weak var twitterLabel: HyperlinkTextField!
 	
+	@IBOutlet weak var disclosureTriangleButton: NSButton!
+
 	let hyperlinksInText: [String: URL] = [:]
 	
 	let hyperlinksForLabels = [
@@ -72,6 +75,22 @@ class AboutViewController: NSViewController {
 			aboutTextLabel.attributedStringValue = aboutAttrString
 		}
 		
+		guard let ackFilePath = Bundle.main.path(forResource: "Acknowledgements", ofType: "rtf") else {
+			fatalError("Couldn't read acknowledgements file")
+		}
+		
+		do {
+			let ackAttrStr = try NSMutableAttributedString(url: URL(fileURLWithPath: ackFilePath), options: [:], documentAttributes: nil)
+			ackAttrStr.setFontFace(font: aboutTextLabel.font!, color: NSColor.controlTextColor)
+			acknowledgementTextView.textStorage?.setAttributedString(ackAttrStr)
+			
+			acknowledgementTextView.isEditable = true
+			acknowledgementTextView.checkTextInDocument(nil)
+			acknowledgementTextView.isEditable = false
+		} catch {
+			fatalError("Couldn't apply acknowledgements file")
+		}
+		
 		// Configure hyperlinks in smaller labels
 		let githubAttrString = githubLabel.stringValue.hyperlink(with: hyperlinksForLabels[0])
 		githubLabel.attributedStringValue = githubAttrString
@@ -90,5 +109,38 @@ class AboutViewController: NSViewController {
 			self.view.window?.title = "About \(appName)"
 		}
 	}
-	
+
+	@IBAction func disclosureTriangleToggled(_ sender: NSButton) {
+		guard let window = self.view.window else {
+			print("Couldn't get window")
+			return
+		}
+
+		let willExpand = self.view.frame.height < 300
+		let newHeight: CGFloat = (willExpand ? 383 : 263) + window.titlebarHeight
+		var newFrame = window.frame
+
+		if willExpand {
+			newFrame.origin.y -= abs(newFrame.height - newHeight)
+		} else {
+			newFrame.origin.y += abs(newFrame.height - newHeight)
+		}
+
+		newFrame.size.height = newHeight
+
+		NSAnimationContext.beginGrouping()
+
+		NSAnimationContext.current.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+		NSAnimationContext.current.duration = 0.25
+		NSAnimationContext.current.allowsImplicitAnimation = true
+
+		window.animator().setFrame(newFrame, display: true)
+
+		NSAnimationContext.endGrouping()
+	}
+
+	@IBAction func disclosureHelperPressed(_ sender: NSButton) {
+		self.disclosureTriangleButton.performClick(sender)
+	}
+
 }

@@ -9,7 +9,6 @@
 import Cocoa
 
 class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDIPlayerDelegate {
-	
 	@IBOutlet weak var backgroundFXView: NSVisualEffectView!
 	
 	@IBOutlet weak var rewindButton: NSButton!
@@ -40,10 +39,11 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	
 	let SOUNDFONTS_RECENT_START = 3
 	
-	let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 1 + 1/3, 1.5, 1 + 2/3, 2.0]
+	let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 4/3, 1.5, 5/3, 2.0]
 	var playbackSpeed: Float = 1.0
 	
 	var pausedDueToDraggingKnob: Bool = false
+	var shiftPressed: Bool = false
 	
 	enum SoundfontMenuType: Int {
 		case macdefault = 0
@@ -79,16 +79,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		
 		self.overrideSFToggled(self.overrideSFCheckbox)
 		self.cacophonyIconView.toolTip = "Cacophony Mode enabled"
-	}
-	
-	func windowWillClose(_ notification: Notification) {
-		if #available(OSX 10.12.2, *) {
-			NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
-			Swift.print("Removed from NPC")
-		}
-		
-		self.midiPlayer?.stop()
-		self.midiPlayer = nil
 	}
 	
 	// MARK: - IBActions
@@ -152,16 +142,13 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		if let currentEvent = sender.window?.currentEvent {
 			switch (currentEvent.type) {
 			case .leftMouseDown:
-//				Swift.print("left mouse down")
 				if midiPlayer.isPlaying {
 					midiPlayer.pause()
 					self.pausedDueToDraggingKnob = true
 				}
 			case .leftMouseDragged:
-//				Swift.print("left mouse drag")
 				self.playbackPositionChanged(position: positionPercent * midiPlayer.duration, duration: midiPlayer.duration)
 			case .leftMouseUp:
-//				Swift.print("left mouse up")
 				// this has to occur before resuming playback
 				// if .currentPosition is set after resuming playback
 				// you risk being deafened by *extremely* loud pops
@@ -173,13 +160,17 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 				}
 				
 			default:
-				Swift.print("Unknown type \(currentEvent.type.rawValue)")
+				print("Unknown type \(currentEvent.type.rawValue)")
 			}
 		}
 	}
-	
-	@IBAction func rewindButtonPressed(_ sender: NSButton) {
-		self.midiPlayer?.rewind(secs: 10)
+
+	@IBAction func skipButtonPressed(_ sender: NSButton) {
+		if sender.tag < 0 {
+			self.rewind()
+		} else {
+			self.fastForward()
+		}
 	}
 	
 	@IBAction func playPauseButtonPressed(_ sender: NSButton) {
@@ -201,17 +192,29 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 	}
 	
-	@IBAction func fastForwardButtonPressed(_ sender: NSButton) {
-		self.midiPlayer?.fastForward(secs: 10)
-	}
-	
 	@IBAction func speedSliderMoved(_ sender: NSSlider) {
-		let currentSliderPos = sender.integerValue
-		let speedValue = self.speedValues[currentSliderPos]
+		self.shiftPressed = NSApp.currentEvent?.modifierFlags.contains(.shift) ?? false
 		
-		self.playbackSpeed = speedValue
-		self.speedLabel.stringValue = String(format: "%.2f×", speedValue)
+		if self.shiftPressed {
+			sender.allowsTickMarkValuesOnly = false
+			
+			let lowerCap = self.speedValues[Int(floor(sender.floatValue))]
+			let upperCap = self.speedValues[Int(ceil(sender.floatValue))]
+			let valueDiff = upperCap - lowerCap
+			let betweenFactor = sender.floatValue - floor(sender.floatValue)
+			let newValue = lowerCap + valueDiff * betweenFactor
+			
+			self.playbackSpeed = newValue.rounded(toDecimalPlaces: 2)
+		} else {
+			sender.allowsTickMarkValuesOnly = true
+			
+			let currentSliderPos = sender.integerValue
+			let speedValue = self.speedValues[currentSliderPos]
+			
+			self.playbackSpeed = speedValue
+		}
 		
+		self.speedLabel.stringValue = String(format: "%.2f×", self.playbackSpeed)
 		self.midiPlayer?.rate = self.playbackSpeed
 	}
 	
@@ -283,10 +286,10 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 	
 	func openDocument(midiDoc: MIDIDocument) {
-		Swift.print("openDocument!")
+		print("openDocument!")
 		
 		guard let midiURL = midiDoc.fileURL else {
-			Swift.print("Document fileURL is nil")
+			print("Document fileURL is nil")
 			return
 		}
 		
@@ -373,6 +376,18 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		customSFItem.tag = SoundfontMenuType.custom.rawValue
 		self.soundfontMenu.menu!.addItem(customSFItem)
 	}
+
+	func rewind() {
+		let skipAmount: TimeInterval = self.shiftPressed ? 5 : 10
+		self.midiPlayer?.rewind(secs: skipAmount)
+		print("rewind \(skipAmount) seconds")
+	}
+
+	func fastForward() {
+		let skipAmount: TimeInterval = self.shiftPressed ? 5 : 10
+		self.midiPlayer?.fastForward(secs: skipAmount)
+		print("fast forward \(skipAmount) seconds")
+	}
 	
 	// MARK: - Prevent error beeps when the space bar is pressed
 	
@@ -381,15 +396,23 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 	
 	// MARK: - WindowControllerDelegate
-	
-	override func keyDown(with event: NSEvent) {
+
+	func flagsChangedEvent(with event: NSEvent) {
+		self.shiftPressed = event.modifierFlags.contains(.shift)
+
+		let skipAmount = self.shiftPressed ? 5 : 10
+		self.rewindButton.title = String(skipAmount)
+		self.fastForwardButton.title = String(skipAmount)
+	}
+
+	func keyDownEvent(with event: NSEvent) {
 		switch (event.keyCode) {
 		case 0x31: // space
 			self.midiPlayer?.togglePlayPause()
 		case 0x7B: // arrow left
-			self.midiPlayer?.rewind(secs: 10)
+			self.rewind()
 		case 0x7C: // arrow right
-			self.midiPlayer?.fastForward(secs: 10)
+			self.fastForward()
 		case 0x7D: // arrow down
 			if self.speedSlider.integerValue > Int(self.speedSlider.minValue) {
 				self.speedSlider.integerValue -= 1
@@ -404,7 +427,17 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			break
 		}
 	}
-	
+
+	func windowWillClose(_ notification: Notification) {
+		if #available(OSX 10.12.2, *) {
+			NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
+			print("Removed from NPC")
+		}
+
+		self.midiPlayer?.stop()
+		self.midiPlayer = nil
+	}
+
 	// MARK: - PWMIDIPlayerDelegate
 	
 	func filesLoaded(midi: URL, soundFont: URL?) {

@@ -17,11 +17,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <view id="L7j-Se-ayO">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="332"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="332"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ylH-pH-AJG">
-                    <rect key="frame" x="77" y="20" width="260" height="292"/>
+                    <rect key="frame" x="30" y="20" width="260" height="292"/>
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bVT-g8-F5S">
                             <rect key="frame" x="-2" y="276" width="120" height="18"/>
@@ -58,7 +58,7 @@ With this option, approximate filename matches will also be considered.</string>
                         </textField>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oiN-3R-g8Q">
                             <rect key="frame" x="-2" y="154" width="151" height="18"/>
-                            <buttonCell key="cell" type="check" title="📣 Cacophony Mode" bezelStyle="regularSquare" imagePosition="left" inset="2" id="GTu-LI-YZM">
+                            <buttonCell key="cell" type="check" title="Cacophony Mode 📣" bezelStyle="regularSquare" imagePosition="left" inset="2" id="GTu-LI-YZM">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -119,7 +119,7 @@ With this option, approximate filename matches will also be considered.</string>
                 <constraint firstItem="ylH-pH-AJG" firstAttribute="top" secondItem="L7j-Se-ayO" secondAttribute="top" constant="20" id="Fy1-R4-Hwl"/>
                 <constraint firstItem="ylH-pH-AJG" firstAttribute="centerX" secondItem="L7j-Se-ayO" secondAttribute="centerX" id="RWM-s0-5pZ"/>
             </constraints>
-            <point key="canvasLocation" x="129" y="173"/>
+            <point key="canvasLocation" x="76.5" y="173"/>
         </view>
     </objects>
 </document>

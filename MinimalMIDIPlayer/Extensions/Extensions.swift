@@ -9,7 +9,6 @@
 import Cocoa
 
 extension NSAlert {
-	
 	class func runModal(title: String, message: String, style: NSAlert.Style) {
 		let alert = NSAlert()
 		alert.addButton(withTitle: "OK")
@@ -18,7 +17,6 @@ extension NSAlert {
 		alert.alertStyle = style
 		alert.runModal()
 	}
-	
 }
 
 extension String {
@@ -40,24 +38,37 @@ extension String: LocalizedError {
 	public var errorDescription: String? { return self }
 }
 
-extension NSViewController {
-	static func load<T>(from bundle: Bundle? = nil) -> T where T: NSViewController {
-		return T(nibName: T.className(), bundle: bundle)
+extension NSMutableAttributedString {
+	func setFontFace(font: NSFont, color: NSColor? = nil) {
+		beginEditing()
+		self.enumerateAttribute(.font, in: self.string.fullRange()) { (value, range, stop) in
+			if let f = value as? NSFont, let familyName = font.familyName {
+				let newFontDescriptor = f.fontDescriptor.withFamily(familyName).withSymbolicTraits(f.fontDescriptor.symbolicTraits).withSize(f.pointSize)
+				guard let newFont = NSFont(descriptor: newFontDescriptor, size: font.pointSize) else {
+					fatalError("Could not create new font object")
+				}
+				removeAttribute(.font, range: range)
+				addAttribute(.font, value: newFont, range: range)
+				if let color = color {
+					removeAttribute(.foregroundColor, range: range)
+					addAttribute(.foregroundColor, value: color, range: range)
+				}
+			}
+		}
+		endEditing()
 	}
 }
 
-extension Array where Element: Numeric & Comparable {
-
-	func closest(to givenValue: Element) -> Element {
-		let sorted = self.sorted(by: <)
-
-		let over = sorted.first(where: { $0 >= givenValue })!
-		let under = sorted.last(where: { $0 <= givenValue })!
-
-		let diffOver = over - givenValue
-		let diffUnder = givenValue - under
-
-		return (diffOver < diffUnder) ? over : under
+extension Float {
+	func rounded(toDecimalPlaces places:Int) -> Float {
+		let divisor = pow(10.0, Float(places))
+		return (self * divisor).rounded() / divisor
 	}
+}
 
+extension NSWindow {
+	var titlebarHeight: CGFloat {
+		let contentHeight = self.contentRect(forFrameRect: self.frame).height
+		return self.frame.height - contentHeight
+	}
 }
