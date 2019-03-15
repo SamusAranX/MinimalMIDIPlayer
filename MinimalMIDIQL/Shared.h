@@ -31,3 +31,15 @@ typedef NS_ENUM(NSInteger, QLThumbnailIconFlavor)
 	kQLThumbnailIconCalendarFlavor	= 11,
 	kQLThumbnailIconPatternFlavor	= 12,
 };
+
+typedef NS_ENUM(NSInteger, QLPreviewMode)
+{
+	kQLPreviewNoMode		= 0,
+	kQLPreviewGetInfoMode	= 1,	// File -> Get Info and Column view in Finder
+	kQLPreviewCoverFlowMode	= 2,	// Finder's Cover Flow view
+	kQLPreviewSpotlightMode	= 4,	// Desktop Spotlight search popup bubble
+	kQLPreviewQuicklookMode	= 5,	// File -> Quick Look in Finder (also qlmanage -p)
+	// From 10.13 High Sierra:
+	kQLPreviewHSQuicklookMode	= 6,	// File -> Quick Look in Finder
+	kQLPreviewHSSpotlightMode	= 9,	// Desktop Spotlight search context bubble
+};

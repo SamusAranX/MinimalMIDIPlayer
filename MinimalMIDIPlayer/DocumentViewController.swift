@@ -43,7 +43,10 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	var playbackSpeed: Float = 1.0
 	
 	var pausedDueToDraggingKnob: Bool = false
-	var shiftPressed: Bool = false
+
+	var shiftPressed: Bool {
+		return NSApp.currentEvent?.modifierFlags.contains(.shift) ?? false
+	}
 	
 	enum SoundfontMenuType: Int {
 		case macdefault = 0
@@ -193,8 +196,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 	
 	@IBAction func speedSliderMoved(_ sender: NSSlider) {
-		self.shiftPressed = NSApp.currentEvent?.modifierFlags.contains(.shift) ?? false
-		
 		if self.shiftPressed {
 			sender.allowsTickMarkValuesOnly = false
 			
@@ -396,14 +397,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 	
 	// MARK: - WindowControllerDelegate
-
-	func flagsChangedEvent(with event: NSEvent) {
-		self.shiftPressed = event.modifierFlags.contains(.shift)
-
-		let skipAmount = self.shiftPressed ? 5 : 10
-		self.rewindButton.title = String(skipAmount)
-		self.fastForwardButton.title = String(skipAmount)
-	}
 
 	func keyDownEvent(with event: NSEvent) {
 		switch (event.keyCode) {

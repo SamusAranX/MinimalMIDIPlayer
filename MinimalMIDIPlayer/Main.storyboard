@@ -154,7 +154,7 @@
                 </windowController>
                 <customObject id="CYZ-F0-ief" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="306"/>
+            <point key="canvasLocation" x="393" y="316"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="2Ws-N8-M5o">
@@ -176,7 +176,7 @@
                 </windowController>
                 <customObject id="Luu-Pn-mkn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37" y="376"/>
+            <point key="canvasLocation" x="38" y="367"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="o9a-dT-QBb">
@@ -205,7 +205,7 @@
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xm2-yr-tqR">
                                                         <rect key="frame" x="-2" y="0.0" width="199" height="30"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="MinimalMIDIPlayer" id="lXR-XH-L3M">
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="MinimalMIDIPlayer" usesSingleLineMode="YES" id="lXR-XH-L3M">
                                                             <font key="font" metaFont="systemLight" size="25"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -231,7 +231,7 @@
                                             </stackView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PHe-Bm-oKc">
                                                 <rect key="frame" x="-2" y="0.0" width="136" height="17"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copyright String Here" id="M98-NJ-uvd">
+                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Copyright String Here" usesSingleLineMode="YES" id="M98-NJ-uvd">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -262,7 +262,7 @@
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pqD-9q-5vb" customClass="HyperlinkTextField">
                                         <rect key="frame" x="-2" y="211" width="314" height="64"/>
                                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="HAx-HL-6NF">
-                                            <font key="font" metaFont="system" size="12"/>
+                                            <font key="font" metaFont="cellTitle"/>
                                             <string key="title">When Apple replaced QuickTime Player 7 with the currently shipping version, they also removed support for MIDI file playback. This app aims to be a good, if not better replacement.</string>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -315,7 +315,7 @@
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZAL-m7-3Lw" customClass="HyperlinkTextField">
                                                         <rect key="frame" x="-2" y="48" width="86" height="16"/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="It's on GitHub!" id="4gP-Ed-scl">
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="It's on GitHub!" usesSingleLineMode="YES" id="4gP-Ed-scl">
                                                             <font key="font" metaFont="cellTitle"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -323,7 +323,7 @@
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-Ax-cho" customClass="HyperlinkTextField">
                                                         <rect key="frame" x="-2" y="24" width="80" height="16"/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Let me know!" id="sar-cH-MH7">
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Let me know!" usesSingleLineMode="YES" id="sar-cH-MH7">
                                                             <font key="font" metaFont="cellTitle"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -331,7 +331,7 @@
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kRd-lv-0bE" customClass="HyperlinkTextField">
                                                         <rect key="frame" x="-2" y="0.0" width="69" height="16"/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tell me! 😊" id="9Kp-FE-D6M">
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tell me! 😊" usesSingleLineMode="YES" id="9Kp-FE-D6M">
                                                             <font key="font" metaFont="cellTitle"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -470,7 +470,7 @@
                 </viewController>
                 <customObject id="yrM-dk-g6X" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37" y="646"/>
+            <point key="canvasLocation" x="38" y="647"/>
         </scene>
         <!--Document View Controller-->
         <scene sceneID="X2T-wK-x9G">
@@ -487,7 +487,7 @@
                                         <rect key="frame" x="4" y="83" width="274" height="19"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-XL-NGh">
-                                                <rect key="frame" x="-2" y="2" width="44" height="14"/>
+                                                <rect key="frame" x="-2" y="2" width="36" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="8aE-vE-4bo"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="TzT-Qg-QBN"/>
@@ -499,7 +499,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IvW-tF-KiY">
-                                                <rect key="frame" x="42" y="2" width="198" height="15"/>
+                                                <rect key="frame" x="34" y="2" width="198" height="15"/>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Z38-5k-rtW">
                                                         <connections>
@@ -513,7 +513,7 @@
                                                 </connections>
                                             </slider>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfo-zf-CTx">
-                                                <rect key="frame" x="240" y="2" width="36" height="14"/>
+                                                <rect key="frame" x="232" y="2" width="44" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="dQW-c0-QRB"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="lTs-AZ-qHU"/>

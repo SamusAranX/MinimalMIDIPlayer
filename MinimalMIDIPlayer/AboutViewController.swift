@@ -116,7 +116,7 @@ class AboutViewController: NSViewController {
 			return
 		}
 
-		let willExpand = self.view.frame.height < 300
+		let willExpand = sender.state == .on
 		let newHeight: CGFloat = (willExpand ? 383 : 263) + window.titlebarHeight
 		var newFrame = window.frame
 
@@ -131,10 +131,10 @@ class AboutViewController: NSViewController {
 		NSAnimationContext.beginGrouping()
 
 		NSAnimationContext.current.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-		NSAnimationContext.current.duration = 0.25
+		NSAnimationContext.current.duration = 0.2
 		NSAnimationContext.current.allowsImplicitAnimation = true
 
-		window.animator().setFrame(newFrame, display: true)
+		window.animator().setFrame(newFrame, display: false)
 
 		NSAnimationContext.endGrouping()
 	}

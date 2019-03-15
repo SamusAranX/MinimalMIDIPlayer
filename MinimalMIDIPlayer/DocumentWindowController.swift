@@ -9,7 +9,6 @@
 import Cocoa
 
 protocol WindowControllerDelegate {
-	func flagsChangedEvent(with event: NSEvent)
 	func keyDownEvent(with event: NSEvent)
 	func windowWillClose(_ notification: Notification)
 }
@@ -43,20 +42,12 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
 			// Pseudo-"dark mode" on 10.13
 			self.window!.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
 		}
-		
-		self.eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: .flagsChanged, handler: flagsChanged)
 	}
 	
 	func windowWillClose(_ notification: Notification) {
-		NSEvent.removeMonitor(self.eventMonitor)
-		
 		self.delegate?.windowWillClose(notification)
 	}
-	
-	override func flagsChanged(with event: NSEvent) {
-		self.delegate?.flagsChangedEvent(with: event)
-	}
-	
+
 	let forwardedKeyCodes: [UInt16] = [0x31, 0x7B, 0x7C, 0x7D, 0x7E]
 	override func keyDown(with event: NSEvent) {
 		if !forwardedKeyCodes.contains(event.keyCode) {
