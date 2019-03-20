@@ -1,0 +1,9 @@
+disabled_rules:
+  - line_length
+  - file_length
+  - type_body_length
+  - function_body_length
+  - identifier_name
+  - for_where
+included:
+  - MinimalMIDIPlayer

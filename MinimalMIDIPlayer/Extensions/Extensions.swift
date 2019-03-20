@@ -21,15 +21,15 @@ extension NSAlert {
 
 extension String {
 	func fullRange() -> NSRange {
-		return NSMakeRange(0, NSString(string: self).length)
+		return NSRange(location: 0, length: NSString(string: self).length)
 	}
-	
+
 	func hyperlink(with url: URL) -> NSAttributedString {
 		let stringRange = self.fullRange()
 		let attrString = NSMutableAttributedString(string: self)
-		
+
 		attrString.addAttribute(NSAttributedString.Key.link, value: url, range: stringRange)
-		
+
 		return attrString
 	}
 }
@@ -41,7 +41,7 @@ extension String: LocalizedError {
 extension NSMutableAttributedString {
 	func setFontFace(font: NSFont, color: NSColor? = nil) {
 		beginEditing()
-		self.enumerateAttribute(.font, in: self.string.fullRange()) { (value, range, stop) in
+		self.enumerateAttribute(.font, in: self.string.fullRange()) { (value, range, _) in
 			if let f = value as? NSFont, let familyName = font.familyName {
 				let newFontDescriptor = f.fontDescriptor.withFamily(familyName).withSymbolicTraits(f.fontDescriptor.symbolicTraits).withSize(f.pointSize)
 				guard let newFont = NSFont(descriptor: newFontDescriptor, size: font.pointSize) else {
@@ -60,7 +60,7 @@ extension NSMutableAttributedString {
 }
 
 extension Float {
-	func rounded(toDecimalPlaces places:Int) -> Float {
+	func rounded(toDecimalPlaces places: Int) -> Float {
 		let divisor = pow(10.0, Float(places))
 		return (self * divisor).rounded() / divisor
 	}

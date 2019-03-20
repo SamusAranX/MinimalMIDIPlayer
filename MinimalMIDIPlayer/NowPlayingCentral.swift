@@ -11,9 +11,9 @@ import MediaPlayer
 
 @available(OSX 10.12.2, *)
 class NowPlayingCentral: NSObject {
-	
+
 	static let shared = NowPlayingCentral()
-	
+
 	var playbackState: MPNowPlayingPlaybackState {
 		get {
 			return MPNowPlayingInfoCenter.default().playbackState
@@ -24,15 +24,15 @@ class NowPlayingCentral: NSObject {
 			}
 		}
 	}
-	
+
 	private var players: [PWMIDIPlayer] = []
 	private var activePlayer: PWMIDIPlayer? {
 		return self.players.last
 	}
-	
+
 	override init() {
 		super.init()
-		
+
 		MPRemoteCommandCenter.shared().playCommand.addTarget(self, action: #selector(playCommand(event:)))
 		MPRemoteCommandCenter.shared().pauseCommand.addTarget(self, action: #selector(pauseCommand(event:)))
 //		MPRemoteCommandCenter.shared().stopCommand.addTarget(self, action: #selector(stopCommand(event:)))
@@ -41,17 +41,17 @@ class NowPlayingCentral: NSObject {
 //		MPRemoteCommandCenter.shared().previousTrackCommand.addTarget(self, action: #selector(previousTrackCommand(event:)))
 		MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled = false
 		MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = false
-		
+
 		MPRemoteCommandCenter.shared().skipBackwardCommand.addTarget(self, action: #selector(skipBackwardCommand(event:)))
 		MPRemoteCommandCenter.shared().skipForwardCommand.addTarget(self, action: #selector(skipForwardCommand(event:)))
-		MPRemoteCommandCenter.shared().skipBackwardCommand.preferredIntervals = [NSNumber(integerLiteral: 10)];
-		MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [NSNumber(integerLiteral: 10)];
-		MPRemoteCommandCenter.shared().skipBackwardCommand.isEnabled = true;
-		MPRemoteCommandCenter.shared().skipForwardCommand.isEnabled = true;
+		MPRemoteCommandCenter.shared().skipBackwardCommand.preferredIntervals = [NSNumber(value: 10)]
+		MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [NSNumber(value: 10)]
+		MPRemoteCommandCenter.shared().skipBackwardCommand.isEnabled = true
+		MPRemoteCommandCenter.shared().skipForwardCommand.isEnabled = true
 	}
-	
+
 	// MARK: - Player Management
-	
+
 	/// Adds a player to the internal list of players if it isn't there already
 	/// and then promotes it to be the active player, pausing all others.
 	/// - Parameters:
@@ -60,9 +60,9 @@ class NowPlayingCentral: NSObject {
 		if self.players.contains(player), let playerIdx = self.players.firstIndex(of: player) {
 			self.players.remove(at: playerIdx)
 		}
-		
+
 		self.players.append(player)
-		
+
 		// Pause every PWMIDIPlayer instance except this one
 		// but only if Cacophony Mode isn't enabled
 		if !Settings.shared.cacophonyMode {
@@ -73,7 +73,7 @@ class NowPlayingCentral: NSObject {
 			}
 		}
 	}
-	
+
 	/// Removes a player from the internal list of players and sets the Now Playing
 	/// data to that of the next player in the list, if present
 	/// - Parameters:
@@ -84,40 +84,40 @@ class NowPlayingCentral: NSObject {
 			if player == self.activePlayer {
 				self.resetNowPlayingInfo()
 			}
-			
+
 			// Actually remove the player
 			self.players.remove(at: playerIdx)
-			
+
 			// If there is a next player in the list, load its Now Playing data
 			if let lastPlayer = self.players.last {
 				self.initNowPlayingInfo(for: lastPlayer)
 			}
 		}
 	}
-	
+
 	// MARK: - Now Playing Control
-	
+
 	/// Resets the Now Playing info dictionary to nil and sets the playback state to unknown
 	func resetNowPlayingInfo() {
 		MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
 		self.playbackState = .unknown
 	}
-	
+
 	func initNowPlayingInfo(for midiPlayer: PWMIDIPlayer) {
 		guard midiPlayer == self.activePlayer else {
 			return
 		}
-		
+
 		let midiTitle = midiPlayer.currentMIDI!.deletingPathExtension().lastPathComponent
 		let midiAlbumTitle = midiPlayer.currentSoundfont?.deletingPathExtension().lastPathComponent ?? midiPlayer.currentMIDI!.deletingLastPathComponent().lastPathComponent
 		let midiArtist = "MinimalMIDIPlayer" // shameless advertising
-		
-		var nowPlayingInfo: [String : Any] = [
-			MPNowPlayingInfoPropertyMediaType: NSNumber(value: MPNowPlayingInfoMediaType.audio.rawValue),
-			MPNowPlayingInfoPropertyIsLiveStream: NSNumber(booleanLiteral: false),
 
-			MPNowPlayingInfoPropertyDefaultPlaybackRate: NSNumber(floatLiteral: Double(midiPlayer.rate)),
-			MPNowPlayingInfoPropertyPlaybackProgress: NSNumber(floatLiteral: midiPlayer.currentPosition),
+		var nowPlayingInfo: [String: Any] = [
+			MPNowPlayingInfoPropertyMediaType: NSNumber(value: MPNowPlayingInfoMediaType.audio.rawValue),
+			MPNowPlayingInfoPropertyIsLiveStream: NSNumber(value: false),
+
+			MPNowPlayingInfoPropertyDefaultPlaybackRate: NSNumber(value: Double(midiPlayer.rate)),
+			MPNowPlayingInfoPropertyPlaybackProgress: NSNumber(value: midiPlayer.currentPosition),
 
 			MPMediaItemPropertyTitle: midiTitle,
 			MPMediaItemPropertyAlbumTitle: midiAlbumTitle,
@@ -128,15 +128,14 @@ class NowPlayingCentral: NSObject {
 		]
 
 		if #available(OSX 10.13.2, *) {
-			nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 800, height: 800), requestHandler: {
-				(size: CGSize) -> NSImage in
+			nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 800, height: 800), requestHandler: { (_) -> NSImage in
 
 				return NSImage(named: "AlbumArt")!
 			})
 		}
 
 		MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
-		
+
 		if midiPlayer.isPlaying {
 			self.playbackState = .playing
 		} else if midiPlayer.isPaused {
@@ -145,29 +144,29 @@ class NowPlayingCentral: NSObject {
 			self.playbackState = .stopped
 		}
 	}
-	
-	func updateNowPlayingInfo(for midiPlayer: PWMIDIPlayer, with updatedDict: [String : Any]) {
+
+	func updateNowPlayingInfo(for midiPlayer: PWMIDIPlayer, with updatedDict: [String: Any]) {
 		guard MPNowPlayingInfoCenter.default().nowPlayingInfo != nil, !Settings.shared.cacophonyMode else {
 			return
 		}
-		
+
 		for key in updatedDict.keys {
 			MPNowPlayingInfoCenter.default().nowPlayingInfo![key] = updatedDict[key]
 		}
 	}
-	
+
 	// MARK: - MPRemoteCommandEvent Handlers
-	
+
 	@objc func playCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
 		print("Play command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.play()
 			return .success
 		}
-		
+
 		return .noActionableNowPlayingItem
 	}
-	
+
 	@objc func pauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
 		print("Pause command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
@@ -176,7 +175,7 @@ class NowPlayingCentral: NSObject {
 		}
 		return .noActionableNowPlayingItem
 	}
-	
+
 	@objc func stopCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
 		print("Stop command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
@@ -185,26 +184,26 @@ class NowPlayingCentral: NSObject {
 		}
 		return .noActionableNowPlayingItem
 	}
-	
+
 	@objc func togglePlayPauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
 		print("Play/Pause command")
-		
+
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.togglePlayPause()
 			return .success
 		}
 		return .noActionableNowPlayingItem
 	}
-	
+
 	@objc func changePlaybackPositionCommand(event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.currentPosition = event.positionTime
 			return .success
 		}
-		
+
 		return .noActionableNowPlayingItem
 	}
-	
+
 	@objc func skipBackwardCommand(event: MPSkipIntervalCommandEvent) -> MPRemoteCommandHandlerStatus {
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.rewind(secs: event.interval)
@@ -212,7 +211,7 @@ class NowPlayingCentral: NSObject {
 		}
 		return .noActionableNowPlayingItem
 	}
-	
+
 	@objc func skipForwardCommand(event: MPSkipIntervalCommandEvent) -> MPRemoteCommandHandlerStatus {
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.fastForward(secs: event.interval)

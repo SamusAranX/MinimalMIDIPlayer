@@ -9,9 +9,9 @@
 import Cocoa
 
 class Settings {
-	
+
 	static let shared = Settings()
-	
+
 	var autoplay: Bool {
 		get {
 			return UserDefaults.standard.bool(forKey: #function)
@@ -21,7 +21,7 @@ class Settings {
 			UserDefaults.standard.synchronize()
 		}
 	}
-	
+
 	var looseSFMatching: Bool {
 		get {
 			return UserDefaults.standard.bool(forKey: #function)
@@ -31,7 +31,7 @@ class Settings {
 			UserDefaults.standard.synchronize()
 		}
 	}
-	
+
 	var cacophonyMode: Bool {
 		get {
 			return UserDefaults.standard.bool(forKey: #function)
@@ -41,7 +41,7 @@ class Settings {
 			UserDefaults.standard.synchronize()
 		}
 	}
-	
+
 	private init() {
 		UserDefaults.standard.register(defaults: [
 			"autoplay": false,
@@ -49,7 +49,7 @@ class Settings {
 			"cacophonyMode": false
 		])
 	}
-	
+
 	public static func clear() {
 		for key in UserDefaults.standard.dictionaryRepresentation().keys {
 			UserDefaults.standard.removeObject(forKey: key)
