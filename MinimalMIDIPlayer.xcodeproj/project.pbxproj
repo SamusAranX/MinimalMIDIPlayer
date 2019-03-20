@@ -287,6 +287,7 @@
 			buildConfigurationList = 56D6A8DA1C3437AA0071DEF4 /* Build configuration list for PBXNativeTarget "MinimalMIDIPlayer" */;
 			buildPhases = (
 				56B9E1E02146D4C9007914DB /* Run Script (Auto-increase Build Number) */,
+				560EECBE2242461000C36162 /* Run Script (SwiftLint) */,
 				56ED8E79223694F100381929 /* Run Script (Carthage: Trigger Warnings for Outdated Dependencies) */,
 				56D6A8C91C3437AA0071DEF4 /* Sources */,
 				56D6A8CA1C3437AA0071DEF4 /* Frameworks */,
@@ -391,6 +392,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
+		560EECBE2242461000C36162 /* Run Script (SwiftLint) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script (SwiftLint)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		56B9E1E02146D4C9007914DB /* Run Script (Auto-increase Build Number) */ = {
 			isa = PBXShellScriptBuildPhase;
