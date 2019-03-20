@@ -84,9 +84,9 @@ class AboutViewController: NSViewController {
 			ackAttrStr.setFontFace(font: aboutTextLabel.font!, color: NSColor.controlTextColor)
 			acknowledgementTextView.textStorage?.setAttributedString(ackAttrStr)
 			
-			acknowledgementTextView.isEditable = true
-			acknowledgementTextView.checkTextInDocument(nil)
-			acknowledgementTextView.isEditable = false
+//			acknowledgementTextView.isEditable = true
+//			acknowledgementTextView.checkTextInDocument(nil)
+//			acknowledgementTextView.isEditable = false
 		} catch {
 			fatalError("Couldn't apply acknowledgements file")
 		}

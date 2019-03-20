@@ -401,7 +401,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="310" height="100"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" linkDetection="YES" textCompletion="NO" id="fYv-Ac-Wiu">
+                                                <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" linkDetection="YES" dataDetection="YES" textCompletion="NO" id="fYv-Ac-Wiu">
                                                     <rect key="frame" x="0.0" y="0.0" width="310" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -415,7 +415,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="iYM-n8-PU9"/>
                                         </constraints>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="2t4-Kh-egL">
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="2t4-Kh-egL">
                                             <rect key="frame" x="295" y="0.0" width="15" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
