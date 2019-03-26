@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -415,6 +415,10 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="iYM-n8-PU9"/>
                                         </constraints>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="rCy-wr-A8q">
+                                            <rect key="frame" x="-100" y="-100" width="100" height="0.0"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="2t4-Kh-egL">
                                             <rect key="frame" x="295" y="0.0" width="15" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -487,7 +491,7 @@
                                         <rect key="frame" x="4" y="83" width="274" height="19"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-XL-NGh">
-                                                <rect key="frame" x="-2" y="2" width="36" height="14"/>
+                                                <rect key="frame" x="-2" y="2" width="44" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="8aE-vE-4bo"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="TzT-Qg-QBN"/>
@@ -499,7 +503,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IvW-tF-KiY">
-                                                <rect key="frame" x="34" y="2" width="198" height="15"/>
+                                                <rect key="frame" x="42" y="2" width="198" height="15"/>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Z38-5k-rtW">
                                                         <connections>
@@ -513,7 +517,7 @@
                                                 </connections>
                                             </slider>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfo-zf-CTx">
-                                                <rect key="frame" x="232" y="2" width="44" height="14"/>
+                                                <rect key="frame" x="240" y="2" width="36" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="dQW-c0-QRB"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="lTs-AZ-qHU"/>

@@ -22,6 +22,8 @@
 		56654136214045C100283C85 /* MIDIDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56654135214045C100283C85 /* MIDIDocument.swift */; };
 		5669F2EB21425B400034D3ED /* NowPlayingCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */; };
 		5669F2ED214294F50034D3ED /* GeneralPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F2EC214294F50034D3ED /* GeneralPreferenceViewController.swift */; };
+		566D4E70224A20970033EA59 /* Preferences.framework.dSYM in Frameworks */ = {isa = PBXBuildFile; fileRef = 566D4E6E224A20970033EA59 /* Preferences.framework.dSYM */; };
+		566D4E71224A20970033EA59 /* Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 566D4E6F224A20970033EA59 /* Preferences.framework */; };
 		569D77F32004F0010028D9C2 /* PWMIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */; };
 		56A0BD7C21400569006095CE /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7B21400569006095CE /* DocumentWindowController.swift */; };
 		56A0BD7E214005A4006095CE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7D214005A4006095CE /* DocumentViewController.swift */; };
@@ -31,9 +33,6 @@
 		56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */; };
 		56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */; };
 		56E0D6432237AD9C00780A50 /* GeneralPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56E0D6412237AD9C00780A50 /* GeneralPreferenceViewController.xib */; };
-		56ED8E73223690CB00381929 /* Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED8E72223690CB00381929 /* Preferences.framework */; };
-		56ED8E74223690CB00381929 /* Preferences.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56ED8E72223690CB00381929 /* Preferences.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		56ED8E78223690F200381929 /* Preferences.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56ED8E77223690F200381929 /* Preferences.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		56FEF1572141181B00813975 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF1562141181B00813975 /* AboutViewController.swift */; };
 		56FEF15D214119FD00813975 /* HyperlinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF15B214119FD00813975 /* HyperlinkTextField.m */; };
 		56FEF16621411AC000813975 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF16521411AC000813975 /* Extensions.swift */; };
@@ -56,7 +55,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				56ED8E74223690CB00381929 /* Preferences.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,7 +65,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				56ED8E78223690F200381929 /* Preferences.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +88,8 @@
 		56654135214045C100283C85 /* MIDIDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIDocument.swift; sourceTree = "<group>"; };
 		5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCentral.swift; sourceTree = "<group>"; };
 		5669F2EC214294F50034D3ED /* GeneralPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferenceViewController.swift; sourceTree = "<group>"; };
+		566D4E6E224A20970033EA59 /* Preferences.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Preferences.framework.dSYM; path = Carthage/Build/Mac/Preferences.framework.dSYM; sourceTree = "<group>"; };
+		566D4E6F224A20970033EA59 /* Preferences.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Preferences.framework; path = Carthage/Build/Mac/Preferences.framework; sourceTree = "<group>"; };
 		569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWMIDIPlayer.swift; sourceTree = "<group>"; };
 		56A0BD7B21400569006095CE /* DocumentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		56A0BD7D214005A4006095CE /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -104,8 +103,6 @@
 		56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56D6A8D71C3437AA0071DEF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56E0D6412237AD9C00780A50 /* GeneralPreferenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferenceViewController.xib; sourceTree = "<group>"; };
-		56ED8E72223690CB00381929 /* Preferences.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Preferences.framework; path = Carthage/Build/Mac/Preferences.framework; sourceTree = "<group>"; };
-		56ED8E77223690F200381929 /* Preferences.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Preferences.framework.dSYM; path = Carthage/Build/Mac/Preferences.framework.dSYM; sourceTree = "<group>"; };
 		56FEF1562141181B00813975 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		56FEF159214119FC00813975 /* MinimalMIDIPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MinimalMIDIPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		56FEF15A214119FD00813975 /* HyperlinkTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyperlinkTextField.h; sourceTree = "<group>"; };
@@ -125,8 +122,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				566D4E70224A20970033EA59 /* Preferences.framework.dSYM in Frameworks */,
+				566D4E71224A20970033EA59 /* Preferences.framework in Frameworks */,
 				563D9FC21FF46E95008DE194 /* MediaPlayer.framework in Frameworks */,
-				56ED8E73223690CB00381929 /* Preferences.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +149,8 @@
 		563D9FC01FF46E95008DE194 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				566D4E6F224A20970033EA59 /* Preferences.framework */,
+				566D4E6E224A20970033EA59 /* Preferences.framework.dSYM */,
 				56AB757F213FD146009ECFB1 /* AVFoundation.framework */,
 				563D9FC11FF46E95008DE194 /* MediaPlayer.framework */,
 				56057E3B214958BF008946EB /* Quartz.framework */,
@@ -177,8 +177,6 @@
 		56D6A8C41C3437AA0071DEF4 = {
 			isa = PBXGroup;
 			children = (
-				56ED8E77223690F200381929 /* Preferences.framework.dSYM */,
-				56ED8E72223690CB00381929 /* Preferences.framework */,
 				56D6A8CF1C3437AA0071DEF4 /* MinimalMIDIPlayer */,
 				56057E66214959BF008946EB /* MinimalMIDIQL */,
 				56D6A8CE1C3437AA0071DEF4 /* Products */,
@@ -312,7 +310,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Peter Wunder";
 				TargetAttributes = {
 					56057E64214959BF008946EB = {
@@ -320,7 +318,7 @@
 					};
 					56D6A8CC1C3437AA0071DEF4 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
 								enabled = 1;
@@ -334,7 +332,7 @@
 			};
 			buildConfigurationList = 56D6A8C81C3437AA0071DEF4 /* Build configuration list for PBXProject "MinimalMIDIPlayer" */;
 			compatibilityVersion = "Xcode 10.0";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -541,6 +539,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -587,7 +586,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -595,6 +594,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -635,7 +635,7 @@
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -665,7 +665,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MinimalMIDIPlayer/HyperlinkTextField/MinimalMIDIPlayer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -694,7 +694,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MinimalMIDIPlayer/HyperlinkTextField/MinimalMIDIPlayer-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

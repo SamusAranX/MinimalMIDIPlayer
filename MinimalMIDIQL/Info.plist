@@ -26,7 +26,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1041</string>
+	<string>1048</string>
 	<key>CFPlugInDynamicRegisterFunction</key>
 	<string></string>
 	<key>CFPlugInDynamicRegistration</key>
@@ -46,7 +46,7 @@
 	<key>CFPlugInUnloadFunction</key>
 	<string></string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2018 Peter Wunder. All rights reserved.</string>
+	<string>Copyright © 2018−2019 Peter Wunder. All rights reserved.</string>
 	<key>QLNeedsToBeRunInMainThread</key>
 	<false/>
 	<key>QLPreviewHeight</key>
