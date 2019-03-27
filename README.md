@@ -4,6 +4,7 @@ A very simple app that does what it says on the tin.
 ## Features
 
 * Plays MIDI files
+* Available in German 🇩🇪
 * If there’s a soundfont with the same name as the MIDI file, MinimalMIDIPlayer will use that. Otherwise it’ll use the macOS standard soundfont.
 	* This behavior can be overridden to load custom soundfonts
 * Supports macOS Mojave's new Dark Mode
@@ -25,8 +26,8 @@ A very simple app that does what it says on the tin.
 
 ## Screenshots
 ![Playing e1m1.mid](https://user-images.githubusercontent.com/676069/50861150-24828100-1398-11e9-8c0d-af94397676b7.png)
-![The Preferences window](https://user-images.githubusercontent.com/676069/54680614-926ec580-4b0a-11e9-9054-e5c73f36c350.png)
-![The About window](https://user-images.githubusercontent.com/676069/54680611-913d9880-4b0a-11e9-9429-5b9f2a4f83f8.png)
+![The Preferences window](https://user-images.githubusercontent.com/676069/55073593-60231200-508e-11e9-8c72-9458753bbfb3.png)
+![The About window](https://user-images.githubusercontent.com/676069/55073568-513c5f80-508e-11e9-9a53-89dd95463f7d.png)
 ![The Now Playing widget in the Notification Center](https://user-images.githubusercontent.com/676069/45410936-40d51200-b673-11e8-84b4-085dde88cf44.png)
 
 ## Downloads
