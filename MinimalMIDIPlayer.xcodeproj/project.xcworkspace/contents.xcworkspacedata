@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MinimalMIDIPlayer.xcodeproj">
+      location = "group:/Users/peterwunder/GitHub/MinimalMIDIPlayer/MinimalMIDIPlayer/Info.plist">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

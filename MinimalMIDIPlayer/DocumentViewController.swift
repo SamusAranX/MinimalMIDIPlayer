@@ -238,7 +238,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 
 		if !FileManager.default.fileExists(atPath: midiURL.path) {
-			NSAlert.runModal(title: "Error opening file", message: "Couldn't open MIDI file.\nSearch path: \(midiURL.path)", style: .critical)
+			NSAlert.runModal(title: "Error opening file", message: "Couldn't open MIDI file.", style: .critical)
 			NSDocumentController.shared.document(for: window)?.close()
 			return
 		}

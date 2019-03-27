@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  MinimalMIDIPlayer
+
+  Created by Peter Wunder on 27.03.19.
+  Copyright © 2019 Peter Wunder. All rights reserved.
+*/
+
+// About Window
+"AProjectBy" = "A project by %@, %@ – %@";
+"AboutTitle" = "About %@";
+
+// Cacophony Mode accessory view
+"Cacophony Mode enabled" = "Cacophony Mode enabled";
+
+// DocumentViewController.openFile() error messages
+"Error loading file" = "Error loading file";
+"Something went wrong. Please try reopening the file." = "Something went wrong. Please try reopening the file.";
+"Couldn't open MIDI file." = "Couldn't open MIDI file.";
+"Couldn't open Soundfont file." = "Couldn't open Soundfont file.";
+
+// DocumentViewController.populateSoundfontMenu()
+"Default Soundfont" = "Default Soundfont";
+"Recent Soundfonts" = "Recent Soundfonts";
+"Load Custom Soundfont…" = "Load Custom Soundfont…";
+
+// GeneralPreferenceViewController
+"General" = "General";

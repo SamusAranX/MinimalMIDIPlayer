@@ -1,0 +1,162 @@
+
+/* Class = "NSMenuItem"; title = "Load Custom Soundfont…"; ObjectID = "0FN-Ns-j7J"; */
+"0FN-Ns-j7J.title" = "Load Custom Soundfont…";
+
+/* Class = "NSMenuItem"; title = "Recent Item 2"; ObjectID = "0Tf-la-Qyl"; */
+"0Tf-la-Qyl.title" = "Recent Item 2";
+
+/* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "4QE-d3-O4g"; */
+"4QE-d3-O4g.title" = "Open Recent";
+
+/* Class = "NSTextFieldCell"; title = "It's on GitHub!"; ObjectID = "4gP-Ed-scl"; */
+"4gP-Ed-scl.title" = "It's on GitHub!";
+
+/* Class = "NSTextFieldCell"; title = "Want the source?"; ObjectID = "7jg-Xl-oIT"; */
+"7jg-Xl-oIT.title" = "Want the source?";
+
+/* Class = "NSTextFieldCell"; title = "Tell me! 😊"; ObjectID = "9Kp-FE-D6M"; */
+"9Kp-FE-D6M.title" = "Tell me! 😊";
+
+/* Class = "NSTextFieldCell"; title = "When Apple replaced QuickTime Player 7 with the currently shipping version, they also removed support for MIDI file playback. This app aims to be a good, if not better replacement."; ObjectID = "HAx-HL-6NF"; */
+"HAx-HL-6NF.title" = "When Apple replaced QuickTime Player 7 with the currently shipping version, they also removed support for MIDI file playback. This app aims to be a good, if not better replacement.";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "HBx-Pn-DlL"; */
+"HBx-Pn-DlL.title" = "Close";
+
+/* Class = "NSTextFieldCell"; title = "Like this app?"; ObjectID = "LRh-5C-35R"; */
+"LRh-5C-35R.title" = "Like this app?";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "M7O-yk-ig0"; */
+"M7O-yk-ig0.title" = "Help";
+
+/* Class = "NSTextFieldCell"; title = "Copyright String Here"; ObjectID = "M98-NJ-uvd"; */
+"M98-NJ-uvd.title" = "Copyright String Here";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "N3I-n7-3b0"; */
+"N3I-n7-3b0.title" = "Minimize";
+
+/* Class = "NSMenu"; title = "Open Recent"; ObjectID = "NKH-QJ-5xW"; */
+"NKH-QJ-5xW.title" = "Open Recent";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "Nue-h4-pMH"; */
+"Nue-h4-pMH.title" = "File";
+
+/* Class = "NSTextFieldCell"; title = "1.00×"; ObjectID = "OIA-Ic-i30"; */
+"OIA-Ic-i30.title" = "1.00×";
+
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "Pug-Ru-1FN"; */
+"Pug-Ru-1FN.title" = "Open…";
+
+/* Class = "NSMenuItem"; title = "Default Soundfont"; ObjectID = "Q7Y-od-Qzw"; */
+"Q7Y-od-Qzw.title" = "Default Soundfont";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "RB0-Oe-dG5"; */
+"RB0-Oe-dG5.title" = "Hide Others";
+
+/* Class = "NSMenuItem"; title = "Quit MinimalMIDIPlayer"; ObjectID = "SPU-Uq-Gsj"; */
+"SPU-Uq-Gsj.title" = "Quit MinimalMIDIPlayer";
+
+/* Class = "NSButtonCell"; title = "10"; ObjectID = "Sda-cw-a1g"; */
+"Sda-cw-a1g.title" = "10";
+
+/* Class = "NSWindow"; title = "About MinimalMIDIPlayer"; ObjectID = "WkU-3O-kHG"; */
+"WkU-3O-kHG.title" = "About MinimalMIDIPlayer";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "a4I-NA-d8i"; */
+"a4I-NA-d8i.title" = "Show All";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "a7H-Ue-5qJ"; */
+"a7H-Ue-5qJ.title" = "Services";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "arO-uB-4TR"; */
+"arO-uB-4TR.title" = "File";
+
+/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "azl-MT-kh8"; */
+"azl-MT-kh8.title" = "Clear Menu";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "bXI-5x-r8n"; */
+"bXI-5x-r8n.title" = "Zoom";
+
+/* Class = "NSTextFieldCell"; title = "Found bugs?"; ObjectID = "bcd-GZ-9xQ"; */
+"bcd-GZ-9xQ.title" = "Found bugs?";
+
+/* Class = "NSMenuItem"; title = "MinimalMIDIPlayer Help"; ObjectID = "dNw-Zl-iz6"; */
+"dNw-Zl-iz6.title" = "MinimalMIDIPlayer Help";
+
+/* Class = "NSMenuItem"; title = "Hide MinimalMIDIPlayer"; ObjectID = "dOo-gL-3hL"; */
+"dOo-gL-3hL.title" = "Hide MinimalMIDIPlayer";
+
+/* Class = "NSTextFieldCell"; title = "1.0.0"; ObjectID = "dUV-Wg-mIN"; */
+"dUV-Wg-mIN.title" = "1.0.0";
+
+/* Class = "NSMenu"; title = "MinimalMIDIPlayer"; ObjectID = "eak-KH-Kg5"; */
+"eak-KH-Kg5.title" = "MinimalMIDIPlayer";
+
+/* Class = "NSMenuItem"; title = "Close All"; ObjectID = "hPB-Py-Ebs"; */
+"hPB-Py-Ebs.title" = "Close All";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "j3s-4d-0If"; */
+"j3s-4d-0If.title" = "Help";
+
+/* Class = "NSTextFieldCell"; title = "📣"; ObjectID = "kMk-Ue-Lkl"; */
+"kMk-Ue-Lkl.title" = "📣";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "kwX-Kg-DLh"; */
+"kwX-Kg-DLh.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "lFM-Xo-YMn"; */
+"lFM-Xo-YMn.title" = "Preferences…";
+
+/* Class = "NSTextFieldCell"; title = "MinimalMIDIPlayer"; ObjectID = "lXR-XH-L3M"; */
+"lXR-XH-L3M.title" = "MinimalMIDIPlayer";
+
+/* Class = "NSWindow"; title = "MinimalMIDIPlayer"; ObjectID = "lpn-td-V5a"; */
+"lpn-td-V5a.title" = "MinimalMIDIPlayer";
+
+/* Class = "NSButtonCell"; title = "Override"; ObjectID = "lzp-Yr-p4c"; */
+"lzp-Yr-p4c.title" = "Override";
+
+/* Class = "NSTextFieldCell"; placeholderString = "0:00"; ObjectID = "nCY-oI-VGx"; */
+"nCY-oI-VGx.placeholderString" = "0:00";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "nbP-xL-1gA"; */
+"nbP-xL-1gA.title" = "Services";
+
+/* Class = "NSTextFieldCell"; title = "Speed"; ObjectID = "nlD-hM-Jcg"; */
+"nlD-hM-Jcg.title" = "Speed";
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "o0T-YW-eiL"; */
+"o0T-YW-eiL.title" = "Bring All to Front";
+
+/* Class = "NSTextFieldCell"; placeholderString = "0:00"; ObjectID = "p35-XO-UIJ"; */
+"p35-XO-UIJ.placeholderString" = "0:00";
+
+/* Class = "NSTextFieldCell"; title = "📣"; ObjectID = "qAf-nQ-kjP"; */
+"qAf-nQ-kjP.title" = "📣";
+
+/* Class = "NSMenuItem"; title = "Recent Item 1"; ObjectID = "qpZ-EK-DEe"; */
+"qpZ-EK-DEe.title" = "Recent Item 1";
+
+/* Class = "NSButtonCell"; title = "10"; ObjectID = "qxB-IB-gu4"; */
+"qxB-IB-gu4.title" = "10";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "r6q-99-z2d"; */
+"r6q-99-z2d.title" = "Window";
+
+/* Class = "NSTextFieldCell"; title = "Let me know!"; ObjectID = "sar-cH-MH7"; */
+"sar-cH-MH7.title" = "Let me know!";
+
+/* Class = "NSMenuItem"; title = "About MinimalMIDIPlayer"; ObjectID = "tRq-59-WIh"; */
+"tRq-59-WIh.title" = "About MinimalMIDIPlayer";
+
+/* Class = "NSMenuItem"; title = "MinimalMIDIPlayer"; ObjectID = "u37-XR-Aps"; */
+"u37-XR-Aps.title" = "MinimalMIDIPlayer";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "uS7-lH-ljO"; */
+"uS7-lH-ljO.title" = "Main Menu";
+
+/* Class = "NSTextFieldCell"; title = "Default Soundfont"; ObjectID = "uan-vg-duM"; */
+"uan-vg-duM.title" = "Default Soundfont";
+
+/* Class = "NSButtonCell"; title = "Acknowledgements"; ObjectID = "x4G-Pq-TIw"; */
+"x4G-Pq-TIw.title" = "Acknowledgements";

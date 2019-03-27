@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,8 +24,8 @@
                     <rect key="frame" x="30" y="20" width="260" height="292"/>
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bVT-g8-F5S">
-                            <rect key="frame" x="-2" y="276" width="120" height="18"/>
-                            <buttonCell key="cell" type="check" title="Enable Autoplay" bezelStyle="regularSquare" imagePosition="left" inset="2" id="hUq-ct-obw">
+                            <rect key="frame" x="-2" y="276" width="75" height="18"/>
+                            <buttonCell key="cell" type="check" title="Autoplay" bezelStyle="regularSquare" imagePosition="left" inset="2" id="hUq-ct-obw">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -34,8 +34,8 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3XJ-aK-vzd">
-                            <rect key="frame" x="-2" y="254" width="224" height="18"/>
-                            <buttonCell key="cell" type="check" title="Enable loose soundfont matching" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OoG-0S-G04">
+                            <rect key="frame" x="-2" y="254" width="184" height="18"/>
+                            <buttonCell key="cell" type="check" title="Loose soundfont matching" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OoG-0S-G04">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -117,6 +117,7 @@ With this option, approximate filename matches will also be considered.</string>
             </subviews>
             <constraints>
                 <constraint firstItem="ylH-pH-AJG" firstAttribute="top" secondItem="L7j-Se-ayO" secondAttribute="top" constant="20" id="Fy1-R4-Hwl"/>
+                <constraint firstAttribute="bottom" secondItem="ylH-pH-AJG" secondAttribute="bottom" constant="20" id="KBs-Tu-DpQ"/>
                 <constraint firstItem="ylH-pH-AJG" firstAttribute="centerX" secondItem="L7j-Se-ayO" secondAttribute="centerX" id="RWM-s0-5pZ"/>
             </constraints>
             <point key="canvasLocation" x="76.5" y="173"/>

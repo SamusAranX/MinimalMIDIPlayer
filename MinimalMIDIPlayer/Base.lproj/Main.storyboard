@@ -415,7 +415,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="iYM-n8-PU9"/>
                                         </constraints>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="rCy-wr-A8q">
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="rCy-wr-A8q">
                                             <rect key="frame" x="-100" y="-100" width="100" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
