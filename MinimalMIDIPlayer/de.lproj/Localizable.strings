@@ -8,20 +8,19 @@
 
 // About Window
 "AProjectBy" = "Ein Projekt von %@, %@ – %@";
-"AboutTitle" = "Über %@";
 
 // Cacophony Mode accessory view
 "Cacophony Mode enabled" = "Kakofonie-Mode aktiviert";
 
 // DocumentViewController.openFile() error messages
-"Error loading file" = "Fehler beim Öffnen der Datei";
+"Error loading file"                                   = "Fehler beim Öffnen der Datei";
 "Something went wrong. Please try reopening the file." = "Irgendetwas ging schief. Bitte versuche, die Datei erneut zu öffnen.";
-"Couldn't open MIDI file." = "Konnte MIDI-Datei nicht öffnen.";
-"Couldn't open Soundfont file." = "Konnte Soundfont-Datei nicht öffnen.";
+"Couldn't open MIDI file."                             = "Konnte MIDI-Datei nicht öffnen.";
+"Couldn't open Soundfont file."                        = "Konnte Soundfont-Datei nicht öffnen.";
 
 // DocumentViewController.populateSoundfontMenu()
-"Default Soundfont" = "Standard-Soundfont";
-"Recent Soundfonts" = "Zuletzt benutzte Soundfonts";
+"Default Soundfont"      = "Standard-Soundfont";
+"Recent Soundfonts"      = "Zuletzt benutzte Soundfonts";
 "Load Custom Soundfont…" = "Lade eigene Soundfont…";
 
 // GeneralPreferenceViewController

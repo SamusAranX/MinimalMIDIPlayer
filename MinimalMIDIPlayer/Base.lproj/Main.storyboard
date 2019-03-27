@@ -759,12 +759,12 @@
                             </constraints>
                         </customView>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SJo-x9-tZR">
-                            <rect key="frame" x="-2" y="3" width="36" height="19"/>
+                            <rect key="frame" x="-2" y="4" width="36" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="32" id="neJ-Z8-u8Y"/>
                             </constraints>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="📣" id="qAf-nQ-kjP">
-                                <font key="font" metaFont="system" size="15"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>

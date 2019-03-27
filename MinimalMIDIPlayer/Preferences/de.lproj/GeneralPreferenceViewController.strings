@@ -1,18 +1,20 @@
-
-/* Class = "NSButtonCell"; title = "Cacophony Mode 📣"; ObjectID = "GTu-LI-YZM"; */
-"GTu-LI-YZM.title" = "Cacophony Mode 📣";
-
-/* Class = "NSButtonCell"; title = "Loose soundfont matching"; ObjectID = "OoG-0S-G04"; */
-"OoG-0S-G04.title" = "Loose soundfont matching";
-
-/* Class = "NSTextFieldCell"; title = "MinimalMIDIPlayer already does its best to match MIDI files and soundfonts, but sometimes finding a soundfont is hard.\nWith this option, approximate filename matches will also be considered."; ObjectID = "cqN-q1-f7b"; */
-"cqN-q1-f7b.title" = "MinimalMIDIPlayer already does its best to match MIDI files and soundfonts, but sometimes finding a soundfont is hard.\nWith this option, approximate filename matches will also be considered.";
-
 /* Class = "NSButtonCell"; title = "Autoplay"; ObjectID = "hUq-ct-obw"; */
 "hUq-ct-obw.title" = "Autoplay";
 
+/* Class = "NSTextFieldCell"; title = "Playback begins immediately after a file is opened."; ObjectID = "t8K-PR-ApH"; */
+"t8K-PR-ApH.title" = "Die Wiedergabe beginnt direkt, nachdem eine Datei geöffnet wird.";
+
+/* Class = "NSButtonCell"; title = "Loose soundfont matching"; ObjectID = "OoG-0S-G04"; */
+"OoG-0S-G04.title" = "Ungenaue Soundfont-Suche";
+
+/* Class = "NSTextFieldCell"; title = "MinimalMIDIPlayer already does its best to match MIDI files and soundfonts, but sometimes finding a soundfont is hard.\nWith this option, approximate filename matches will also be considered."; ObjectID = "cqN-q1-f7b"; */
+"cqN-q1-f7b.title" = "MinimalMIDIPlayer versucht bereits, passende Soundfonts zu finden, aber manchmal stimmen die Dateinamen nicht exakt überein.\nIst diese Option aktiviert, werden ungenaue Treffer auch in Betracht gezogen.";
+
+/* Class = "NSButtonCell"; title = "Cacophony Mode 📣"; ObjectID = "GTu-LI-YZM"; */
+"GTu-LI-YZM.title" = "Kakofonie-Modus 📣";
+
 /* Class = "NSTextFieldCell"; title = "Normally, when you hit Play in a player window, all other player windows are paused. Cacophony Mode disables this behavior, allowing multiple player windows to play at the same time."; ObjectID = "pCP-1R-M4S"; */
-"pCP-1R-M4S.title" = "Normally, when you hit Play in a player window, all other player windows are paused. Cacophony Mode disables this behavior, allowing multiple player windows to play at the same time.";
+"pCP-1R-M4S.title" = "Normalerweise werden alle anderen Player pausiert, wenn in einem neuen Fenster die Wiedergabe beginnt.\nDer Kakofonie-Modus deaktiviert dieses Verhalten und sorgt dafür, dass mehrere Player gleichzeitig aktiv sein können.";
 
 /* Class = "NSTextFieldCell"; title = "Enabling Cacophony Mode will disable support for the Now Playing widget and media keys. Toggling it will close all open players to reset the Now Playing system."; ObjectID = "su8-wr-AYM"; */
-"su8-wr-AYM.title" = "Enabling Cacophony Mode will disable support for the Now Playing widget and media keys. Toggling it will close all open players to reset the Now Playing system.";
+"su8-wr-AYM.title" = "Wenn der Kakofonie-Modus aktiviert wird, wird die Unterstützung für Funktionstasten und das Now Playing-Widget deaktiviert.\nBeim Ändern der Einstellung werden darüberhinaus alle offenen Player geschlossen.";

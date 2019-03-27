@@ -8,7 +8,6 @@
 
 // About Window
 "AProjectBy" = "A project by %@, %@ – %@";
-"AboutTitle" = "About %@";
 
 // Cacophony Mode accessory view
 "Cacophony Mode enabled" = "Cacophony Mode enabled";
@@ -25,4 +24,5 @@
 "Load Custom Soundfont…" = "Load Custom Soundfont…";
 
 // GeneralPreferenceViewController
+"Preferences" = "Preferences";
 "General" = "General";

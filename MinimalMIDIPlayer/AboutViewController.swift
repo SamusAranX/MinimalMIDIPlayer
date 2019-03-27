@@ -62,7 +62,14 @@ class AboutViewController: NSViewController {
 				return String(copyrightString[Range(matches.first!.range(at: $0), in: copyrightString)!])
 			}
 
-			copyrightLabel.stringValue = "A project by \(matchStrings[2]), \(matchStrings[0]) – \(matchStrings[1])"
+			let copyrightOwner = matchStrings[2]
+			let copyrightYear1 = matchStrings[0]
+			let copyrightYear2 = matchStrings[1]
+
+			let copyrightFormatString = NSLocalizedString("AProjectBy", comment: "A project by %@, %@ – %@")
+			let copyrightString = String(format: copyrightFormatString, copyrightOwner, copyrightYear1, copyrightYear2)
+
+			copyrightLabel.stringValue = copyrightString
 		}
 
 		// Configure hyperlinks in multi-line label
@@ -101,10 +108,6 @@ class AboutViewController: NSViewController {
 
 	override func viewWillAppear() {
 		super.viewWillAppear()
-
-		if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
-			self.view.window?.title = "About \(appName)"
-		}
 	}
 
 	@IBAction func disclosureTriangleToggled(_ sender: NSButton) {

@@ -81,7 +81,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 
 		self.overrideSFToggled(self.overrideSFCheckbox)
-		self.cacophonyIconView.toolTip = "Cacophony Mode enabled"
+		self.cacophonyIconView.toolTip = NSLocalizedString("Cacophony Mode enabled", comment: "Tooltip for the 📣 icon")
 	}
 
 	// MARK: - IBActions
@@ -221,9 +221,14 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	// MARK: - App logic
 
 	func openFile(midiURL: URL) {
+		let errorTitle = NSLocalizedString("Error loading file", comment: "Alert popup title")
+		let unknownError = NSLocalizedString("Something went wrong. Please try reopening the file.", comment: "Message for unknown error")
+		let openMIDIError = NSLocalizedString("Couldn't open MIDI file.", comment: "Message in case MIDI file can't be opened")
+		let openSoundfontError = NSLocalizedString("Couldn't open Soundfont file", comment: "Message in case Soundfont file can't be opened")
+
 		guard let window = self.view.window, let document = NSDocumentController.shared.document(for: window) as? MIDIDocument else {
 			// this might happen if another soundfont is selected after a file that's being played is renamed
-			NSAlert.runModal(title: "Error loading file", message: "Something went wrong. Please try reopening the file.", style: .critical)
+			NSAlert.runModal(title: errorTitle, message: unknownError, style: .critical)
 
 			// attempt to close anyway
 			self.view.window?.close()
@@ -238,12 +243,12 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 
 		if !FileManager.default.fileExists(atPath: midiURL.path) {
-			NSAlert.runModal(title: "Error opening file", message: "Couldn't open MIDI file.", style: .critical)
+			NSAlert.runModal(title: errorTitle, message: openMIDIError, style: .critical)
 			NSDocumentController.shared.document(for: window)?.close()
 			return
 		}
 		if let sf = newActiveSoundfont, !FileManager.default.fileExists(atPath: sf.path) {
-			NSAlert.runModal(title: "Error opening file", message: "Couldn't open Soundfont file", style: .critical)
+			NSAlert.runModal(title: errorTitle, message: openSoundfontError, style: .critical)
 			NSDocumentController.shared.document(for: window)?.close()
 			return
 		}
@@ -276,7 +281,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 					self.playbackPositionChanged(position: 0, duration: self.midiPlayer!.duration)
 				}
 			} catch let error as NSError {
-				NSAlert.runModal(title: "Error opening file", message: error.localizedDescription, style: .critical)
+				NSAlert.runModal(title: errorTitle, message: error.localizedDescription, style: .critical)
 				NSDocumentController.shared.document(for: window)?.close()
 			}
 		}
@@ -326,12 +331,16 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		guard self.soundfontMenu.numberOfItems > 2 else {
 			return
 		}
+		
+		let defaultSFTitle = NSLocalizedString("Default Soundfont", comment: "'Default Soundfont' menu item")
+		let recentSFTitle = NSLocalizedString("Recent Soundfonts", comment: "'Recent Soundfonts' menu item")
+		let customSFTitle = NSLocalizedString("Load Custom Soundfont…", comment: "'Load Custom Soundfont' menu item")
 
 		// clear menu
 		self.soundfontMenu.removeAllItems()
 
 		let defaultSFItem = NSMenuItem()
-		defaultSFItem.title = "Default Soundfont"
+		defaultSFItem.title = defaultSFTitle
 		defaultSFItem.tag = SoundfontMenuType.macdefault.rawValue
 		self.soundfontMenu.menu!.addItem(defaultSFItem)
 		self.soundfontMenu.select(defaultSFItem)
@@ -340,7 +349,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			self.soundfontMenu.menu!.addItem(NSMenuItem.separator())
 
 			let recentSFHeaderItem = NSMenuItem()
-			recentSFHeaderItem.title = "Recent Soundfonts"
+			recentSFHeaderItem.title = recentSFTitle
 			recentSFHeaderItem.tag = SoundfontMenuType.recent.rawValue
 			recentSFHeaderItem.isEnabled = false
 			self.soundfontMenu.menu!.addItem(recentSFHeaderItem)
@@ -355,6 +364,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 				let recentSFItem = NSMenuItem()
 				recentSFItem.title = recentSFTitle
 				recentSFItem.tag = SoundfontMenuType.recent.rawValue
+				recentSFItem.indentationLevel = 1
 				self.soundfontMenu.menu!.addItem(recentSFItem)
 
 				if self.activeSoundfont == recentSF {
@@ -369,7 +379,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 		self.soundfontMenu.menu?.addItem(NSMenuItem.separator())
 		let customSFItem = NSMenuItem()
-		customSFItem.title = "Load Custom Soundfont…"
+		customSFItem.title = customSFTitle
 		customSFItem.tag = SoundfontMenuType.custom.rawValue
 		self.soundfontMenu.menu!.addItem(customSFItem)
 	}
