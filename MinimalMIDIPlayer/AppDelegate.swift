@@ -14,7 +14,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	let preferencesWindowController = PreferencesWindowController(
 		viewControllers: [
-			GeneralPreferenceViewController()
+			GeneralPreferenceViewController(),
+			BouncePreferenceViewController()
 		]
 	)
 

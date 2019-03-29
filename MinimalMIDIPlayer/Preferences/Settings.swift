@@ -42,11 +42,44 @@ class Settings {
 		}
 	}
 
+	var sampleRate: Int {
+		get {
+			return UserDefaults.standard.integer(forKey: #function)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: #function)
+			UserDefaults.standard.synchronize()
+		}
+	}
+
+	var bitRate: Int {
+		get {
+			return UserDefaults.standard.integer(forKey: #function)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: #function)
+			UserDefaults.standard.synchronize()
+		}
+	}
+
+	var channels: Int {
+		get {
+			return UserDefaults.standard.integer(forKey: #function)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: #function)
+			UserDefaults.standard.synchronize()
+		}
+	}
+
 	private init() {
 		UserDefaults.standard.register(defaults: [
 			"autoplay": false,
 			"looseSFMatching": false,
-			"cacophonyMode": false
+			"cacophonyMode": false,
+			"sampleRate": 44100,
+			"bitRate": 16,
+			"channels": 2
 		])
 	}
 

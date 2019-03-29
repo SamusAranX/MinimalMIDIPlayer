@@ -331,7 +331,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		guard self.soundfontMenu.numberOfItems > 2 else {
 			return
 		}
-		
+
 		let defaultSFTitle = NSLocalizedString("Default Soundfont", comment: "'Default Soundfont' menu item")
 		let recentSFTitle = NSLocalizedString("Recent Soundfonts", comment: "'Recent Soundfonts' menu item")
 		let customSFTitle = NSLocalizedString("Load Custom Soundfont…", comment: "'Load Custom Soundfont' menu item")
