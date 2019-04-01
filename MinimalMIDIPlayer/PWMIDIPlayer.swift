@@ -11,7 +11,6 @@ import AVFoundation
 import MediaPlayer
 
 protocol PWMIDIPlayerDelegate: class {
-
     func filesLoaded(midi: URL, soundFont: URL?)
 
 	func playbackWillStart(firstTime: Bool)
@@ -23,7 +22,6 @@ protocol PWMIDIPlayerDelegate: class {
     func playbackEnded()
 
     func playbackSpeedChanged(speed: Float)
-
 }
 
 class PWMIDIPlayer: AVMIDIPlayer {
@@ -36,6 +34,8 @@ class PWMIDIPlayer: AVMIDIPlayer {
     private var progressTimer: Timer?
 
 	private let endOfTrackTolerance = 0.1
+
+	var acceptsMediaKeys = true
 
     override var rate: Float {
         didSet {
@@ -163,6 +163,10 @@ class PWMIDIPlayer: AVMIDIPlayer {
     }
 
     override func play(_ completionHandler: AVMIDIPlayerCompletionHandler? = nil) {
+		guard self.acceptsMediaKeys else {
+			return
+		}
+
 		if #available(OSX 10.12.2, *) {
 			NowPlayingCentral.shared.makeActive(player: self)
 		}
@@ -201,6 +205,10 @@ class PWMIDIPlayer: AVMIDIPlayer {
 
 	// cheap, but it works. mostly
 	func pause() {
+		guard self.acceptsMediaKeys else {
+			return
+		}
+
 		super.stop()
 
         self.progressTimer?.invalidate()
@@ -213,6 +221,10 @@ class PWMIDIPlayer: AVMIDIPlayer {
 	}
 
     override func stop() {
+		guard self.acceptsMediaKeys else {
+			return
+		}
+
 		super.stop()
 
         self.progressTimer?.invalidate()
@@ -227,16 +239,28 @@ class PWMIDIPlayer: AVMIDIPlayer {
     }
 
 	func rewind(secs: TimeInterval) {
+		guard self.acceptsMediaKeys else {
+			return
+		}
+
 		let newPos = max(0, self.currentPosition - secs)
 		self.currentPosition = newPos
 	}
 
 	func fastForward(secs: TimeInterval) {
+		guard self.acceptsMediaKeys else {
+			return
+		}
+
 		let newPos = min(self.currentPosition + secs, self.duration)
 		self.currentPosition = newPos
 	}
 
     func togglePlayPause() {
+		guard self.acceptsMediaKeys else {
+			return
+		}
+
         if self.isPaused || self.isAtEndOfTrack {
             self.play()
         } else if self.isPlaying {

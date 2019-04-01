@@ -92,7 +92,7 @@ class AboutViewController: NSViewController {
 			ackAttrStr.setFontFace(font: aboutTextLabel.font!, color: NSColor.controlTextColor)
 			acknowledgementTextView.textStorage?.setAttributedString(ackAttrStr)
 		} catch {
-			fatalError("Couldn't apply acknowledgements file")
+			fatalError("Couldn't apply font to acknowledgements file")
 		}
 
 		// Configure hyperlinks in smaller labels

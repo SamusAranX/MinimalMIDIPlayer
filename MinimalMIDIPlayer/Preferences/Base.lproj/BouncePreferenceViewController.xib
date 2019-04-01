@@ -8,6 +8,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BouncePreferenceViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target">
             <connections>
+                <outlet property="bitRateMenu" destination="6FB-hk-pX9" id="WWj-zZ-QfN"/>
+                <outlet property="channelsMenu" destination="GMZ-fd-Yb6" id="g5B-pP-RYZ"/>
+                <outlet property="sampleRateMenu" destination="US8-uV-tTr" id="KYb-Oi-nD3"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -22,6 +25,9 @@
                     <subviews>
                         <gridView xPlacement="leading" yPlacement="center" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="1ma-Q8-r3x">
                             <rect key="frame" x="0.0" y="36" width="260" height="75"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="75" id="oQA-xW-7kg"/>
+                            </constraints>
                             <rows>
                                 <gridRow id="tma-0u-mjG"/>
                                 <gridRow id="NX4-vM-RPf"/>
@@ -82,6 +88,9 @@
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
+                                        <connections>
+                                            <action selector="sampleRateSelectionChanged:" target="-2" id="Izs-WM-QHI"/>
+                                        </connections>
                                     </popUpButton>
                                 </gridCell>
                                 <gridCell row="NX4-vM-RPf" column="wZO-kY-FdQ" id="KsJ-un-hxj">
@@ -109,6 +118,9 @@
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
+                                        <connections>
+                                            <action selector="bitRateSelectionChanged:" target="-2" id="lQi-p9-rBc"/>
+                                        </connections>
                                     </popUpButton>
                                 </gridCell>
                                 <gridCell row="WHj-l7-7eo" column="wZO-kY-FdQ" id="LM2-g9-qLW">
@@ -134,13 +146,16 @@
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
+                                        <connections>
+                                            <action selector="channelsSelectionChanged:" target="-2" id="QeA-c8-K3z"/>
+                                        </connections>
                                     </popUpButton>
                                 </gridCell>
                             </gridCells>
                         </gridView>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="x7t-NW-HoG">
                             <rect key="frame" x="-2" y="0.0" width="264" height="28"/>
-                            <textFieldCell key="cell" selectable="YES" title="These options only apply when bouncing a MIDI file to audio. Regular playback is unaffected." id="PDb-AH-Dmc">
+                            <textFieldCell key="cell" controlSize="small" title="These options only apply when bouncing a MIDI file to audio. Regular playback is unaffected." id="PDb-AH-Dmc">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -167,8 +182,20 @@
             <constraints>
                 <constraint firstItem="Q0c-1E-ZsV" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="KFJ-O2-x4l"/>
                 <constraint firstItem="Q0c-1E-ZsV" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="ZHi-94-HhB"/>
+                <constraint firstAttribute="bottom" secondItem="Q0c-1E-ZsV" secondAttribute="bottom" constant="20" id="r2I-Tm-bqj"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="150.5"/>
+            <point key="canvasLocation" x="184" y="17.5"/>
         </customView>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="lPf-xK-EF7">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="131" y="158" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="Tq0-1Q-xc6">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <point key="canvasLocation" x="-324" y="17"/>
+        </window>
     </objects>
 </document>

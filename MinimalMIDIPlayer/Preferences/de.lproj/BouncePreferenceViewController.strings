@@ -1,47 +1,47 @@
 /* Class = "NSTextFieldCell"; title = "Sample Rate"; ObjectID = "HQ8-72-uFZ"; */
 "HQ8-72-uFZ.title" = "Samplerate";
 
-	/* Class = "NSMenuItem"; title = "44.1 kHz"; ObjectID = "0V2-KO-rlb"; */
-	"0V2-KO-rlb.title" = "44.1 kHz";
+/* Class = "NSMenuItem"; title = "44.1 kHz"; ObjectID = "0V2-KO-rlb"; */
+"0V2-KO-rlb.title" = "44.1 kHz";
 
-	/* Class = "NSMenuItem"; title = "48 kHz"; ObjectID = "Oyv-AP-c27"; */
-	"Oyv-AP-c27.title" = "48 kHz";
+/* Class = "NSMenuItem"; title = "48 kHz"; ObjectID = "Oyv-AP-c27"; */
+"Oyv-AP-c27.title" = "48 kHz";
 
-	/* Class = "NSMenuItem"; title = "88.2 kHz"; ObjectID = "RAm-fe-hvn"; */
-	"RAm-fe-hvn.title" = "88.2 kHz";
+/* Class = "NSMenuItem"; title = "88.2 kHz"; ObjectID = "RAm-fe-hvn"; */
+"RAm-fe-hvn.title" = "88.2 kHz";
 
-	/* Class = "NSMenuItem"; title = "96 kHz"; ObjectID = "Kmd-6j-FaR"; */
-	"Kmd-6j-FaR.title" = "96 kHz";
+/* Class = "NSMenuItem"; title = "96 kHz"; ObjectID = "Kmd-6j-FaR"; */
+"Kmd-6j-FaR.title" = "96 kHz";
 
-	/* Class = "NSMenuItem"; title = "176.4 kHz"; ObjectID = "9eL-4R-P9e"; */
-	"9eL-4R-P9e.title" = "176.4 kHz";
+/* Class = "NSMenuItem"; title = "176.4 kHz"; ObjectID = "9eL-4R-P9e"; */
+"9eL-4R-P9e.title" = "176.4 kHz";
 
-	/* Class = "NSMenuItem"; title = "192 kHz"; ObjectID = "gfq-MN-SAk"; */
-	"gfq-MN-SAk.title" = "192 kHz";
+/* Class = "NSMenuItem"; title = "192 kHz"; ObjectID = "gfq-MN-SAk"; */
+"gfq-MN-SAk.title" = "192 kHz";
 
 /* Class = "NSTextFieldCell"; title = "Bit Depth"; ObjectID = "JKY-or-Kyb"; */
 "JKY-or-Kyb.title" = "Bittiefe";
 
-	/* Class = "NSMenuItem"; title = "8 Bit"; ObjectID = "1C2-jJ-K8e"; */
-	"1C2-jJ-K8e.title" = "8 Bit";
+/* Class = "NSMenuItem"; title = "8 Bit"; ObjectID = "1C2-jJ-K8e"; */
+"1C2-jJ-K8e.title" = "8 Bit";
 
-	/* Class = "NSMenuItem"; title = "16 Bit"; ObjectID = "L88-r0-zp6"; */
-	"L88-r0-zp6.title" = "16 Bit";
+/* Class = "NSMenuItem"; title = "16 Bit"; ObjectID = "L88-r0-zp6"; */
+"L88-r0-zp6.title" = "16 Bit";
 
-	/* Class = "NSMenuItem"; title = "24 Bit"; ObjectID = "B99-7E-3Fo"; */
-	"B99-7E-3Fo.title" = "24 Bit";
+/* Class = "NSMenuItem"; title = "24 Bit"; ObjectID = "B99-7E-3Fo"; */
+"B99-7E-3Fo.title" = "24 Bit";
 
-	/* Class = "NSMenuItem"; title = "32 Bit (float)"; ObjectID = "PuM-Zr-2WJ"; */
-	"PuM-Zr-2WJ.title" = "32 Bit (float)";
+/* Class = "NSMenuItem"; title = "32 Bit (float)"; ObjectID = "PuM-Zr-2WJ"; */
+"PuM-Zr-2WJ.title" = "32 Bit (float)";
 
 /* Class = "NSTextFieldCell"; title = "Channels"; ObjectID = "7qn-1I-5ww"; */
 "7qn-1I-5ww.title" = "Kanäle";
 
-	/* Class = "NSMenuItem"; title = "1 (Mono)"; ObjectID = "e0K-MY-72i"; */
-	"e0K-MY-72i.title" = "1 (Mono)";
+/* Class = "NSMenuItem"; title = "1 (Mono)"; ObjectID = "e0K-MY-72i"; */
+"e0K-MY-72i.title" = "1 (Mono)";
 
-	/* Class = "NSMenuItem"; title = "2 (Stereo)"; ObjectID = "5Yc-Wp-1E1"; */
-	"5Yc-Wp-1E1.title" = "2 (Stereo)";
+/* Class = "NSMenuItem"; title = "2 (Stereo)"; ObjectID = "5Yc-Wp-1E1"; */
+"5Yc-Wp-1E1.title" = "2 (Stereo)";
 
 /* Class = "NSTextFieldCell"; title = "These options only apply when bouncing a MIDI file to audio. Regular playback is unaffected."; ObjectID = "PDb-AH-Dmc"; */
 "PDb-AH-Dmc.title" = "Diese Optionen werden nur beim Export angewendet. Die normale Wiedergabe wird nicht beeinflusst.";

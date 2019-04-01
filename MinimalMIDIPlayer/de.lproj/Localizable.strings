@@ -10,7 +10,7 @@
 "AProjectBy" = "Ein Projekt von %@, %@ – %@";
 
 // Cacophony Mode accessory view
-"Cacophony Mode enabled" = "Kakofonie-Mode aktiviert";
+"Cacophony Mode enabled" = "Kakofonie-Modus aktiviert";
 
 // DocumentViewController.openFile() error messages
 "Error loading file"                                   = "Fehler beim Öffnen der Datei";
@@ -24,4 +24,9 @@
 "Load Custom Soundfont…" = "Lade eigene Soundfont…";
 
 // GeneralPreferenceViewController
-"General" = "Allgemein";
+"Preferences" = "Einstellungen";
+"General"     = "Allgemein";
+
+// BounceProgressViewController
+"Bouncing {source.mid} to {target.wav}…" = "Bounce %@ zu %@…";
+"Soundfont used: {source.sf2}"           = "Benutzte Soundfont: %@";

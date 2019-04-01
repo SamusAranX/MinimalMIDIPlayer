@@ -71,6 +71,12 @@
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="qS1-sm-6jp"/>
+                                        <menuItem title="Bounce MIDI…" keyEquivalent="b" id="mIJ-a6-Cdu">
+                                            <connections>
+                                                <action selector="bounceToFile:" target="BPK-JZ-IAI" id="ftn-fs-saS"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="1Sc-Ct-zb2"/>
                                         <menuItem title="Close" keyEquivalent="w" id="HBx-Pn-DlL">
                                             <connections>
                                                 <action selector="performClose:" target="BPK-JZ-IAI" id="hFh-VY-LCL"/>
@@ -155,6 +161,86 @@
                 <customObject id="CYZ-F0-ief" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="393" y="316"/>
+        </scene>
+        <!--MinimalMIDIPlayer-->
+        <scene sceneID="p3N-dG-Z69">
+            <objects>
+                <viewController title="MinimalMIDIPlayer" storyboardIdentifier="BounceProgressViewController" id="A1H-dF-fwo" customClass="BounceProgressViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="YVX-oi-vtm">
+                        <rect key="frame" x="0.0" y="0.0" width="410" height="100"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" rowSpacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Llf-KA-HmE">
+                                <rect key="frame" x="20" y="12" width="370" height="76"/>
+                                <rows>
+                                    <gridRow id="K3H-ZM-0un"/>
+                                    <gridRow id="tpu-zo-pZZ"/>
+                                    <gridRow id="je2-BC-HQj"/>
+                                    <gridRow id="zM7-0C-Z5e"/>
+                                </rows>
+                                <columns>
+                                    <gridColumn id="URU-Ji-DFd"/>
+                                </columns>
+                                <gridCells>
+                                    <gridCell row="K3H-ZM-0un" column="URU-Ji-DFd" id="ieq-zr-Bva">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QCs-53-Q3Z">
+                                            <rect key="frame" x="-2" y="59" width="244" height="17"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Bouncing {source.mid} to {target.wav}…" id="KWz-zv-I0k">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="tpu-zo-pZZ" column="URU-Ji-DFd" id="ImL-hc-LwG">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="urx-YY-aVl">
+                                            <rect key="frame" x="-2" y="43" width="158" height="14"/>
+                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Soundfont used: {source.sf2}" id="hKt-Zs-Jgf">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="je2-BC-HQj" column="URU-Ji-DFd" xPlacement="fill" id="sPC-EC-GlG">
+                                        <progressIndicator key="contentView" wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="qFU-AJ-CnI">
+                                            <rect key="frame" x="0.0" y="22" width="370" height="20"/>
+                                        </progressIndicator>
+                                    </gridCell>
+                                    <gridCell row="zM7-0C-Z5e" column="URU-Ji-DFd" xPlacement="trailing" id="Zzd-JD-N2m">
+                                        <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="psP-7d-80L">
+                                            <rect key="frame" x="294" y="-7" width="82" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DWW-7q-udT">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" target="A1H-dF-fwo" id="n65-l8-Ulq"/>
+                                            </connections>
+                                        </button>
+                                    </gridCell>
+                                </gridCells>
+                            </gridView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Llf-KA-HmE" firstAttribute="leading" secondItem="YVX-oi-vtm" secondAttribute="leading" constant="20" id="B1n-DP-11k"/>
+                            <constraint firstItem="Llf-KA-HmE" firstAttribute="centerX" secondItem="YVX-oi-vtm" secondAttribute="centerX" id="Gt1-ky-dPg"/>
+                            <constraint firstAttribute="trailing" secondItem="Llf-KA-HmE" secondAttribute="trailing" constant="20" id="k93-ff-zeT"/>
+                            <constraint firstItem="Llf-KA-HmE" firstAttribute="centerY" secondItem="YVX-oi-vtm" secondAttribute="centerY" id="tc0-US-SYB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="primaryLabel" destination="QCs-53-Q3Z" id="DII-wR-8h8"/>
+                        <outlet property="progressBar" destination="qFU-AJ-CnI" id="UHQ-n0-gjp"/>
+                        <outlet property="secondaryLabel" destination="urx-YY-aVl" id="MbA-ba-hBJ"/>
+                    </connections>
+                </viewController>
+                <customObject id="HqT-Kw-4pq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="783" y="585"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="2Ws-N8-M5o">
@@ -491,7 +577,7 @@
                                         <rect key="frame" x="4" y="83" width="274" height="19"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-XL-NGh">
-                                                <rect key="frame" x="-2" y="2" width="44" height="14"/>
+                                                <rect key="frame" x="-2" y="2" width="36" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="8aE-vE-4bo"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="TzT-Qg-QBN"/>
@@ -503,7 +589,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IvW-tF-KiY">
-                                                <rect key="frame" x="42" y="2" width="198" height="15"/>
+                                                <rect key="frame" x="34" y="2" width="198" height="15"/>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Z38-5k-rtW">
                                                         <connections>
@@ -517,7 +603,7 @@
                                                 </connections>
                                             </slider>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfo-zf-CTx">
-                                                <rect key="frame" x="240" y="2" width="36" height="14"/>
+                                                <rect key="frame" x="232" y="2" width="44" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="dQW-c0-QRB"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="lTs-AZ-qHU"/>

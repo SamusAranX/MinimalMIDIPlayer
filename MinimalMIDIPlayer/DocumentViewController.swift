@@ -42,7 +42,8 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 4/3, 1.5, 5/3, 2.0]
 	var playbackSpeed: Float = 1.0
 
-	var pausedDueToDraggingKnob: Bool = false
+	var pausedDueToDraggingKnob = false
+	var bouncing = false
 
 	var shiftPressed: Bool {
 		return NSApp.currentEvent?.modifierFlags.contains(.shift) ?? false
@@ -400,6 +401,55 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 	override var acceptsFirstResponder: Bool {
 		return true
+	}
+
+	// MARK: - IBAction for the Bounce to File menu item
+
+	@available(OSX 10.13, *)
+	@IBAction func bounceToFile(_ sender: NSMenuItem) {
+		guard !self.bouncing else {
+			return
+		}
+
+		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+		guard let bounceProgressVC = storyboard.instantiateController(withIdentifier: "BounceProgressViewController") as? BounceProgressViewController,
+		      let sourceMIDI = self.midiPlayer?.currentMIDI else {
+			print("frick")
+			return
+		}
+
+		self.midiPlayer?.pause()
+		self.midiPlayer?.acceptsMediaKeys = false
+		print("disabled media keys")
+
+		let savePanel = NSSavePanel()
+		savePanel.title = "Bounce \(sourceMIDI.lastPathComponent) to file"
+		savePanel.prompt = "Bounce"
+		savePanel.nameFieldLabel = "Export As:"
+		savePanel.nameFieldStringValue = sourceMIDI.deletingPathExtension().lastPathComponent
+		savePanel.allowedFileTypes = ["wav"]
+
+		guard savePanel.runModal() == .OK, let saveURL = savePanel.url else {
+			return
+		}
+
+		bounceProgressVC.prepare(sourceMIDI: sourceMIDI, targetFile: saveURL, sourceSoundfont: self.midiPlayer?.currentSoundfont)
+
+		NSApp.runModal(for: NSPanel(contentViewController: bounceProgressVC))
+
+//		self.presentAsModalWindow(bounceProgressVC)
+
+		self.midiPlayer?.acceptsMediaKeys = true
+		print("enabled media keys")
+
+//		guard let bouncer = try? MIDIFileOfflineBouncer(midiFileData: Data(contentsOf: currentMIDI), soundBankURL: self.midiPlayer?.currentSoundfont) else {
+//			print("bouncer init failed")
+//			return
+//		}
+//
+//		try? bouncer.bounce(toFileURL: saveURL)
+//
+//		Swift.print("bounced!")
 	}
 
 	// MARK: - WindowControllerDelegate

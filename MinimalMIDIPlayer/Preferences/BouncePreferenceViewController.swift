@@ -11,16 +11,50 @@ import Preferences
 
 class BouncePreferenceViewController: NSViewController, Preferenceable {
 
-	let toolbarItemTitle: String = NSLocalizedString("Bounce", comment: "Preference Tab Title")
+	let toolbarItemTitle: String = NSLocalizedString("Bounces", comment: "Preference Tab Title")
 	let toolbarItemIcon: NSImage = NSImage(named: "PreferencesWaveform")!
 
 	override var nibName: NSNib.Name? {
 		return "BouncePreferenceViewController"
 	}
 
+	@IBOutlet weak var sampleRateMenu: NSPopUpButton!
+	@IBOutlet weak var bitRateMenu: NSPopUpButton!
+	@IBOutlet weak var channelsMenu: NSPopUpButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+
+		self.sampleRateMenu.selectItem(withTag: Settings.shared.sampleRate)
+		self.bitRateMenu.selectItem(withTag: Settings.shared.bitRate)
+		self.channelsMenu.selectItem(withTag: Settings.shared.channels)
     }
+
+	@IBAction func sampleRateSelectionChanged(_ sender: NSPopUpButton) {
+		guard let selectedItem = sender.selectedItem else {
+			Swift.print("Somehow, no item was selected")
+			return
+		}
+
+		Settings.shared.sampleRate = selectedItem.tag
+	}
+
+	@IBAction func bitRateSelectionChanged(_ sender: NSPopUpButton) {
+		guard let selectedItem = sender.selectedItem else {
+			Swift.print("Somehow, no item was selected")
+			return
+		}
+
+		Settings.shared.bitRate = selectedItem.tag
+	}
+
+	@IBAction func channelsSelectionChanged(_ sender: NSPopUpButton) {
+		guard let selectedItem = sender.selectedItem else {
+			Swift.print("Somehow, no item was selected")
+			return
+		}
+
+		Settings.shared.channels = selectedItem.tag
+	}
 
 }
