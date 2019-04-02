@@ -90,15 +90,14 @@
                                 <gridCell row="NX4-vM-RPf" column="BHF-2j-dnx" id="YMq-0S-Sj4">
                                     <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6FB-hk-pX9">
                                         <rect key="frame" x="128" y="24" width="115" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="16 Bit" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="16" imageScaling="proportionallyDown" inset="2" selectedItem="L88-r0-zp6" id="HfM-62-MiN">
+                                        <popUpButtonCell key="cell" type="push" title="16 Bit" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="16" imageScaling="proportionallyDown" inset="2" selectedItem="1C2-jJ-K8e" id="HfM-62-MiN">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="oZj-rY-dJm">
                                                 <items>
-                                                    <menuItem title="8 Bit" tag="8" id="1C2-jJ-K8e"/>
-                                                    <menuItem title="16 Bit" state="on" tag="16" id="L88-r0-zp6"/>
-                                                    <menuItem title="24 Bit" tag="24" id="B99-7E-3Fo"/>
-                                                    <menuItem title="32 Bit (float)" tag="32" id="PuM-Zr-2WJ"/>
+                                                    <menuItem title="16 Bit" state="on" tag="16" id="1C2-jJ-K8e"/>
+                                                    <menuItem title="32 Bit" tag="32" id="L88-r0-zp6"/>
+                                                    <menuItem title="32 Bit (float)" tag="3232" id="PuM-Zr-2WJ"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>

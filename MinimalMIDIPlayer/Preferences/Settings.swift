@@ -82,29 +82,13 @@ class Settings {
 	}
 
 	var destinationFormat: AVAudioFormat {
-
-//		var commonFormat: AVAudioCommonFormat
-//		switch self.bitDepth {
-//		case 16:
-//			commonFormat = .pcmFormatInt16
-//		case 32:
-//			commonFormat = .pcmFormatFloat32
-//		default:
-//			fatalError()
-//		}
-//
-//
-//
-//		let outFormat = AVAudioFormat(commonFormat: commonFormat, sampleRate: Double(self.sampleRate), channels: AVAudioChannelCount(self.channels), interleaved: true)!
-//		print(outFormat.streamDescription.pointee)
-
 		guard let referenceIntFormat = AVAudioFormat(commonFormat: .pcmFormatInt32, sampleRate: Double(self.sampleRate), channels: AVAudioChannelCount(self.channels), interleaved: true),
 			let referenceFloatFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: Double(self.sampleRate), channels: AVAudioChannelCount(self.channels), interleaved: true) else {
 				fatalError()
 		}
 
 		var outDesc: AudioStreamBasicDescription
-		if self.bitDepth == 32 {
+		if self.bitDepth == 1616 || self.bitDepth == 32 {
 			outDesc = referenceFloatFormat.streamDescription.pointee
 		} else {
 			outDesc = referenceIntFormat.streamDescription.pointee
@@ -113,10 +97,8 @@ class Settings {
 		switch self.bitDepth {
 		case 8:
 			outDesc.mBitsPerChannel = 8
-		case 16:
+		case 16, 1616:
 			outDesc.mBitsPerChannel = 16
-		case 24:
-			outDesc.mBitsPerChannel = 24
 		case 32:
 			outDesc.mBitsPerChannel = 32
 		default:

@@ -46,13 +46,13 @@ class MIDIFileBouncer {
 
 		self.engine.attach(self.sampler)
 
-//		self.audioFormat = AVAudioFormat(standardFormatWithSampleRate: Double(Settings.shared.sampleRate), channels: AVAudioChannelCount(Settings.shared.channels))
-//		self.audioFormat = AVAudioFormat(standardFormatWithSampleRate: 96000, channels: 2)!
-		self.audioFormat = Settings.shared.destinationFormat
+		//		self.audioFormat = AVAudioFormat(standardFormatWithSampleRate: Double(Settings.shared.sampleRate), channels: AVAudioChannelCount(Settings.shared.channels))
+		//		self.audioFormat = Settings.shared.destinationFormat
+		self.audioFormat = Settings.shared.processingFormat
 
 		let mixer = self.engine.mainMixerNode
 		mixer.outputVolume = 0.0
-		self.engine.connect(self.sampler, to: mixer, format: self.audioFormat)
+		self.engine.connect(self.sampler, to: mixer, format: Settings.shared.processingFormat)
 
 		self.sequencer = AVAudioSequencer(audioEngine: self.engine)
 		try self.sequencer.load(from: midiFile, options: [])
@@ -70,8 +70,7 @@ class MIDIFileBouncer {
 		let recordTrailing = 2.0
 
 		let outputNode = self.sampler!
-//		let outputFormat = outputNode.outputFormat(forBus: 0)
-		let outputFormat = self.audioFormat
+		let outputFormat = outputNode.outputFormat(forBus: 0)
 
 		guard let sequenceLength = self.sequencer.tracks.map({ $0.lengthInSeconds + self.sequencer.seconds(forBeats: $0.offsetTime) }).max() else {
 			fatalError()
@@ -81,29 +80,34 @@ class MIDIFileBouncer {
 
 		let outputFile: AVAudioFile
 		do {
-			let processingFormat = outputFormat.settings
-			outputFile = try AVAudioFile(forWriting: fileURL, settings: processingFormat)
+//			outputFile = try AVAudioFile(forWriting: fileURL, settings: outputFormat.settings)
+			outputFile = try AVAudioFile(forWriting: fileURL, settings: converter.outputFormat.settings, commonFormat: .pcmFormatInt16, interleaved: true)
+//			outputFile = try AVAudioFile(forWriting: fileURL, settings: converter.outputFormat.settings)
 		} catch {
 			self.delegate?.bounceError(error: error)
 			return
 		}
 
 		// Install tap
-		outputNode.installTap(onBus: 0, bufferSize: 4096, format: outputFormat) { (buffer: AVAudioPCMBuffer, _) in
+		outputNode.installTap(onBus: 0, bufferSize: 8192, format: nil) { (buffer: AVAudioPCMBuffer, _) in
 			do {
-//				let convertedBuffer = AVAudioPCMBuffer(pcmFormat: converter.outputFormat, frameCapacity: buffer.frameLength)!
-//				convertedBuffer.frameLength = convertedBuffer.frameCapacity
-//
-//				let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
-//					outStatus.pointee = AVAudioConverterInputStatus.haveData
-//					return buffer
-//				}
-//				let status = converter.convert(to: convertedBuffer, error: &writeError, withInputFrom: inputBlock)
-//				print(status.rawValue)
+				let sampleRateRatio = outputFormat.sampleRate / converter.outputFormat.sampleRate
+				let capacity = UInt32(Double(buffer.frameCapacity) / sampleRateRatio)
 
-//				try converter.convert(to: convertedBuffer, from: buffer)
+				let convertedBuffer = AVAudioPCMBuffer(pcmFormat: converter.outputFormat, frameCapacity: capacity)!
+				convertedBuffer.frameLength = convertedBuffer.frameCapacity
 
-				try outputFile.write(from: buffer)
+				let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
+					outStatus.pointee = AVAudioConverterInputStatus.haveData
+					return buffer
+				}
+				let _ = converter.convert(to: convertedBuffer, error: &writeError, withInputFrom: inputBlock)
+				print(writeError == nil)
+
+				print(outputFile.processingFormat)
+				print(converter.outputFormat)
+
+				try outputFile.write(from: convertedBuffer)
 			} catch {
 				writeError = error as NSError
 			}
