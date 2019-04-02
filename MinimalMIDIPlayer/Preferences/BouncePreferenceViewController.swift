@@ -19,14 +19,14 @@ class BouncePreferenceViewController: NSViewController, Preferenceable {
 	}
 
 	@IBOutlet weak var sampleRateMenu: NSPopUpButton!
-	@IBOutlet weak var bitRateMenu: NSPopUpButton!
+	@IBOutlet weak var bitDepthMenu: NSPopUpButton!
 	@IBOutlet weak var channelsMenu: NSPopUpButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		self.sampleRateMenu.selectItem(withTag: Settings.shared.sampleRate)
-		self.bitRateMenu.selectItem(withTag: Settings.shared.bitRate)
+		self.bitDepthMenu.selectItem(withTag: Settings.shared.bitDepth)
 		self.channelsMenu.selectItem(withTag: Settings.shared.channels)
     }
 
@@ -39,13 +39,13 @@ class BouncePreferenceViewController: NSViewController, Preferenceable {
 		Settings.shared.sampleRate = selectedItem.tag
 	}
 
-	@IBAction func bitRateSelectionChanged(_ sender: NSPopUpButton) {
+	@IBAction func bitDepthSelectionChanged(_ sender: NSPopUpButton) {
 		guard let selectedItem = sender.selectedItem else {
 			Swift.print("Somehow, no item was selected")
 			return
 		}
 
-		Settings.shared.bitRate = selectedItem.tag
+		Settings.shared.bitDepth = selectedItem.tag
 	}
 
 	@IBAction func channelsSelectionChanged(_ sender: NSPopUpButton) {

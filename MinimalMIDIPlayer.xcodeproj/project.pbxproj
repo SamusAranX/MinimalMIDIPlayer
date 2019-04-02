@@ -17,7 +17,6 @@
 		562E3AAE224E0B30001AD319 /* BouncePreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3AAC224E0B30001AD319 /* BouncePreferenceViewController.swift */; };
 		562E3AB0224E145B001AD319 /* BouncePreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 562E3AB2224E145B001AD319 /* BouncePreferenceViewController.xib */; };
 		562E3AB9224E1E65001AD319 /* AVAudioUnitMIDISynth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3AB8224E1E65001AD319 /* AVAudioUnitMIDISynth.swift */; };
-		562E3ABB224E1E70001AD319 /* MIDIFileOfflineBouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3ABA224E1E70001AD319 /* MIDIFileOfflineBouncer.swift */; };
 		562E3ABD224E1E79001AD319 /* MIDIFileBouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3ABC224E1E79001AD319 /* MIDIFileBouncer.swift */; };
 		562E3AC2224E2781001AD319 /* BounceProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3AC0224E2781001AD319 /* BounceProgressViewController.swift */; };
 		562E3AC4224E2D3F001AD319 /* MIKMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 562E3AB5224E1790001AD319 /* MIKMIDI.framework */; };
@@ -42,6 +41,7 @@
 		56DAB39A224B63F000FF8847 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB39C224B63F000FF8847 /* Localizable.strings */; };
 		56DAB39E224B71AF00FF8847 /* GeneralPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB3A0224B71AF00FF8847 /* GeneralPreferenceViewController.xib */; };
 		56DAB3A3224B71BF00FF8847 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB3A5224B71BF00FF8847 /* Main.storyboard */; };
+		56F0352922534CBD00BD8DD0 /* AudioFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F0352822534CBD00BD8DD0 /* AudioFormats.swift */; };
 		56FEF1572141181B00813975 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF1562141181B00813975 /* AboutViewController.swift */; };
 		56FEF15D214119FD00813975 /* HyperlinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF15B214119FD00813975 /* HyperlinkTextField.m */; };
 		56FEF16621411AC000813975 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF16521411AC000813975 /* Extensions.swift */; };
@@ -97,7 +97,6 @@
 		562E3AB1224E145B001AD319 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BouncePreferenceViewController.xib; sourceTree = "<group>"; };
 		562E3AB5224E1790001AD319 /* MIKMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MIKMIDI.framework; path = Carthage/Build/Mac/MIKMIDI.framework; sourceTree = "<group>"; };
 		562E3AB8224E1E65001AD319 /* AVAudioUnitMIDISynth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioUnitMIDISynth.swift; sourceTree = "<group>"; };
-		562E3ABA224E1E70001AD319 /* MIDIFileOfflineBouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIFileOfflineBouncer.swift; sourceTree = "<group>"; };
 		562E3ABC224E1E79001AD319 /* MIDIFileBouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIFileBouncer.swift; sourceTree = "<group>"; };
 		562E3AC0224E2781001AD319 /* BounceProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceProgressViewController.swift; sourceTree = "<group>"; };
 		563C8229214DCA6E00B0D41E /* NSFont+LineHeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFont+LineHeight.h"; sourceTree = "<group>"; };
@@ -125,6 +124,7 @@
 		56DAB3A4224B71BF00FF8847 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		56DAB3A7224B71C200FF8847 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		56DAB3A9224B7FA400FF8847 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralPreferenceViewController.strings; sourceTree = "<group>"; };
+		56F0352822534CBD00BD8DD0 /* AudioFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFormats.swift; sourceTree = "<group>"; };
 		56FEF1562141181B00813975 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		56FEF159214119FC00813975 /* MinimalMIDIPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MinimalMIDIPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		56FEF15A214119FD00813975 /* HyperlinkTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyperlinkTextField.h; sourceTree = "<group>"; };
@@ -172,7 +172,6 @@
 			isa = PBXGroup;
 			children = (
 				562E3AB8224E1E65001AD319 /* AVAudioUnitMIDISynth.swift */,
-				562E3ABA224E1E70001AD319 /* MIDIFileOfflineBouncer.swift */,
 				562E3ABC224E1E79001AD319 /* MIDIFileBouncer.swift */,
 				562E3AC0224E2781001AD319 /* BounceProgressViewController.swift */,
 			);
@@ -203,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				56B1E12B21EBA619002CEBB3 /* Levenshtein.swift */,
+				56F0352822534CBD00BD8DD0 /* AudioFormats.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -510,12 +510,12 @@
 				56FEF1572141181B00813975 /* AboutViewController.swift in Sources */,
 				56A0BD7E214005A4006095CE /* DocumentViewController.swift in Sources */,
 				56A0BD7C21400569006095CE /* DocumentWindowController.swift in Sources */,
+				56F0352922534CBD00BD8DD0 /* AudioFormats.swift in Sources */,
 				562E3AB9224E1E65001AD319 /* AVAudioUnitMIDISynth.swift in Sources */,
 				56FEF16621411AC000813975 /* Extensions.swift in Sources */,
 				56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */,
 				56FEF15D214119FD00813975 /* HyperlinkTextField.m in Sources */,
 				5612BAE821414F3C00AA1882 /* Settings.swift in Sources */,
-				562E3ABB224E1E70001AD319 /* MIDIFileOfflineBouncer.swift in Sources */,
 				5669F2EB21425B400034D3ED /* NowPlayingCentral.swift in Sources */,
 				56654136214045C100283C85 /* MIDIDocument.swift in Sources */,
 				562E3AC2224E2781001AD319 /* BounceProgressViewController.swift in Sources */,

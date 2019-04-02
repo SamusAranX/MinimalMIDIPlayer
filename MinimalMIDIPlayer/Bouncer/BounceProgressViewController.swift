@@ -23,7 +23,7 @@ class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
 
 	fileprivate var targetFile: URL?
 
-	fileprivate var bouncer: MIDIFileOfflineBouncer?
+	fileprivate var bouncer: MIDIFileBouncer?
 
 	func prepare(sourceMIDI: URL, targetFile: URL, sourceSoundfont: URL? = nil) {
 		guard self.sourceMIDI == nil, self.targetFile == nil else {
@@ -75,7 +75,7 @@ class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
 
 		guard let midiFile = self.sourceMIDI,
 			  let targetFile = self.targetFile,
-			  let bouncer = try? MIDIFileOfflineBouncer(midiFile: midiFile, soundfontFile: self.sourceSoundfont) else {
+			  let bouncer = try? MIDIFileBouncer(midiFile: midiFile, soundfontFile: self.sourceSoundfont) else {
 			fatalError("Couldn't initialize bouncer")
 		}
 
@@ -83,14 +83,7 @@ class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
 		self.bouncer?.delegate = self
 
 		DispatchQueue.global(qos: .userInitiated).async {
-			do {
-				try self.bouncer?.bounce(to: targetFile)
-			} catch {
-				DispatchQueue.main.async {
-					NSAlert.runModal(title: "Error", message: error.localizedDescription, style: .critical)
-					self.close()
-				}
-			}
+			self.bouncer?.bounce(to: targetFile)
 		}
 	}
 
@@ -102,7 +95,14 @@ class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
 
 	func bounceCompleted() {
 		DispatchQueue.main.async {
-			NSAlert.runModal(title: "DEBUG", message: "Done!", style: .informational)
+			NSAlert.runModal(title: "DONE", message: "Done!", style: .informational)
+			self.close()
+		}
+	}
+
+	func bounceError(error: Error) {
+		DispatchQueue.main.async {
+			NSAlert.runModal(title: "ERROR", message: error.localizedDescription, style: .critical)
 			self.close()
 		}
 	}

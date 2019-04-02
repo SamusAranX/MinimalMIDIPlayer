@@ -9,10 +9,27 @@
 import Cocoa
 import AVFoundation
 
+protocol MIDIFileBouncerDelegate: class {
+	func bounceProgress(progress: Double)
+	func bounceError(error: Error)
+	func bounceCompleted()
+}
+
+@available(OSX 10.13, *)
 class MIDIFileBouncer {
 	fileprivate var engine: AVAudioEngine!
 	fileprivate var sampler: AVAudioUnitMIDISynth!
 	fileprivate var sequencer: AVAudioSequencer!
+
+	fileprivate let audioFormat: AVAudioFormat
+
+	fileprivate var cancelProcessing = false
+
+	var isCancelled: Bool {
+		return self.cancelProcessing
+	}
+
+	weak var delegate: MIDIFileBouncerDelegate?
 
 	deinit {
 		self.engine.disconnectNodeInput(self.sampler, bus: 0)
@@ -22,87 +39,128 @@ class MIDIFileBouncer {
 		self.engine = nil
 	}
 
-	init(midiFileData: Data, soundBankURL: URL) throws {
+	init(midiFile: URL, soundfontFile: URL?) throws {
 		self.engine = AVAudioEngine()
-		self.sampler = try AVAudioUnitMIDISynth(soundBankURL: soundBankURL)
+
+		self.sampler = try AVAudioUnitMIDISynth(soundBankURL: soundfontFile)
 
 		self.engine.attach(self.sampler)
 
-		// We'll tap the sampler output directly for recording
-		// and mute the mixer output so that bouncing is silent to the user.
-		let audioFormat = AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 2)
+//		self.audioFormat = AVAudioFormat(standardFormatWithSampleRate: Double(Settings.shared.sampleRate), channels: AVAudioChannelCount(Settings.shared.channels))
+//		self.audioFormat = AVAudioFormat(standardFormatWithSampleRate: 96000, channels: 2)!
+		self.audioFormat = Settings.shared.destinationFormat
+
 		let mixer = self.engine.mainMixerNode
-		mixer.outputVolume = 1.0
-		self.engine.connect(self.sampler, to: mixer, format: audioFormat)
+		mixer.outputVolume = 0.0
+		self.engine.connect(self.sampler, to: mixer, format: self.audioFormat)
 
 		self.sequencer = AVAudioSequencer(audioEngine: self.engine)
-		try self.sequencer.load(from: midiFileData, options: [])
+		try self.sequencer.load(from: midiFile, options: [])
 		self.sequencer.prepareToPlay()
 	}
 
-	func bounce(toFileURL fileURL: URL) throws {
-		let outputNode = self.sampler!
+	func cancel() {
+		self.cancelProcessing = true
+	}
 
-		let sequenceLength = self.sequencer.tracks.map({ $0.lengthInSeconds }).max() ?? 0
+	func bounce(to fileURL: URL) {
 		var writeError: NSError?
-		let outputFile = try AVAudioFile(forWriting: fileURL, settings: outputNode.outputFormat(forBus: 0).settings)
 
-		self.engine.prepare()
-		try self.engine.start()
+		let recordLeading = 0.2
+		let recordTrailing = 2.0
 
-		// Load the patches by playing the sequence through in preload mode.
-		//		self.sequencer.rate = 100.0
-		//		self.sequencer.currentPositionInSeconds = 0
-		//		self.sequencer.prepareToPlay()
-		//
-		//		try self.sampler.setPreload(enabled: true)
-		//		try self.sequencer.start()
-		//		while (self.sequencer.isPlaying
-		//			&& self.sequencer.currentPositionInSeconds < sequenceLength) {
-		//				usleep(100000)
-		//		}
-		//		self.sequencer.stop()
-		//		usleep(2000000) // ensure all notes have rung out
-		//		try self.sampler.setPreload(enabled: false)
-		//		self.sequencer.rate = 1.0
+		let outputNode = self.sampler!
+//		let outputFormat = outputNode.outputFormat(forBus: 0)
+		let outputFormat = self.audioFormat
 
-		// Get sequencer ready again.
-		self.sequencer.currentPositionInSeconds = 0
-		self.sequencer.prepareToPlay()
+		guard let sequenceLength = self.sequencer.tracks.map({ $0.lengthInSeconds + self.sequencer.seconds(forBeats: $0.offsetTime) }).max() else {
+			fatalError()
+		}
 
-		// Start recording.
-		outputNode.installTap(onBus: 0, bufferSize: 4096, format: outputNode.outputFormat(forBus: 0)) { (buffer: AVAudioPCMBuffer, _) in
+		let converter = Settings.shared.getConverter(from: outputFormat)
+
+		let outputFile: AVAudioFile
+		do {
+			let processingFormat = outputFormat.settings
+			outputFile = try AVAudioFile(forWriting: fileURL, settings: processingFormat)
+		} catch {
+			self.delegate?.bounceError(error: error)
+			return
+		}
+
+		// Install tap
+		outputNode.installTap(onBus: 0, bufferSize: 4096, format: outputFormat) { (buffer: AVAudioPCMBuffer, _) in
 			do {
+//				let convertedBuffer = AVAudioPCMBuffer(pcmFormat: converter.outputFormat, frameCapacity: buffer.frameLength)!
+//				convertedBuffer.frameLength = convertedBuffer.frameCapacity
+//
+//				let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
+//					outStatus.pointee = AVAudioConverterInputStatus.haveData
+//					return buffer
+//				}
+//				let status = converter.convert(to: convertedBuffer, error: &writeError, withInputFrom: inputBlock)
+//				print(status.rawValue)
+
+//				try converter.convert(to: convertedBuffer, from: buffer)
+
 				try outputFile.write(from: buffer)
 			} catch {
 				writeError = error as NSError
 			}
 		}
 
-		// Add silence to beginning.
-		usleep(200000)
+		// Get sequencer ready
+		self.sequencer.currentPositionInSeconds = 0
+		self.sequencer.prepareToPlay()
 
-		// Start playback.
-		try self.sequencer.start()
+		self.engine.prepare()
 
-		// Continuously check for track finished or error while looping.
-		while self.sequencer.isPlaying && writeError == nil && self.sequencer.currentPositionInSeconds < sequenceLength {
-				usleep(100000)
+		do {
+			try self.engine.start()
+		} catch {
+			self.delegate?.bounceError(error: error)
+			return
 		}
 
-		// Ensure playback is stopped.
+		// Add silence to beginning
+		usleep(useconds_t(recordLeading * 1000 * 1000))
+
+		// Start playback.
+		do {
+			try self.sequencer.start()
+		} catch {
+			self.delegate?.bounceError(error: error)
+			return
+		}
+
+		// Continuously check for track finished or error while looping.
+		while self.sequencer.isPlaying && !self.cancelProcessing && writeError == nil && self.sequencer.currentPositionInSeconds < sequenceLength {
+
+			let progress = self.sequencer.currentPositionInSeconds / sequenceLength
+			self.delegate?.bounceProgress(progress: progress * 100)
+
+			usleep(10000)
+		}
+
+		// Ensure playback is stopped
 		self.sequencer.stop()
 
-		// Add silence to end.
-		usleep(2500000)
+		if writeError == nil {
+			// Add x seconds of silence to end to ensure all notes have fully stopped playing
+			usleep(useconds_t(recordTrailing * 1000 * 1000))
+			self.delegate?.bounceProgress(progress: 100)
+		}
 
 		// Stop recording.
 		outputNode.removeTap(onBus: 0)
 		self.engine.stop()
 
+
 		// Return error if there was any issue during recording.
 		if let writeError = writeError {
-			throw writeError
+			self.delegate?.bounceError(error: writeError)
+		} else {
+			self.delegate?.bounceCompleted()
 		}
 	}
 }

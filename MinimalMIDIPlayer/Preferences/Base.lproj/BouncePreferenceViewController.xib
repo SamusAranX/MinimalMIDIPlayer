@@ -8,7 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BouncePreferenceViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target">
             <connections>
-                <outlet property="bitRateMenu" destination="6FB-hk-pX9" id="WWj-zZ-QfN"/>
+                <outlet property="bitDepthMenu" destination="6FB-hk-pX9" id="X7o-h7-LUQ"/>
                 <outlet property="channelsMenu" destination="GMZ-fd-Yb6" id="g5B-pP-RYZ"/>
                 <outlet property="sampleRateMenu" destination="US8-uV-tTr" id="KYb-Oi-nD3"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -50,41 +50,25 @@
                                 </gridCell>
                                 <gridCell row="tma-0u-mjG" column="BHF-2j-dnx" id="6nf-EK-Pbd">
                                     <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="US8-uV-tTr">
-                                        <rect key="frame" x="128" y="51" width="101" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="44.1 kHz" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="44100" imageScaling="proportionallyDown" inset="2" selectedItem="0V2-KO-rlb" id="sQB-QW-adV">
+                                        <rect key="frame" x="128" y="51" width="99" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="44100 Hz" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="44100" imageScaling="proportionallyDown" inset="2" selectedItem="0V2-KO-rlb" id="sQB-QW-adV">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="DnM-qt-Us7">
                                                 <items>
-                                                    <menuItem title="44.1 kHz" state="on" tag="44100" id="0V2-KO-rlb"/>
-                                                    <menuItem title="48 kHz" tag="48000" id="Oyv-AP-c27"/>
-                                                    <menuItem isSeparatorItem="YES" id="U6l-Lq-hPl"/>
-                                                    <menuItem title="88.2 kHz" tag="88200" id="RAm-fe-hvn"/>
-                                                    <menuItem title="96 kHz" tag="96000" id="Kmd-6j-FaR"/>
+                                                    <menuItem title="8000 Hz" tag="8000" id="7q0-Hg-qBj"/>
+                                                    <menuItem title="11050 Hz" tag="11050" id="tIb-Kq-3gc"/>
+                                                    <menuItem title="16000 Hz" tag="16000" id="IKx-Fm-gq8"/>
+                                                    <menuItem isSeparatorItem="YES" id="R8X-j7-4ho"/>
+                                                    <menuItem title="22050 Hz" tag="22050" id="gz2-E5-Sl1"/>
+                                                    <menuItem title="24000 Hz" tag="24000" id="bps-Pj-BcI"/>
+                                                    <menuItem title="32000 Hz" tag="32000" id="caW-HJ-I5L"/>
                                                     <menuItem isSeparatorItem="YES" id="YMT-Xp-nd9"/>
-                                                    <menuItem title="176.4 kHz" tag="176400" id="9eL-4R-P9e">
-                                                        <attributedString key="attributedTitle">
-                                                            <fragment content="176.4 kHz">
-                                                                <attributes>
-                                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                    <font key="NSFont" size="13" name=".AppleSystemUIFontDemiItalic"/>
-                                                                    <font key="NSOriginalFont" size="13" name=".AppleSystemUIFontDemiItalic"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                    </menuItem>
-                                                    <menuItem title="192 kHz" tag="192000" id="gfq-MN-SAk">
-                                                        <attributedString key="attributedTitle">
-                                                            <fragment content="192 kHz">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="13" name=".AppleSystemUIFontDemiItalic"/>
-                                                                    <font key="NSOriginalFont" size="13" name=".AppleSystemUIFontDemiItalic"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                    </menuItem>
+                                                    <menuItem title="44100 Hz" state="on" tag="44100" id="0V2-KO-rlb"/>
+                                                    <menuItem title="48000 Hz" tag="48000" id="Oyv-AP-c27"/>
+                                                    <menuItem isSeparatorItem="YES" id="U6l-Lq-hPl"/>
+                                                    <menuItem title="88200 Hz" tag="88200" id="RAm-fe-hvn"/>
+                                                    <menuItem title="96000 Hz" tag="96000" id="Kmd-6j-FaR"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -119,7 +103,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
-                                            <action selector="bitRateSelectionChanged:" target="-2" id="lQi-p9-rBc"/>
+                                            <action selector="bitDepthSelectionChanged:" target="-2" id="Rpf-m7-urx"/>
                                         </connections>
                                     </popUpButton>
                                 </gridCell>
@@ -186,16 +170,5 @@
             </constraints>
             <point key="canvasLocation" x="184" y="17.5"/>
         </customView>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="lPf-xK-EF7">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="131" y="158" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="Tq0-1Q-xc6">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </view>
-            <point key="canvasLocation" x="-324" y="17"/>
-        </window>
     </objects>
 </document>
