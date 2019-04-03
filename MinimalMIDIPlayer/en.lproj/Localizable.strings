@@ -29,4 +29,6 @@
 
 // BounceProgressViewController
 "Bouncing {source.mid} to {target.wav}…" = "Bouncing %@ to %@…";
+"Bouncing {source.mid}…"                 = "Bouncing %@…";
 "Soundfont used: {source.sf2}"           = "Soundfont used: %@";
+"An error occurred"                      = "Ein Fehler ist aufgetreten";

@@ -407,19 +407,19 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 	@available(OSX 10.13, *)
 	@IBAction func bounceToFile(_ sender: NSMenuItem) {
-		guard !self.bouncing else {
+		guard !self.bouncing, let midiPlayer = self.midiPlayer else {
 			return
 		}
 
 		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
 		guard let bounceProgressVC = storyboard.instantiateController(withIdentifier: "BounceProgressViewController") as? BounceProgressViewController,
-		      let sourceMIDI = self.midiPlayer?.currentMIDI else {
+		      let sourceMIDI = midiPlayer.currentMIDI else {
 			print("frick")
 			return
 		}
 
-		self.midiPlayer?.pause()
-		self.midiPlayer?.acceptsMediaKeys = false
+		midiPlayer.pause()
+		midiPlayer.acceptsMediaKeys = false
 		print("disabled media keys")
 
 		let savePanel = NSSavePanel()
@@ -433,23 +433,15 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			return
 		}
 
-		bounceProgressVC.prepare(sourceMIDI: sourceMIDI, targetFile: saveURL, sourceSoundfont: self.midiPlayer?.currentSoundfont)
+		bounceProgressVC.prepare(sourceMIDIPlayer: midiPlayer, targetFile: saveURL)
 
-		NSApp.runModal(for: NSPanel(contentViewController: bounceProgressVC))
-
-//		self.presentAsModalWindow(bounceProgressVC)
+		let bounceStatus = NSApp.runModal(for: NSPanel(contentViewController: bounceProgressVC))
+		if bounceStatus == .OK {
+			NSApplication.shared.requestUserAttention(.informationalRequest)
+		}
 
 		self.midiPlayer?.acceptsMediaKeys = true
 		print("enabled media keys")
-
-//		guard let bouncer = try? MIDIFileOfflineBouncer(midiFileData: Data(contentsOf: currentMIDI), soundBankURL: self.midiPlayer?.currentSoundfont) else {
-//			print("bouncer init failed")
-//			return
-//		}
-//
-//		try? bouncer.bounce(toFileURL: saveURL)
-//
-//		Swift.print("bounced!")
 	}
 
 	// MARK: - WindowControllerDelegate

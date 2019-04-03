@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="bitDepthMenu" destination="6FB-hk-pX9" id="X7o-h7-LUQ"/>
                 <outlet property="channelsMenu" destination="GMZ-fd-Yb6" id="g5B-pP-RYZ"/>
+                <outlet property="ditheringCheckbox" destination="Euq-i4-R17" id="Bx9-Pd-i5c"/>
                 <outlet property="sampleRateMenu" destination="US8-uV-tTr" id="KYb-Oi-nD3"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -17,21 +18,22 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0c-1E-ZsV">
-                    <rect key="frame" x="30" y="20" width="260" height="111"/>
+                    <rect key="frame" x="30" y="20" width="260" height="136"/>
                     <subviews>
                         <gridView xPlacement="leading" yPlacement="center" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="1ma-Q8-r3x">
-                            <rect key="frame" x="0.0" y="36" width="260" height="75"/>
+                            <rect key="frame" x="0.0" y="36" width="260" height="100"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="75" id="oQA-xW-7kg"/>
+                                <constraint firstAttribute="height" constant="100" id="oQA-xW-7kg"/>
                             </constraints>
                             <rows>
                                 <gridRow id="tma-0u-mjG"/>
                                 <gridRow id="NX4-vM-RPf"/>
                                 <gridRow id="WHj-l7-7eo"/>
+                                <gridRow id="IbT-kU-WV1"/>
                             </rows>
                             <columns>
                                 <gridColumn xPlacement="trailing" width="124" id="wZO-kY-FdQ"/>
@@ -40,7 +42,7 @@
                             <gridCells>
                                 <gridCell row="tma-0u-mjG" column="wZO-kY-FdQ" id="iSv-8x-HKb">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Of-zd-DOB">
-                                        <rect key="frame" x="46" y="56" width="80" height="17"/>
+                                        <rect key="frame" x="46" y="81" width="80" height="17"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Sample Rate" id="HQ8-72-uFZ">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -50,14 +52,15 @@
                                 </gridCell>
                                 <gridCell row="tma-0u-mjG" column="BHF-2j-dnx" id="6nf-EK-Pbd">
                                     <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="US8-uV-tTr">
-                                        <rect key="frame" x="128" y="51" width="99" height="25"/>
+                                        <rect key="frame" x="128" y="76" width="105" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="44100 Hz" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="44100" imageScaling="proportionallyDown" inset="2" selectedItem="0V2-KO-rlb" id="sQB-QW-adV">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="DnM-qt-Us7">
                                                 <items>
                                                     <menuItem title="8000 Hz" tag="8000" id="7q0-Hg-qBj"/>
-                                                    <menuItem title="11050 Hz" tag="11050" id="tIb-Kq-3gc"/>
+                                                    <menuItem title="11025 Hz" tag="11025" id="tIb-Kq-3gc"/>
+                                                    <menuItem title="12000 Hz" tag="12000" id="z6K-m5-Pen"/>
                                                     <menuItem title="16000 Hz" tag="16000" id="IKx-Fm-gq8"/>
                                                     <menuItem isSeparatorItem="YES" id="R8X-j7-4ho"/>
                                                     <menuItem title="22050 Hz" tag="22050" id="gz2-E5-Sl1"/>
@@ -66,9 +69,13 @@
                                                     <menuItem isSeparatorItem="YES" id="YMT-Xp-nd9"/>
                                                     <menuItem title="44100 Hz" state="on" tag="44100" id="0V2-KO-rlb"/>
                                                     <menuItem title="48000 Hz" tag="48000" id="Oyv-AP-c27"/>
+                                                    <menuItem title="64000 Hz" tag="64000" id="hai-yk-tLz"/>
                                                     <menuItem isSeparatorItem="YES" id="U6l-Lq-hPl"/>
                                                     <menuItem title="88200 Hz" tag="88200" id="RAm-fe-hvn"/>
                                                     <menuItem title="96000 Hz" tag="96000" id="Kmd-6j-FaR"/>
+                                                    <menuItem isSeparatorItem="YES" hidden="YES" id="tVe-r0-G9h"/>
+                                                    <menuItem title="176400 Hz" tag="176400" hidden="YES" id="9Mu-Gd-qOa"/>
+                                                    <menuItem title="192000 Hz" tag="192000" hidden="YES" id="Fj4-U0-ofj"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -79,7 +86,7 @@
                                 </gridCell>
                                 <gridCell row="NX4-vM-RPf" column="wZO-kY-FdQ" id="KsJ-un-hxj">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MNA-zK-ymh">
-                                        <rect key="frame" x="65" y="29" width="61" height="17"/>
+                                        <rect key="frame" x="65" y="54" width="61" height="17"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Bit Depth" id="JKY-or-Kyb">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -89,14 +96,18 @@
                                 </gridCell>
                                 <gridCell row="NX4-vM-RPf" column="BHF-2j-dnx" id="YMq-0S-Sj4">
                                     <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6FB-hk-pX9">
-                                        <rect key="frame" x="128" y="24" width="115" height="25"/>
+                                        <rect key="frame" x="128" y="49" width="115" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="16 Bit" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="16" imageScaling="proportionallyDown" inset="2" selectedItem="1C2-jJ-K8e" id="HfM-62-MiN">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="oZj-rY-dJm">
                                                 <items>
+                                                    <menuItem title="8 Bit" tag="8" hidden="YES" id="gmE-aW-xC2"/>
                                                     <menuItem title="16 Bit" state="on" tag="16" id="1C2-jJ-K8e"/>
-                                                    <menuItem title="32 Bit" tag="32" id="L88-r0-zp6"/>
+                                                    <menuItem title="24 Bit" tag="24" hidden="YES" id="rqR-Pi-YVw"/>
+                                                    <menuItem title="32 Bit" tag="32" hidden="YES" id="Nq6-1g-yaA"/>
+                                                    <menuItem isSeparatorItem="YES" hidden="YES" id="oqz-rQ-nHf"/>
+                                                    <menuItem title="16 Bit (float)" tag="1616" hidden="YES" id="L88-r0-zp6"/>
                                                     <menuItem title="32 Bit (float)" tag="3232" id="PuM-Zr-2WJ"/>
                                                 </items>
                                             </menu>
@@ -108,7 +119,7 @@
                                 </gridCell>
                                 <gridCell row="WHj-l7-7eo" column="wZO-kY-FdQ" id="LM2-g9-qLW">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xcU-5m-7LM">
-                                        <rect key="frame" x="65" y="2" width="61" height="17"/>
+                                        <rect key="frame" x="65" y="27" width="61" height="17"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Channels" id="7qn-1I-5ww">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -118,7 +129,7 @@
                                 </gridCell>
                                 <gridCell row="WHj-l7-7eo" column="BHF-2j-dnx" id="5sT-vv-M4m">
                                     <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GMZ-fd-Yb6">
-                                        <rect key="frame" x="128" y="-3" width="99" height="25"/>
+                                        <rect key="frame" x="128" y="22" width="99" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="2 (Stereo)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="5Yc-Wp-1E1" id="P95-8j-GXg">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -133,6 +144,19 @@
                                             <action selector="channelsSelectionChanged:" target="-2" id="QeA-c8-K3z"/>
                                         </connections>
                                     </popUpButton>
+                                </gridCell>
+                                <gridCell row="IbT-kU-WV1" column="wZO-kY-FdQ" id="VFh-We-gEq"/>
+                                <gridCell row="IbT-kU-WV1" column="BHF-2j-dnx" id="sqJ-Yc-cvv">
+                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Euq-i4-R17">
+                                        <rect key="frame" x="128" y="1" width="78" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Dithering" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Hf0-oY-hqt">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="ditheringCheckboxToggled:" target="-2" id="38T-f3-dvF"/>
+                                        </connections>
+                                    </button>
                                 </gridCell>
                             </gridCells>
                         </gridView>

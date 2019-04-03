@@ -22,18 +22,18 @@ class AVAudioUnitMIDISynth: AVAudioUnitMIDIInstrument {
 
 		super.init(audioComponentDescription: description)
 
-		if var bankURL = soundBankURL {
-			let status = AudioUnitSetProperty(
-				self.audioUnit,
-				AudioUnitPropertyID(kMusicDeviceProperty_SoundBankURL),
-				AudioUnitScope(kAudioUnitScope_Global),
-				0,
-				&bankURL,
-				UInt32(MemoryLayout<URL>.size))
+		var soundfontURL = soundBankURL ?? URL(fileURLWithPath: "/System/Library/Components/CoreAudio.component/Contents/Resources/gs_instruments.dls")
 
-			if status != OSStatus(noErr) {
-				throw "\(status)"
-			}
+		let status = AudioUnitSetProperty(
+			self.audioUnit,
+			AudioUnitPropertyID(kMusicDeviceProperty_SoundBankURL),
+			AudioUnitScope(kAudioUnitScope_Global),
+			0,
+			&soundfontURL,
+			UInt32(MemoryLayout<URL>.size))
+
+		if status != OSStatus(noErr) {
+			throw "\(status)"
 		}
 	}
 

@@ -10,13 +10,10 @@ import Cocoa
 
 @available(OSX 10.13, *)
 class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
-	// TODO: do all the bouncing work in here
-	// make the actual work happen in a background thread
-	// and make it cancellable via the Cancel button
-
 	@IBOutlet weak var primaryLabel: NSTextField!
 	@IBOutlet weak var secondaryLabel: NSTextField!
 	@IBOutlet weak var progressBar: NSProgressIndicator!
+	@IBOutlet weak var timeRemainingLabel: NSTextField!
 
 	fileprivate var sourceMIDI: URL?
 	fileprivate var sourceSoundfont: URL?
@@ -24,27 +21,42 @@ class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
 	fileprivate var targetFile: URL?
 
 	fileprivate var bouncer: MIDIFileBouncer?
+	fileprivate var bouncerRate: Float = 1.0
+	fileprivate var bouncerDuration: TimeInterval = 0
 
-	func prepare(sourceMIDI: URL, targetFile: URL, sourceSoundfont: URL? = nil) {
+	fileprivate var timeFormatter: DateComponentsFormatter!
+
+	func prepare(sourceMIDIPlayer: PWMIDIPlayer, targetFile: URL) {
 		guard self.sourceMIDI == nil, self.targetFile == nil else {
 			return
 		}
 
-		self.sourceMIDI = sourceMIDI
+		self.sourceMIDI = sourceMIDIPlayer.currentMIDI!
 		self.targetFile = targetFile
 
-		self.sourceSoundfont = sourceSoundfont
+		self.sourceSoundfont = sourceMIDIPlayer.currentSoundfont
+
+		self.bouncerRate = sourceMIDIPlayer.rate
+		self.bouncerDuration = sourceMIDIPlayer.duration / Double(self.bouncerRate)
 	}
 
-	func close() {
+	func close(with code: NSApplication.ModalResponse) {
 		if NSApp.modalWindow == self.view.window && NSApp.modalWindow?.isVisible ?? false {
-			NSApp.stopModal(withCode: .cancel)
+			NSApp.stopModal(withCode: code)
 			self.view.window?.close()
 		}
 	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+		self.timeFormatter = DateComponentsFormatter()
+		self.timeFormatter.allowedUnits = [.hour, .minute, .second]
+		self.timeFormatter.formattingContext = .beginningOfSentence
+		self.timeFormatter.includesApproximationPhrase = true
+		self.timeFormatter.includesTimeRemainingPhrase = true
+		self.timeFormatter.maximumUnitCount = 2
+		self.timeFormatter.unitsStyle = .short
 	}
 
 	override func viewWillAppear() {
@@ -80,6 +92,7 @@ class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
 		}
 
 		self.bouncer = bouncer
+		self.bouncer?.rate = self.bouncerRate
 		self.bouncer?.delegate = self
 
 		DispatchQueue.global(qos: .userInitiated).async {
@@ -87,29 +100,37 @@ class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
 		}
 	}
 
-	func bounceProgress(progress: Double) {
+	func bounceProgress(progress: Double, currentTime: TimeInterval) {
 		DispatchQueue.main.async {
 			self.progressBar.doubleValue = progress
+
+			let currentTime = currentTime / Double(self.bouncerRate)
+			let timeRemaining = max(0, self.bouncerDuration - currentTime)
+
+			if let timeRemainingString = self.timeFormatter.string(from: timeRemaining) {
+				self.timeRemainingLabel.stringValue = timeRemainingString
+			} else {
+				self.timeRemainingLabel.stringValue = "N/A"
+			}
 		}
 	}
 
 	func bounceCompleted() {
 		DispatchQueue.main.async {
-			NSAlert.runModal(title: "DONE", message: "Done!", style: .informational)
-			self.close()
+			self.close(with: .OK)
 		}
 	}
 
 	func bounceError(error: Error) {
 		DispatchQueue.main.async {
-			NSAlert.runModal(title: "ERROR", message: error.localizedDescription, style: .critical)
-			self.close()
+			let errorTitle = NSLocalizedString("An error occurred", comment: "Generic error title string")
+			NSAlert.runModal(title: errorTitle, message: error.localizedDescription, style: .critical)
+			self.close(with: .abort)
 		}
 	}
 
 	@IBAction func cancelButtonPressed(_ sender: NSButton) {
 		self.bouncer?.cancel()
-		self.close()
+		self.close(with: .cancel)
 	}
-
 }

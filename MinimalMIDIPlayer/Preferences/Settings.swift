@@ -11,6 +11,29 @@ import AVFoundation
 
 class Settings {
 
+	// MARK: - UserDefaults plumbing
+
+	private init() {
+		UserDefaults.standard.register(defaults: [
+			"autoplay": false,
+			"looseSFMatching": false,
+			"cacophonyMode": false,
+			"sampleRate": 44100,
+			"bitDepth": 16,
+			"channels": 2,
+			"dithering": false
+		])
+	}
+
+	public static func clear() {
+		for key in UserDefaults.standard.dictionaryRepresentation().keys {
+			UserDefaults.standard.removeObject(forKey: key)
+		}
+		UserDefaults.standard.synchronize()
+	}
+
+	// MARK: - UserDefaults bindings
+
 	static let shared = Settings()
 
 	var autoplay: Bool {
@@ -73,6 +96,18 @@ class Settings {
 		}
 	}
 
+	var dithering: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: #function)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: #function)
+			UserDefaults.standard.synchronize()
+		}
+	}
+
+	// MARK: - Helper properties and methods
+
 	var processingFormat: AVAudioFormat {
 		guard let format = AVAudioFormat(standardFormatWithSampleRate: 96000, channels: 2) else {
 			fatalError("processingFormat")
@@ -88,7 +123,7 @@ class Settings {
 		}
 
 		var outDesc: AudioStreamBasicDescription
-		if self.bitDepth == 1616 || self.bitDepth == 32 {
+		if self.bitDepth == 1616 || self.bitDepth == 3232 {
 			outDesc = referenceFloatFormat.streamDescription.pointee
 		} else {
 			outDesc = referenceIntFormat.streamDescription.pointee
@@ -99,7 +134,9 @@ class Settings {
 			outDesc.mBitsPerChannel = 8
 		case 16, 1616:
 			outDesc.mBitsPerChannel = 16
-		case 32:
+		case 24:
+			outDesc.mBitsPerChannel = 24
+		case 32, 3232:
 			outDesc.mBitsPerChannel = 32
 		default:
 			fatalError("Unexpected bit depth \(self.bitDepth)")
@@ -121,35 +158,14 @@ class Settings {
 			fatalError("Converter initialization failed")
 		}
 
-		if destinationFormat.channelCount < format.channelCount {
-			conv.downmix = true
-		}
-
-//		conv.bitRateStrategy = AVAudioBitRateStrategy_Constant
+		conv.downmix = true
+		conv.dither = self.dithering
 
 		conv.sampleRateConverterAlgorithm = AVSampleRateConverterAlgorithm_MinimumPhase
 		conv.sampleRateConverterQuality = .max
 
 		return conv
 
-	}
-
-	private init() {
-		UserDefaults.standard.register(defaults: [
-			"autoplay": false,
-			"looseSFMatching": false,
-			"cacophonyMode": false,
-			"sampleRate": 44100,
-			"bitDepth": 16,
-			"channels": 2
-		])
-	}
-
-	public static func clear() {
-		for key in UserDefaults.standard.dictionaryRepresentation().keys {
-			UserDefaults.standard.removeObject(forKey: key)
-		}
-		UserDefaults.standard.synchronize()
 	}
 
 }

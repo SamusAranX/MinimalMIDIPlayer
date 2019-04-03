@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import AVFoundation
 
 extension NSAlert {
 	class func runModal(title: String, message: String, style: NSAlert.Style) {
@@ -98,4 +99,40 @@ extension BinaryInteger {
 
 		return string
 	}
+}
+
+extension AVAudioFormat {
+
+	var commonFormat: AVAudioCommonFormat {
+		let streamDescription = self.streamDescription.pointee
+
+		switch streamDescription.mBitsPerChannel {
+		case 16:
+			return .pcmFormatInt16
+		case 32:
+			if streamDescription.mFormatFlags & kLinearPCMFormatFlagIsFloat == 1 {
+				return .pcmFormatFloat32
+			} else {
+				return .pcmFormatInt32
+			}
+		case 64:
+			return .pcmFormatFloat64
+		default:
+			return .otherFormat
+		}
+	}
+
+}
+
+extension NSUserNotification {
+
+	static func showNotification(title: String, subtitle: String) {
+		let notification = NSUserNotification()
+		notification.title = title
+		notification.subtitle = subtitle
+		notification.soundName = NSUserNotificationDefaultSoundName
+
+		NSUserNotificationCenter.default.deliver(notification)
+	}
+
 }

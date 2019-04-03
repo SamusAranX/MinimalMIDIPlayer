@@ -21,6 +21,7 @@ class BouncePreferenceViewController: NSViewController, Preferenceable {
 	@IBOutlet weak var sampleRateMenu: NSPopUpButton!
 	@IBOutlet weak var bitDepthMenu: NSPopUpButton!
 	@IBOutlet weak var channelsMenu: NSPopUpButton!
+	@IBOutlet weak var ditheringCheckbox: NSButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,10 @@ class BouncePreferenceViewController: NSViewController, Preferenceable {
 		}
 
 		Settings.shared.channels = selectedItem.tag
+	}
+
+	@IBAction func ditheringCheckboxToggled(_ sender: NSButton) {
+		Settings.shared.dithering = sender.state == .on
 	}
 
 }

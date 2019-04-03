@@ -3,7 +3,7 @@
 	/* Class = "NSTextFieldCell"; title = "Speed"; ObjectID = "nlD-hM-Jcg"; */
 	"nlD-hM-Jcg.title" = "Geschw.";
 
-	// Soundfont Menu
+// Soundfont Menu
 
 	/* Class = "NSMenuItem"; title = "Default Soundfont"; ObjectID = "Q7Y-od-Qzw"; */
 	"Q7Y-od-Qzw.title" = "Standard-Soundfont";
@@ -11,7 +11,7 @@
 	/* Class = "NSMenuItem"; title = "Load Custom Soundfont…"; ObjectID = "0FN-Ns-j7J"; */
 	"0FN-Ns-j7J.title" = "Lade eigene Soundfont…";
 
-	// Faux Soundfont Menu
+// Faux Soundfont Menu
 
 	/* Class = "NSTextFieldCell"; title = "Default Soundfont"; ObjectID = "uan-vg-duM"; */
 	"uan-vg-duM.title" = "Standard-Soundfont";
@@ -47,6 +47,11 @@
 
 	/* Class = "NSButtonCell"; title = "Acknowledgements"; ObjectID = "x4G-Pq-TIw"; */
 	"x4G-Pq-TIw.title" = "Acknowledgements";
+
+// Bounce Progress Window
+
+	/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "P2O-L8-7eX"; */
+	"P2O-L8-7eX.title" = "Abbrechen";
 
 // Main Menu: MinimalMIDIPlayer
 

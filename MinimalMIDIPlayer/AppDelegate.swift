@@ -10,7 +10,7 @@ import Cocoa
 import Preferences
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
 
 	let preferencesWindowController = PreferencesWindowController(
 		viewControllers: [
@@ -19,12 +19,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		]
 	)
 
+	func applicationDidFinishLaunching(_ notification: Notification) {
+		NSUserNotificationCenter.default.delegate = self
+	}
+
 	@IBAction func closeAllWindows(_ sender: NSMenuItem) {
 		NSDocumentController.shared.closeAllDocuments(withDelegate: nil, didCloseAllSelector: nil, contextInfo: nil)
 	}
 
 	@IBAction func showPreferencesWindow(_ sender: NSMenuItem) {
 		preferencesWindowController.showWindow()
+	}
+
+	func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+		return true
 	}
 
 }

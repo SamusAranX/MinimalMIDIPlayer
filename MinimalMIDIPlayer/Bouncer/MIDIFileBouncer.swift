@@ -10,7 +10,7 @@ import Cocoa
 import AVFoundation
 
 protocol MIDIFileBouncerDelegate: class {
-	func bounceProgress(progress: Double)
+	func bounceProgress(progress: Double, currentTime: TimeInterval)
 	func bounceError(error: Error)
 	func bounceCompleted()
 }
@@ -21,12 +21,20 @@ class MIDIFileBouncer {
 	fileprivate var sampler: AVAudioUnitMIDISynth!
 	fileprivate var sequencer: AVAudioSequencer!
 
-	fileprivate let audioFormat: AVAudioFormat
-
 	fileprivate var cancelProcessing = false
 
 	var isCancelled: Bool {
 		return self.cancelProcessing
+	}
+
+	var rate: Float {
+		get {
+			return self.sequencer.rate
+		}
+		set {
+			print("Setting Sequencer Rate to \(newValue)")
+			self.sequencer.rate = newValue
+		}
 	}
 
 	weak var delegate: MIDIFileBouncerDelegate?
@@ -46,10 +54,6 @@ class MIDIFileBouncer {
 
 		self.engine.attach(self.sampler)
 
-		//		self.audioFormat = AVAudioFormat(standardFormatWithSampleRate: Double(Settings.shared.sampleRate), channels: AVAudioChannelCount(Settings.shared.channels))
-		//		self.audioFormat = Settings.shared.destinationFormat
-		self.audioFormat = Settings.shared.processingFormat
-
 		let mixer = self.engine.mainMixerNode
 		mixer.outputVolume = 0.0
 		self.engine.connect(self.sampler, to: mixer, format: Settings.shared.processingFormat)
@@ -66,46 +70,45 @@ class MIDIFileBouncer {
 	func bounce(to fileURL: URL) {
 		var writeError: NSError?
 
-		let recordLeading = 0.2
-		let recordTrailing = 2.0
-
 		let outputNode = self.sampler!
 		let outputFormat = outputNode.outputFormat(forBus: 0)
 
 		guard let sequenceLength = self.sequencer.tracks.map({ $0.lengthInSeconds + self.sequencer.seconds(forBeats: $0.offsetTime) }).max() else {
-			fatalError()
+			fatalError("Can't determine sequence length")
 		}
 
 		let converter = Settings.shared.getConverter(from: outputFormat)
 
 		let outputFile: AVAudioFile
 		do {
-//			outputFile = try AVAudioFile(forWriting: fileURL, settings: outputFormat.settings)
-			outputFile = try AVAudioFile(forWriting: fileURL, settings: converter.outputFormat.settings, commonFormat: .pcmFormatInt16, interleaved: true)
-//			outputFile = try AVAudioFile(forWriting: fileURL, settings: converter.outputFormat.settings)
+			outputFile = try AVAudioFile(forWriting: fileURL, settings: converter.outputFormat.settings, commonFormat: converter.outputFormat.commonFormat, interleaved: true)
 		} catch {
 			self.delegate?.bounceError(error: error)
 			return
 		}
 
 		// Install tap
-		outputNode.installTap(onBus: 0, bufferSize: 8192, format: nil) { (buffer: AVAudioPCMBuffer, _) in
+		outputNode.installTap(onBus: 0, bufferSize: 1024*4, format: nil) { (buffer: AVAudioPCMBuffer, _) in
 			do {
+				let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
+					outStatus.pointee = AVAudioConverterInputStatus.haveData
+					return buffer
+				}
+
+				// necessary because otherwise the converter will stretch/squeeze samples to fit the buffer, resulting in corruption
 				let sampleRateRatio = outputFormat.sampleRate / converter.outputFormat.sampleRate
 				let capacity = UInt32(Double(buffer.frameCapacity) / sampleRateRatio)
 
 				let convertedBuffer = AVAudioPCMBuffer(pcmFormat: converter.outputFormat, frameCapacity: capacity)!
 				convertedBuffer.frameLength = convertedBuffer.frameCapacity
 
-				let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
-					outStatus.pointee = AVAudioConverterInputStatus.haveData
-					return buffer
-				}
-				let _ = converter.convert(to: convertedBuffer, error: &writeError, withInputFrom: inputBlock)
-				print(writeError == nil)
+				let status = converter.convert(to: convertedBuffer, error: &writeError, withInputFrom: inputBlock)
 
-				print(outputFile.processingFormat)
-				print(converter.outputFormat)
+				if status == .error {
+					throw "Error occurred while converting file"
+				}
+
+//				print(outputFile.processingFormat == converter.outputFormat)
 
 				try outputFile.write(from: convertedBuffer)
 			} catch {
@@ -127,7 +130,7 @@ class MIDIFileBouncer {
 		}
 
 		// Add silence to beginning
-		usleep(useconds_t(recordLeading * 1000 * 1000))
+		usleep(useconds_t(0.2 * 1000 * 1000))
 
 		// Start playback.
 		do {
@@ -141,7 +144,7 @@ class MIDIFileBouncer {
 		while self.sequencer.isPlaying && !self.cancelProcessing && writeError == nil && self.sequencer.currentPositionInSeconds < sequenceLength {
 
 			let progress = self.sequencer.currentPositionInSeconds / sequenceLength
-			self.delegate?.bounceProgress(progress: progress * 100)
+			self.delegate?.bounceProgress(progress: progress * 100, currentTime: self.sequencer.currentPositionInSeconds)
 
 			usleep(10000)
 		}
@@ -151,14 +154,13 @@ class MIDIFileBouncer {
 
 		if writeError == nil {
 			// Add x seconds of silence to end to ensure all notes have fully stopped playing
-			usleep(useconds_t(recordTrailing * 1000 * 1000))
-			self.delegate?.bounceProgress(progress: 100)
+			usleep(useconds_t(1 * 1000 * 1000))
+			self.delegate?.bounceProgress(progress: 100, currentTime: self.sequencer.currentPositionInSeconds)
 		}
 
 		// Stop recording.
 		outputNode.removeTap(onBus: 0)
 		self.engine.stop()
-
 
 		// Return error if there was any issue during recording.
 		if let writeError = writeError {

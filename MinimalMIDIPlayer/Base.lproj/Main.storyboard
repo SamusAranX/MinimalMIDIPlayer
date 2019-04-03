@@ -167,16 +167,16 @@
             <objects>
                 <viewController title="MinimalMIDIPlayer" storyboardIdentifier="BounceProgressViewController" id="A1H-dF-fwo" customClass="BounceProgressViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="YVX-oi-vtm">
-                        <rect key="frame" x="0.0" y="0.0" width="410" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="100"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" rowSpacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Llf-KA-HmE">
-                                <rect key="frame" x="20" y="12" width="370" height="76"/>
+                            <gridView xPlacement="leading" yPlacement="center" rowAlignment="none" rowSpacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Llf-KA-HmE">
+                                <rect key="frame" x="20" y="12" width="440" height="76"/>
                                 <rows>
                                     <gridRow id="K3H-ZM-0un"/>
                                     <gridRow id="tpu-zo-pZZ"/>
                                     <gridRow id="je2-BC-HQj"/>
-                                    <gridRow id="zM7-0C-Z5e"/>
+                                    <gridRow height="21" id="zM7-0C-Z5e"/>
                                 </rows>
                                 <columns>
                                     <gridColumn id="URU-Ji-DFd"/>
@@ -204,23 +204,44 @@
                                     </gridCell>
                                     <gridCell row="je2-BC-HQj" column="URU-Ji-DFd" xPlacement="fill" id="sPC-EC-GlG">
                                         <progressIndicator key="contentView" wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="qFU-AJ-CnI">
-                                            <rect key="frame" x="0.0" y="22" width="370" height="20"/>
+                                            <rect key="frame" x="0.0" y="22" width="440" height="20"/>
                                         </progressIndicator>
                                     </gridCell>
-                                    <gridCell row="zM7-0C-Z5e" column="URU-Ji-DFd" xPlacement="trailing" id="Zzd-JD-N2m">
-                                        <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="psP-7d-80L">
-                                            <rect key="frame" x="294" y="-7" width="82" height="32"/>
-                                            <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DWW-7q-udT">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                                <string key="keyEquivalent" base64-UTF8="YES">
+                                    <gridCell row="zM7-0C-Z5e" column="URU-Ji-DFd" xPlacement="fill" id="Zzd-JD-N2m">
+                                        <stackView key="contentView" distribution="equalSpacing" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O48-7Z-RbG">
+                                            <rect key="frame" x="0.0" y="0.0" width="440" height="21"/>
+                                            <subviews>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CdM-pZ-au1">
+                                                    <rect key="frame" x="-2" y="3" width="148" height="14"/>
+                                                    <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="About 0 seconds remaining" id="TcA-zh-3Fu">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="83p-nv-gvs">
+                                                    <rect key="frame" x="364" y="-7" width="82" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P2O-L8-7eX">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                        <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="cancelButtonPressed:" target="A1H-dF-fwo" id="n65-l8-Ulq"/>
-                                            </connections>
-                                        </button>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="cancelButtonPressed:" target="A1H-dF-fwo" id="Q8U-Ky-49e"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <visibilityPriorities>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                            </visibilityPriorities>
+                                            <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                            </customSpacing>
+                                        </stackView>
                                     </gridCell>
                                 </gridCells>
                             </gridView>
@@ -236,11 +257,12 @@ Gw
                         <outlet property="primaryLabel" destination="QCs-53-Q3Z" id="DII-wR-8h8"/>
                         <outlet property="progressBar" destination="qFU-AJ-CnI" id="UHQ-n0-gjp"/>
                         <outlet property="secondaryLabel" destination="urx-YY-aVl" id="MbA-ba-hBJ"/>
+                        <outlet property="timeRemainingLabel" destination="CdM-pZ-au1" id="3fY-pv-sVn"/>
                     </connections>
                 </viewController>
                 <customObject id="HqT-Kw-4pq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="783" y="585"/>
+            <point key="canvasLocation" x="815" y="585"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="2Ws-N8-M5o">
@@ -577,7 +599,7 @@ Gw
                                         <rect key="frame" x="4" y="83" width="274" height="19"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-XL-NGh">
-                                                <rect key="frame" x="-2" y="2" width="36" height="14"/>
+                                                <rect key="frame" x="-2" y="2" width="44" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="8aE-vE-4bo"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="TzT-Qg-QBN"/>
@@ -589,7 +611,7 @@ Gw
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IvW-tF-KiY">
-                                                <rect key="frame" x="34" y="2" width="198" height="15"/>
+                                                <rect key="frame" x="42" y="2" width="198" height="15"/>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Z38-5k-rtW">
                                                         <connections>
@@ -603,7 +625,7 @@ Gw
                                                 </connections>
                                             </slider>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfo-zf-CTx">
-                                                <rect key="frame" x="232" y="2" width="44" height="14"/>
+                                                <rect key="frame" x="240" y="2" width="36" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="dQW-c0-QRB"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="lTs-AZ-qHU"/>
