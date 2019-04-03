@@ -19,8 +19,6 @@
 		562E3AB9224E1E65001AD319 /* AVAudioUnitMIDISynth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3AB8224E1E65001AD319 /* AVAudioUnitMIDISynth.swift */; };
 		562E3ABD224E1E79001AD319 /* MIDIFileBouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3ABC224E1E79001AD319 /* MIDIFileBouncer.swift */; };
 		562E3AC2224E2781001AD319 /* BounceProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3AC0224E2781001AD319 /* BounceProgressViewController.swift */; };
-		562E3AC4224E2D3F001AD319 /* MIKMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 562E3AB5224E1790001AD319 /* MIKMIDI.framework */; };
-		562E3AC5224E2D3F001AD319 /* MIKMIDI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 562E3AB5224E1790001AD319 /* MIKMIDI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		563C821F214DA32F00B0D41E /* MinimalMIDIQL.qlgenerator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56057E65214959BF008946EB /* MinimalMIDIQL.qlgenerator */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		563C822A214DCA6E00B0D41E /* NSFont+LineHeight.h in Headers */ = {isa = PBXBuildFile; fileRef = 563C8229214DCA6E00B0D41E /* NSFont+LineHeight.h */; };
 		563C822C214DCA8900B0D41E /* NSFont+LineHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 563C822B214DCA8900B0D41E /* NSFont+LineHeight.m */; };
@@ -65,7 +63,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				56C2AB8B224A38AD0093728A /* Preferences.framework in Embed Frameworks */,
-				562E3AC5224E2D3F001AD319 /* MIKMIDI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,7 +141,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				562E3AC4224E2D3F001AD319 /* MIKMIDI.framework in Frameworks */,
 				56C2AB89224A388A0093728A /* Preferences.framework in Frameworks */,
 				563D9FC21FF46E95008DE194 /* MediaPlayer.framework in Frameworks */,
 			);
