@@ -66,10 +66,12 @@ class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
 			fatalError("Requirements unfulfilled")
 		}
 
-		let primaryFormatString = NSLocalizedString("Bouncing {source.mid} to {target.wav}…", comment: "Primary label with source and target file")
+		let primaryFormatString = NSLocalizedString("Bouncing to {target.wav}…", comment: "Primary label with target file")
 		let secondaryFormatString = NSLocalizedString("Soundfont used: {source.sf2}", comment: "Secondary label, where {source.sf2} is optional")
 
-		primaryLabel.stringValue = String(format: primaryFormatString, sourceMIDI.lastPathComponent, targetFile.lastPathComponent)
+		window.title = sourceMIDI.lastPathComponent
+
+		primaryLabel.stringValue = String(format: primaryFormatString, targetFile.lastPathComponent)
 		if let sourceSoundfont = self.sourceSoundfont {
 			secondaryLabel.stringValue = String(format: secondaryFormatString, sourceSoundfont.lastPathComponent)
 		} else {
@@ -79,7 +81,6 @@ class BounceProgressViewController: NSViewController, MIDIFileBouncerDelegate {
 		window.styleMask.remove(.closable)
 		window.styleMask.remove(.miniaturizable)
 		window.styleMask.remove(.resizable)
-		window.title = self.title ?? "wat"
 	}
 
 	override func viewDidAppear() {

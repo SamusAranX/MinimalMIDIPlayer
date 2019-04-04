@@ -19,9 +19,7 @@ class Settings {
 			"looseSFMatching": false,
 			"cacophonyMode": false,
 			"sampleRate": 44100,
-			"bitDepth": 16,
-			"channels": 2,
-			"dithering": false
+			"channels": 2
 		])
 	}
 
@@ -76,29 +74,9 @@ class Settings {
 		}
 	}
 
-	var bitDepth: Int {
-		get {
-			return UserDefaults.standard.integer(forKey: #function)
-		}
-		set {
-			UserDefaults.standard.set(newValue, forKey: #function)
-			UserDefaults.standard.synchronize()
-		}
-	}
-
 	var channels: Int {
 		get {
 			return UserDefaults.standard.integer(forKey: #function)
-		}
-		set {
-			UserDefaults.standard.set(newValue, forKey: #function)
-			UserDefaults.standard.synchronize()
-		}
-	}
-
-	var dithering: Bool {
-		get {
-			return UserDefaults.standard.bool(forKey: #function)
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: #function)
@@ -117,39 +95,15 @@ class Settings {
 	}
 
 	var destinationFormat: AVAudioFormat {
-		guard let referenceIntFormat = AVAudioFormat(commonFormat: .pcmFormatInt32, sampleRate: Double(self.sampleRate), channels: AVAudioChannelCount(self.channels), interleaved: true),
-			let referenceFloatFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: Double(self.sampleRate), channels: AVAudioChannelCount(self.channels), interleaved: true) else {
-				fatalError()
-		}
+		let cf = AVAudioCommonFormat.pcmFormatFloat32
+		let sr = Double(self.sampleRate)
+		let cc = AVAudioChannelCount(self.channels)
 
-		var outDesc: AudioStreamBasicDescription
-		if self.bitDepth == 1616 || self.bitDepth == 3232 {
-			outDesc = referenceFloatFormat.streamDescription.pointee
-		} else {
-			outDesc = referenceIntFormat.streamDescription.pointee
-		}
-
-		switch self.bitDepth {
-		case 8:
-			outDesc.mBitsPerChannel = 8
-		case 16, 1616:
-			outDesc.mBitsPerChannel = 16
-		case 24:
-			outDesc.mBitsPerChannel = 24
-		case 32, 3232:
-			outDesc.mBitsPerChannel = 32
-		default:
-			fatalError("Unexpected bit depth \(self.bitDepth)")
-		}
-
-		outDesc.mBytesPerFrame = outDesc.mBitsPerChannel * outDesc.mChannelsPerFrame / 8
-		outDesc.mBytesPerPacket = outDesc.mBytesPerFrame * outDesc.mFramesPerPacket
-
-		guard let audioFormat = AVAudioFormat(streamDescription: &outDesc) else {
+		guard let af = AVAudioFormat(commonFormat: cf, sampleRate: sr, channels: cc, interleaved: true) else {
 			fatalError("AVAudioFormat initialization error")
 		}
 
-		return audioFormat
+		return af
 	}
 
 	func getConverter(from format: AVAudioFormat, to destFormat: AVAudioFormat? = nil) -> AVAudioConverter {
@@ -158,8 +112,9 @@ class Settings {
 			fatalError("Converter initialization failed")
 		}
 
+//		conv.bitRateStrategy = AVAudioBitRateStrategy_Constant
+//		conv.bitRate = 320
 		conv.downmix = true
-		conv.dither = self.dithering
 
 		conv.sampleRateConverterAlgorithm = AVSampleRateConverterAlgorithm_MinimumPhase
 		conv.sampleRateConverterQuality = .max

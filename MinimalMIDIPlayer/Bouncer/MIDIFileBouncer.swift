@@ -32,7 +32,6 @@ class MIDIFileBouncer {
 			return self.sequencer.rate
 		}
 		set {
-			print("Setting Sequencer Rate to \(newValue)")
 			self.sequencer.rate = newValue
 		}
 	}
@@ -83,6 +82,7 @@ class MIDIFileBouncer {
 		do {
 			outputFile = try AVAudioFile(forWriting: fileURL, settings: converter.outputFormat.settings, commonFormat: converter.outputFormat.commonFormat, interleaved: true)
 		} catch {
+			print("AVAudioFile creation failed")
 			self.delegate?.bounceError(error: error)
 			return
 		}
@@ -125,6 +125,7 @@ class MIDIFileBouncer {
 		do {
 			try self.engine.start()
 		} catch {
+			print("Engine start failed")
 			self.delegate?.bounceError(error: error)
 			return
 		}
@@ -136,6 +137,7 @@ class MIDIFileBouncer {
 		do {
 			try self.sequencer.start()
 		} catch {
+			print("Can't start sequencer")
 			self.delegate?.bounceError(error: error)
 			return
 		}
@@ -164,6 +166,7 @@ class MIDIFileBouncer {
 
 		// Return error if there was any issue during recording.
 		if let writeError = writeError {
+			print("Can't write to file")
 			self.delegate?.bounceError(error: writeError)
 		} else {
 			self.delegate?.bounceCompleted()

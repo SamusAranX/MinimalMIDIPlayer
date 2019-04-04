@@ -19,15 +19,12 @@ class BouncePreferenceViewController: NSViewController, Preferenceable {
 	}
 
 	@IBOutlet weak var sampleRateMenu: NSPopUpButton!
-	@IBOutlet weak var bitDepthMenu: NSPopUpButton!
 	@IBOutlet weak var channelsMenu: NSPopUpButton!
-	@IBOutlet weak var ditheringCheckbox: NSButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		self.sampleRateMenu.selectItem(withTag: Settings.shared.sampleRate)
-		self.bitDepthMenu.selectItem(withTag: Settings.shared.bitDepth)
 		self.channelsMenu.selectItem(withTag: Settings.shared.channels)
     }
 
@@ -40,15 +37,6 @@ class BouncePreferenceViewController: NSViewController, Preferenceable {
 		Settings.shared.sampleRate = selectedItem.tag
 	}
 
-	@IBAction func bitDepthSelectionChanged(_ sender: NSPopUpButton) {
-		guard let selectedItem = sender.selectedItem else {
-			Swift.print("Somehow, no item was selected")
-			return
-		}
-
-		Settings.shared.bitDepth = selectedItem.tag
-	}
-
 	@IBAction func channelsSelectionChanged(_ sender: NSPopUpButton) {
 		guard let selectedItem = sender.selectedItem else {
 			Swift.print("Somehow, no item was selected")
@@ -56,10 +44,6 @@ class BouncePreferenceViewController: NSViewController, Preferenceable {
 		}
 
 		Settings.shared.channels = selectedItem.tag
-	}
-
-	@IBAction func ditheringCheckboxToggled(_ sender: NSButton) {
-		Settings.shared.dithering = sender.state == .on
 	}
 
 }
