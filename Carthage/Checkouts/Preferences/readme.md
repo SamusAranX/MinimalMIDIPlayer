@@ -43,7 +43,18 @@ pod 'Preferences'
 
 *Run the `PreferencesExample` target in Xcode to try a live example.*
 
-First, create a couple of view controllers for the preference panes you want. The only difference from implementing a normal view controller is that you have to add the `Preferenceable` protocol and implement the `toolbarItemTitle` and `toolbarItemIcon` getters, as shown below.
+First, create a collection of preference pane identifiers:
+
+```swift
+import Preferences
+
+extension PreferencePaneIdentifier {
+	static let general = PreferencePaneIdentifier("general")
+	static let advanced = PreferencePaneIdentifier("advanced")
+}
+```
+
+Second, create a couple of view controllers for the preference panes you want. The only difference from implementing a normal view controller is that you have to add the `PreferencePane` protocol and implement the `preferencePaneIdentifier`, `toolbarItemTitle`, and `toolbarItemIcon` properties, as shown below. You can leave out `toolbarItemIcon` if you're using the `.segmentedControl` style.
 
 `GeneralPreferenceViewController.swift`
 
@@ -51,7 +62,8 @@ First, create a couple of view controllers for the preference panes you want. Th
 import Cocoa
 import Preferences
 
-final class GeneralPreferenceViewController: NSViewController, Preferenceable {
+final class GeneralPreferenceViewController: NSViewController, PreferencePane {
+	let preferencePaneIdentifier = PreferencePaneIdentifier.general
 	let toolbarItemTitle = "General"
 	let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
 
@@ -73,7 +85,8 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
 import Cocoa
 import Preferences
 
-final class AdvancedPreferenceViewController: NSViewController, Preferenceable {
+final class AdvancedPreferenceViewController: NSViewController, PreferencePane {
+	let preferencePaneIdentifier = PreferencePaneIdentifier.advanced
 	let toolbarItemTitle = "Advanced"
 	let toolbarItemIcon = NSImage(named: NSImage.advancedName)!
 
@@ -101,8 +114,8 @@ import Preferences
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet private var window: NSWindow!
 
-	let preferencesWindowController = PreferencesWindowController(
-		viewControllers: [
+	lazy var preferencesWindowController = PreferencesWindowController(
+		preferencePanes: [
 			GeneralPreferenceViewController(),
 			AdvancedPreferenceViewController()
 		]
@@ -112,23 +125,59 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBAction
 	func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
-		preferencesWindowController.showWindow()
+		preferencesWindowController.show()
 	}
 }
 ```
+
+### Preferences Tab Styles
+
+When you create the `PreferencesWindowController`, you can choose between the `NSToolbarItem`-based style (default) and the `NSSegmentedControl`:
+
+```swift
+// …
+lazy var preferencesWindowController = PreferencesWindowController(
+	preferencePanes: [
+		GeneralPreferenceViewController(),
+		AdvancedPreferenceViewController()
+	],
+	style: .segmentedControl
+)
+// …
+```
+
+`.toolbarItem` style:
+
+![NSToolbarItem based (default)](toolbar-item.png)
+
+`.segmentedControl` style:
+
+![NSSegmentedControl based](segmented-control.png)
 
 
 ## API
 
 ```swift
-protocol Preferenceable: AnyObject {
+public protocol PreferencePane: AnyObject {
+	var preferencePaneIdentifier: PreferencePaneIdentifier { get }
 	var toolbarItemTitle: String { get }
-	var toolbarItemIcon: NSImage { get }
+	var toolbarItemIcon: NSImage { get } // Not required when using the .`segmentedControl` style
 }
 
-class PreferencesWindowController: NSWindowController {
-	init(viewControllers: [Preferenceable])
-	func showWindow()
+public enum PreferencesStyle {
+	case toolbarItems
+	case segmentedControl
+}
+
+public final class PreferencesWindowController: NSWindowController {
+	init(
+		preferencePanes: [PreferencePane],
+		style: PreferencesStyle = .toolbarItems,
+		animated: Bool = true
+	)
+
+	func show(preferencePane: PreferencePaneIdentifier? = nil)
+
 	func hideWindow()
 }
 ```
@@ -142,7 +191,7 @@ class PreferencesWindowController: NSWindowController {
 - Swifty API using a protocol.
 - Fully documented.
 - The window title is automatically localized by using the system string.
-- Less code (and less chance of bugs) as it uses `NSTabView` instead of manually implementing the toolbar and view switching.
+- Supports segmented control style tabs.
 
 
 ## Related
