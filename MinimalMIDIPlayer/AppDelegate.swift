@@ -13,10 +13,10 @@ import Preferences
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
 
 	let preferencesWindowController = PreferencesWindowController(
-		viewControllers: [
+		preferencePanes: [
 			GeneralPreferenceViewController(),
 			BouncePreferenceViewController()
-		]
+		], style: .segmentedControl, animated: true
 	)
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
@@ -28,7 +28,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
 	}
 
 	@IBAction func showPreferencesWindow(_ sender: NSMenuItem) {
-		preferencesWindowController.showWindow()
+		print("Showing Preferences")
+		preferencesWindowController.show(preferencePane: .general)
 	}
 
 	func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {

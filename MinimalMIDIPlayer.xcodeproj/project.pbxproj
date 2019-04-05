@@ -28,6 +28,7 @@
 		5669F2EB21425B400034D3ED /* NowPlayingCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */; };
 		5669F2ED214294F50034D3ED /* GeneralPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F2EC214294F50034D3ED /* GeneralPreferenceViewController.swift */; };
 		569D77F32004F0010028D9C2 /* PWMIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */; };
+		569DA6F32257394B002B39C0 /* PreferencePaneIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569DA6F22257394B002B39C0 /* PreferencePaneIdentifiers.swift */; };
 		56A0BD7C21400569006095CE /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7B21400569006095CE /* DocumentWindowController.swift */; };
 		56A0BD7E214005A4006095CE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7D214005A4006095CE /* DocumentViewController.swift */; };
 		56B0532A223A3D3D000AB382 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56B05329223A3D3D000AB382 /* Acknowledgements.rtf */; };
@@ -104,6 +105,7 @@
 		5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCentral.swift; sourceTree = "<group>"; };
 		5669F2EC214294F50034D3ED /* GeneralPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferenceViewController.swift; sourceTree = "<group>"; };
 		569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWMIDIPlayer.swift; sourceTree = "<group>"; };
+		569DA6F22257394B002B39C0 /* PreferencePaneIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencePaneIdentifiers.swift; sourceTree = "<group>"; };
 		56A0BD7B21400569006095CE /* DocumentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		56A0BD7D214005A4006095CE /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		56A24C472254CCAD00213A4B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				5612BAE721414F3C00AA1882 /* Settings.swift */,
+				569DA6F22257394B002B39C0 /* PreferencePaneIdentifiers.swift */,
 				5669F2EC214294F50034D3ED /* GeneralPreferenceViewController.swift */,
 				56DAB3A0224B71AF00FF8847 /* GeneralPreferenceViewController.xib */,
 				562E3AAC224E0B30001AD319 /* BouncePreferenceViewController.swift */,
@@ -517,6 +520,7 @@
 				5612BAE821414F3C00AA1882 /* Settings.swift in Sources */,
 				5669F2EB21425B400034D3ED /* NowPlayingCentral.swift in Sources */,
 				56654136214045C100283C85 /* MIDIDocument.swift in Sources */,
+				569DA6F32257394B002B39C0 /* PreferencePaneIdentifiers.swift in Sources */,
 				562E3AC2224E2781001AD319 /* BounceProgressViewController.swift in Sources */,
 				56B1E12C21EBA619002CEBB3 /* Levenshtein.swift in Sources */,
 				5669F2ED214294F50034D3ED /* GeneralPreferenceViewController.swift in Sources */,

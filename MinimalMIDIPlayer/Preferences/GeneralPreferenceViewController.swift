@@ -9,8 +9,9 @@
 import Cocoa
 import Preferences
 
-class GeneralPreferenceViewController: NSViewController, Preferenceable {
+class GeneralPreferenceViewController: NSViewController, PreferencePane {
 
+	let preferencePaneIdentifier = PreferencePaneIdentifier.general
 	let toolbarItemTitle: String = NSLocalizedString("General", comment: "Preference Tab Title")
 	let toolbarItemIcon: NSImage = NSImage(named: "PreferencesMIDI")!
 
