@@ -12,7 +12,7 @@ import Preferences
 class GeneralPreferenceViewController: NSViewController, PreferencePane {
 
 	let preferencePaneIdentifier = PreferencePaneIdentifier.general
-	let toolbarItemTitle: String = NSLocalizedString("General", comment: "Preference Tab Title")
+	let preferencePaneTitle: String = NSLocalizedString("General", comment: "Preference Tab Title")
 	let toolbarItemIcon: NSImage = NSImage(named: "PreferencesMIDI")!
 
 	override var nibName: NSNib.Name? {
