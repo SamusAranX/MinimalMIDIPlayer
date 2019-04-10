@@ -136,7 +136,7 @@
                 <customObject id="BPK-JZ-IAI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="Chb-lq-zaq" customClass="AppDelegate" customModule="MinimalMIDIPlayer" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="37" y="159"/>
+            <point key="canvasLocation" x="38" y="176"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="0Rx-vs-gJn">
@@ -161,108 +161,6 @@
                 <customObject id="CYZ-F0-ief" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="393" y="316"/>
-        </scene>
-        <!--MinimalMIDIPlayer-->
-        <scene sceneID="p3N-dG-Z69">
-            <objects>
-                <viewController title="MinimalMIDIPlayer" storyboardIdentifier="BounceProgressViewController" id="A1H-dF-fwo" customClass="BounceProgressViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="YVX-oi-vtm">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="100"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <gridView xPlacement="leading" yPlacement="center" rowAlignment="none" rowSpacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Llf-KA-HmE">
-                                <rect key="frame" x="20" y="12" width="440" height="76"/>
-                                <rows>
-                                    <gridRow id="K3H-ZM-0un"/>
-                                    <gridRow id="tpu-zo-pZZ"/>
-                                    <gridRow id="je2-BC-HQj"/>
-                                    <gridRow height="21" id="zM7-0C-Z5e"/>
-                                </rows>
-                                <columns>
-                                    <gridColumn id="URU-Ji-DFd"/>
-                                </columns>
-                                <gridCells>
-                                    <gridCell row="K3H-ZM-0un" column="URU-Ji-DFd" id="ieq-zr-Bva">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QCs-53-Q3Z">
-                                            <rect key="frame" x="-2" y="59" width="244" height="17"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Bouncing {source.mid} to {target.wav}…" id="KWz-zv-I0k">
-                                                <font key="font" usesAppearanceFont="YES"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </gridCell>
-                                    <gridCell row="tpu-zo-pZZ" column="URU-Ji-DFd" id="ImL-hc-LwG">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="urx-YY-aVl">
-                                            <rect key="frame" x="-2" y="43" width="158" height="14"/>
-                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Soundfont used: {source.sf2}" id="hKt-Zs-Jgf">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </gridCell>
-                                    <gridCell row="je2-BC-HQj" column="URU-Ji-DFd" xPlacement="fill" id="sPC-EC-GlG">
-                                        <progressIndicator key="contentView" wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="qFU-AJ-CnI">
-                                            <rect key="frame" x="0.0" y="22" width="440" height="20"/>
-                                        </progressIndicator>
-                                    </gridCell>
-                                    <gridCell row="zM7-0C-Z5e" column="URU-Ji-DFd" xPlacement="fill" id="Zzd-JD-N2m">
-                                        <stackView key="contentView" distribution="equalSpacing" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O48-7Z-RbG">
-                                            <rect key="frame" x="0.0" y="0.0" width="440" height="21"/>
-                                            <subviews>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CdM-pZ-au1">
-                                                    <rect key="frame" x="-2" y="3" width="148" height="14"/>
-                                                    <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="About 0 seconds remaining" id="TcA-zh-3Fu">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="83p-nv-gvs">
-                                                    <rect key="frame" x="364" y="-7" width="82" height="32"/>
-                                                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P2O-L8-7eX">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                        <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="cancelButtonPressed:" target="A1H-dF-fwo" id="Q8U-Ky-49e"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <visibilityPriorities>
-                                                <integer value="1000"/>
-                                                <integer value="1000"/>
-                                            </visibilityPriorities>
-                                            <customSpacing>
-                                                <real value="3.4028234663852886e+38"/>
-                                                <real value="3.4028234663852886e+38"/>
-                                            </customSpacing>
-                                        </stackView>
-                                    </gridCell>
-                                </gridCells>
-                            </gridView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="Llf-KA-HmE" firstAttribute="leading" secondItem="YVX-oi-vtm" secondAttribute="leading" constant="20" id="B1n-DP-11k"/>
-                            <constraint firstItem="Llf-KA-HmE" firstAttribute="centerX" secondItem="YVX-oi-vtm" secondAttribute="centerX" id="Gt1-ky-dPg"/>
-                            <constraint firstAttribute="trailing" secondItem="Llf-KA-HmE" secondAttribute="trailing" constant="20" id="k93-ff-zeT"/>
-                            <constraint firstItem="Llf-KA-HmE" firstAttribute="centerY" secondItem="YVX-oi-vtm" secondAttribute="centerY" id="tc0-US-SYB"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="primaryLabel" destination="QCs-53-Q3Z" id="DII-wR-8h8"/>
-                        <outlet property="progressBar" destination="qFU-AJ-CnI" id="UHQ-n0-gjp"/>
-                        <outlet property="secondaryLabel" destination="urx-YY-aVl" id="MbA-ba-hBJ"/>
-                        <outlet property="timeRemainingLabel" destination="CdM-pZ-au1" id="3fY-pv-sVn"/>
-                    </connections>
-                </viewController>
-                <customObject id="HqT-Kw-4pq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="815" y="585"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="2Ws-N8-M5o">
@@ -589,20 +487,19 @@ Gw
             <objects>
                 <viewController id="DCZ-VH-yTc" customClass="DocumentViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" id="zzd-uO-cna">
-                        <rect key="frame" x="0.0" y="0.0" width="298" height="140"/>
+                        <rect key="frame" x="0.0" y="0.0" width="306" height="140"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iuT-D2-rrb">
-                                <rect key="frame" x="8" y="8" width="282" height="102"/>
+                                <rect key="frame" x="8" y="8" width="290" height="102"/>
                                 <subviews>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P88-WY-8bV" userLabel="Progress Stack View">
-                                        <rect key="frame" x="4" y="83" width="274" height="19"/>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalClippingResistancePriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P88-WY-8bV" userLabel="Progress Stack View">
+                                        <rect key="frame" x="4" y="83" width="282" height="19"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-XL-NGh">
-                                                <rect key="frame" x="-2" y="2" width="36" height="14"/>
+                                                <rect key="frame" x="-2" y="2" width="39" height="14"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="8aE-vE-4bo"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="TzT-Qg-QBN"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="8aE-vE-4bo"/>
                                                 </constraints>
                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" placeholderString="0:00" usesSingleLineMode="YES" id="p35-XO-UIJ">
                                                     <font key="font" metaFont="smallSystem"/>
@@ -611,7 +508,7 @@ Gw
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IvW-tF-KiY">
-                                                <rect key="frame" x="34" y="2" width="198" height="15"/>
+                                                <rect key="frame" x="35" y="2" width="215" height="15"/>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Z38-5k-rtW">
                                                         <connections>
@@ -622,13 +519,38 @@ Gw
                                                 <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="T9V-qQ-ZRV"/>
                                                 <connections>
                                                     <action selector="positionSliderMoved:" target="DCZ-VH-yTc" id="BI3-6t-0Vn"/>
+                                                    <binding destination="DCZ-VH-yTc" name="hidden" keyPath="self.isBouncing" id="8f6-6L-zDt"/>
                                                 </connections>
                                             </slider>
+                                            <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" doubleValue="50" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="pmO-vn-obP">
+                                                <rect key="frame" x="0.0" y="7" width="196" height="12"/>
+                                                <contentFilters>
+                                                    <ciFilter name="CIColorMonochrome">
+                                                        <configuration>
+                                                            <ciColor key="inputColor" red="0.5515139102935791" green="0.5515139102935791" blue="0.5515139102935791" alpha="1"/>
+                                                            <null key="inputImage"/>
+                                                            <real key="inputIntensity" value="1"/>
+                                                        </configuration>
+                                                    </ciFilter>
+                                                    <ciFilter name="CISepiaTone">
+                                                        <configuration>
+                                                            <null key="inputImage"/>
+                                                            <real key="inputIntensity" value="8"/>
+                                                        </configuration>
+                                                    </ciFilter>
+                                                </contentFilters>
+                                                <connections>
+                                                    <binding destination="DCZ-VH-yTc" name="hidden" keyPath="self.isBouncing" id="R90-xf-xfE">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </progressIndicator>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfo-zf-CTx">
-                                                <rect key="frame" x="232" y="2" width="44" height="14"/>
+                                                <rect key="frame" x="248" y="2" width="39" height="14"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="dQW-c0-QRB"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="lTs-AZ-qHU"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="bnv-qn-d3V"/>
                                                 </constraints>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="7iX-Eb-9wN">
@@ -637,7 +559,7 @@ Gw
                                                         </connections>
                                                     </clickGestureRecognizer>
                                                 </gestureRecognizers>
-                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" placeholderString="0:00" usesSingleLineMode="YES" id="nCY-oI-VGx">
+                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" placeholderString="-0:00" usesSingleLineMode="YES" id="nCY-oI-VGx">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -648,15 +570,17 @@ Gw
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="26" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kms-Hb-hIL" userLabel="Button Stack View">
-                                        <rect key="frame" x="73" y="47" width="136" height="32"/>
+                                        <rect key="frame" x="77" y="47" width="136" height="32"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" tag="-1" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njy-C9-CBO" userLabel="Previous Button">
                                                 <rect key="frame" x="0.0" y="1" width="28" height="29"/>
@@ -702,9 +626,43 @@ Gw
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
+                                        <connections>
+                                            <binding destination="DCZ-VH-yTc" name="hidden" keyPath="self.isBouncing" id="MiB-we-pPg"/>
+                                        </connections>
+                                    </stackView>
+                                    <stackView hidden="YES" distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ssa-nW-7ny">
+                                        <rect key="frame" x="0.0" y="70" width="103" height="32"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ux9-Fn-5bu">
+                                                <rect key="frame" x="0.0" y="4" width="103" height="23"/>
+                                                <buttonCell key="cell" type="roundTextured" title="Stop Bouncing" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jFn-uF-iCM">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="cancelBounceButtonPressed:" target="DCZ-VH-yTc" id="GNu-yR-fVH"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="bi7-m6-BPI"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                        <connections>
+                                            <binding destination="DCZ-VH-yTc" name="hidden" keyPath="self.isBouncing" id="xag-Np-nZR">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
+                                        </connections>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f39-I2-twC">
-                                        <rect key="frame" x="46" y="23" width="191" height="20"/>
+                                        <rect key="frame" x="50" y="23" width="191" height="20"/>
                                         <subviews>
                                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="zXh-zg-b6l">
                                                 <rect key="frame" x="0.0" y="1" width="120" height="18"/>
@@ -728,6 +686,11 @@ Gw
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <action selector="soundfontItemSelected:" target="DCZ-VH-yTc" id="VrL-hh-AUv"/>
+                                                    <binding destination="DCZ-VH-yTc" name="enabled" keyPath="self.isBouncing" id="G1Y-aX-fN3">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
                                                 </connections>
                                             </popUpButton>
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GYF-n8-XzI">
@@ -746,6 +709,11 @@ Gw
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="overrideSFToggled:" target="DCZ-VH-yTc" id="DdL-Qw-pBf"/>
+                                                    <binding destination="DCZ-VH-yTc" name="enabled" keyPath="self.isBouncing" id="zgG-yO-bXc">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -761,7 +729,7 @@ Gw
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="Qqu-0O-aBN" userLabel="Speed Stack View">
-                                        <rect key="frame" x="4" y="0.0" width="274" height="19"/>
+                                        <rect key="frame" x="4" y="0.0" width="282" height="19"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y7E-hW-ZsB">
                                                 <rect key="frame" x="-2" y="3" width="38" height="14"/>
@@ -772,14 +740,22 @@ Gw
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qlD-dZ-bKM">
-                                                <rect key="frame" x="38" y="0.0" width="178" height="18"/>
+                                                <rect key="frame" x="43" y="0.0" width="176" height="18"/>
                                                 <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="14" doubleValue="7" tickMarkPosition="above" numberOfTickMarks="15" allowsTickMarkValuesOnly="YES" sliderType="linear" id="ZMV-CU-JU0"/>
                                                 <connections>
                                                     <action selector="speedSliderMoved:" target="DCZ-VH-yTc" id="ACV-dA-g80"/>
+                                                    <binding destination="DCZ-VH-yTc" name="enabled" keyPath="self.isBouncing" id="5p9-pm-VLh">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                        </dictionary>
+                                                    </binding>
                                                 </connections>
                                             </slider>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xqc-g7-6HX">
-                                                <rect key="frame" x="220" y="0.0" width="54" height="19"/>
+                                                <rect key="frame" x="228" y="0.0" width="54" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="54" id="tir-cG-qQo"/>
+                                                </constraints>
                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" title="1.00×" bezelStyle="round" id="OIA-Ic-i30">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -804,14 +780,18 @@ Gw
                                     <constraint firstItem="P88-WY-8bV" firstAttribute="leading" secondItem="iuT-D2-rrb" secondAttribute="leading" constant="4" id="X9i-aJ-BoF"/>
                                     <constraint firstAttribute="trailing" secondItem="Qqu-0O-aBN" secondAttribute="trailing" constant="4" id="eFy-31-SUR"/>
                                     <constraint firstAttribute="trailing" secondItem="P88-WY-8bV" secondAttribute="trailing" constant="4" id="kkM-Cc-duX"/>
+                                    <constraint firstAttribute="height" constant="102" id="rYZ-Zr-gNX"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="290" id="tp9-Ha-yrp"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -828,6 +808,7 @@ Gw
                     </visualEffectView>
                     <connections>
                         <outlet property="backgroundFXView" destination="zzd-uO-cna" id="DAK-KE-CPi"/>
+                        <outlet property="bounceProgressBar" destination="pmO-vn-obP" id="ULg-TJ-vv7"/>
                         <outlet property="cacophonyIconView" destination="HZY-CW-1nr" id="IQH-0v-7wo"/>
                         <outlet property="durationTimeLabel" destination="Mfo-zf-CTx" id="dxh-LP-Q3d"/>
                         <outlet property="fastForwardButton" destination="w8M-xB-XSZ" id="LWk-hT-zgA"/>
@@ -869,7 +850,7 @@ Gw
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SJo-x9-tZR">
                             <rect key="frame" x="-2" y="4" width="36" height="17"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="32" id="neJ-Z8-u8Y"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="neJ-Z8-u8Y"/>
                             </constraints>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="📣" id="qAf-nQ-kjP">
                                 <font key="font" metaFont="system"/>
@@ -883,8 +864,9 @@ Gw
                         <constraint firstItem="SJo-x9-tZR" firstAttribute="centerX" secondItem="HZY-CW-1nr" secondAttribute="centerX" id="wtP-Yg-Opd"/>
                     </constraints>
                 </customView>
+                <userDefaultsController representsSharedInstance="YES" id="9RO-Tg-B9n"/>
             </objects>
-            <point key="canvasLocation" x="393" y="585"/>
+            <point key="canvasLocation" x="393" y="622"/>
         </scene>
     </scenes>
     <resources>

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDIPlayerDelegate {
+class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDIPlayerDelegate, MIDIFileBouncerDelegate {
 	@IBOutlet weak var backgroundFXView: NSVisualEffectView!
 
 	@IBOutlet weak var rewindButton: NSButton!
@@ -23,33 +23,36 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	@IBOutlet weak var progressTimeLabel: NSTextField!
 	@IBOutlet weak var durationTimeLabel: NSTextField!
 	@IBOutlet weak var progressTimeSlider: NSSlider!
+	@IBOutlet weak var bounceProgressBar: NSProgressIndicator!
 
 	@IBOutlet weak var speedSlider: NSSlider!
 	@IBOutlet weak var speedLabel: NSTextField!
 
-	var midiPlayer: PWMIDIPlayer?
+	fileprivate var midiPlayer: PWMIDIPlayer?
 
-	var dcFormatter: DateComponentsFormatter!
-	var durationCountDown = false
+	fileprivate var dcFormatter: DateComponentsFormatter!
+	fileprivate var durationCountDown = false
 
-	let USERDEFAULTS_SOUNDFONTS_KEY = "recentSoundfonts"
-	var recentSoundfonts: [URL] = []
-	var guessedSoundfont: URL?
-	var activeSoundfont: URL?
+	fileprivate let USERDEFAULTS_SOUNDFONTS_KEY = "recentSoundfonts"
+	fileprivate var recentSoundfonts: [URL] = []
+	fileprivate var guessedSoundfont: URL?
+	fileprivate var activeSoundfont: URL?
 
-	let SOUNDFONTS_RECENT_START = 3
+	fileprivate let SOUNDFONTS_RECENT_START = 3
 
-	let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 4/3, 1.5, 5/3, 2.0]
-	var playbackSpeed: Float = 1.0
+	fileprivate let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 4/3, 1.5, 5/3, 2.0]
+	fileprivate var playbackSpeed: Float = 1.0
 
-	var pausedDueToDraggingKnob = false
-	var bouncing = false
+	fileprivate var pausedDueToDraggingKnob = false
+	@objc dynamic var isBouncing = false
 
-	var shiftPressed: Bool {
+	fileprivate var bouncer: MIDIFileBouncer?
+
+	fileprivate var shiftPressed: Bool {
 		return NSApp.currentEvent?.modifierFlags.contains(.shift) ?? false
 	}
 
-	enum SoundfontMenuType: Int {
+	fileprivate enum SoundfontMenuType: Int {
 		case macdefault = 0
 		case recent = 1
 		case custom = 2
@@ -85,6 +88,49 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		self.cacophonyIconView.toolTip = NSLocalizedString("Cacophony Mode enabled", comment: "Tooltip for the 📣 icon")
 	}
 
+	// MARK: - WindowControllerDelegate
+
+	func keyDownEvent(with event: NSEvent) {
+		switch event.keyCode {
+		case 0x31: // space
+			self.midiPlayer?.togglePlayPause()
+		case 0x7B: // arrow left
+			self.rewind()
+		case 0x7C: // arrow right
+			self.fastForward()
+		case 0x7D: // arrow down
+			if self.speedSlider.integerValue > Int(self.speedSlider.minValue) {
+				self.speedSlider.integerValue -= 1
+			}
+			self.speedSliderMoved(speedSlider)
+		case 0x7E: // arrow up
+			if self.speedSlider.integerValue < Int(self.speedSlider.maxValue) {
+				self.speedSlider.integerValue += 1
+			}
+			self.speedSliderMoved(speedSlider)
+		default:
+			break
+		}
+	}
+
+	func windowWillClose(_ notification: Notification) {
+		if self.isBouncing {
+			self.bouncer?.cancel()
+		}
+
+		NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
+		print("Removed from NPC")
+
+		self.midiPlayer?.stop()
+
+		// wait until the bouncer has finished
+		while self.bouncer != nil {
+			RunLoop.main.run(until: Date(timeIntervalSinceNow: 1.0))
+		}
+
+		self.midiPlayer = nil
+	}
+
 	// MARK: - IBActions
 
 	@IBAction func overrideSFToggled(_ sender: NSButton) {
@@ -116,7 +162,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 
 	@IBAction func clickRecognizerTriggered(_ sender: NSClickGestureRecognizer) {
-		print("click recognized!")
 		let mousePoint = sender.location(in: self.progressTimeSlider)
 
 		let progFactor = mousePoint.x / self.progressTimeSlider.bounds.width
@@ -133,6 +178,10 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			self.durationTimeLabel.placeholderString = "-0:00"
 		} else {
 			self.durationTimeLabel.placeholderString = "0:00"
+		}
+
+		if !self.isBouncing, let player = self.midiPlayer {
+			self.updatePlayerControls(position: player.currentPosition, duration: player.duration)
 		}
 	}
 
@@ -180,19 +229,12 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		// State off: "Play"
 		// State on: "Pause"
 
-		guard self.midiPlayer != nil else {
+		guard let player = self.midiPlayer else {
 			return
 		}
 
-		self.midiPlayer?.togglePlayPause()
-
-		if self.midiPlayer?.isPlaying ?? false {
-			// Player is now playing
-			self.playPauseButton.state = .on
-		} else {
-			// Player is now paused
-			self.playPauseButton.state = .off
-		}
+		player.togglePlayPause()
+		self.playPauseButton.state = player.isPlaying ? .on : .off
 	}
 
 	@IBAction func speedSliderMoved(_ sender: NSSlider) {
@@ -217,6 +259,10 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 		self.speedLabel.stringValue = String(format: "%.2f×", self.playbackSpeed)
 		self.midiPlayer?.rate = self.playbackSpeed
+	}
+
+	@IBAction func cancelBounceButtonPressed(_ sender: NSButton) {
+		self.bouncer?.cancel()
 	}
 
 	// MARK: - App logic
@@ -263,10 +309,8 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 				self.activeSoundfont = newActiveSoundfont
 
 				self.midiPlayer?.stop()
-				if #available(OSX 10.12.2, *) {
-					// remove old player from Now Playing Central to get rid of "phantom" players
-					NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
-				}
+				// remove old player from Now Playing Central to get rid of "phantom" players
+				NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
 				self.midiPlayer = nil
 
 				self.midiPlayer = newMidiPlayer
@@ -299,7 +343,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		self.openFile(midiURL: midiURL)
 	}
 
-	func getSelectedSoundfont() -> (soundfont: URL?, soundfontType: SoundfontMenuType) {
+	fileprivate func getSelectedSoundfont() -> (soundfont: URL?, soundfontType: SoundfontMenuType) {
 		if let selectedItem = self.soundfontMenu.selectedItem,
 		   let selectedType = SoundfontMenuType(rawValue: selectedItem.tag) {
 			switch selectedType {
@@ -397,6 +441,24 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		print("fast forward \(skipAmount) seconds")
 	}
 
+	func updatePlayerControls(position: TimeInterval, duration: TimeInterval) {
+		let progress = position / duration
+
+		if self.isBouncing {
+			self.bounceProgressBar.doubleValue = progress * 100
+		} else {
+			self.progressTimeSlider.doubleValue = progress * 100
+		}
+
+		self.progressTimeLabel.stringValue = self.dcFormatter.string(from: position)!
+
+		if self.durationCountDown {
+			self.durationTimeLabel.stringValue = "-" + self.dcFormatter.string(from: duration - position)!
+		} else {
+			self.durationTimeLabel.stringValue = self.dcFormatter.string(from: duration)!
+		}
+	}
+
 	// MARK: - Prevent error beeps when the space bar is pressed
 
 	override var acceptsFirstResponder: Bool {
@@ -405,16 +467,9 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 	// MARK: - IBAction for the Bounce to File menu item
 
-	@available(OSX 10.13, *)
 	@IBAction func bounceToFile(_ sender: NSMenuItem) {
-		guard !self.bouncing, let midiPlayer = self.midiPlayer else {
-			return
-		}
-
-		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-		guard let bounceProgressVC = storyboard.instantiateController(withIdentifier: "BounceProgressViewController") as? BounceProgressViewController,
-		      let sourceMIDI = midiPlayer.currentMIDI else {
-			print("frick")
+		guard !self.isBouncing, self.bouncer == nil, let midiPlayer = self.midiPlayer, let sourceMIDI = midiPlayer.currentMIDI else {
+			print("bounceToFile unsatisfied conditions")
 			return
 		}
 
@@ -430,53 +485,23 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		savePanel.allowedFileTypes = ["wav"]
 
 		guard savePanel.runModal() == .OK, let saveURL = savePanel.url else {
+			midiPlayer.acceptsMediaKeys = true
+			print("save sheet cancelled")
 			return
 		}
 
-		bounceProgressVC.prepare(sourceMIDIPlayer: midiPlayer, targetFile: saveURL)
+		self.isBouncing = true
 
-		let bounceStatus = NSApp.runModal(for: NSPanel(contentViewController: bounceProgressVC))
-		if bounceStatus == .OK {
-			NSApplication.shared.requestUserAttention(.informationalRequest)
-		}
-
-		self.midiPlayer?.acceptsMediaKeys = true
-		print("enabled media keys")
-	}
-
-	// MARK: - WindowControllerDelegate
-
-	func keyDownEvent(with event: NSEvent) {
-		switch event.keyCode {
-		case 0x31: // space
-			self.midiPlayer?.togglePlayPause()
-		case 0x7B: // arrow left
-			self.rewind()
-		case 0x7C: // arrow right
-			self.fastForward()
-		case 0x7D: // arrow down
-			if self.speedSlider.integerValue > Int(self.speedSlider.minValue) {
-				self.speedSlider.integerValue -= 1
+		DispatchQueue.global(qos: .userInitiated).async {
+			guard let bouncer = try? MIDIFileBouncer(midiFile: sourceMIDI, soundfontFile: midiPlayer.currentSoundfont) else {
+				fatalError("Couldn't initialize bouncer")
 			}
-			self.speedSliderMoved(speedSlider)
-		case 0x7E: // arrow up
-			if self.speedSlider.integerValue < Int(self.speedSlider.maxValue) {
-				self.speedSlider.integerValue += 1
-			}
-			self.speedSliderMoved(speedSlider)
-		default:
-			break
-		}
-	}
+			self.bouncer = bouncer
 
-	func windowWillClose(_ notification: Notification) {
-		if #available(OSX 10.12.2, *) {
-			NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
-			print("Removed from NPC")
+			self.bouncer!.rate = midiPlayer.rate
+			self.bouncer!.delegate = self
+			self.bouncer!.bounce(to: saveURL)
 		}
-
-		self.midiPlayer?.stop()
-		self.midiPlayer = nil
 	}
 
 	// MARK: - PWMIDIPlayerDelegate
@@ -531,23 +556,58 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 	func playbackPositionChanged(position: TimeInterval, duration: TimeInterval) {
 		DispatchQueue.main.async {
-			let progress = position / duration
-
-			self.progressTimeSlider.doubleValue = progress * 100
-
-			self.progressTimeLabel.stringValue = self.dcFormatter.string(from: position)!
-
-			if self.durationCountDown {
-				self.durationTimeLabel.stringValue = "-" + self.dcFormatter.string(from: duration - position)!
-			} else {
-				self.durationTimeLabel.stringValue = self.dcFormatter.string(from: duration)!
-			}
-
+			self.updatePlayerControls(position: position, duration: duration)
 		}
 	}
 
 	func playbackSpeedChanged(speed: Float) {
 		// empty because optional protocol methods aren't a thing yet in Swift
+	}
+
+	// MARK: - MIDIFileBouncerDelegate
+
+	func bounceProgress(progress: Double, currentTime: TimeInterval) {
+		guard self.isBouncing else {
+			return
+		}
+
+		guard let player = self.midiPlayer else {
+			fatalError("player?")
+		}
+
+		self.updatePlayerControls(position: currentTime, duration: player.realDuration)
+	}
+
+	func bounceCompleted() {
+		guard let bouncer = self.bouncer, let player = self.midiPlayer else {
+			fatalError("player?")
+		}
+
+		if !bouncer.isCancelled {
+			NSApplication.shared.requestUserAttention(.informationalRequest)
+		}
+
+		// reset labels
+		self.updatePlayerControls(position: player.currentPosition, duration: player.duration)
+
+		self.isBouncing = false
+		self.bouncer = nil
+		player.acceptsMediaKeys = true
+		print("enabled media keys")
+	}
+
+	func bounceError(error: Error) {
+		let errorTitle = NSLocalizedString("An error occurred", comment: "Generic error title string")
+		NSAlert.runModal(title: errorTitle, message: error.localizedDescription, style: .critical)
+
+		guard let player = self.midiPlayer else {
+			fatalError("player?")
+		}
+
+		self.isBouncing = false
+		self.bouncer = nil
+		player.acceptsMediaKeys = true
+		print("enabled media keys")
 	}
 
 }

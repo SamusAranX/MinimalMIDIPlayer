@@ -102,7 +102,6 @@ extension BinaryInteger {
 }
 
 extension AVAudioFormat {
-
 	var commonFormat: AVAudioCommonFormat {
 		let streamDescription = self.streamDescription.pointee
 
@@ -121,18 +120,4 @@ extension AVAudioFormat {
 			return .otherFormat
 		}
 	}
-
-}
-
-extension NSUserNotification {
-
-	static func showNotification(title: String, subtitle: String) {
-		let notification = NSUserNotification()
-		notification.title = title
-		notification.subtitle = subtitle
-		notification.soundName = NSUserNotificationDefaultSoundName
-
-		NSUserNotificationCenter.default.deliver(notification)
-	}
-
 }

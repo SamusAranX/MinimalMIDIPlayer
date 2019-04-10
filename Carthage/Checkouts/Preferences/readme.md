@@ -43,18 +43,7 @@ pod 'Preferences'
 
 *Run the `PreferencesExample` target in Xcode to try a live example.*
 
-First, create a collection of preference pane identifiers:
-
-```swift
-import Preferences
-
-extension PreferencePaneIdentifier {
-	static let general = PreferencePaneIdentifier("general")
-	static let advanced = PreferencePaneIdentifier("advanced")
-}
-```
-
-Second, create a couple of view controllers for the preference panes you want. The only difference from implementing a normal view controller is that you have to add the `PreferencePane` protocol and implement the `preferencePaneIdentifier`, `toolbarItemTitle`, and `toolbarItemIcon` properties, as shown below. You can leave out `toolbarItemIcon` if you're using the `.segmentedControl` style.
+First, create a couple of view controllers for the preference panes you want. The only difference from implementing a normal view controller is that you have to add the `Preferenceable` protocol and implement the `toolbarItemTitle` and `toolbarItemIcon` getters, as shown below.
 
 `GeneralPreferenceViewController.swift`
 
@@ -62,9 +51,8 @@ Second, create a couple of view controllers for the preference panes you want. T
 import Cocoa
 import Preferences
 
-final class GeneralPreferenceViewController: NSViewController, PreferencePane {
-	let preferencePaneIdentifier = PreferencePaneIdentifier.general
-	let preferencePaneTitle = "General"
+final class GeneralPreferenceViewController: NSViewController, Preferenceable {
+	let toolbarItemTitle = "General"
 	let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
 
 	override var nibName: NSNib.Name? {
@@ -85,9 +73,8 @@ final class GeneralPreferenceViewController: NSViewController, PreferencePane {
 import Cocoa
 import Preferences
 
-final class AdvancedPreferenceViewController: NSViewController, PreferencePane {
-	let preferencePaneIdentifier = PreferencePaneIdentifier.advanced
-	let preferencePaneTitle = "Advanced"
+final class AdvancedPreferenceViewController: NSViewController, Preferenceable {
+	let toolbarItemTitle = "Advanced"
 	let toolbarItemIcon = NSImage(named: NSImage.advancedName)!
 
 	override var nibName: NSNib.Name? {
@@ -114,8 +101,8 @@ import Preferences
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet private var window: NSWindow!
 
-	lazy var preferencesWindowController = PreferencesWindowController(
-		preferencePanes: [
+	let preferencesWindowController = PreferencesWindowController(
+		viewControllers: [
 			GeneralPreferenceViewController(),
 			AdvancedPreferenceViewController()
 		]
@@ -125,76 +112,29 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBAction
 	func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
-		preferencesWindowController.show()
+		preferencesWindowController.showWindow()
 	}
 }
 ```
-
-### Preferences Tab Styles
-
-When you create the `PreferencesWindowController`, you can choose between the `NSToolbarItem`-based style (default) and the `NSSegmentedControl`:
-
-```swift
-// …
-lazy var preferencesWindowController = PreferencesWindowController(
-	preferencePanes: [
-		GeneralPreferenceViewController(),
-		AdvancedPreferenceViewController()
-	],
-	style: .segmentedControl
-)
-// …
-```
-
-`.toolbarItem` style:
-
-![NSToolbarItem based (default)](toolbar-item.png)
-
-`.segmentedControl` style:
-
-![NSSegmentedControl based](segmented-control.png)
 
 
 ## API
 
 ```swift
-public protocol PreferencePane: AnyObject {
-	var preferencePaneIdentifier: PreferencePaneIdentifier { get }
-	var preferencePaneTitle: String { get }
-	var toolbarItemIcon: NSImage { get } // Not required when using the .`segmentedControl` style
+protocol Preferenceable: AnyObject {
+	var toolbarItemTitle: String { get }
+	var toolbarItemIcon: NSImage { get }
 }
 
-public enum PreferencesStyle {
-	case toolbarItems
-	case segmentedControl
-}
-
-public final class PreferencesWindowController: NSWindowController {
-	init(
-		preferencePanes: [PreferencePane],
-		style: PreferencesStyle = .toolbarItems,
-		animated: Bool = true
-	)
-
-	func show(preferencePane: PreferencePaneIdentifier? = nil)
+class PreferencesWindowController: NSWindowController {
+	init(viewControllers: [Preferenceable])
+	func showWindow()
+	func hideWindow()
 }
 ```
 
-As usual, call `NSWindowController#close()` to close the preferences window.
-
 
 ## FAQ
-
-### How can I localize the window title?
-
-The `PreferencesWindowController` adheres to the [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/macos/app-architecture/preferences/) and uses this set of rules to determine the window title:
-
-- **Multiple preference panes:** Uses the currently selected `preferencePaneTitle` as the window title. Localize your `preferencePaneTitle`s to get localized window titles.
-- **Single preference pane:** Sets the window title to `APPNAME Preferences`. The app name is obtained from your app's bundle. You can localize its `Info.plist` to customize the title. The `Preferences` part is taken from the "Preferences…" menu item, see #12. The order of lookup for the app name from your bundle:
-	1. `CFBundleDisplayName`
-	2. `CFBundleName`
-	3. `CFBundleExecutable`
-	4. Fall back to `"<Unknown App Name>"` to show you're missing some settings.
 
 ### How is it better than [`MASPreferences`](https://github.com/shpakovski/MASPreferences)?
 
@@ -202,7 +142,7 @@ The `PreferencesWindowController` adheres to the [Apple HIG](https://developer.a
 - Swifty API using a protocol.
 - Fully documented.
 - The window title is automatically localized by using the system string.
-- Supports segmented control style tabs.
+- Less code (and less chance of bugs) as it uses `NSTabView` instead of manually implementing the toolbar and view switching.
 
 
 ## Related
@@ -215,12 +155,6 @@ The `PreferencesWindowController` adheres to the [Apple HIG](https://developer.a
 You might also like my [apps](https://sindresorhus.com/apps).
 
 
-## Maintainers
-
-- [Sindre Sorhus](https://github.com/sindresorhus)
-- [Christian Tietze](https://github.com/DivineDominion)
-
-
 ## License
 
-MIT
+MIT © [Sindre Sorhus](https://sindresorhus.com)

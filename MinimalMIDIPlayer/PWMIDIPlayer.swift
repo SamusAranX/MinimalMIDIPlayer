@@ -32,19 +32,23 @@ class PWMIDIPlayer: AVMIDIPlayer {
     weak var delegate: PWMIDIPlayerDelegate?
 
     private var progressTimer: Timer?
-
 	private let endOfTrackTolerance = 0.1
 
 	var acceptsMediaKeys = true
 
     override var rate: Float {
         didSet {
-			if #available(OSX 10.12.2, *) {
-				NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: self.rate)])
-			}
+			NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: self.rate)])
             self.delegate?.playbackSpeedChanged(speed: self.rate)
         }
     }
+
+	var realDuration: TimeInterval {
+		return self.duration / Double(self.rate)
+	}
+	var realPosition: TimeInterval {
+		return self.currentPosition / Double(self.rate)
+	}
 
     override var currentPosition: TimeInterval {
         didSet {
@@ -144,12 +148,10 @@ class PWMIDIPlayer: AVMIDIPlayer {
 			return
 		}
 
-		if #available(OSX 10.12.2, *) {
-			// Updating the entire Now Playing dictionary here because macOS's caching(?) really fucks with us here
-			// If I rely on the OS to keep track of song names, durations and whatnot, we'll desync in about 0.02 seconds
-			NowPlayingCentral.shared.initNowPlayingInfo(for: self)
-			NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyElapsedPlaybackTime: NSNumber(value: self.currentPosition)])
-		}
+		// Updating the entire Now Playing dictionary here because macOS's caching(?) really fucks with us here
+		// If I rely on the OS to keep track of song names, durations and whatnot, we'll desync in about 0.02 seconds
+		NowPlayingCentral.shared.initNowPlayingInfo(for: self)
+		NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyElapsedPlaybackTime: NSNumber(value: self.currentPosition)])
 
         self.delegate?.playbackPositionChanged(position: self.currentPosition, duration: self.duration)
     }
@@ -167,9 +169,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 			return
 		}
 
-		if #available(OSX 10.12.2, *) {
-			NowPlayingCentral.shared.makeActive(player: self)
-		}
+		NowPlayingCentral.shared.makeActive(player: self)
 
 		if self.currentPosition >= self.duration - self.endOfTrackTolerance {
 			self.currentPosition = 0
@@ -182,9 +182,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 				if self.currentPosition >= self.duration - self.endOfTrackTolerance {
 					self.progressTimer?.invalidate()
 
-					if #available(OSX 10.12.2, *) {
-						NowPlayingCentral.shared.playbackState = .stopped
-					}
+					NowPlayingCentral.shared.playbackState = .stopped
 					self.delegate?.playbackEnded()
 				}
 			}
@@ -195,7 +193,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
         self.progressTimer = Timer.scheduledTimer(withTimeInterval: 0.125, repeats: true, block: timerDidFire)
 		self.progressTimer!.tolerance = 0.125 / 8
 
-		if #available(OSX 10.12.2, *), !Settings.shared.cacophonyMode {
+		if !Settings.shared.cacophonyMode {
 			NowPlayingCentral.shared.initNowPlayingInfo(for: self)
 			NowPlayingCentral.shared.playbackState = .playing
 		}
@@ -213,9 +211,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 
         self.progressTimer?.invalidate()
 
-		if #available(OSX 10.12.2, *) {
-        	NowPlayingCentral.shared.playbackState = .paused
-		}
+		NowPlayingCentral.shared.playbackState = .paused
 
 		self.delegate?.playbackStopped(paused: true)
 	}
@@ -231,9 +227,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 
 		self.currentPosition = 0
 
-		if #available(OSX 10.12.2, *) {
-        	NowPlayingCentral.shared.playbackState = .stopped
-		}
+		NowPlayingCentral.shared.playbackState = .stopped
 
 		self.delegate?.playbackStopped(paused: false)
     }
@@ -258,6 +252,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 
     func togglePlayPause() {
 		guard self.acceptsMediaKeys else {
+			print("Doesn't accept media keys")
 			return
 		}
 

@@ -10,18 +10,21 @@ import Cocoa
 import Preferences
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
+
+//	let preferencesWindowController = PreferencesWindowController(
+//		preferencePanes: [
+//			GeneralPreferenceViewController(),
+//			BouncePreferenceViewController()
+//		], style: .toolbarItems, animated: true
+//	)
 
 	let preferencesWindowController = PreferencesWindowController(
-		preferencePanes: [
+		viewControllers: [
 			GeneralPreferenceViewController(),
 			BouncePreferenceViewController()
-		], style: .segmentedControl, animated: true
+		]
 	)
-
-	func applicationDidFinishLaunching(_ notification: Notification) {
-		NSUserNotificationCenter.default.delegate = self
-	}
 
 	@IBAction func closeAllWindows(_ sender: NSMenuItem) {
 		NSDocumentController.shared.closeAllDocuments(withDelegate: nil, didCloseAllSelector: nil, contextInfo: nil)
@@ -29,11 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
 
 	@IBAction func showPreferencesWindow(_ sender: NSMenuItem) {
 		print("Showing Preferences")
-		preferencesWindowController.show(preferencePane: .general)
-	}
-
-	func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-		return true
+		preferencesWindowController.showWindow()
 	}
 
 }

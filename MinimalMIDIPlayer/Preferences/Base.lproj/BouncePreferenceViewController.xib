@@ -136,7 +136,7 @@
             <constraints>
                 <constraint firstItem="Q0c-1E-ZsV" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="KFJ-O2-x4l"/>
                 <constraint firstItem="Q0c-1E-ZsV" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="ZHi-94-HhB"/>
-                <constraint firstAttribute="bottom" secondItem="Q0c-1E-ZsV" secondAttribute="bottom" constant="20" id="r2I-Tm-bqj"/>
+                <constraint firstAttribute="bottom" secondItem="Q0c-1E-ZsV" secondAttribute="bottom" priority="250" constant="20" id="r2I-Tm-bqj"/>
             </constraints>
             <point key="canvasLocation" x="184" y="17.5"/>
         </customView>

@@ -15,7 +15,6 @@ protocol MIDIFileBouncerDelegate: class {
 	func bounceCompleted()
 }
 
-@available(OSX 10.13, *)
 class MIDIFileBouncer {
 	fileprivate var engine: AVAudioEngine!
 	fileprivate var sampler: AVAudioUnitMIDISynth!
@@ -66,6 +65,28 @@ class MIDIFileBouncer {
 		self.cancelProcessing = true
 	}
 
+	// MARK: Delegate methods
+
+	fileprivate func delegateProgress(progress: Double, currentTime: TimeInterval) {
+		DispatchQueue.main.async {
+			self.delegate?.bounceProgress(progress: progress, currentTime: currentTime)
+		}
+	}
+
+	fileprivate func delegateError(error: Error) {
+		DispatchQueue.main.async {
+			self.delegate?.bounceError(error: error)
+		}
+	}
+
+	fileprivate func delegateCompleted() {
+		DispatchQueue.main.async {
+			self.delegate?.bounceCompleted()
+		}
+	}
+
+	// MARK: Bounce logic
+
 	func bounce(to fileURL: URL) {
 		var writeError: NSError?
 
@@ -83,7 +104,7 @@ class MIDIFileBouncer {
 			outputFile = try AVAudioFile(forWriting: fileURL, settings: converter.outputFormat.settings, commonFormat: converter.outputFormat.commonFormat, interleaved: true)
 		} catch {
 			print("AVAudioFile creation failed")
-			self.delegate?.bounceError(error: error)
+			self.delegateError(error: error)
 			return
 		}
 
@@ -126,7 +147,7 @@ class MIDIFileBouncer {
 			try self.engine.start()
 		} catch {
 			print("Engine start failed")
-			self.delegate?.bounceError(error: error)
+			self.delegateError(error: error)
 			return
 		}
 
@@ -138,7 +159,7 @@ class MIDIFileBouncer {
 			try self.sequencer.start()
 		} catch {
 			print("Can't start sequencer")
-			self.delegate?.bounceError(error: error)
+			self.delegateError(error: error)
 			return
 		}
 
@@ -146,7 +167,7 @@ class MIDIFileBouncer {
 		while self.sequencer.isPlaying && !self.cancelProcessing && writeError == nil && self.sequencer.currentPositionInSeconds < sequenceLength {
 
 			let progress = self.sequencer.currentPositionInSeconds / sequenceLength
-			self.delegate?.bounceProgress(progress: progress * 100, currentTime: self.sequencer.currentPositionInSeconds)
+			self.delegateProgress(progress: progress * 100, currentTime: self.sequencer.currentPositionInSeconds)
 
 			usleep(10000)
 		}
@@ -157,7 +178,7 @@ class MIDIFileBouncer {
 		if writeError == nil {
 			// Add x seconds of silence to end to ensure all notes have fully stopped playing
 			usleep(useconds_t(1 * 1000 * 1000))
-			self.delegate?.bounceProgress(progress: 100, currentTime: self.sequencer.currentPositionInSeconds)
+			self.delegateProgress(progress: 100, currentTime: self.sequencer.currentPositionInSeconds)
 		}
 
 		// Stop recording.
@@ -167,9 +188,9 @@ class MIDIFileBouncer {
 		// Return error if there was any issue during recording.
 		if let writeError = writeError {
 			print("Can't write to file")
-			self.delegate?.bounceError(error: writeError)
+			self.delegateError(error: writeError)
 		} else {
-			self.delegate?.bounceCompleted()
+			self.delegateCompleted()
 		}
 	}
 }
