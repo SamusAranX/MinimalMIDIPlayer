@@ -16,11 +16,11 @@ protocol MIDIFileBouncerDelegate: class {
 }
 
 class MIDIFileBouncer {
-	fileprivate var engine: AVAudioEngine!
-	fileprivate var sampler: AVAudioUnitMIDISynth!
-	fileprivate var sequencer: AVAudioSequencer!
+	private var engine: AVAudioEngine!
+	private var sampler: AVAudioUnitMIDISynth!
+	private var sequencer: AVAudioSequencer!
 
-	fileprivate var cancelProcessing = false
+	private var cancelProcessing = false
 
 	var isCancelled: Bool {
 		return self.cancelProcessing
@@ -67,19 +67,19 @@ class MIDIFileBouncer {
 
 	// MARK: Delegate methods
 
-	fileprivate func delegateProgress(progress: Double, currentTime: TimeInterval) {
+	private func delegateProgress(progress: Double, currentTime: TimeInterval) {
 		DispatchQueue.main.async {
 			self.delegate?.bounceProgress(progress: progress, currentTime: currentTime)
 		}
 	}
 
-	fileprivate func delegateError(error: Error) {
+	private func delegateError(error: Error) {
 		DispatchQueue.main.async {
 			self.delegate?.bounceError(error: error)
 		}
 	}
 
-	fileprivate func delegateCompleted() {
+	private func delegateCompleted() {
 		DispatchQueue.main.async {
 			self.delegate?.bounceCompleted()
 		}

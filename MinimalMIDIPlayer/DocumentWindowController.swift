@@ -17,8 +17,6 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
 
 	weak var delegate: WindowControllerDelegate?
 
-	fileprivate var eventMonitor: Any!
-
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 

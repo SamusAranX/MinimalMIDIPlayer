@@ -28,31 +28,31 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	@IBOutlet weak var speedSlider: NSSlider!
 	@IBOutlet weak var speedLabel: NSTextField!
 
-	fileprivate var midiPlayer: PWMIDIPlayer?
+	private var midiPlayer: PWMIDIPlayer?
 
-	fileprivate var dcFormatter: DateComponentsFormatter!
-	fileprivate var durationCountDown = false
+	private var dcFormatter: DateComponentsFormatter!
+	private var durationCountDown = false
 
-	fileprivate let USERDEFAULTS_SOUNDFONTS_KEY = "recentSoundfonts"
-	fileprivate var recentSoundfonts: [URL] = []
-	fileprivate var guessedSoundfont: URL?
-	fileprivate var activeSoundfont: URL?
+	private let USERDEFAULTS_SOUNDFONTS_KEY = "recentSoundfonts"
+	private var recentSoundfonts: [URL] = []
+	private var guessedSoundfont: URL?
+	private var activeSoundfont: URL?
 
-	fileprivate let SOUNDFONTS_RECENT_START = 3
+	private let SOUNDFONTS_RECENT_START = 3
 
-	fileprivate let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 4/3, 1.5, 5/3, 2.0]
-	fileprivate var playbackSpeed: Float = 1.0
+	private let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 4/3, 1.5, 5/3, 2.0]
+	private var playbackSpeed: Float = 1.0
 
-	fileprivate var pausedDueToDraggingKnob = false
+	private var pausedDueToDraggingKnob = false
 	@objc dynamic var isBouncing = false
 
-	fileprivate var bouncer: MIDIFileBouncer?
+	private var bouncer: MIDIFileBouncer?
 
-	fileprivate var shiftPressed: Bool {
+	private var shiftPressed: Bool {
 		return NSApp.currentEvent?.modifierFlags.contains(.shift) ?? false
 	}
 
-	fileprivate enum SoundfontMenuType: Int {
+	private enum SoundfontMenuType: Int {
 		case macdefault = 0
 		case recent = 1
 		case custom = 2
@@ -343,7 +343,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		self.openFile(midiURL: midiURL)
 	}
 
-	fileprivate func getSelectedSoundfont() -> (soundfont: URL?, soundfontType: SoundfontMenuType) {
+	private func getSelectedSoundfont() -> (soundfont: URL?, soundfontType: SoundfontMenuType) {
 		if let selectedItem = self.soundfontMenu.selectedItem,
 		   let selectedType = SoundfontMenuType(rawValue: selectedItem.tag) {
 			switch selectedType {
