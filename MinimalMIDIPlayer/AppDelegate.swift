@@ -12,15 +12,8 @@ import Preferences
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-//	let preferencesWindowController = PreferencesWindowController(
-//		preferencePanes: [
-//			GeneralPreferenceViewController(),
-//			BouncePreferenceViewController()
-//		], style: .toolbarItems, animated: true
-//	)
-
 	let preferencesWindowController = PreferencesWindowController(
-		viewControllers: [
+		preferencePanes: [
 			GeneralPreferenceViewController(),
 			BouncePreferenceViewController()
 		]
@@ -32,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBAction func showPreferencesWindow(_ sender: NSMenuItem) {
 		print("Showing Preferences")
-		preferencesWindowController.showWindow()
+		preferencesWindowController.show()
 	}
 
 }

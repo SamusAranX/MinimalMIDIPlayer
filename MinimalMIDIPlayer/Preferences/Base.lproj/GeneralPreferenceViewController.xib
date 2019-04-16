@@ -131,7 +131,6 @@ With this option, approximate filename matches will also be considered.</string>
             </subviews>
             <constraints>
                 <constraint firstItem="ylH-pH-AJG" firstAttribute="top" secondItem="L7j-Se-ayO" secondAttribute="top" constant="20" id="Fy1-R4-Hwl"/>
-                <constraint firstAttribute="bottom" secondItem="ylH-pH-AJG" secondAttribute="bottom" priority="250" constant="20" id="KBs-Tu-DpQ"/>
                 <constraint firstItem="ylH-pH-AJG" firstAttribute="centerX" secondItem="L7j-Se-ayO" secondAttribute="centerX" id="RWM-s0-5pZ"/>
             </constraints>
             <point key="canvasLocation" x="76.5" y="173"/>
