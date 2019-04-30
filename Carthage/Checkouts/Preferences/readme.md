@@ -43,7 +43,18 @@ pod 'Preferences'
 
 *Run the `PreferencesExample` target in Xcode to try a live example.*
 
-First, create a couple of view controllers for the preference panes you want. The only difference from implementing a normal view controller is that you have to add the `Preferenceable` protocol and implement the `toolbarItemTitle` and `toolbarItemIcon` getters, as shown below.
+First, create a collection of preference pane identifiers:
+
+```swift
+import Preferences
+
+extension PreferencePane.Identifier {
+	static let general = Identifier("general")
+	static let advanced = Identifier("advanced")
+}
+```
+
+Second, create a couple of view controllers for the preference panes you want. The only difference from implementing a normal view controller is that you have to add the `PreferencePane` protocol and implement the `preferencePaneIdentifier`, `toolbarItemTitle`, and `toolbarItemIcon` properties, as shown below. You can leave out `toolbarItemIcon` if you're using the `.segmentedControl` style.
 
 `GeneralPreferenceViewController.swift`
 
@@ -51,8 +62,9 @@ First, create a couple of view controllers for the preference panes you want. Th
 import Cocoa
 import Preferences
 
-final class GeneralPreferenceViewController: NSViewController, Preferenceable {
-	let toolbarItemTitle = "General"
+final class GeneralPreferenceViewController: NSViewController, PreferencePane {
+	let preferencePaneIdentifier = PreferencePane.Identifier.general
+	let preferencePaneTitle = "General"
 	let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
 
 	override var nibName: NSNib.Name? {
@@ -73,8 +85,9 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
 import Cocoa
 import Preferences
 
-final class AdvancedPreferenceViewController: NSViewController, Preferenceable {
-	let toolbarItemTitle = "Advanced"
+final class AdvancedPreferenceViewController: NSViewController, PreferencePane {
+	let preferencePaneIdentifier = PreferencePane.Identifier.advanced
+	let preferencePaneTitle = "Advanced"
 	let toolbarItemIcon = NSImage(named: NSImage.advancedName)!
 
 	override var nibName: NSNib.Name? {
@@ -101,8 +114,8 @@ import Preferences
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet private var window: NSWindow!
 
-	let preferencesWindowController = PreferencesWindowController(
-		viewControllers: [
+	lazy var preferencesWindowController = PreferencesWindowController(
+		preferencePanes: [
 			GeneralPreferenceViewController(),
 			AdvancedPreferenceViewController()
 		]
@@ -112,29 +125,77 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBAction
 	func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
-		preferencesWindowController.showWindow()
+		preferencesWindowController.show()
 	}
 }
 ```
+
+### Preferences Tab Styles
+
+When you create the `PreferencesWindowController`, you can choose between the `NSToolbarItem`-based style (default) and the `NSSegmentedControl`:
+
+```swift
+// …
+lazy var preferencesWindowController = PreferencesWindowController(
+	preferencePanes: [
+		GeneralPreferenceViewController(),
+		AdvancedPreferenceViewController()
+	],
+	style: .segmentedControl
+)
+// …
+```
+
+`.toolbarItem` style:
+
+![NSToolbarItem based (default)](toolbar-item.png)
+
+`.segmentedControl` style:
+
+![NSSegmentedControl based](segmented-control.png)
 
 
 ## API
 
 ```swift
-protocol Preferenceable: AnyObject {
-	var toolbarItemTitle: String { get }
-	var toolbarItemIcon: NSImage { get }
+public protocol PreferencePane: AnyObject {
+	var preferencePaneIdentifier: PreferencePane.Identifier { get }
+	var preferencePaneTitle: String { get }
+	var toolbarItemIcon: NSImage { get } // Not required when using the .`segmentedControl` style
 }
 
-class PreferencesWindowController: NSWindowController {
-	init(viewControllers: [Preferenceable])
-	func showWindow()
-	func hideWindow()
+public enum PreferencesStyle {
+	case toolbarItems
+	case segmentedControl
+}
+
+public final class PreferencesWindowController: NSWindowController {
+	init(
+		preferencePanes: [PreferencePane],
+		style: PreferencesStyle = .toolbarItems,
+		animated: Bool = true,
+		hidesToolbarForSingleItem: Bool = true
+	)
+
+	func show(preferencePane: PreferencePane.Identifier? = nil)
 }
 ```
 
+As usual, call `NSWindowController#close()` to close the preferences window.
+
 
 ## FAQ
+
+### How can I localize the window title?
+
+The `PreferencesWindowController` adheres to the [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/macos/app-architecture/preferences/) and uses this set of rules to determine the window title:
+
+- **Multiple preference panes:** Uses the currently selected `preferencePaneTitle` as the window title. Localize your `preferencePaneTitle`s to get localized window titles.
+- **Single preference pane:** Sets the window title to `APPNAME Preferences`. The app name is obtained from your app's bundle. You can localize its `Info.plist` to customize the title. The `Preferences` part is taken from the "Preferences…" menu item, see #12. The order of lookup for the app name from your bundle:
+	1. `CFBundleDisplayName`
+	2. `CFBundleName`
+	3. `CFBundleExecutable`
+	4. Fall back to `"<Unknown App Name>"` to show you're missing some settings.
 
 ### How is it better than [`MASPreferences`](https://github.com/shpakovski/MASPreferences)?
 
@@ -142,7 +203,7 @@ class PreferencesWindowController: NSWindowController {
 - Swifty API using a protocol.
 - Fully documented.
 - The window title is automatically localized by using the system string.
-- Less code (and less chance of bugs) as it uses `NSTabView` instead of manually implementing the toolbar and view switching.
+- Supports segmented control style tabs.
 
 
 ## Related
@@ -152,9 +213,24 @@ class PreferencesWindowController: NSWindowController {
 - [DockProgress](https://github.com/sindresorhus/DockProgress) - Show progress in your app's Dock icon
 - [More…](https://github.com/search?q=user%3Asindresorhus+language%3Aswift)
 
-You might also like my [apps](https://sindresorhus.com/apps).
+You might also like Sindre's [apps](https://sindresorhus.com/apps).
+
+
+## Used in these apps
+
+- [TableFlip](https://tableflipapp.com) - Visual Markdown table editor by [Christian Tietze](https://github.com/DivineDominion)
+- [The Archive](https://zettelkasten.de/the-archive/) - Note-taking app by [Christian Tietze](https://github.com/DivineDominion)
+- [Word Counter](https://wordcounterapp.com) - Measuring writer's productivity by [Christian Tietze](https://github.com/DivineDominion)
+
+Want to tell the world about your app that is using Preferences? Open a PR!
+
+
+## Maintainers
+
+- [Sindre Sorhus](https://github.com/sindresorhus)
+- [Christian Tietze](https://github.com/DivineDominion)
 
 
 ## License
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+MIT
