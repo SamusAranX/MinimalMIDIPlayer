@@ -201,7 +201,7 @@
                                             <constraint firstAttribute="width" constant="80" id="33G-KZ-f2w"/>
                                             <constraint firstAttribute="height" constant="80" id="v3u-m6-ffT"/>
                                         </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIconSmall" id="f7k-dz-GtI"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AboutIcon" id="f7k-dz-GtI"/>
                                     </imageView>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yqG-88-SZQ">
                                         <rect key="frame" x="20" y="17" width="233" height="47"/>
@@ -469,6 +469,7 @@
                     <connections>
                         <outlet property="aboutTextLabel" destination="pqD-9q-5vb" id="aCB-7k-57h"/>
                         <outlet property="acknowledgementTextView" destination="fYv-Ac-Wiu" id="NYN-u5-3tF"/>
+                        <outlet property="appIconView" destination="xdA-b7-L5N" id="Fdz-PE-Hzn"/>
                         <outlet property="appNameLabel" destination="Xm2-yr-tqR" id="p7S-bG-jGn"/>
                         <outlet property="bugsLabel" destination="d7M-Ax-cho" id="Bxm-F3-V2r"/>
                         <outlet property="copyrightLabel" destination="PHe-Bm-oKc" id="Qvx-3y-9wv"/>
@@ -870,7 +871,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIconSmall" width="80" height="80"/>
+        <image name="AboutIcon" width="80" height="80"/>
         <image name="PauseButton" width="20" height="24"/>
         <image name="PlayButton" width="22" height="26"/>
         <image name="SkipBackwards" width="28" height="29"/>
