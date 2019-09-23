@@ -14,7 +14,6 @@ class AboutViewController: NSViewController {
 	@IBOutlet weak var versionLabel: NSTextField!
 	@IBOutlet weak var copyrightLabel: NSTextField!
 	@IBOutlet weak var aboutTextLabel: HyperlinkTextField!
-	@IBOutlet weak var appIconView: NSImageView!
 
 	@IBOutlet var acknowledgementTextView: NSTextView!
 
@@ -52,11 +51,6 @@ class AboutViewController: NSViewController {
 				NSAttributedString.Key.superscript: NSNumber(value: true)
 			], range: nsRange)
 			versionLabel.attributedStringValue = versionAttrString
-		}
-
-		Swift.print(Bundle.main.bundleIdentifier!)
-		if let appIdentifier = Bundle.main.bundleIdentifier, appIdentifier.contains("Beta") {
-			appIconView.image = NSImage(named: "AboutIconBeta")
 		}
 
 		// Fill in the copyright label below the app name label

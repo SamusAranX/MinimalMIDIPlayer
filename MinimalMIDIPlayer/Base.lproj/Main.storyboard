@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -204,13 +204,13 @@
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AboutIcon" id="f7k-dz-GtI"/>
                                     </imageView>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yqG-88-SZQ">
-                                        <rect key="frame" x="20" y="17" width="233" height="47"/>
+                                        <rect key="frame" x="20" y="18" width="233" height="45"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g1o-VI-ONm">
-                                                <rect key="frame" x="0.0" y="17" width="233" height="30"/>
+                                                <rect key="frame" x="0.0" y="16" width="233" height="29"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xm2-yr-tqR">
-                                                        <rect key="frame" x="-2" y="0.0" width="199" height="30"/>
+                                                        <rect key="frame" x="-2" y="0.0" width="199" height="29"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="MinimalMIDIPlayer" usesSingleLineMode="YES" id="lXR-XH-L3M">
                                                             <font key="font" metaFont="systemLight" size="25"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -218,7 +218,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yiu-tO-wwf">
-                                                        <rect key="frame" x="195" y="2" width="40" height="19"/>
+                                                        <rect key="frame" x="195" y="1" width="40" height="19"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1.0.0" id="dUV-Wg-mIN">
                                                             <font key="font" metaFont="systemSemibold" size="16"/>
                                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -236,7 +236,7 @@
                                                 </customSpacing>
                                             </stackView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PHe-Bm-oKc">
-                                                <rect key="frame" x="-2" y="0.0" width="136" height="17"/>
+                                                <rect key="frame" x="-2" y="0.0" width="136" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Copyright String Here" usesSingleLineMode="YES" id="M98-NJ-uvd">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -263,10 +263,10 @@
                                 </constraints>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KnW-f1-5oB">
-                                <rect key="frame" x="20" y="-100" width="310" height="275"/>
+                                <rect key="frame" x="20" y="-93" width="310" height="268"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pqD-9q-5vb" customClass="HyperlinkTextField">
-                                        <rect key="frame" x="-2" y="211" width="314" height="64"/>
+                                        <rect key="frame" x="-2" y="208" width="314" height="60"/>
                                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="HAx-HL-6NF">
                                             <font key="font" metaFont="cellTitle"/>
                                             <string key="title">When Apple replaced QuickTime Player 7 with the currently shipping version, they also removed support for MIDI file playback. This app aims to be a good, if not better replacement.</string>
@@ -275,13 +275,13 @@
                                         </textFieldCell>
                                     </textField>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KBg-8v-rNM">
-                                        <rect key="frame" x="0.0" y="139" width="310" height="64"/>
+                                        <rect key="frame" x="0.0" y="139" width="310" height="61"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hmT-FF-yLs">
-                                                <rect key="frame" x="0.0" y="0.0" width="151" height="64"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="151" height="61"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qat-Ul-TGr">
-                                                        <rect key="frame" x="46" y="48" width="107" height="16"/>
+                                                        <rect key="frame" x="46" y="46" width="107" height="15"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Want the source?" usesSingleLineMode="YES" id="7jg-Xl-oIT">
                                                             <font key="font" metaFont="systemSemibold" size="12"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -289,7 +289,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oCa-sj-tcR">
-                                                        <rect key="frame" x="73" y="24" width="80" height="16"/>
+                                                        <rect key="frame" x="73" y="23" width="80" height="15"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Found bugs?" usesSingleLineMode="YES" id="bcd-GZ-9xQ">
                                                             <font key="font" metaFont="systemSemibold" size="12"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -297,7 +297,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fPn-69-bvd">
-                                                        <rect key="frame" x="67" y="0.0" width="86" height="16"/>
+                                                        <rect key="frame" x="67" y="0.0" width="86" height="15"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Like this app?" usesSingleLineMode="YES" id="LRh-5C-35R">
                                                             <font key="font" metaFont="systemSemibold" size="12"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -317,10 +317,10 @@
                                                 </customSpacing>
                                             </stackView>
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="clo-hM-ibc">
-                                                <rect key="frame" x="159" y="0.0" width="151" height="64"/>
+                                                <rect key="frame" x="159" y="0.0" width="151" height="61"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZAL-m7-3Lw" customClass="HyperlinkTextField">
-                                                        <rect key="frame" x="-2" y="48" width="86" height="16"/>
+                                                        <rect key="frame" x="-2" y="46" width="86" height="15"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="It's on GitHub!" usesSingleLineMode="YES" id="4gP-Ed-scl">
                                                             <font key="font" metaFont="cellTitle"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -328,7 +328,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-Ax-cho" customClass="HyperlinkTextField">
-                                                        <rect key="frame" x="-2" y="24" width="80" height="16"/>
+                                                        <rect key="frame" x="-2" y="23" width="80" height="15"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Let me know!" usesSingleLineMode="YES" id="sar-cH-MH7">
                                                             <font key="font" metaFont="cellTitle"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -336,7 +336,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kRd-lv-0bE" customClass="HyperlinkTextField">
-                                                        <rect key="frame" x="-2" y="0.0" width="69" height="16"/>
+                                                        <rect key="frame" x="-2" y="0.0" width="69" height="15"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tell me! 😊" usesSingleLineMode="YES" id="9Kp-FE-D6M">
                                                             <font key="font" metaFont="cellTitle"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -469,7 +469,6 @@
                     <connections>
                         <outlet property="aboutTextLabel" destination="pqD-9q-5vb" id="aCB-7k-57h"/>
                         <outlet property="acknowledgementTextView" destination="fYv-Ac-Wiu" id="NYN-u5-3tF"/>
-                        <outlet property="appIconView" destination="xdA-b7-L5N" id="Fdz-PE-Hzn"/>
                         <outlet property="appNameLabel" destination="Xm2-yr-tqR" id="p7S-bG-jGn"/>
                         <outlet property="bugsLabel" destination="d7M-Ax-cho" id="Bxm-F3-V2r"/>
                         <outlet property="copyrightLabel" destination="PHe-Bm-oKc" id="Qvx-3y-9wv"/>
@@ -849,7 +848,7 @@
                             </constraints>
                         </customView>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SJo-x9-tZR">
-                            <rect key="frame" x="-2" y="4" width="36" height="17"/>
+                            <rect key="frame" x="-2" y="5" width="36" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="neJ-Z8-u8Y"/>
                             </constraints>
