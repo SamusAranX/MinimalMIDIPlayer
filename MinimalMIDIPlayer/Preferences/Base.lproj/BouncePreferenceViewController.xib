@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -35,7 +35,7 @@
                             <gridCells>
                                 <gridCell row="tma-0u-mjG" column="wZO-kY-FdQ" id="iSv-8x-HKb">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Of-zd-DOB">
-                                        <rect key="frame" x="46" y="29" width="80" height="17"/>
+                                        <rect key="frame" x="46" y="30" width="80" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Sample Rate" id="HQ8-72-uFZ">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -48,7 +48,7 @@
                                         <rect key="frame" x="128" y="24" width="105" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="44100 Hz" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="44100" imageScaling="proportionallyDown" inset="2" selectedItem="0V2-KO-rlb" id="sQB-QW-adV">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu"/>
+                                            <font key="font" metaFont="system"/>
                                             <menu key="menu" id="DnM-qt-Us7">
                                                 <items>
                                                     <menuItem title="8000 Hz" tag="8000" id="7q0-Hg-qBj"/>
@@ -79,7 +79,7 @@
                                 </gridCell>
                                 <gridCell row="WHj-l7-7eo" column="wZO-kY-FdQ" id="LM2-g9-qLW">
                                     <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xcU-5m-7LM">
-                                        <rect key="frame" x="65" y="2" width="61" height="17"/>
+                                        <rect key="frame" x="65" y="3" width="61" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Channels" id="7qn-1I-5ww">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -92,7 +92,7 @@
                                         <rect key="frame" x="128" y="-3" width="99" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="2 (Stereo)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="5Yc-Wp-1E1" id="P95-8j-GXg">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu"/>
+                                            <font key="font" metaFont="system"/>
                                             <menu key="menu" id="W3c-ic-Gdh">
                                                 <items>
                                                     <menuItem title="1 (Mono)" tag="1" id="e0K-MY-72i"/>
@@ -110,7 +110,7 @@
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="x7t-NW-HoG">
                             <rect key="frame" x="-2" y="0.0" width="264" height="28"/>
                             <textFieldCell key="cell" controlSize="small" title="These options only apply when bouncing a MIDI file to audio. Regular playback is unaffected." id="PDb-AH-Dmc">
-                                <font key="font" metaFont="smallSystem"/>
+                                <font key="font" metaFont="message" size="11"/>
                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -134,6 +134,7 @@
                 </stackView>
             </subviews>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Q0c-1E-ZsV" secondAttribute="bottom" constant="20" id="Hih-PC-gHQ"/>
                 <constraint firstItem="Q0c-1E-ZsV" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="KFJ-O2-x4l"/>
                 <constraint firstItem="Q0c-1E-ZsV" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="ZHi-94-HhB"/>
             </constraints>

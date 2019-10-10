@@ -11,8 +11,8 @@ import Preferences
 
 class BouncePreferenceViewController: NSViewController, PreferencePane {
 
-	let preferencePaneIdentifier = PreferencePaneIdentifier.bounces
-	let preferencePaneTitle: String = NSLocalizedString("Bounces", comment: "Preference Tab Title")
+	let preferencePaneIdentifier = PreferencePaneIdentifier.bouncing
+	let preferencePaneTitle: String = NSLocalizedString("Bouncing", comment: "Preference Tab Title")
 	let toolbarItemIcon: NSImage = NSImage(named: "PreferencesWaveform")!
 
 	override var nibName: NSNib.Name? {

@@ -11,5 +11,5 @@ import Preferences
 
 extension PreferencePaneIdentifier {
 	static let general = PreferencePaneIdentifier("general")
-	static let bounces = PreferencePaneIdentifier("bounces")
+	static let bouncing = PreferencePaneIdentifier("bouncing")
 }

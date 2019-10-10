@@ -94,7 +94,10 @@
 	"4QE-d3-O4g.title" = "Zuletzt benutzte Objekte";
 
 	/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "azl-MT-kh8"; */
-	"azl-MT-kh8.title" = "Clear Menu";
+	"azl-MT-kh8.title" = "Einträge löschen";
+
+	/* Class = "NSMenuItem"; title = "Bounce MIDI… (Beta); ObjectID = "mIJ-a6-Cdu"; */
+	"mIJ-a6-Cdu.title" = "MIDI bouncen… (Beta)";
 
 	/* Class = "NSMenuItem"; title = "Close"; ObjectID = "HBx-Pn-DlL"; */
 	"HBx-Pn-DlL.title" = "Schließen";

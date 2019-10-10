@@ -27,10 +27,22 @@
 // GeneralPreferenceViewController
 "Preferences" = "Einstellungen";
 "General"     = "Allgemein";
+"Bouncing"    = "Bouncing";
 
 // BounceProgressViewController
-"Bouncing {source.mid} to {target.wav}…" = "Bounce %@ zu %@…";
-"Bouncing to {target.wav}…"              = "Bounce zu %@…";
-"Bouncing {source.mid}…"                 = "Bounce %@…";
-"Soundfont used: {source.sf2}"           = "Benutzte Soundfont: %@";
-"An error occurred"                      = "Ein Fehler ist aufgetreten";
+"Bouncing {source.mid} to {target.wav}…"                 = "Bounce %@ zu %@…";
+"Bouncing to {target.wav}…"                              = "Bounce zu %@…";
+"Bouncing {source.mid}…"                                 = "Bounce %@…";
+"Soundfont used: {source.sf2}"                           = "Benutzte Soundfont: %@";
+"Bounce completed"                                       = "Bounce abgeschlossen";
+"{source.mid} was successfully bounced to {target.wav}." = "%@ wurde erfolgreich zu %@ gebounct.";
+"An error occurred while bouncing"                       = "Ein Fehler ist beim Bouncen aufgetreten";
+"More details: "                                         = "Mehr Informationen: ";
+
+// MIDIFileBouncer error messages
+"Can't determine sequence length"      = "Kann Sequenzlänge nicht bestimmen.";
+"AVAudioFile creation failed"          = "AVAudioFile-Erstellung fehlgeschlagen.";
+"Error occurred while converting file" = "Beim Umwandeln der Datei ist ein Fehler aufgetreten.";
+"Engine start failed"                  = "Engine konnte nicht gestartet werden.";
+"Can't start sequencer"                = "Sequencer konnte nicht gestartet werden.";
+"Can't write to file"                  = "Datei kann nicht gespeichert werden.";

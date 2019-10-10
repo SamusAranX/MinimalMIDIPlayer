@@ -11,8 +11,32 @@ import AVFoundation
 
 protocol MIDIFileBouncerDelegate: class {
 	func bounceProgress(progress: Double, currentTime: TimeInterval)
-	func bounceError(error: Error)
+	func bounceError(error: MIDIBounceError)
 	func bounceCompleted()
+}
+
+struct MIDIBounceError: Error {
+	enum ErrorKind {
+		case invalidSequenceLength
+		case avAudioFileCreationFailure
+		case conversionFailure
+		case engineStartFailure
+		case sequencerStartFailure
+		case ioError
+	}
+
+	let kind: ErrorKind
+	let message: String
+	let innerError: Error?
+
+	init(kind: ErrorKind, message: String, innerError: Error? = nil) {
+		self.kind = kind
+
+		let localizedMessage = NSLocalizedString(message, comment: "Make sure all error messages are fully localized")
+		self.message = localizedMessage
+
+		self.innerError = innerError
+	}
 }
 
 class MIDIFileBouncer {
@@ -21,6 +45,10 @@ class MIDIFileBouncer {
 	private var sequencer: AVAudioSequencer!
 
 	private var cancelProcessing = false
+
+	var midiFile: URL?
+	var soundfontFile: URL?
+	var outFile: URL?
 
 	var isCancelled: Bool {
 		return self.cancelProcessing
@@ -59,6 +87,9 @@ class MIDIFileBouncer {
 		self.sequencer = AVAudioSequencer(audioEngine: self.engine)
 		try self.sequencer.load(from: midiFile, options: [])
 		self.sequencer.prepareToPlay()
+
+		self.midiFile = midiFile
+		self.soundfontFile = soundfontFile
 	}
 
 	func cancel() {
@@ -73,7 +104,7 @@ class MIDIFileBouncer {
 		}
 	}
 
-	private func delegateError(error: Error) {
+	private func delegateError(error: MIDIBounceError) {
 		DispatchQueue.main.async {
 			self.delegate?.bounceError(error: error)
 		}
@@ -90,11 +121,14 @@ class MIDIFileBouncer {
 	func bounce(to fileURL: URL) {
 		var writeError: NSError?
 
+		self.outFile = fileURL
+
 		let outputNode = self.sampler!
 		let outputFormat = outputNode.outputFormat(forBus: 0)
 
 		guard let sequenceLength = self.sequencer.tracks.map({ $0.lengthInSeconds + self.sequencer.seconds(forBeats: $0.offsetTime) }).max() else {
-			fatalError("Can't determine sequence length")
+			self.delegateError(error: MIDIBounceError(kind: .invalidSequenceLength, message: "Can't determine sequence length."))
+			return
 		}
 
 		let converter = Settings.shared.getConverter(from: outputFormat)
@@ -103,8 +137,7 @@ class MIDIFileBouncer {
 		do {
 			outputFile = try AVAudioFile(forWriting: fileURL, settings: converter.outputFormat.settings, commonFormat: converter.outputFormat.commonFormat, interleaved: true)
 		} catch {
-			print("AVAudioFile creation failed")
-			self.delegateError(error: error)
+			self.delegateError(error: MIDIBounceError(kind: .avAudioFileCreationFailure, message: "AVAudioFile creation failed.", innerError: error))
 			return
 		}
 
@@ -126,7 +159,8 @@ class MIDIFileBouncer {
 				let status = converter.convert(to: convertedBuffer, error: &writeError, withInputFrom: inputBlock)
 
 				if status == .error {
-					throw "Error occurred while converting file"
+					self.delegateError(error: MIDIBounceError(kind: .conversionFailure, message: "Error occurred while converting file."))
+					return
 				}
 
 //				print(outputFile.processingFormat == converter.outputFormat)
@@ -146,8 +180,7 @@ class MIDIFileBouncer {
 		do {
 			try self.engine.start()
 		} catch {
-			print("Engine start failed")
-			self.delegateError(error: error)
+			self.delegateError(error: MIDIBounceError(kind: .engineStartFailure, message: "Engine start failed.", innerError: error))
 			return
 		}
 
@@ -158,14 +191,12 @@ class MIDIFileBouncer {
 		do {
 			try self.sequencer.start()
 		} catch {
-			print("Can't start sequencer")
-			self.delegateError(error: error)
+			self.delegateError(error: MIDIBounceError(kind: .sequencerStartFailure, message: "Can't start sequencer.", innerError: error))
 			return
 		}
 
 		// Continuously check for track finished or error while looping.
 		while self.sequencer.isPlaying && !self.cancelProcessing && writeError == nil && self.sequencer.currentPositionInSeconds < sequenceLength {
-
 			let progress = self.sequencer.currentPositionInSeconds / sequenceLength
 			self.delegateProgress(progress: progress * 100, currentTime: self.sequencer.currentPositionInSeconds)
 
@@ -187,8 +218,7 @@ class MIDIFileBouncer {
 
 		// Return error if there was any issue during recording.
 		if let writeError = writeError {
-			print("Can't write to file")
-			self.delegateError(error: writeError)
+			self.delegateError(error: MIDIBounceError(kind: .ioError, message: "Can't write to file.", innerError: writeError))
 		} else {
 			self.delegateCompleted()
 		}

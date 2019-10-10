@@ -93,7 +93,6 @@
 		562DDFE72265B9D600D4A727 /* PreferencePaneIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencePaneIdentifiers.swift; sourceTree = "<group>"; };
 		562E3AAC224E0B30001AD319 /* BouncePreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncePreferenceViewController.swift; sourceTree = "<group>"; };
 		562E3AB1224E145B001AD319 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BouncePreferenceViewController.xib; sourceTree = "<group>"; };
-		562E3AB5224E1790001AD319 /* MIKMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MIKMIDI.framework; path = Carthage/Build/Mac/MIKMIDI.framework; sourceTree = "<group>"; };
 		562E3AB8224E1E65001AD319 /* AVAudioUnitMIDISynth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioUnitMIDISynth.swift; sourceTree = "<group>"; };
 		562E3ABC224E1E79001AD319 /* MIDIFileBouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIFileBouncer.swift; sourceTree = "<group>"; };
 		563C8229214DCA6E00B0D41E /* NSFont+LineHeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFont+LineHeight.h"; sourceTree = "<group>"; };
@@ -176,7 +175,6 @@
 		563D9FC01FF46E95008DE194 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				562E3AB5224E1790001AD319 /* MIKMIDI.framework */,
 				56C2AB88224A388A0093728A /* Preferences.framework */,
 				56AB757F213FD146009ECFB1 /* AVFoundation.framework */,
 				563D9FC11FF46E95008DE194 /* MediaPlayer.framework */,

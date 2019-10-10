@@ -585,29 +585,47 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 		if !bouncer.isCancelled {
 			NSApplication.shared.requestUserAttention(.informationalRequest)
+			let popupTitle = NSLocalizedString("Bounce completed", comment: "Popup title when bounce ended successfully")
+
+			if let midiFile = bouncer.midiFile, let outFile = bouncer.outFile {
+				let popupTextFormat = NSLocalizedString("{source.mid} was successfully bounced to {target.wav}.", comment: "Popup text when bounce ended successfully")
+				let popupText = String(format: popupTextFormat, midiFile.lastPathComponent, outFile.lastPathComponent)
+				NSAlert.runModal(title: popupTitle, message: popupText, style: .informational)
+			} else {
+				// Tempting fate: fallback that should never happen
+				NSAlert.runModal(title: popupTitle, message: popupTitle, style: .informational)
+			}
 		}
 
 		// reset labels
 		self.updatePlayerControls(position: player.currentPosition, duration: player.duration)
 
+		// clean up behind us
 		self.isBouncing = false
 		self.bouncer = nil
 		player.acceptsMediaKeys = true
-		print("enabled media keys")
 	}
 
-	func bounceError(error: Error) {
-		let errorTitle = NSLocalizedString("An error occurred", comment: "Generic error title string")
-		NSAlert.runModal(title: errorTitle, message: error.localizedDescription, style: .critical)
+	func bounceError(error: MIDIBounceError) {
+		let errorTitle = NSLocalizedString("An error occurred while bouncing", comment: "Generic error title string")
+		var errorMessage = error.message
+
+		if let innerError = error.innerError {
+			errorMessage += "\n\n"
+			errorMessage += NSLocalizedString("More details: ", comment: "Prefix for detailed inner error message with trailing space")
+			errorMessage += innerError.localizedDescription
+		}
+
+		NSAlert.runModal(title: errorTitle, message: errorMessage, style: .critical)
 
 		guard let player = self.midiPlayer else {
 			fatalError("player?")
 		}
 
+		// clean up this mess
 		self.isBouncing = false
 		self.bouncer = nil
 		player.acceptsMediaKeys = true
-		print("enabled media keys")
 	}
 
 }
