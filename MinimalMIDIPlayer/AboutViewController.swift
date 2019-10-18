@@ -13,15 +13,17 @@ class AboutViewController: NSViewController {
 	@IBOutlet weak var appNameLabel: NSTextField!
 	@IBOutlet weak var versionLabel: NSTextField!
 	@IBOutlet weak var copyrightLabel: NSTextField!
-	@IBOutlet weak var aboutTextLabel: HyperlinkTextField!
+	@IBOutlet weak var appIconView: NSImageView!
 
-	@IBOutlet var acknowledgementTextView: NSTextView!
+	@IBOutlet weak var aboutTextLabel: HyperlinkTextField!
 
 	@IBOutlet weak var githubLabel: HyperlinkTextField!
 	@IBOutlet weak var bugsLabel: HyperlinkTextField!
 	@IBOutlet weak var twitterLabel: HyperlinkTextField!
 
 	@IBOutlet weak var disclosureTriangleButton: NSButton!
+
+	@IBOutlet var acknowledgementTextView: NSTextView!
 
 	let hyperlinksInText: [String: URL] = [:]
 
@@ -63,6 +65,11 @@ class AboutViewController: NSViewController {
 			let copyrightString = String(format: copyrightFormatString, copyrightOwner, copyrightYear1, copyrightYear2)
 
 			copyrightLabel.stringValue = copyrightString
+		}
+
+		// Select Beta icon if this is a Beta build
+		if let identifier = Bundle.main.bundleIdentifier, identifier.hasSuffix(".beta") {
+			appIconView.image = NSImage(named: "AppIconSmallBeta")
 		}
 
 		// Configure hyperlinks in multi-line label
