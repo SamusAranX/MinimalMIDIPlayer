@@ -9,6 +9,7 @@
 // About Window
 "AProjectBy" = "Ein Projekt von %@, %@ – %@";
 "BetaSubtitle" = "supergeheime betaversion";
+"VersionString" = "Version %@, Build %@";
 
 // Cacophony Mode accessory view
 "Cacophony Mode enabled" = "Kakofonie-Modus aktiviert";

@@ -34,23 +34,16 @@ class AboutViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		// Fill in the app name
+		if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
+			appNameLabel.stringValue = appName
+		}
+
 		// Fill in the version number
 		if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
 			let buildNum = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-
-			var versionString = version
-			let startIndex = versionString.endIndex
-			versionString += buildNum
-			let endIndex = versionString.endIndex
-
-			let range = startIndex..<endIndex
-			let nsRange = NSRange(range, in: versionString)
-
-			let versionAttrString = NSMutableAttributedString(string: versionString)
-			versionAttrString.addAttributes([
-				NSAttributedString.Key.superscript: NSNumber(value: true)
-			], range: nsRange)
-			versionLabel.attributedStringValue = versionAttrString
+			let versionString = NSLocalizedString("VersionString", comment: "Format string for the version subtitle")
+			versionLabel.stringValue = String(format: versionString, version, buildNum)
 		}
 
 		// Fill in the copyright label below the app name label
