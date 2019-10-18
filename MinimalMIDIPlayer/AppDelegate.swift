@@ -13,8 +13,9 @@ import Preferences
 class AppDelegate: NSObject, NSApplicationDelegate {
 
 	let preferencesWindowController = PreferencesWindowController(
-		viewControllers: [
+		preferencePanes: [
 			GeneralPreferenceViewController()
+//			BouncePreferenceViewController()
 		]
 	)
 
@@ -23,7 +24,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction func showPreferencesWindow(_ sender: NSMenuItem) {
-		preferencesWindowController.showWindow()
+		print("Showing Preferences")
+		preferencesWindowController.hidesToolbarForSingleItem = false
+		preferencesWindowController.show()
 	}
 
 }

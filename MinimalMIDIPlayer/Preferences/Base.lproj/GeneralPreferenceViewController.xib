@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -39,7 +39,7 @@
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="5Sx-95-v8z"/>
                             </constraints>
                             <textFieldCell key="cell" controlSize="small" title="Playback begins immediately after a file is opened." id="t8K-PR-ApH">
-                                <font key="font" metaFont="smallSystem"/>
+                                <font key="font" metaFont="message" size="11"/>
                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -60,7 +60,7 @@
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="L9t-TN-fql"/>
                             </constraints>
                             <textFieldCell key="cell" controlSize="small" id="cqN-q1-f7b">
-                                <font key="font" metaFont="smallSystem"/>
+                                <font key="font" metaFont="message" size="11"/>
                                 <string key="title">MinimalMIDIPlayer already does its best to match MIDI files and soundfonts, but sometimes finding a soundfont is hard.
 With this option, approximate filename matches will also be considered.</string>
                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -83,7 +83,7 @@ With this option, approximate filename matches will also be considered.</string>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="dnu-o5-5ST"/>
                             </constraints>
                             <textFieldCell key="cell" controlSize="small" id="pCP-1R-M4S">
-                                <font key="font" metaFont="smallSystem"/>
+                                <font key="font" metaFont="message" size="11"/>
                                 <string key="title">Normally, when you hit Play in a player window, all other player windows are paused. Cacophony Mode disables this behavior, allowing multiple player windows to play at the same time.</string>
                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -131,8 +131,8 @@ With this option, approximate filename matches will also be considered.</string>
             </subviews>
             <constraints>
                 <constraint firstItem="ylH-pH-AJG" firstAttribute="top" secondItem="L7j-Se-ayO" secondAttribute="top" constant="20" id="Fy1-R4-Hwl"/>
-                <constraint firstAttribute="bottom" secondItem="ylH-pH-AJG" secondAttribute="bottom" constant="20" id="KBs-Tu-DpQ"/>
                 <constraint firstItem="ylH-pH-AJG" firstAttribute="centerX" secondItem="L7j-Se-ayO" secondAttribute="centerX" id="RWM-s0-5pZ"/>
+                <constraint firstAttribute="bottom" secondItem="ylH-pH-AJG" secondAttribute="bottom" constant="20" id="VHN-1K-drb"/>
             </constraints>
             <point key="canvasLocation" x="76.5" y="173"/>
         </view>

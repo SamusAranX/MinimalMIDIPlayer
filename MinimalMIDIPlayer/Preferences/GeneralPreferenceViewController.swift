@@ -9,9 +9,10 @@
 import Cocoa
 import Preferences
 
-class GeneralPreferenceViewController: NSViewController, Preferenceable {
+class GeneralPreferenceViewController: NSViewController, PreferencePane {
 
-	let toolbarItemTitle: String = NSLocalizedString("General", comment: "Preference Tab Title")
+	let preferencePaneIdentifier = PreferencePaneIdentifier.general
+	let preferencePaneTitle: String = NSLocalizedString("General", comment: "Preference Tab Title")
 	let toolbarItemIcon: NSImage = NSImage(named: "PreferencesMIDI")!
 
 	override var nibName: NSNib.Name? {
@@ -43,7 +44,7 @@ class GeneralPreferenceViewController: NSViewController, Preferenceable {
 
 		NSDocumentController.shared.closeAllDocuments(withDelegate: nil, didCloseAllSelector: nil, contextInfo: nil)
 
-		if #available(OSX 10.12.2, *), Settings.shared.cacophonyMode {
+		if Settings.shared.cacophonyMode {
 			NowPlayingCentral.shared.playbackState = .unknown
 			NowPlayingCentral.shared.resetNowPlayingInfo()
 		}

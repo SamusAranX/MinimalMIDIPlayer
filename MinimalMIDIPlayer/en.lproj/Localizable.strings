@@ -8,21 +8,42 @@
 
 // About Window
 "AProjectBy" = "A project by %@, %@ – %@";
+"BetaSubtitle" = "super secret beta version";
+"VersionString" = "Version %@, Build %@";
 
 // Cacophony Mode accessory view
 "Cacophony Mode enabled" = "Cacophony Mode enabled";
 
 // DocumentViewController.openFile() error messages
-"Error loading file" = "Error loading file";
+"Error loading file"                                   = "Error loading file";
 "Something went wrong. Please try reopening the file." = "Something went wrong. Please try reopening the file.";
-"Couldn't open MIDI file." = "Couldn't open MIDI file.";
-"Couldn't open Soundfont file." = "Couldn't open Soundfont file.";
+"Couldn't open MIDI file."                             = "Couldn't open MIDI file.";
+"Couldn't open Soundfont file."                        = "Couldn't open Soundfont file.";
 
 // DocumentViewController.populateSoundfontMenu()
-"Default Soundfont" = "Default Soundfont";
-"Recent Soundfonts" = "Recent Soundfonts";
+"Default Soundfont"      = "Default Soundfont";
+"Recent Soundfonts"      = "Recent Soundfonts";
 "Load Custom Soundfont…" = "Load Custom Soundfont…";
 
 // GeneralPreferenceViewController
 "Preferences" = "Preferences";
-"General" = "General";
+"General"     = "General";
+"Bouncing"    = "Bouncing";
+
+// BounceProgressViewController
+"Bouncing {source.mid} to {target.wav}…"                 = "Bouncing %@ to %@…";
+"Bouncing to {target.wav}…"                              = "Bouncing to %@…";
+"Bouncing {source.mid}…"                                 = "Bouncing %@…";
+"Soundfont used: {source.sf2}"                           = "Soundfont used: %@";
+"Bounce completed"                                       = "Bounce completed";
+"{source.mid} was successfully bounced to {target.wav}." = "%@ was successfully bounced to %@.";
+"An error occurred while bouncing"                       = "An error occurred while bouncing";
+"More details: "                                         = "More details: ";
+
+// MIDIFileBouncer error messages
+"Can't determine sequence length."      = "Can't determine sequence length.";
+"AVAudioFile creation failed."          = "AVAudioFile creation failed.";
+"Error occurred while converting file." = "Error occurred while converting file.";
+"Engine start failed."                  = "Engine start failed.";
+"Can't start sequencer."                = "Can't start sequencer.";
+"Can't write to file."                  = "Can't write to file.";

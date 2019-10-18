@@ -9,7 +9,6 @@
 import Cocoa
 import MediaPlayer
 
-@available(OSX 10.12.2, *)
 class NowPlayingCentral: NSObject {
 
 	static let shared = NowPlayingCentral()
@@ -129,7 +128,6 @@ class NowPlayingCentral: NSObject {
 
 		if #available(OSX 10.13.2, *) {
 			nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 800, height: 800), requestHandler: { (_) -> NSImage in
-
 				return NSImage(named: "AlbumArt")!
 			})
 		}

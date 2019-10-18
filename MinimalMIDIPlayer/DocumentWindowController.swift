@@ -17,8 +17,6 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
 
 	weak var delegate: WindowControllerDelegate?
 
-	fileprivate var eventMonitor: Any!
-
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 
@@ -48,6 +46,7 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
 		self.delegate?.windowWillClose(notification)
 	}
 
+	// Key codes: Space, Arrow keys
 	let forwardedKeyCodes: [UInt16] = [0x31, 0x7B, 0x7C, 0x7D, 0x7E]
 	override func keyDown(with event: NSEvent) {
 		if !forwardedKeyCodes.contains(event.keyCode) {
