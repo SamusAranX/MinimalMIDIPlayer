@@ -69,7 +69,7 @@ class AboutViewController: NSViewController {
 
 		// Select Beta icon if this is a Beta build
 		if let identifier = Bundle.main.bundleIdentifier, identifier.hasSuffix(".beta") {
-			appIconView.image = NSImage(named: "AppIconSmallBeta")
+			appIconView.image = NSImage(named: "AboutIconBeta")
 		}
 
 		// Configure hyperlinks in multi-line label

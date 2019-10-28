@@ -70,8 +70,8 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" hidden="YES" id="qS1-sm-6jp"/>
-                                        <menuItem title="Bounce MIDI (Beta)…" hidden="YES" keyEquivalent="b" id="mIJ-a6-Cdu">
+                                        <menuItem isSeparatorItem="YES" id="qS1-sm-6jp"/>
+                                        <menuItem title="Bounce MIDI (Beta)…" keyEquivalent="b" id="mIJ-a6-Cdu">
                                             <connections>
                                                 <action selector="bounceToFile:" target="BPK-JZ-IAI" id="ftn-fs-saS"/>
                                             </connections>
@@ -80,11 +80,6 @@
                                         <menuItem title="Close" keyEquivalent="w" id="HBx-Pn-DlL">
                                             <connections>
                                                 <action selector="performClose:" target="BPK-JZ-IAI" id="hFh-VY-LCL"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Close All" keyEquivalent="W" id="hPB-Py-Ebs">
-                                            <connections>
-                                                <action selector="closeAllWindows:" target="Chb-lq-zaq" id="Xfa-2g-e8t"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -539,7 +534,7 @@
                                                 </connections>
                                             </progressIndicator>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfo-zf-CTx">
-                                                <rect key="frame" x="232" y="2" width="44" height="14"/>
+                                                <rect key="frame" x="248" y="2" width="39" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="bnv-qn-d3V"/>
                                                 </constraints>

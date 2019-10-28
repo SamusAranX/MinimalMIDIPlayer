@@ -475,18 +475,17 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 		midiPlayer.pause()
 		midiPlayer.acceptsMediaKeys = false
-		print("disabled media keys")
 
 		let savePanel = NSSavePanel()
 		savePanel.title = "Bounce \(sourceMIDI.lastPathComponent) to file"
 		savePanel.prompt = "Bounce"
 		savePanel.nameFieldLabel = "Export As:"
 		savePanel.nameFieldStringValue = sourceMIDI.deletingPathExtension().lastPathComponent
+		savePanel.message = "Message goes here"
 		savePanel.allowedFileTypes = ["wav"]
 
 		guard savePanel.runModal() == .OK, let saveURL = savePanel.url else {
 			midiPlayer.acceptsMediaKeys = true
-			print("save sheet cancelled")
 			return
 		}
 
