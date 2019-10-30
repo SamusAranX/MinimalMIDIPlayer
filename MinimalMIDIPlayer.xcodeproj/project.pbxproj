@@ -426,7 +426,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+			shellScript = "exit 0 # comment this out to reenable \n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
 		560EECBE2242461000C36162 /* Run Script (SwiftLint) */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -724,8 +724,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPICON_SUFFIX = "";
+				APPNAME_SUFFIX = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
-				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
 				BUNDLE_ID_SUFFIX = .debug;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MinimalMIDIPlayer/MinimalMIDIPlayer.entitlements;
@@ -743,7 +744,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MinimalMIDIPlayer/HyperlinkTextField/MinimalMIDIPlayer-Bridging-Header.h";
@@ -756,8 +757,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPICON_SUFFIX = "";
+				APPNAME_SUFFIX = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
-				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
 				BUNDLE_ID_SUFFIX = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MinimalMIDIPlayer/MinimalMIDIPlayer.entitlements;
@@ -775,7 +777,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MinimalMIDIPlayer/HyperlinkTextField/MinimalMIDIPlayer-Bridging-Header.h";
@@ -823,7 +825,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -836,8 +838,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPICON_SUFFIX = Beta;
+				APPNAME_SUFFIX = " β";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
-				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
 				BUNDLE_ID_SUFFIX = .beta;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MinimalMIDIPlayer/MinimalMIDIPlayer.entitlements;
@@ -855,8 +858,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
-				PRODUCT_NAME = "$(TARGET_NAME) β";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
+				PRODUCT_NAME = "$(TARGET_NAME)$(APPNAME_SUFFIX)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MinimalMIDIPlayer/HyperlinkTextField/MinimalMIDIPlayer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -935,7 +938,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -948,8 +951,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPICON_SUFFIX = Beta;
+				APPNAME_SUFFIX = " β";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
-				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
 				BUNDLE_ID_SUFFIX = .beta;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MinimalMIDIPlayer/MinimalMIDIPlayer.entitlements;
@@ -967,8 +971,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
+				PRODUCT_NAME = "$(TARGET_NAME)$(APPNAME_SUFFIX)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MinimalMIDIPlayer/HyperlinkTextField/MinimalMIDIPlayer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

@@ -31,19 +31,23 @@
 "Bouncing"    = "Bouncing";
 
 // BounceProgressViewController
-"Bouncing {source.mid} to {target.wav}…"                 = "Bouncing %@ to %@…";
-"Bouncing to {target.wav}…"                              = "Bouncing to %@…";
-"Bouncing {source.mid}…"                                 = "Bouncing %@…";
-"Soundfont used: {source.sf2}"                           = "Soundfont used: %@";
+"Bouncing {source.mid} to file"                          = "Bouncing %@ to file";
+"Export As:"                                             = "Export As:";
+"Bounce"                                                 = "Bounce";
 "Bounce completed"                                       = "Bounce completed";
 "{source.mid} was successfully bounced to {target.wav}." = "%@ was successfully bounced to %@.";
 "An error occurred while bouncing"                       = "An error occurred while bouncing";
 "More details: "                                         = "More details: ";
 
 // MIDIFileBouncer error messages
+"Bouncer can't be initialized."         = "Bouncer can't be initialized.";
 "Can't determine sequence length."      = "Can't determine sequence length.";
 "AVAudioFile creation failed."          = "AVAudioFile creation failed.";
 "Error occurred while converting file." = "Error occurred while converting file.";
 "Engine start failed."                  = "Engine start failed.";
 "Can't start sequencer."                = "Can't start sequencer.";
 "Can't write to file."                  = "Can't write to file.";
+
+// MIDI bouncing beta warning
+"BouncingBetaWarningTitle"   = "Important information regarding the bounce feature";
+"BouncingBetaWarningMessage" = "This feature is not finalized and might never be. As it stands, it's basically a gimmick until Apple improves the MIDI file APIs.\n\nCurrent limitations include but are not limited to:\n  • Exported files don't sound the same\n  • Custom soundfonts rarely work\n  • It's slow\n\nI'll keep working on this, but I can't promise it'll ever be good enough for me to consider the feature \"final\". Thanks for understanding. This warning will not be shown again.";

@@ -17,6 +17,7 @@ protocol MIDIFileBouncerDelegate: class {
 
 struct MIDIBounceError: Error {
 	enum ErrorKind {
+		case initializationFailure
 		case invalidSequenceLength
 		case avAudioFileCreationFailure
 		case conversionFailure
@@ -26,14 +27,14 @@ struct MIDIBounceError: Error {
 	}
 
 	let kind: ErrorKind
-	let message: String
+	let localizedMessage: String
 	let innerError: Error?
 
 	init(kind: ErrorKind, message: String, innerError: Error? = nil) {
 		self.kind = kind
 
 		let localizedMessage = NSLocalizedString(message, comment: "Make sure all error messages are fully localized")
-		self.message = localizedMessage
+		self.localizedMessage = localizedMessage
 
 		self.innerError = innerError
 	}

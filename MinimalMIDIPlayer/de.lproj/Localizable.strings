@@ -31,19 +31,23 @@
 "Bouncing"    = "Bouncing";
 
 // BounceProgressViewController
-"Bouncing {source.mid} to {target.wav}…"                 = "Bounce %@ zu %@…";
-"Bouncing to {target.wav}…"                              = "Bounce zu %@…";
-"Bouncing {source.mid}…"                                 = "Bounce %@…";
-"Soundfont used: {source.sf2}"                           = "Benutzte Soundfont: %@";
+"Bouncing {source.mid} to file"                          = "Bounce %@ in Datei";
+"Export As:"                                             = "Exportieren als:";
+"Bounce"                                                 = "Bouncen";
 "Bounce completed"                                       = "Bounce abgeschlossen";
 "{source.mid} was successfully bounced to {target.wav}." = "%@ wurde erfolgreich zu %@ gebounct.";
 "An error occurred while bouncing"                       = "Ein Fehler ist beim Bouncen aufgetreten";
 "More details: "                                         = "Mehr Informationen: ";
 
 // MIDIFileBouncer error messages
+"Bouncer can't be initialized."        = "Bouncer kann nicht initialisiert werden.";
 "Can't determine sequence length"      = "Kann Sequenzlänge nicht bestimmen.";
 "AVAudioFile creation failed"          = "AVAudioFile-Erstellung fehlgeschlagen.";
 "Error occurred while converting file" = "Beim Umwandeln der Datei ist ein Fehler aufgetreten.";
 "Engine start failed"                  = "Engine konnte nicht gestartet werden.";
 "Can't start sequencer"                = "Sequencer konnte nicht gestartet werden.";
-"Can't write to file"                  = "Datei kann nicht gespeichert werden.";
+"Can't write to file"                  = "Datei kann nicht geschrieben werden.";
+
+// MIDI bouncing beta warning
+"BouncingBetaWarningTitle"   = "Wichtige Informationen zum Bounce-Feature";
+"BouncingBetaWarningMessage" = "Dieses Feature ist noch nicht fertig und wird es vermutlich nie sein. Bis Apple die APIs für MIDI-Dateien verbessert, ist es eher ein Gimmick.\n\nEinige der Einschränkungen sind:\n  • Exportierte Dateien hören sich anders an\n  • Eigene Soundfonts funktionieren nur selten\n  • Es ist langsam\n\nIch werde weiter daran arbeiten, aber ich kann nicht versprechen, dass es jemand gut genug sein wird, damit ich es als \"fertig\" ansehen kann. Danke für euer Verständnis. Diese Warnung wird nicht wieder eingeblendet werden.";

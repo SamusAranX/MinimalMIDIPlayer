@@ -473,15 +473,24 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			return
 		}
 
+		if !Settings.shared.bounceBetaWarningShown {
+			let alertTitle = NSLocalizedString("BouncingBetaWarningTitle", comment: "Warning title")
+			let alertMessage = NSLocalizedString("BouncingBetaWarningMessage", comment: "Warning message")
+			NSAlert.runModal(title: alertTitle, message: alertMessage, style: .informational)
+			Settings.shared.bounceBetaWarningShown = true
+		}
+
 		midiPlayer.pause()
 		midiPlayer.acceptsMediaKeys = false
 
 		let savePanel = NSSavePanel()
-		savePanel.title = "Bounce \(sourceMIDI.lastPathComponent) to file"
-		savePanel.prompt = "Bounce"
-		savePanel.nameFieldLabel = "Export As:"
+
+		let savePanelTitleFormat = NSLocalizedString("Bouncing {source.mid} to file", comment: "title")
+		savePanel.title = String(format: savePanelTitleFormat, sourceMIDI.lastPathComponent)
+
+		savePanel.prompt = NSLocalizedString("Bounce", comment: "save button label")
+		savePanel.nameFieldLabel = NSLocalizedString("Export As:", comment: "name field label")
 		savePanel.nameFieldStringValue = sourceMIDI.deletingPathExtension().lastPathComponent
-		savePanel.message = "Message goes here"
 		savePanel.allowedFileTypes = ["wav"]
 
 		guard savePanel.runModal() == .OK, let saveURL = savePanel.url else {
@@ -493,8 +502,12 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 		DispatchQueue.global(qos: .userInitiated).async {
 			guard let bouncer = try? MIDIFileBouncer(midiFile: sourceMIDI, soundfontFile: midiPlayer.currentSoundfont) else {
-				fatalError("Couldn't initialize bouncer")
+				DispatchQueue.main.async {
+					self.bounceError(error: MIDIBounceError(kind: .initializationFailure, message: "Bouncer can't be initialized."))
+				}
+				return
 			}
+
 			self.bouncer = bouncer
 
 			self.bouncer!.rate = midiPlayer.rate
@@ -607,7 +620,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 	func bounceError(error: MIDIBounceError) {
 		let errorTitle = NSLocalizedString("An error occurred while bouncing", comment: "Generic error title string")
-		var errorMessage = error.message
+		var errorMessage = error.localizedMessage
 
 		if let innerError = error.innerError {
 			errorMessage += "\n\n"

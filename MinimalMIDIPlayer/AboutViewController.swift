@@ -39,6 +39,11 @@ class AboutViewController: NSViewController {
 		// Fill in the app name
 		if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
 			appNameLabel.stringValue = appName
+
+			// Select Beta icon if this is a Beta build
+			if appName.hasSuffix("β") {
+				appIconView.image = NSImage(named: "AboutIconBeta")
+			}
 		}
 
 		// Fill in the version number
@@ -65,11 +70,6 @@ class AboutViewController: NSViewController {
 			let copyrightString = String(format: copyrightFormatString, copyrightOwner, copyrightYear1, copyrightYear2)
 
 			copyrightLabel.stringValue = copyrightString
-		}
-
-		// Select Beta icon if this is a Beta build
-		if let identifier = Bundle.main.bundleIdentifier, identifier.hasSuffix(".beta") {
-			appIconView.image = NSImage(named: "AboutIconBeta")
 		}
 
 		// Configure hyperlinks in multi-line label

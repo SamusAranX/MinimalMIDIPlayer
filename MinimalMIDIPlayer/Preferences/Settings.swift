@@ -19,7 +19,8 @@ class Settings {
 			"looseSFMatching": false,
 			"cacophonyMode": false,
 			"sampleRate": 44100,
-			"channels": 2
+			"channels": 2,
+			"bounceBetaWarningShown": false
 		])
 	}
 
@@ -77,6 +78,16 @@ class Settings {
 	var channels: Int {
 		get {
 			return UserDefaults.standard.integer(forKey: #function)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: #function)
+			UserDefaults.standard.synchronize()
+		}
+	}
+
+	var bounceBetaWarningShown: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: #function)
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: #function)
