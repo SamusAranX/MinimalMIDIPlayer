@@ -1,35 +1,26 @@
 //
-//  GeneralPreferenceViewController.swift
+//  PreferencesViewController.swift
 //  MinimalMIDIPlayer
 //
-//  Created by Peter Wunder on 12.03.19.
-//  Copyright © 2019 Peter Wunder. All rights reserved.
+//  Created by Peter Wunder on 03.04.20.
+//  Copyright © 2020 Peter Wunder. All rights reserved.
 //
 
 import Cocoa
-import Preferences
 
-class GeneralPreferenceViewController: NSViewController, PreferencePane {
-
-	let preferencePaneIdentifier = PreferencePaneIdentifier.general
-	let preferencePaneTitle: String = NSLocalizedString("General", comment: "Preference Tab Title")
-	let toolbarItemIcon: NSImage = NSImage(named: "PreferencesMIDI")!
-
-	override var nibName: NSNib.Name? {
-		return "GeneralPreferenceViewController"
-	}
+class PreferencesViewController: NSViewController {
 
 	@IBOutlet weak var autoplayCheckbox: NSButton!
 	@IBOutlet weak var looseSFMatchingCheckbox: NSButton!
 	@IBOutlet weak var cacophonyModeCheckbox: NSButton!
 
-	override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
 		self.autoplayCheckbox.state = Settings.shared.autoplay ? .on : .off
 		self.looseSFMatchingCheckbox.state = Settings.shared.looseSFMatching ? .on : .off
 		self.cacophonyModeCheckbox.state = Settings.shared.cacophonyMode ? .on : .off
-    }
+	}
 
 	@IBAction func autoplayCheckboxToggled(_ sender: NSButton) {
 		Settings.shared.autoplay = sender.state == .on

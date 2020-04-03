@@ -14,11 +14,6 @@
 		5612BAE821414F3C00AA1882 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612BAE721414F3C00AA1882 /* Settings.swift */; };
 		561776F1213AB08D003BF843 /* NSFont+Alternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561776F0213AB08D003BF843 /* NSFont+Alternates.swift */; };
 		562283DF213D1C4D008F550E /* DocIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 562283DE213D1C4D008F550E /* DocIcon.icns */; };
-		562DDFE82265B9D600D4A727 /* PreferencePaneIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562DDFE72265B9D600D4A727 /* PreferencePaneIdentifiers.swift */; };
-		562DDFE92266136100D4A727 /* Preferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C2AB88224A388A0093728A /* Preferences.framework */; };
-		562DDFEA2266136100D4A727 /* Preferences.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56C2AB88224A388A0093728A /* Preferences.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		562E3AAE224E0B30001AD319 /* BouncePreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3AAC224E0B30001AD319 /* BouncePreferenceViewController.swift */; };
-		562E3AB0224E145B001AD319 /* BouncePreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 562E3AB2224E145B001AD319 /* BouncePreferenceViewController.xib */; };
 		562E3AB9224E1E65001AD319 /* AVAudioUnitMIDISynth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3AB8224E1E65001AD319 /* AVAudioUnitMIDISynth.swift */; };
 		562E3ABD224E1E79001AD319 /* MIDIFileBouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E3ABC224E1E79001AD319 /* MIDIFileBouncer.swift */; };
 		563C821F214DA32F00B0D41E /* MinimalMIDIQL.qlgenerator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56057E65214959BF008946EB /* MinimalMIDIQL.qlgenerator */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -28,16 +23,15 @@
 		565642B8214D9E8E0036D76C /* AlbumArtQuickLookBigger.png in Resources */ = {isa = PBXBuildFile; fileRef = 565642B7214D9E8E0036D76C /* AlbumArtQuickLookBigger.png */; };
 		56654136214045C100283C85 /* MIDIDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56654135214045C100283C85 /* MIDIDocument.swift */; };
 		5669F2EB21425B400034D3ED /* NowPlayingCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */; };
-		5669F2ED214294F50034D3ED /* GeneralPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F2EC214294F50034D3ED /* GeneralPreferenceViewController.swift */; };
 		569D77F32004F0010028D9C2 /* PWMIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */; };
 		56A0BD7C21400569006095CE /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7B21400569006095CE /* DocumentWindowController.swift */; };
 		56A0BD7E214005A4006095CE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7D214005A4006095CE /* DocumentViewController.swift */; };
+		56A575C424372AC300F1A86E /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A575C324372AC300F1A86E /* PreferencesViewController.swift */; };
 		56B0532A223A3D3D000AB382 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56B05329223A3D3D000AB382 /* Acknowledgements.rtf */; };
 		56B1E12C21EBA619002CEBB3 /* Levenshtein.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B1E12B21EBA619002CEBB3 /* Levenshtein.swift */; };
 		56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */; };
 		56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */; };
 		56DAB39A224B63F000FF8847 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB39C224B63F000FF8847 /* Localizable.strings */; };
-		56DAB39E224B71AF00FF8847 /* GeneralPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB3A0224B71AF00FF8847 /* GeneralPreferenceViewController.xib */; };
 		56DAB3A3224B71BF00FF8847 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB3A5224B71BF00FF8847 /* Main.storyboard */; };
 		56F0352922534CBD00BD8DD0 /* AudioFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F0352822534CBD00BD8DD0 /* AudioFormats.swift */; };
 		56FEF1572141181B00813975 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF1562141181B00813975 /* AboutViewController.swift */; };
@@ -46,17 +40,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		562DDFEB2266136100D4A727 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				562DDFEA2266136100D4A727 /* Preferences.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		565642B5214D9CF90036D76C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,15 +47,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				563C821F214DA32F00B0D41E /* MinimalMIDIQL.qlgenerator in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56ED8E76223690E100381929 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,13 +60,9 @@
 		56057E6B214959BF008946EB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		56057E6D214959BF008946EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56057E7221495F35008946EB /* Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shared.h; sourceTree = "<group>"; };
-		56067BDA2251F94E0044C180 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/BouncePreferenceViewController.strings; sourceTree = "<group>"; };
 		5612BAE721414F3C00AA1882 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		561776F0213AB08D003BF843 /* NSFont+Alternates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Alternates.swift"; sourceTree = "<group>"; };
 		562283DE213D1C4D008F550E /* DocIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DocIcon.icns; sourceTree = "<group>"; };
-		562DDFE72265B9D600D4A727 /* PreferencePaneIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencePaneIdentifiers.swift; sourceTree = "<group>"; };
-		562E3AAC224E0B30001AD319 /* BouncePreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncePreferenceViewController.swift; sourceTree = "<group>"; };
-		562E3AB1224E145B001AD319 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BouncePreferenceViewController.xib; sourceTree = "<group>"; };
 		562E3AB8224E1E65001AD319 /* AVAudioUnitMIDISynth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioUnitMIDISynth.swift; sourceTree = "<group>"; };
 		562E3ABC224E1E79001AD319 /* MIDIFileBouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIFileBouncer.swift; sourceTree = "<group>"; };
 		563C8229214DCA6E00B0D41E /* NSFont+LineHeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFont+LineHeight.h"; sourceTree = "<group>"; };
@@ -101,25 +71,22 @@
 		565642B7214D9E8E0036D76C /* AlbumArtQuickLookBigger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumArtQuickLookBigger.png; sourceTree = "<group>"; };
 		56654135214045C100283C85 /* MIDIDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIDocument.swift; sourceTree = "<group>"; };
 		5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCentral.swift; sourceTree = "<group>"; };
-		5669F2EC214294F50034D3ED /* GeneralPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferenceViewController.swift; sourceTree = "<group>"; };
 		569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWMIDIPlayer.swift; sourceTree = "<group>"; };
 		56A0BD7B21400569006095CE /* DocumentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		56A0BD7D214005A4006095CE /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		56A24C472254CCAD00213A4B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		56A3A10E21707E7F008ABA6A /* MinimalMIDIPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalMIDIPlayer.entitlements; sourceTree = "<group>"; };
+		56A575C324372AC300F1A86E /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		56AB757F213FD146009ECFB1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		56B05329223A3D3D000AB382 /* Acknowledgements.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Acknowledgements.rtf; sourceTree = "<group>"; };
 		56B1E12B21EBA619002CEBB3 /* Levenshtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levenshtein.swift; sourceTree = "<group>"; };
 		56C2AB86224A33EF0093728A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		56C2AB88224A388A0093728A /* Preferences.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Preferences.framework; path = Carthage/Build/Mac/Preferences.framework; sourceTree = "<group>"; };
 		56D6A8CD1C3437AA0071DEF4 /* MinimalMIDIPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalMIDIPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56DAB39B224B63F000FF8847 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56DAB39D224B640B00FF8847 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		56DAB39F224B71AF00FF8847 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferenceViewController.xib; sourceTree = "<group>"; };
 		56DAB3A4224B71BF00FF8847 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		56DAB3A9224B7FA400FF8847 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralPreferenceViewController.strings; sourceTree = "<group>"; };
 		56F0352822534CBD00BD8DD0 /* AudioFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFormats.swift; sourceTree = "<group>"; };
 		56FEF1562141181B00813975 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		56FEF159214119FC00813975 /* MinimalMIDIPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MinimalMIDIPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -141,7 +108,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				563D9FC21FF46E95008DE194 /* MediaPlayer.framework in Frameworks */,
-				562DDFE92266136100D4A727 /* Preferences.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +141,6 @@
 		563D9FC01FF46E95008DE194 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				56C2AB88224A388A0093728A /* Preferences.framework */,
 				56AB757F213FD146009ECFB1 /* AVFoundation.framework */,
 				563D9FC11FF46E95008DE194 /* MediaPlayer.framework */,
 				56057E3B214958BF008946EB /* Quartz.framework */,
@@ -229,13 +194,14 @@
 				56B1E12A21EBA603002CEBB3 /* Helpers */,
 				56FEF158214119D800813975 /* HyperlinkTextField */,
 				569D77EC2004D3850028D9C2 /* Icons */,
-				56E0D63D2237AD5500780A50 /* Preferences */,
 				56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */,
 				56DAB3A5224B71BF00FF8847 /* Main.storyboard */,
 				56D6A8D01C3437AA0071DEF4 /* AppDelegate.swift */,
+				5612BAE721414F3C00AA1882 /* Settings.swift */,
 				5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */,
 				56654135214045C100283C85 /* MIDIDocument.swift */,
 				569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */,
+				56A575C324372AC300F1A86E /* PreferencesViewController.swift */,
 				56A0BD7B21400569006095CE /* DocumentWindowController.swift */,
 				56A0BD7D214005A4006095CE /* DocumentViewController.swift */,
 				56FEF1562141181B00813975 /* AboutViewController.swift */,
@@ -243,19 +209,6 @@
 				56DAB39C224B63F000FF8847 /* Localizable.strings */,
 			);
 			path = MinimalMIDIPlayer;
-			sourceTree = "<group>";
-		};
-		56E0D63D2237AD5500780A50 /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				5612BAE721414F3C00AA1882 /* Settings.swift */,
-				562DDFE72265B9D600D4A727 /* PreferencePaneIdentifiers.swift */,
-				5669F2EC214294F50034D3ED /* GeneralPreferenceViewController.swift */,
-				56DAB3A0224B71AF00FF8847 /* GeneralPreferenceViewController.xib */,
-				562E3AAC224E0B30001AD319 /* BouncePreferenceViewController.swift */,
-				562E3AB2224E145B001AD319 /* BouncePreferenceViewController.xib */,
-			);
-			path = Preferences;
 			sourceTree = "<group>";
 		};
 		56FEF158214119D800813975 /* HyperlinkTextField */ = {
@@ -317,13 +270,10 @@
 			buildPhases = (
 				56B9E1E02146D4C9007914DB /* Run Script (Auto-increase Build Number) */,
 				560EECBE2242461000C36162 /* Run Script (SwiftLint) */,
-				56ED8E79223694F100381929 /* Run Script (Carthage: Trigger Warnings for Outdated Dependencies) */,
 				56D6A8C91C3437AA0071DEF4 /* Sources */,
 				56D6A8CA1C3437AA0071DEF4 /* Frameworks */,
 				56D6A8CB1C3437AA0071DEF4 /* Resources */,
 				565642B5214D9CF90036D76C /* CopyFiles */,
-				56ED8E76223690E100381929 /* CopyFiles */,
-				562DDFEB2266136100D4A727 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -400,9 +350,7 @@
 				56DAB3A3224B71BF00FF8847 /* Main.storyboard in Resources */,
 				56DAB39A224B63F000FF8847 /* Localizable.strings in Resources */,
 				56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */,
-				56DAB39E224B71AF00FF8847 /* GeneralPreferenceViewController.xib in Resources */,
 				56B0532A223A3D3D000AB382 /* Acknowledgements.rtf in Resources */,
-				562E3AB0224E145B001AD319 /* BouncePreferenceViewController.xib in Resources */,
 				562283DF213D1C4D008F550E /* DocIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,24 +412,6 @@
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
-		56ED8E79223694F100381929 /* Run Script (Carthage: Trigger Warnings for Outdated Dependencies) */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script (Carthage: Trigger Warnings for Outdated Dependencies)";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# /usr/local/bin/carthage outdated --xcode-warnings \n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -501,8 +431,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				561776F1213AB08D003BF843 /* NSFont+Alternates.swift in Sources */,
-				562DDFE82265B9D600D4A727 /* PreferencePaneIdentifiers.swift in Sources */,
-				562E3AAE224E0B30001AD319 /* BouncePreferenceViewController.swift in Sources */,
 				562E3ABD224E1E79001AD319 /* MIDIFileBouncer.swift in Sources */,
 				569D77F32004F0010028D9C2 /* PWMIDIPlayer.swift in Sources */,
 				56FEF1572141181B00813975 /* AboutViewController.swift in Sources */,
@@ -512,27 +440,18 @@
 				562E3AB9224E1E65001AD319 /* AVAudioUnitMIDISynth.swift in Sources */,
 				56FEF16621411AC000813975 /* Extensions.swift in Sources */,
 				56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */,
+				56A575C424372AC300F1A86E /* PreferencesViewController.swift in Sources */,
 				56FEF15D214119FD00813975 /* HyperlinkTextField.m in Sources */,
 				5612BAE821414F3C00AA1882 /* Settings.swift in Sources */,
 				5669F2EB21425B400034D3ED /* NowPlayingCentral.swift in Sources */,
 				56654136214045C100283C85 /* MIDIDocument.swift in Sources */,
 				56B1E12C21EBA619002CEBB3 /* Levenshtein.swift in Sources */,
-				5669F2ED214294F50034D3ED /* GeneralPreferenceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		562E3AB2224E145B001AD319 /* BouncePreferenceViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				562E3AB1224E145B001AD319 /* Base */,
-				56067BDA2251F94E0044C180 /* de */,
-			);
-			name = BouncePreferenceViewController.xib;
-			sourceTree = "<group>";
-		};
 		56DAB39C224B63F000FF8847 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -540,15 +459,6 @@
 				56DAB39D224B640B00FF8847 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		56DAB3A0224B71AF00FF8847 /* GeneralPreferenceViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				56DAB39F224B71AF00FF8847 /* Base */,
-				56DAB3A9224B7FA400FF8847 /* de */,
-			);
-			name = GeneralPreferenceViewController.xib;
 			sourceTree = "<group>";
 		};
 		56DAB3A5224B71BF00FF8847 /* Main.storyboard */ = {
@@ -735,15 +645,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4254J4CMHQ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -768,15 +676,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4254J4CMHQ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -849,15 +755,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4254J4CMHQ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)$(APPNAME_SUFFIX)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -962,15 +866,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4254J4CMHQ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MinimalMIDIPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)$(APPNAME_SUFFIX)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

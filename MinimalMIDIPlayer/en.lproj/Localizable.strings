@@ -15,7 +15,7 @@
 "Cacophony Mode enabled" = "Cacophony Mode enabled";
 
 // DocumentViewController.openFile() error messages
-"Error loading file"                                   = "Error loading file";
+"Error loading file"                                   = "Error loading file.";
 "Something went wrong. Please try reopening the file." = "Something went wrong. Please try reopening the file.";
 "Couldn't open MIDI file."                             = "Couldn't open MIDI file.";
 "Couldn't open Soundfont file."                        = "Couldn't open Soundfont file.";

@@ -3,6 +3,9 @@
 	/* Class = "NSTextFieldCell"; title = "Speed"; ObjectID = "nlD-hM-Jcg"; */
 	"nlD-hM-Jcg.title" = "Geschw.";
 
+	/* Class = "NSButtonCell"; title = "Stop Bouncing"; ObjectID = "jFn-uF-iCM"; */
+	"jFn-uF-iCM.title" = "Bounce abbrechen";
+
 // Soundfont Menu
 
 	/* Class = "NSMenuItem"; title = "Default Soundfont"; ObjectID = "Q7Y-od-Qzw"; */
@@ -52,6 +55,32 @@
 
 	/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "P2O-L8-7eX"; */
 	"P2O-L8-7eX.title" = "Abbrechen";
+
+// Preferences Window
+
+	/* Class = "NSWindow"; title = "Preferences"; ObjectID = "arr-ef-pgL"; */
+	"arr-ef-pgL.title" = "Einstellungen";
+
+	/* Class = "NSButtonCell"; title = "Autoplay"; ObjectID = "ez2-21-eaj"; */
+	"ez2-21-eaj.title" = "Autoplay";
+
+	/* Class = "NSTextFieldCell"; title = "Playback begins immediately after a file is opened."; ObjectID = "lJh-t6-vVN"; */
+	"lJh-t6-vVN.title" = "Die Wiedergabe beginnt direkt, nachdem eine Datei geöffnet wird.";
+
+	/* Class = "NSButtonCell"; title = "Loose soundfont matching"; ObjectID = "X5z-W6-yfg"; */
+	"X5z-W6-yfg.title" = "Ungenaue Soundfont-Suche";
+
+	/* Class = "NSTextFieldCell"; title = "MinimalMIDIPlayer already does its best to match MIDI files and soundfonts, but sometimes finding a soundfont is hard.\nWith this option, approximate filename matches will also be considered."; ObjectID = "F5D-vk-fil"; */
+	"F5D-vk-fil.title" = "MinimalMIDIPlayer versucht bereits, passende Soundfonts zu finden, aber manchmal stimmen die Dateinamen nicht exakt überein.\nIst diese Option aktiviert, werden ungenaue Treffer auch in Betracht gezogen.";
+
+	/* Class = "NSButtonCell"; title = "Cacophony Mode 📣"; ObjectID = "SkS-RY-Irw"; */
+	"SkS-RY-Irw.title" = "Kakofonie-Modus 📣";
+
+	/* Class = "NSTextFieldCell"; title = "Normally, when you hit Play in a player window, all other player windows are paused. Cacophony Mode disables this behavior, allowing multiple player windows to play at the same time."; ObjectID = "ZtW-rP-Qnj"; */
+	"ZtW-rP-Qnj.title" = "Normalerweise werden alle anderen Player pausiert, wenn in einem neuen Fenster die Wiedergabe beginnt.\nDer Kakofonie-Modus deaktiviert dieses Verhalten und sorgt dafür, dass mehrere Player gleichzeitig aktiv sein können.";
+
+	/* Class = "NSTextFieldCell"; title = "Enabling Cacophony Mode will disable support for the Now Playing widget and media keys. Toggling it will close all open players to reset the Now Playing system."; ObjectID = "BLM-Wt-hRc"; */
+	"BLM-Wt-hRc.title" = "Wenn der Kakofonie-Modus aktiviert wird, wird die Unterstützung für Funktionstasten und das Now Playing-Widget deaktiviert.\nBeim Ändern der Einstellung werden darüberhinaus alle offenen Player geschlossen.";
 
 // Main Menu: MinimalMIDIPlayer
 

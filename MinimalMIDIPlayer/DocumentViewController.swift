@@ -271,7 +271,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		let errorTitle = NSLocalizedString("Error loading file", comment: "Alert popup title")
 		let unknownError = NSLocalizedString("Something went wrong. Please try reopening the file.", comment: "Message for unknown error")
 		let openMIDIError = NSLocalizedString("Couldn't open MIDI file.", comment: "Message in case MIDI file can't be opened")
-		let openSoundfontError = NSLocalizedString("Couldn't open Soundfont file", comment: "Message in case Soundfont file can't be opened")
+		let openSoundfontError = NSLocalizedString("Couldn't open Soundfont file.", comment: "Message in case Soundfont file can't be opened")
 
 		guard let window = self.view.window, let document = NSDocumentController.shared.document(for: window) as? MIDIDocument else {
 			// this might happen if another soundfont is selected after a file that's being played is renamed
