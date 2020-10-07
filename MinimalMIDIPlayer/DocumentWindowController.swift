@@ -32,14 +32,6 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
 		}
 
 		self.delegate = documentViewController
-
-		if #available(OSX 10.14, *) {
-			// Since Interface Builder didn't know about Dark Aqua before 10.14, this has to be done in code
-			self.window!.appearance = NSAppearance(named: NSAppearance.Name.darkAqua)
-		} else {
-			// Pseudo-"dark mode" on 10.13
-			self.window!.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
-		}
 	}
 
 	func windowWillClose(_ notification: Notification) {
