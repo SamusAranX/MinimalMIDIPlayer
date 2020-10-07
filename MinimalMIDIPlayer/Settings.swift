@@ -18,8 +18,6 @@ class Settings {
 			"autoplay": false,
 			"looseSFMatching": false,
 			"cacophonyMode": false,
-			"sampleRate": 44100,
-			"channels": 2,
 			"bounceBetaWarningShown": false
 		])
 	}
@@ -65,26 +63,6 @@ class Settings {
 		}
 	}
 
-	var sampleRate: Int {
-		get {
-			return UserDefaults.standard.integer(forKey: #function)
-		}
-		set {
-			UserDefaults.standard.set(newValue, forKey: #function)
-			UserDefaults.standard.synchronize()
-		}
-	}
-
-	var channels: Int {
-		get {
-			return UserDefaults.standard.integer(forKey: #function)
-		}
-		set {
-			UserDefaults.standard.set(newValue, forKey: #function)
-			UserDefaults.standard.synchronize()
-		}
-	}
-
 	var bounceBetaWarningShown: Bool {
 		get {
 			return UserDefaults.standard.bool(forKey: #function)
@@ -97,28 +75,23 @@ class Settings {
 
 	// MARK: - Helper properties and methods
 
+	let SAMPLE_RATE: Double = 44100
+	let CHANNELS: AVAudioChannelCount = 2
+
 	var processingFormat: AVAudioFormat {
-		guard let format = AVAudioFormat(standardFormatWithSampleRate: 96000, channels: 2) else {
+		// processing happens at twice the sample rate
+		guard let format = AVAudioFormat(standardFormatWithSampleRate: self.SAMPLE_RATE * 2, channels: self.CHANNELS) else {
 			fatalError("processingFormat")
 		}
 
 		return format
 	}
 
-	var destinationFormat: AVAudioFormat {
-		let cf = AVAudioCommonFormat.pcmFormatFloat32
-		let sr = Double(self.sampleRate)
-		let cc = AVAudioChannelCount(self.channels)
-
-		guard let af = AVAudioFormat(commonFormat: cf, sampleRate: sr, channels: cc, interleaved: true) else {
+	func getConverter(from format: AVAudioFormat) -> AVAudioConverter {
+		guard let destFormat = AVAudioFormat(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: self.SAMPLE_RATE, channels: self.CHANNELS, interleaved: true) else {
 			fatalError("AVAudioFormat initialization error")
 		}
 
-		return af
-	}
-
-	func getConverter(from format: AVAudioFormat, to destFormat: AVAudioFormat? = nil) -> AVAudioConverter {
-		let destFormat = destFormat ?? self.destinationFormat
 		guard let conv = AVAudioConverter(from: format, to: destFormat) else {
 			fatalError("Converter initialization failed")
 		}

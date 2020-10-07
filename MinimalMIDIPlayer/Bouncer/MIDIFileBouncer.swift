@@ -164,8 +164,6 @@ class MIDIFileBouncer {
 					return
 				}
 
-//				print(outputFile.processingFormat == converter.outputFormat)
-
 				try outputFile.write(from: convertedBuffer)
 			} catch {
 				writeError = error as NSError
