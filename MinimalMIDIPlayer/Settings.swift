@@ -63,6 +63,26 @@ class Settings {
 		}
 	}
 
+	var enableCustomSoundfont: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: #function)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: #function)
+			UserDefaults.standard.synchronize()
+		}
+	}
+
+	var customSoundfontPath: URL? {
+		get {
+			return UserDefaults.standard.url(forKey: #function)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: #function)
+			UserDefaults.standard.synchronize()
+		}
+	}
+
 	var bounceBetaWarningShown: Bool {
 		get {
 			return UserDefaults.standard.bool(forKey: #function)
@@ -104,7 +124,6 @@ class Settings {
 		conv.sampleRateConverterQuality = .max
 
 		return conv
-
 	}
 
 }

@@ -28,13 +28,18 @@ extension String {
 	func hyperlink(with url: URL) -> NSAttributedString {
 		let stringRange = self.fullRange()
 		let attrString = NSMutableAttributedString(string: self)
-
 		attrString.addAttribute(NSAttributedString.Key.link, value: url, range: stringRange)
+		return attrString
+	}
 
+	func addColor(in range: NSRange, color: NSColor) -> NSAttributedString {
+		let attrString = NSMutableAttributedString(string: self)
+		attrString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
 		return attrString
 	}
 }
 
+// This extension makes it possible to throw raw strings as Errors
 extension String: LocalizedError {
 	public var errorDescription: String? { return self }
 }
@@ -71,33 +76,6 @@ extension NSWindow {
 	var titlebarHeight: CGFloat {
 		let contentHeight = self.contentRect(forFrameRect: self.frame).height
 		return self.frame.height - contentHeight
-	}
-}
-
-extension BinaryInteger {
-	private func toBytes() -> [UInt8] {
-		let loopNum = self.bitWidth / 8
-		var bytes: [UInt8] = []
-
-		for i in 0..<loopNum {
-			let value = UInt8(UInt(self >> (i*8)) & 0xff)
-
-			bytes.append(value)
-		}
-
-		return bytes.reversed()
-	}
-
-	func toASCII() -> String {
-		let bytes = self.toBytes()
-		var string = ""
-
-		for byte in bytes {
-			let us = UnicodeScalar(byte)
-			string.append(Character(us))
-		}
-
-		return string
 	}
 }
 

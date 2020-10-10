@@ -25,6 +25,9 @@ class AboutViewController: NSViewController {
 
 	@IBOutlet var acknowledgementTextView: NSTextView!
 
+	let WINDOW_SIZE_COLLAPSED: CGFloat = 256
+	let WINDOW_SIZE_EXTENDED: CGFloat = 376
+
 	let hyperlinksInText: [String: URL] = [:]
 
 	let hyperlinksForLabels = [
@@ -112,12 +115,11 @@ class AboutViewController: NSViewController {
 
 	@IBAction func disclosureTriangleToggled(_ sender: NSButton) {
 		guard let window = self.view.window else {
-			print("Couldn't get window")
 			return
 		}
 
 		let willExpand = sender.state == .on
-		let newHeight: CGFloat = (willExpand ? 383 : 263) + window.titlebarHeight
+		let newHeight: CGFloat = (willExpand ? WINDOW_SIZE_EXTENDED : WINDOW_SIZE_COLLAPSED) + window.titlebarHeight
 		var newFrame = window.frame
 
 		if willExpand {

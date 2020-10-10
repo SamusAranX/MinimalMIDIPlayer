@@ -81,8 +81,6 @@ class MIDIDocument: NSDocument {
 		self.midiPath = url
 		self.soundfontPath = PWMIDIPlayer.guessSoundfontPath(forMIDI: url)
 
-		Swift.print("mididocument read")
-
 		self.midiPresenter = MIDIFilePresenter(path: url, sfPath: self.soundfontPath)
 		NSFileCoordinator.addFilePresenter(self.midiPresenter)
 	}

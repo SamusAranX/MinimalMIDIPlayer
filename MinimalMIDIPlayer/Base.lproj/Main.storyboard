@@ -142,7 +142,7 @@
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="245" y="301" width="306" height="140"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
                         <value key="minSize" type="size" width="300" height="140"/>
                         <value key="maxSize" type="size" width="10000" height="140"/>
                         <connections>
@@ -183,14 +183,14 @@
             <objects>
                 <viewController id="lbB-pB-hEc" customClass="PreferencesViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="xZO-Z1-frk">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="374"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="498"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arD-W1-M0E">
-                                <rect key="frame" x="20" y="20" width="260" height="334"/>
+                                <rect key="frame" x="20" y="20" width="260" height="458"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EAF-Db-EYi">
-                                        <rect key="frame" x="-2" y="317" width="79" height="18"/>
+                                        <rect key="frame" x="-2" y="441" width="79" height="18"/>
                                         <buttonCell key="cell" type="check" title="Autoplay" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ez2-21-eaj">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -200,7 +200,7 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CB3-YQ-DsO">
-                                        <rect key="frame" x="16" y="282" width="240" height="28"/>
+                                        <rect key="frame" x="18" y="406" width="240" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="UxK-6j-2Q9"/>
                                         </constraints>
@@ -211,17 +211,17 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MPx-3M-epv">
-                                        <rect key="frame" x="-2" y="257" width="187" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Loose soundfont matching" bezelStyle="regularSquare" imagePosition="left" inset="2" id="X5z-W6-yfg">
+                                        <rect key="frame" x="-2" y="381" width="189" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Loose Soundfont Matching" bezelStyle="regularSquare" imagePosition="left" inset="2" id="X5z-W6-yfg">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="soundfontCheckboxToggled:" target="lbB-pB-hEc" id="JAF-Re-F90"/>
+                                            <action selector="looseMatchingCheckboxToggled:" target="lbB-pB-hEc" id="6ep-An-10f"/>
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T9y-bU-292">
-                                        <rect key="frame" x="16" y="180" width="240" height="70"/>
+                                        <rect key="frame" x="18" y="304" width="240" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="Mbr-xi-muc"/>
                                         </constraints>
@@ -234,7 +234,7 @@ With this option, approximate filename matches will also be considered.</string>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ogl-nO-52Q">
-                                        <rect key="frame" x="-2" y="155" width="155" height="18"/>
+                                        <rect key="frame" x="-2" y="279" width="155" height="18"/>
                                         <buttonCell key="cell" type="check" title="Cacophony Mode 📣" bezelStyle="regularSquare" imagePosition="left" inset="2" id="SkS-RY-Irw">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -244,7 +244,7 @@ With this option, approximate filename matches will also be considered.</string>
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5IP-5s-BJK">
-                                        <rect key="frame" x="16" y="78" width="240" height="70"/>
+                                        <rect key="frame" x="18" y="202" width="240" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="mbR-ql-fF2"/>
                                         </constraints>
@@ -256,7 +256,7 @@ With this option, approximate filename matches will also be considered.</string>
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Idu-kx-g2l">
-                                        <rect key="frame" x="16" y="0.0" width="240" height="70"/>
+                                        <rect key="frame" x="18" y="124" width="240" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="1ny-rz-ajI"/>
                                         </constraints>
@@ -267,12 +267,57 @@ With this option, approximate filename matches will also be considered.</string>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MGx-Nl-5hw">
+                                        <rect key="frame" x="-2" y="99" width="214" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Use Custom Default Soundfont" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nAj-rk-4Qc">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="soundfontCheckboxToggled:" target="lbB-pB-hEc" id="J4w-rM-x8M"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="N67-md-bIK">
+                                        <rect key="frame" x="18" y="50" width="240" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="FZ1-nR-ov9"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" controlSize="small" title="If enabled, the soundfont selected below will be used instead of the macOS default soundfont whenever a MIDI file is opened." id="yqS-SE-fCE">
+                                            <font key="font" metaFont="menu" size="11"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aUN-i4-MlN">
+                                        <rect key="frame" x="13" y="15" width="158" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Choose Soundfont…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5uR-ac-Uqz">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="chooseSoundfontAction:" target="lbB-pB-hEc" id="Ymj-Y6-Gof"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="b0q-Cj-cng">
+                                        <rect key="frame" x="18" y="0.0" width="117" height="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="236" id="urH-c6-HYf"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" controlSize="small" placeholderString="No soundfont chosen" id="fKB-5h-5p5">
+                                            <font key="font" metaFont="menu" size="11"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="5IP-5s-BJK" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="18" id="1ST-XA-Hj5"/>
-                                    <constraint firstItem="T9y-bU-292" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="18" id="OYU-uy-eXH"/>
-                                    <constraint firstItem="CB3-YQ-DsO" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="18" id="jjC-QC-qU0"/>
-                                    <constraint firstItem="Idu-kx-g2l" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="18" id="nI3-GZ-sEP"/>
+                                    <constraint firstItem="5IP-5s-BJK" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="20" id="1ST-XA-Hj5"/>
+                                    <constraint firstItem="N67-md-bIK" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="20" id="7BE-Lf-EBB"/>
+                                    <constraint firstItem="aUN-i4-MlN" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="20" id="AmU-j6-5VC"/>
+                                    <constraint firstItem="b0q-Cj-cng" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="20" id="MZS-6v-rxz"/>
+                                    <constraint firstItem="T9y-bU-292" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="20" id="OYU-uy-eXH"/>
+                                    <constraint firstItem="CB3-YQ-DsO" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="20" id="jjC-QC-qU0"/>
+                                    <constraint firstItem="Idu-kx-g2l" firstAttribute="leading" secondItem="arD-W1-M0E" secondAttribute="leading" constant="20" id="nI3-GZ-sEP"/>
                                     <constraint firstAttribute="width" constant="260" id="sE1-go-2GI"/>
                                 </constraints>
                                 <visibilityPriorities>
@@ -283,8 +328,16 @@ With this option, approximate filename matches will also be considered.</string>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -305,7 +358,10 @@ With this option, approximate filename matches will also be considered.</string>
                     <connections>
                         <outlet property="autoplayCheckbox" destination="EAF-Db-EYi" id="isH-Gw-zj3"/>
                         <outlet property="cacophonyModeCheckbox" destination="Ogl-nO-52Q" id="QPd-mP-Srt"/>
+                        <outlet property="customSoundfontCheckbox" destination="MGx-Nl-5hw" id="J6F-dJ-4QI"/>
                         <outlet property="looseSFMatchingCheckbox" destination="MPx-3M-epv" id="xcU-ck-IVd"/>
+                        <outlet property="soundfontPathLabel" destination="b0q-Cj-cng" id="bj6-s6-H3v"/>
+                        <outlet property="soundfontSelectionButton" destination="aUN-i4-MlN" id="ikQ-fa-oAO"/>
                     </connections>
                 </viewController>
                 <customObject id="kmS-ml-H2z" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -339,11 +395,11 @@ With this option, approximate filename matches will also be considered.</string>
             <objects>
                 <viewController showSeguePresentationStyle="single" id="wtE-qa-aJW" customClass="AboutViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Qn8-vI-cGH">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="263"/>
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="256"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="NRi-48-Nlx">
-                                <rect key="frame" x="0.0" y="183" width="350" height="80"/>
+                                <rect key="frame" x="0.0" y="176" width="350" height="80"/>
                                 <subviews>
                                     <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xdA-b7-L5N">
                                         <rect key="frame" x="270" y="0.0" width="80" height="80"/>
@@ -403,7 +459,7 @@ With this option, approximate filename matches will also be considered.</string>
                                 </constraints>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KnW-f1-5oB">
-                                <rect key="frame" x="20" y="-93" width="310" height="268"/>
+                                <rect key="frame" x="20" y="-100" width="310" height="268"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pqD-9q-5vb" customClass="HyperlinkTextField">
                                         <rect key="frame" x="-2" y="208" width="314" height="60"/>
@@ -638,7 +694,7 @@ With this option, approximate filename matches will also be considered.</string>
                                         <rect key="frame" x="4" y="83" width="282" height="19"/>
                                         <subviews>
                                             <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-XL-NGh">
-                                                <rect key="frame" x="-2" y="2" width="39" height="14"/>
+                                                <rect key="frame" x="-2" y="2" width="40" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="8aE-vE-4bo"/>
                                                 </constraints>
@@ -649,7 +705,7 @@ With this option, approximate filename matches will also be considered.</string>
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IvW-tF-KiY">
-                                                <rect key="frame" x="33" y="-1" width="215" height="20"/>
+                                                <rect key="frame" x="34" y="-1" width="215" height="20"/>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Z38-5k-rtW">
                                                         <connections>
@@ -663,8 +719,8 @@ With this option, approximate filename matches will also be considered.</string>
                                                     <binding destination="DCZ-VH-yTc" name="hidden" keyPath="self.isBouncing" id="8f6-6L-zDt"/>
                                                 </connections>
                                             </slider>
-                                            <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" doubleValue="50" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="pmO-vn-obP">
-                                                <rect key="frame" x="0.0" y="7" width="196" height="12"/>
+                                            <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" doubleValue="50" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="pmO-vn-obP">
+                                                <rect key="frame" x="0.0" y="0.0" width="196" height="20"/>
                                                 <contentFilters>
                                                     <ciFilter name="CIColorMonochrome">
                                                         <configuration>
@@ -689,7 +745,7 @@ With this option, approximate filename matches will also be considered.</string>
                                                 </connections>
                                             </progressIndicator>
                                             <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfo-zf-CTx">
-                                                <rect key="frame" x="244" y="2" width="40" height="14"/>
+                                                <rect key="frame" x="245" y="2" width="39" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="bnv-qn-d3V"/>
                                                 </constraints>
@@ -802,23 +858,33 @@ With this option, approximate filename matches will also be considered.</string>
                                             </binding>
                                         </connections>
                                     </stackView>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f39-I2-twC">
-                                        <rect key="frame" x="52" y="23" width="187" height="20"/>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f39-I2-twC">
+                                        <rect key="frame" x="89" y="23" width="113" height="20"/>
                                         <subviews>
                                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="zXh-zg-b6l">
-                                                <rect key="frame" x="-5" y="1" width="118" height="18"/>
+                                                <rect key="frame" x="-5" y="2" width="118" height="18"/>
                                                 <popUpButtonCell key="cell" type="inline" title="Default Soundfont" bezelStyle="inline" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="Q7Y-od-Qzw" id="rrc-5Q-Iek">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="menu" size="11"/>
+                                                    <font key="font" metaFont="smallSystem"/>
                                                     <menu key="menu" autoenablesItems="NO" id="xE7-0D-IJR">
                                                         <items>
-                                                            <menuItem title="Default Soundfont" state="on" id="Q7Y-od-Qzw"/>
+                                                            <menuItem title="Default Soundfont" state="on" id="Q7Y-od-Qzw">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Custom Default: None" tag="3" enabled="NO" id="sFg-jx-3Jg">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
                                                             <menuItem isSeparatorItem="YES" id="863-6t-Zei"/>
-                                                            <menuItem title="Recent Item 1" tag="1" id="qpZ-EK-DEe"/>
+                                                            <menuItem title="Recent Item 1" tag="1" id="qpZ-EK-DEe">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
                                                             <menuItem title="Recent Item 2" tag="1" id="0Tf-la-Qyl">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                             </menuItem>
                                                             <menuItem isSeparatorItem="YES" id="Xza-IU-H4j"/>
+                                                            <menuItem title="Reset Soundfont" tag="4" id="2ix-Oh-pZb">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
                                                             <menuItem title="Load Custom Soundfont…" tag="2" id="0FN-Ns-j7J">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                             </menuItem>
@@ -834,38 +900,11 @@ With this option, approximate filename matches will also be considered.</string>
                                                     </binding>
                                                 </connections>
                                             </popUpButton>
-                                            <textField hidden="YES" wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GYF-n8-XzI">
-                                                <rect key="frame" x="-2" y="6" width="100" height="14"/>
-                                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Default Soundfont" id="uan-vg-duM">
-                                                    <font key="font" metaFont="menu" size="11"/>
-                                                    <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7tP-u3-Bnb">
-                                                <rect key="frame" x="120" y="2" width="67" height="16"/>
-                                                <buttonCell key="cell" type="check" title="Override" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="lzp-Yr-p4c">
-                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="menu" size="11"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="overrideSFToggled:" target="DCZ-VH-yTc" id="DdL-Qw-pBf"/>
-                                                    <binding destination="DCZ-VH-yTc" name="enabled" keyPath="self.isBouncing" id="zgG-yO-bXc">
-                                                        <dictionary key="options">
-                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                        </dictionary>
-                                                    </binding>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <visibilityPriorities>
                                             <integer value="1000"/>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
@@ -953,8 +992,6 @@ With this option, approximate filename matches will also be considered.</string>
                         <outlet property="cacophonyIconView" destination="HZY-CW-1nr" id="IQH-0v-7wo"/>
                         <outlet property="durationTimeLabel" destination="Mfo-zf-CTx" id="dxh-LP-Q3d"/>
                         <outlet property="fastForwardButton" destination="w8M-xB-XSZ" id="LWk-hT-zgA"/>
-                        <outlet property="fauxSoundfontMenu" destination="GYF-n8-XzI" id="InG-qA-QA5"/>
-                        <outlet property="overrideSFCheckbox" destination="7tP-u3-Bnb" id="UKG-pH-WNE"/>
                         <outlet property="playPauseButton" destination="HcG-tJ-197" id="MT6-lZ-qy3"/>
                         <outlet property="progressTimeLabel" destination="dPX-XL-NGh" id="nKu-Oe-BfQ"/>
                         <outlet property="progressTimeSlider" destination="IvW-tF-KiY" id="gzn-2J-hzJ"/>

@@ -93,7 +93,6 @@ class PWMIDIPlayer: AVMIDIPlayer {
 
         for psf in potentialSoundFonts {
             if FileManager.default.fileExists(atPath: psf) {
-				print("Soundfont found: \(psf)")
                 return URL(fileURLWithPath: psf)
 			}
         }
@@ -101,7 +100,6 @@ class PWMIDIPlayer: AVMIDIPlayer {
 		if Settings.shared.looseSFMatching {
 			// Busting out the old Levenshtein string distance
 			// as a "looser" soundfont detection method
-			print("starting loose soundfont search")
 			do {
 				let directoryContents = try FileManager.default.contentsOfDirectory(at: midiDirectory, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
 
@@ -121,7 +119,6 @@ class PWMIDIPlayer: AVMIDIPlayer {
 			}
 		}
 
-		print("no soundfont found")
         return nil
     }
 
@@ -133,8 +130,6 @@ class PWMIDIPlayer: AVMIDIPlayer {
 	}
 
     deinit {
-		print("PWMIDIPlayer: deinit")
-
 		self.progressTimer?.invalidate()
 		self.progressTimer = nil
 
@@ -252,7 +247,6 @@ class PWMIDIPlayer: AVMIDIPlayer {
 
     func togglePlayPause() {
 		guard self.acceptsMediaKeys else {
-			print("Doesn't accept media keys")
 			return
 		}
 

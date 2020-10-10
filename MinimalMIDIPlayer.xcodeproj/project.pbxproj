@@ -33,7 +33,6 @@
 		56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D6A8D21C3437AA0071DEF4 /* Assets.xcassets */; };
 		56DAB39A224B63F000FF8847 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB39C224B63F000FF8847 /* Localizable.strings */; };
 		56DAB3A3224B71BF00FF8847 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB3A5224B71BF00FF8847 /* Main.storyboard */; };
-		56F0352922534CBD00BD8DD0 /* AudioFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F0352822534CBD00BD8DD0 /* AudioFormats.swift */; };
 		56FEF1572141181B00813975 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF1562141181B00813975 /* AboutViewController.swift */; };
 		56FEF15D214119FD00813975 /* HyperlinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF15B214119FD00813975 /* HyperlinkTextField.m */; };
 		56FEF16621411AC000813975 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEF16521411AC000813975 /* Extensions.swift */; };
@@ -87,7 +86,6 @@
 		56DAB39B224B63F000FF8847 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56DAB39D224B640B00FF8847 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56DAB3A4224B71BF00FF8847 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		56F0352822534CBD00BD8DD0 /* AudioFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFormats.swift; sourceTree = "<group>"; };
 		56FEF1562141181B00813975 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		56FEF159214119FC00813975 /* MinimalMIDIPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MinimalMIDIPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		56FEF15A214119FD00813975 /* HyperlinkTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyperlinkTextField.h; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				56B1E12B21EBA619002CEBB3 /* Levenshtein.swift */,
-				56F0352822534CBD00BD8DD0 /* AudioFormats.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -436,7 +433,6 @@
 				56FEF1572141181B00813975 /* AboutViewController.swift in Sources */,
 				56A0BD7E214005A4006095CE /* DocumentViewController.swift in Sources */,
 				56A0BD7C21400569006095CE /* DocumentWindowController.swift in Sources */,
-				56F0352922534CBD00BD8DD0 /* AudioFormats.swift in Sources */,
 				562E3AB9224E1E65001AD319 /* AVAudioUnitMIDISynth.swift in Sources */,
 				56FEF16621411AC000813975 /* Extensions.swift in Sources */,
 				56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */,
@@ -639,7 +635,7 @@
 				APPNAME_SUFFIX = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
 				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
-				BUNDLE_ID_SUFFIX = .debug;
+				BUNDLE_ID_SUFFIX = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MinimalMIDIPlayer/MinimalMIDIPlayer.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -653,8 +649,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.11.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
+				MARKETING_VERSION = 1.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peterwunder.MinimalMIDIPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MinimalMIDIPlayer/HyperlinkTextField/MinimalMIDIPlayer-Bridging-Header.h";
@@ -684,7 +680,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.11.1;
+				MARKETING_VERSION = 1.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -764,7 +760,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.11.1;
+				MARKETING_VERSION = 1.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)$(APPNAME_SUFFIX)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -876,7 +872,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.11.1;
+				MARKETING_VERSION = 1.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.peterwunder.MinimalMIDIPlayer$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)$(APPNAME_SUFFIX)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -111,6 +111,8 @@ class NowPlayingCentral: NSObject {
 		let midiAlbumTitle = midiPlayer.currentSoundfont?.deletingPathExtension().lastPathComponent ?? midiPlayer.currentMIDI!.deletingLastPathComponent().lastPathComponent
 		let midiArtist = "MinimalMIDIPlayer" // shameless advertising
 
+		let albumArtImage = NSImage(named: "AlbumArt")!
+
 		var nowPlayingInfo: [String: Any] = [
 			MPNowPlayingInfoPropertyMediaType: NSNumber(value: MPNowPlayingInfoMediaType.audio.rawValue),
 			MPNowPlayingInfoPropertyIsLiveStream: NSNumber(value: false),
@@ -126,8 +128,8 @@ class NowPlayingCentral: NSObject {
 			MPNowPlayingInfoPropertyElapsedPlaybackTime: NSNumber(value: midiPlayer.currentPosition)
 		]
 
-		nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 800, height: 800), requestHandler: { (_) -> NSImage in
-			return NSImage(named: "AlbumArt")!
+		nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: albumArtImage.size.width, height: albumArtImage.size.height), requestHandler: { (_) -> NSImage in
+			return albumArtImage
 		})
 
 		MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
@@ -154,7 +156,6 @@ class NowPlayingCentral: NSObject {
 	// MARK: - MPRemoteCommandEvent Handlers
 
 	@objc func playCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		print("Play command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.play()
 			return .success
@@ -164,7 +165,6 @@ class NowPlayingCentral: NSObject {
 	}
 
 	@objc func pauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		print("Pause command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.pause()
 			return .success
@@ -173,7 +173,6 @@ class NowPlayingCentral: NSObject {
 	}
 
 	@objc func stopCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		print("Stop command")
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.stop()
 			return .success
@@ -182,8 +181,6 @@ class NowPlayingCentral: NSObject {
 	}
 
 	@objc func togglePlayPauseCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		print("Play/Pause command")
-
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
 			activePlayer.togglePlayPause()
 			return .success

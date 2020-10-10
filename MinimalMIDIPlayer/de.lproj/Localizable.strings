@@ -7,8 +7,8 @@
 */
 
 // About Window
-"AProjectBy" = "Ein Projekt von %@, %@ – %@";
-"BetaSubtitle" = "supergeheime betaversion";
+"AProjectBy"    = "Ein Projekt von %@, %@ – %@";
+"BetaSubtitle"  = "supergeheime betaversion";
 "VersionString" = "Version %@, Build %@";
 
 // Cacophony Mode accessory view
@@ -18,11 +18,13 @@
 "Error loading file"                                   = "Fehler beim Öffnen der Datei";
 "Something went wrong. Please try reopening the file." = "Irgendetwas ging schief. Bitte versuche, die Datei erneut zu öffnen.";
 "Couldn't open MIDI file."                             = "Konnte MIDI-Datei nicht öffnen.";
-"Couldn't open Soundfont file."                        = "Konnte Soundfont-Datei nicht öffnen.";
+"Couldn't open Soundfont file \"%@\"."                 = "Konnte Soundfont-Datei \"%@\" nicht öffnen.";
 
 // DocumentViewController.populateSoundfontMenu()
-"Default Soundfont"      = "Standard-Soundfont";
+"Default Soundfonts"     = "Standard-Soundfonts";
+"Default Soundfont"      = "macOS-Standard";
 "Recent Soundfonts"      = "Zuletzt benutzte Soundfonts";
+"Reset Soundfont"        = "Soundfont zurücksetzen";
 "Load Custom Soundfont…" = "Lade eigene Soundfont…";
 
 // GeneralPreferenceViewController
@@ -31,13 +33,13 @@
 "Bouncing"    = "Bouncing";
 
 // BounceProgressViewController
-"Bouncing {source.mid} to file"                          = "Bounce %@ in Datei";
-"Export As:"                                             = "Exportieren als:";
-"Bounce"                                                 = "Bouncen";
-"Bounce completed"                                       = "Bounce abgeschlossen";
-"{source.mid} was successfully bounced to {target.wav}." = "%@ wurde erfolgreich zu %@ gebounct.";
-"An error occurred while bouncing"                       = "Ein Fehler ist beim Bouncen aufgetreten";
-"More details: "                                         = "Mehr Informationen: ";
+"Bouncing %@ to file"                = "Bounce %@ in Datei";
+"Export As:"                         = "Exportieren als:";
+"Bounce"                             = "Bouncen";
+"Bounce completed"                   = "Bounce abgeschlossen";
+"%@ was successfully bounced to %@." = "%@ wurde erfolgreich zu %@ gebounct.";
+"An error occurred while bouncing"   = "Ein Fehler ist beim Bouncen aufgetreten";
+"More details: "                     = "Mehr Informationen: ";
 
 // MIDIFileBouncer error messages
 "Bouncer can't be initialized."        = "Bouncer kann nicht initialisiert werden.";
@@ -50,4 +52,4 @@
 
 // MIDI bouncing beta warning
 "BouncingBetaWarningTitle"   = "Wichtige Informationen zum Bounce-Feature";
-"BouncingBetaWarningMessage" = "Dieses Feature ist noch nicht fertig und wird es vermutlich nie sein. Bis Apple die APIs für MIDI-Dateien verbessert, ist es eher ein Gimmick.\n\nEinige der Einschränkungen sind:\n  • Exportierte Dateien hören sich anders an\n  • Eigene Soundfonts funktionieren nur selten\n  • Es ist langsam\n\nIch werde weiter daran arbeiten, aber ich kann nicht versprechen, dass es jemand gut genug sein wird, damit ich es als \"fertig\" ansehen kann. Danke für euer Verständnis. Diese Warnung wird nicht wieder eingeblendet werden.";
+"BouncingBetaWarningMessage" = "Dieses Feature befindet sich im Betastadium.\n\nEinige der Einschränkungen sind:\n  • Exportierte Dateien hören sich anders an\n  • Eigene Soundfonts funktionieren nur selten\n  • Es ist langsam\n\nIch kann nicht versprechen, dass es jemals \"fertig\" sein wird. Danke für euer Verständnis. Diese Warnung wird nicht wieder angezeigt werden.";

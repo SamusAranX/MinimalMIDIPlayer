@@ -12,8 +12,6 @@
 				<string>mid</string>
 				<string>midi</string>
 			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>DocIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>MIDI file</string>
 			<key>CFBundleTypeRole</key>
@@ -60,7 +58,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1475</string>
+	<string>1569</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>

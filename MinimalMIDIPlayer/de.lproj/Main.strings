@@ -82,6 +82,18 @@
 	/* Class = "NSTextFieldCell"; title = "Enabling Cacophony Mode will disable support for the Now Playing widget and media keys. Toggling it will close all open players to reset the Now Playing system."; ObjectID = "BLM-Wt-hRc"; */
 	"BLM-Wt-hRc.title" = "Wenn der Kakofonie-Modus aktiviert wird, wird die Unterstützung für Funktionstasten und das Now Playing-Widget deaktiviert.\nBeim Ändern der Einstellung werden darüberhinaus alle offenen Player geschlossen.";
 
+	/* Class = "NSButtonCell"; title = "Use Custom Default Soundfont"; ObjectID = "nAj-rk-4Qc"; */
+	"nAj-rk-4Qc.title" = "Eigene Standard-Soundfont verwenden";
+
+	/* Class = "NSButtonCell"; title = "Choose Soundfont…"; ObjectID = "5uR-ac-Uqz"; */
+	"5uR-ac-Uqz.title" = "Soundfont wählen…";
+
+	/* Class = "NSTextFieldCell"; placeholderString = "No soundfont chosen"; ObjectID = "fKB-5h-5p5"; */
+	"fKB-5h-5p5.placeholderString" = "Keine Soundfont ausgewählt";
+
+	/* Class = "NSTextFieldCell"; title = "If enabled, the soundfont selected below will be used instead of the macOS default soundfont whenever a MIDI file is opened."; ObjectID = "yqS-SE-fCE"; */
+	"yqS-SE-fCE.title" = "Wenn diese Option aktiviert ist, wird die unten ausgewählte Soundfont statt der Standard-macOS-Soundfont verwendet, wenn eine MIDI-Datei geöffnet wird.";
+
 // Main Menu: MinimalMIDIPlayer
 
 	/* Class = "NSMenuItem"; title = "About MinimalMIDIPlayer"; ObjectID = "tRq-59-WIh"; */

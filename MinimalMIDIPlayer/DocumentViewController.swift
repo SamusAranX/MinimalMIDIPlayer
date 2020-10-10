@@ -17,8 +17,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	@IBOutlet weak var cacophonyIconView: NSView!
 
 	@IBOutlet weak var soundfontMenu: NSPopUpButton!
-	@IBOutlet weak var fauxSoundfontMenu: NSTextField!
-	@IBOutlet weak var overrideSFCheckbox: NSButton!
 
 	@IBOutlet weak var progressTimeLabel: NSTextField!
 	@IBOutlet weak var durationTimeLabel: NSTextField!
@@ -37,8 +35,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	private var recentSoundfonts: [URL] = []
 	private var guessedSoundfont: URL?
 	private var activeSoundfont: URL?
-
-	private let SOUNDFONTS_RECENT_START = 3
+	private var firstLoad = true
 
 	private let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 4/3, 1.5, 5/3, 2.0]
 	private var playbackSpeed: Float = 1.0
@@ -53,9 +50,12 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 
 	private enum SoundfontMenuType: Int {
-		case macdefault = 0
+		case macDefault = 0
 		case recent = 1
 		case custom = 2
+		case customDefault = 3
+		case reset = 4
+		case header = 999
 		case unknown = 1000
 	}
 
@@ -84,7 +84,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			self.durationTimeLabel.font = readableSF
 		}
 
-		self.overrideSFToggled(self.overrideSFCheckbox)
 		self.cacophonyIconView.toolTip = NSLocalizedString("Cacophony Mode enabled", comment: "Tooltip for the 📣 icon")
 	}
 
@@ -119,7 +118,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 
 		NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
-		print("Removed from NPC")
 
 		self.midiPlayer?.stop()
 
@@ -132,27 +130,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 
 	// MARK: - IBActions
-
-	@IBAction func overrideSFToggled(_ sender: NSButton) {
-		let overrideEnabled = sender.state == .on
-
-		self.soundfontMenu.isHidden = !overrideEnabled
-		self.fauxSoundfontMenu.isHidden = overrideEnabled
-
-		if !overrideEnabled, let midiURL = self.midiPlayer?.currentMIDI {
-			// only restart playback if soundfont actually changed
-			let selectedSoundfont = self.getSelectedSoundfont()
-
-			if (self.guessedSoundfont == nil && selectedSoundfont.soundfontType == .macdefault) ||
-			   (self.guessedSoundfont == selectedSoundfont.soundfont) {
-				return
-			}
-
-			self.populateSoundfontMenu()
-
-			self.openFile(midiURL: midiURL)
-		}
-	}
 
 	@IBAction func soundfontItemSelected(_ sender: NSPopUpButton) {
 		// all soundfont selection logic is in openFile()
@@ -203,8 +180,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 				self.playbackPositionChanged(position: positionPercent * midiPlayer.duration, duration: midiPlayer.duration)
 			case .leftMouseUp:
 				// this has to occur before resuming playback
-				// if .currentPosition is set after resuming playback
-				// you risk being deafened by *extremely* loud pops
+				// if .currentPosition is set after resuming playback you risk being deafened by *extremely* loud pops
 				midiPlayer.currentPosition = midiPlayer.duration * positionPercent
 
 				if self.pausedDueToDraggingKnob && !midiPlayer.isAtEndOfTrack {
@@ -268,10 +244,9 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	// MARK: - App logic
 
 	func openFile(midiURL: URL) {
-		let errorTitle = NSLocalizedString("Error loading file", comment: "Alert popup title")
-		let unknownError = NSLocalizedString("Something went wrong. Please try reopening the file.", comment: "Message for unknown error")
+		let errorTitle    = NSLocalizedString("Error loading file", comment: "Alert popup title")
+		let unknownError  = NSLocalizedString("Something went wrong. Please try reopening the file.", comment: "Message for unknown error")
 		let openMIDIError = NSLocalizedString("Couldn't open MIDI file.", comment: "Message in case MIDI file can't be opened")
-		let openSoundfontError = NSLocalizedString("Couldn't open Soundfont file.", comment: "Message in case Soundfont file can't be opened")
 
 		guard let window = self.view.window, let document = NSDocumentController.shared.document(for: window) as? MIDIDocument else {
 			// this might happen if another soundfont is selected after a file that's being played is renamed
@@ -282,19 +257,35 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			return
 		}
 
-		let newGuessedSoundfont = document.midiPresenter.presentedItemURL
-		var newActiveSoundfont = newGuessedSoundfont
-
-		if self.overrideSFCheckbox.state == .on {
-			newActiveSoundfont = self.getSelectedSoundfont().soundfont
-		}
-
 		if !FileManager.default.fileExists(atPath: midiURL.path) {
 			NSAlert.runModal(title: errorTitle, message: openMIDIError, style: .critical)
 			NSDocumentController.shared.document(for: window)?.close()
 			return
 		}
+
+		let selectedSoundfont = self.getSelectedSoundfont()
+		var newActiveSoundfont: URL?
+
+		self.guessedSoundfont = document.midiPresenter.presentedItemURL
+
+		if self.guessedSoundfont != nil && firstLoad {
+			// First load: A guessed soundfont was found and custom default soundfonts are either not set or not enabled
+			newActiveSoundfont = self.guessedSoundfont
+		} else if firstLoad, Settings.shared.enableCustomSoundfont, let customDefaultSF = Settings.shared.customSoundfontPath {
+			// First load: No guessed soundfont could be found and a custom default soundfont is set and enabled
+			newActiveSoundfont = customDefaultSF
+		} else if selectedSoundfont.soundfontType == .customDefault, let customDefaultSF = Settings.shared.customSoundfontPath {
+			// Not first load: The custom default soundfont is manually selected
+			newActiveSoundfont = customDefaultSF
+		} else if selectedSoundfont.soundfont != nil {
+			// A soundfont was already selected
+			newActiveSoundfont = selectedSoundfont.soundfont
+		}
+
 		if let sf = newActiveSoundfont, !FileManager.default.fileExists(atPath: sf.path) {
+			let openSoundfontErrorFormat = NSLocalizedString("Couldn't open Soundfont file \"%@\".", comment: "Message in case Soundfont file can't be opened")
+			let openSoundfontError = String(format: openSoundfontErrorFormat, arguments: [sf.lastPathComponent])
+
 			NSAlert.runModal(title: errorTitle, message: openSoundfontError, style: .critical)
 			NSDocumentController.shared.document(for: window)?.close()
 			return
@@ -303,10 +294,9 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		let coordinator = NSFileCoordinator(filePresenter: document.midiPresenter)
 		coordinator.coordinate(readingItemAt: document.midiPresenter.primaryPresentedItemURL!, options: [], error: nil) { url in
 			do {
-				let newMidiPlayer = try PWMIDIPlayer(withMIDI: url, andSoundfont: newActiveSoundfont)
-
-				self.guessedSoundfont = newGuessedSoundfont
 				self.activeSoundfont = newActiveSoundfont
+
+				let newMidiPlayer = try PWMIDIPlayer(withMIDI: url, andSoundfont: self.activeSoundfont)
 
 				self.midiPlayer?.stop()
 				// remove old player from Now Playing Central to get rid of "phantom" players
@@ -333,10 +323,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 
 	func openDocument(midiDoc: MIDIDocument) {
-		print("openDocument!")
-
 		guard let midiURL = midiDoc.fileURL else {
-			print("Document fileURL is nil")
 			return
 		}
 
@@ -347,11 +334,18 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		if let selectedItem = self.soundfontMenu.selectedItem,
 		   let selectedType = SoundfontMenuType(rawValue: selectedItem.tag) {
 			switch selectedType {
-			case .macdefault:
+			case .macDefault:
 				return (nil, selectedType)
+			case .customDefault:
+				// Force-unwrapping customSoundfontPath because we can only hit this code path once a custom default soundfont has been selected
+				return (Settings.shared.customSoundfontPath!, selectedType)
 			case .recent:
-				let recentIndex = self.soundfontMenu.indexOfSelectedItem - SOUNDFONTS_RECENT_START
+				// we'll assume the index is always valid since we can't get here if no recent soundfont menu items exist
+				let recentSoundfontsFirstIndex = self.soundfontMenu.indexOfItem(withTag: SoundfontMenuType.recent.rawValue)
+
+				let recentIndex = self.soundfontMenu.indexOfSelectedItem - recentSoundfontsFirstIndex
 				let recentSoundfont = self.recentSoundfonts[recentIndex]
+
 				return (recentSoundfont, selectedType)
 			case .custom:
 				let panel = NSOpenPanel()
@@ -362,6 +356,12 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 				} else {
 					// open panel was cancelled, resetting soundfont selection to default
 					return (nil, selectedType)
+				}
+			case .reset:
+				if self.guessedSoundfont == nil, Settings.shared.enableCustomSoundfont, let customSFPath = Settings.shared.customSoundfontPath {
+					return (customSFPath, selectedType)
+				} else {
+					return (self.guessedSoundfont, selectedType)
 				}
 			default:
 				return (nil, .unknown)
@@ -377,25 +377,46 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			return
 		}
 
-		let defaultSFTitle = NSLocalizedString("Default Soundfont", comment: "'Default Soundfont' menu item")
-		let recentSFTitle = NSLocalizedString("Recent Soundfonts", comment: "'Recent Soundfonts' menu item")
-		let customSFTitle = NSLocalizedString("Load Custom Soundfont…", comment: "'Load Custom Soundfont' menu item")
+		let defaultSFHeaderTitle = NSLocalizedString("Default Soundfonts", comment: "'Default Soundfonts' menu header item")
+		let defaultSFTitle       = NSLocalizedString("Default Soundfont", comment: "'Default Soundfont' menu item")
+		let recentSFHeaderTitle  = NSLocalizedString("Recent Soundfonts", comment: "'Recent Soundfonts' menu header item")
+		let resetSFTitle         = NSLocalizedString("Reset Soundfont", comment: "'Reset Soundfont' menu item")
+		let customSFTitle        = NSLocalizedString("Load Custom Soundfont…", comment: "'Load Custom Soundfont' menu item")
 
 		// clear menu
-		self.soundfontMenu.removeAllItems()
+		self.soundfontMenu.menu!.removeAllItems()
+
+		let defaultSFHeaderItem = NSMenuItem()
+		defaultSFHeaderItem.title = defaultSFHeaderTitle
+		defaultSFHeaderItem.tag = SoundfontMenuType.header.rawValue
+		defaultSFHeaderItem.isEnabled = false
+		self.soundfontMenu.menu!.addItem(defaultSFHeaderItem)
 
 		let defaultSFItem = NSMenuItem()
 		defaultSFItem.title = defaultSFTitle
-		defaultSFItem.tag = SoundfontMenuType.macdefault.rawValue
+		defaultSFItem.tag = SoundfontMenuType.macDefault.rawValue
+		defaultSFItem.indentationLevel = 1
 		self.soundfontMenu.menu!.addItem(defaultSFItem)
 		self.soundfontMenu.select(defaultSFItem)
+
+		if let customDefaultSFName = Settings.shared.customSoundfontPath?.lastPathComponent {
+			let customDefaultSFItem = NSMenuItem()
+			customDefaultSFItem.attributedTitle = customDefaultSFName.addColor(in: customDefaultSFName.fullRange(), color: NSColor.systemYellow)
+			customDefaultSFItem.tag = SoundfontMenuType.customDefault.rawValue
+			customDefaultSFItem.indentationLevel = 1
+			self.soundfontMenu.menu!.addItem(customDefaultSFItem)
+
+			if self.activeSoundfont == Settings.shared.customSoundfontPath {
+				self.soundfontMenu.select(customDefaultSFItem)
+			}
+		}
 
 		if !self.recentSoundfonts.isEmpty {
 			self.soundfontMenu.menu!.addItem(NSMenuItem.separator())
 
 			let recentSFHeaderItem = NSMenuItem()
-			recentSFHeaderItem.title = recentSFTitle
-			recentSFHeaderItem.tag = SoundfontMenuType.recent.rawValue
+			recentSFHeaderItem.title = recentSFHeaderTitle
+			recentSFHeaderItem.tag = SoundfontMenuType.header.rawValue
 			recentSFHeaderItem.isEnabled = false
 			self.soundfontMenu.menu!.addItem(recentSFHeaderItem)
 
@@ -412,33 +433,35 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 				recentSFItem.indentationLevel = 1
 				self.soundfontMenu.menu!.addItem(recentSFItem)
 
-				if self.activeSoundfont == recentSF {
+				if self.activeSoundfont != Settings.shared.customSoundfontPath && self.activeSoundfont == recentSF {
 					self.soundfontMenu.select(recentSFItem)
 				}
 			}
 		}
 
-		if let selectedTitle = self.soundfontMenu.titleOfSelectedItem {
-			self.fauxSoundfontMenu.stringValue = selectedTitle
-		}
-
 		self.soundfontMenu.menu?.addItem(NSMenuItem.separator())
-		let customSFItem = NSMenuItem()
-		customSFItem.title = customSFTitle
-		customSFItem.tag = SoundfontMenuType.custom.rawValue
-		self.soundfontMenu.menu!.addItem(customSFItem)
+
+		let resetSFItem = NSMenuItem()
+		resetSFItem.title = resetSFTitle
+		resetSFItem.tag = SoundfontMenuType.reset.rawValue
+		self.soundfontMenu.menu!.addItem(resetSFItem)
+
+		let loadCustomSFItem = NSMenuItem()
+		loadCustomSFItem.title = customSFTitle
+		loadCustomSFItem.tag = SoundfontMenuType.custom.rawValue
+		self.soundfontMenu.menu!.addItem(loadCustomSFItem)
+
+		self.soundfontMenu.synchronizeTitleAndSelectedItem()
 	}
 
 	func rewind() {
 		let skipAmount: TimeInterval = self.shiftPressed ? 5 : 10
 		self.midiPlayer?.rewind(secs: skipAmount)
-		print("rewind \(skipAmount) seconds")
 	}
 
 	func fastForward() {
 		let skipAmount: TimeInterval = self.shiftPressed ? 5 : 10
 		self.midiPlayer?.fastForward(secs: skipAmount)
-		print("fast forward \(skipAmount) seconds")
 	}
 
 	func updatePlayerControls(position: TimeInterval, duration: TimeInterval) {
@@ -485,7 +508,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 		let savePanel = NSSavePanel()
 
-		let savePanelTitleFormat = NSLocalizedString("Bouncing {source.mid} to file", comment: "title")
+		let savePanelTitleFormat = NSLocalizedString("Bouncing %@ to file", comment: "title")
 		savePanel.title = String(format: savePanelTitleFormat, sourceMIDI.lastPathComponent)
 
 		savePanel.prompt = NSLocalizedString("Bounce", comment: "save button label")
@@ -523,7 +546,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			if self.recentSoundfonts.contains(sf) {
 				let sfElement = self.recentSoundfonts.remove(at: self.recentSoundfonts.firstIndex(of: sf)!)
 				self.recentSoundfonts.insert(sfElement, at: 0)
-			} else {
+			} else if sf != Settings.shared.customSoundfontPath {
 				self.recentSoundfonts.insert(sf, at: 0)
 			}
 
@@ -545,13 +568,15 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 		self.playPauseButton.isEnabled = true
 
-		if Settings.shared.autoplay {
+		if Settings.shared.autoplay && self.firstLoad {
 			self.midiPlayer?.play()
 		}
+
+		self.firstLoad = false
 	}
 
 	func playbackWillStart(firstTime: Bool) {
-
+		// empty because optional protocol methods aren't a thing yet in Swift
 	}
 
 	func playbackStarted(firstTime: Bool) {
@@ -600,7 +625,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			let popupTitle = NSLocalizedString("Bounce completed", comment: "Popup title when bounce ended successfully")
 
 			if let midiFile = bouncer.midiFile, let outFile = bouncer.outFile {
-				let popupTextFormat = NSLocalizedString("{source.mid} was successfully bounced to {target.wav}.", comment: "Popup text when bounce ended successfully")
+				let popupTextFormat = NSLocalizedString("%@ was successfully bounced to %@.", comment: "Popup text when bounce ended successfully")
 				let popupText = String(format: popupTextFormat, midiFile.lastPathComponent, outFile.lastPathComponent)
 				NSAlert.runModal(title: popupTitle, message: popupText, style: .informational)
 			} else {
