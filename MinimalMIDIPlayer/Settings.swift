@@ -18,6 +18,8 @@ class Settings {
 			"autoplay": false,
 			"looseSFMatching": false,
 			"cacophonyMode": false,
+			"enableCustomSoundfont": false,
+			"customSoundfontPath": "",
 			"bounceBetaWarningShown": false
 		])
 	}
@@ -121,7 +123,7 @@ class Settings {
 		conv.downmix = true
 
 		conv.sampleRateConverterAlgorithm = AVSampleRateConverterAlgorithm_MinimumPhase
-		conv.sampleRateConverterQuality = .max
+		conv.sampleRateConverterQuality = AVAudioQuality.max.rawValue
 
 		return conv
 	}

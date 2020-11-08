@@ -67,8 +67,8 @@
 	/* Class = "NSTextFieldCell"; title = "Playback begins immediately after a file is opened."; ObjectID = "lJh-t6-vVN"; */
 	"lJh-t6-vVN.title" = "Die Wiedergabe beginnt direkt, nachdem eine Datei geöffnet wird.";
 
-	/* Class = "NSButtonCell"; title = "Loose soundfont matching"; ObjectID = "X5z-W6-yfg"; */
-	"X5z-W6-yfg.title" = "Ungenaue Soundfont-Suche";
+	/* Class = "NSButtonCell"; title = "Approximate Soundfont Matching"; ObjectID = "X5z-W6-yfg"; */
+	"X5z-W6-yfg.title" = "Ungefähre Soundfont-Suche";
 
 	/* Class = "NSTextFieldCell"; title = "MinimalMIDIPlayer already does its best to match MIDI files and soundfonts, but sometimes finding a soundfont is hard.\nWith this option, approximate filename matches will also be considered."; ObjectID = "F5D-vk-fil"; */
 	"F5D-vk-fil.title" = "MinimalMIDIPlayer versucht bereits, passende Soundfonts zu finden, aber manchmal stimmen die Dateinamen nicht exakt überein.\nIst diese Option aktiviert, werden ungenaue Treffer auch in Betracht gezogen.";

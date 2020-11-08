@@ -99,7 +99,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 
 		if Settings.shared.looseSFMatching {
 			// Busting out the old Levenshtein string distance
-			// as a "looser" soundfont detection method
+			// as a more approximate soundfont detection method
 			do {
 				let directoryContents = try FileManager.default.contentsOfDirectory(at: midiDirectory, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
 
