@@ -194,7 +194,7 @@ class MIDIFileBouncer {
 			return
 		}
 
-		// Continuously check for track finished or error while looping.
+		// Continuously check whether the track's finished or if an error occurred while looping
 		while self.sequencer.isPlaying && !self.cancelProcessing && writeError == nil && self.sequencer.currentPositionInSeconds < sequenceLength {
 			let progress = self.sequencer.currentPositionInSeconds / sequenceLength
 			self.delegateProgress(progress: progress * 100, currentTime: self.sequencer.currentPositionInSeconds)
@@ -207,7 +207,7 @@ class MIDIFileBouncer {
 
 		if writeError == nil {
 			// Add x seconds of silence to end to ensure all notes have fully stopped playing
-			usleep(useconds_t(1 * 1000 * 1000))
+            usleep(useconds_t(1.5 * 1000 * 1000))
 			self.delegateProgress(progress: 100, currentTime: self.sequencer.currentPositionInSeconds)
 		}
 

@@ -37,7 +37,6 @@ class NowPlayingCentral: NSObject {
 //		MPRemoteCommandCenter.shared().stopCommand.addTarget(self, action: #selector(stopCommand(event:)))
 		MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(togglePlayPauseCommand(event:)))
 		MPRemoteCommandCenter.shared().changePlaybackPositionCommand.addTarget(self, action: #selector(changePlaybackPositionCommand(event:)))
-//		MPRemoteCommandCenter.shared().previousTrackCommand.addTarget(self, action: #selector(previousTrackCommand(event:)))
 		MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled = false
 		MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = false
 

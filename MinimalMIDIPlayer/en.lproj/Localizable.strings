@@ -52,4 +52,4 @@
 
 // MIDI bouncing beta warning
 "BouncingBetaWarningTitle"   = "Important information regarding the bounce feature";
-"BouncingBetaWarningMessage" = "This feature is in a beta stage. \n\nCurrent limitations include but are not limited to:\n  • Exported files might not sound the same\n  • Custom soundfonts rarely work\n  • It's slow\n\nI can't promise it'll ever be good enough to be considered \"final\". Thanks for understanding. This warning will not be shown again.";
+"BouncingBetaWarningMessage" = "This feature is in a beta stage.\n\nCurrent limitations include but are not limited to:\n  • Exported files might not sound the same\n  • Custom soundfonts rarely work\n  • It's slow\n\nI can't promise it'll ever be good enough to be considered \"final\". Thanks for understanding. This warning will not be shown again.";
