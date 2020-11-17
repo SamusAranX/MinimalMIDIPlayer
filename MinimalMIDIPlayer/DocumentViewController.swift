@@ -37,8 +37,13 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	private var activeSoundfont: URL?
 	private var firstLoad = true
 
-	private let speedValues: [Float] = [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 4/3, 1.5, 5/3, 2.0]
 	private var playbackSpeed: Float = 1.0
+
+    public var supportedPlaybackRates: [NSNumber] {
+        return PWMIDIPlayer.speedValues.map { float in
+            NSNumber(value: float)
+        }
+    }
 
 	private var pausedDueToDraggingKnob = false
 	@objc dynamic var isBouncing = false
@@ -83,6 +88,11 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			self.progressTimeLabel.font = readableSF
 			self.durationTimeLabel.font = readableSF
 		}
+
+        // set speed slider's maximum based on the number of speed settings in PWMIDIPlayer.speedValue
+        self.speedSlider.maxValue = Double(PWMIDIPlayer.speedValues.count - 1)
+        self.speedSlider.numberOfTickMarks = PWMIDIPlayer.speedValues.count
+        self.speedSlider.intValue = Int32(PWMIDIPlayer.speedValues.firstIndex(of: 1.0)!) // will crash if 1.0 isn't a supported playback rate
 
 		self.cacophonyIconView.toolTip = NSLocalizedString("Cacophony Mode enabled", comment: "Tooltip for the 📣 icon")
 	}
@@ -217,8 +227,8 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		if self.shiftPressed {
 			sender.allowsTickMarkValuesOnly = false
 
-			let lowerCap = self.speedValues[Int(floor(sender.floatValue))]
-			let upperCap = self.speedValues[Int(ceil(sender.floatValue))]
+			let lowerCap = PWMIDIPlayer.speedValues[Int(floor(sender.floatValue))]
+			let upperCap = PWMIDIPlayer.speedValues[Int(ceil(sender.floatValue))]
 			let valueDiff = upperCap - lowerCap
 			let betweenFactor = sender.floatValue - floor(sender.floatValue)
 			let newValue = lowerCap + valueDiff * betweenFactor
@@ -228,7 +238,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 			sender.allowsTickMarkValuesOnly = true
 
 			let currentSliderPos = sender.integerValue
-			let speedValue = self.speedValues[currentSliderPos]
+			let speedValue = PWMIDIPlayer.speedValues[currentSliderPos]
 
 			self.playbackSpeed = speedValue
 		}

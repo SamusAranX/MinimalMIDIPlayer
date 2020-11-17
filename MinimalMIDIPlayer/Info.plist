@@ -47,7 +47,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1592</string>
+	<string>1625</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
@@ -77,7 +77,7 @@
 				<string>midi</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>de.peterwunder.MinimalMIDIPlayer.midi</string>
+			<string>com.peterwunder.midi</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -104,7 +104,7 @@
 				<string>sf2</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>de.peterwunder.MinimalMIDIPlayer.sf2</string>
+			<string>com.peterwunder.sf2</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -130,7 +130,7 @@
 				<string>dls</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>de.peterwunder.MinimalMIDIPlayer.dls</string>
+			<string>com.peterwunder.dls</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

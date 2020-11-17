@@ -40,6 +40,12 @@ class NowPlayingCentral: NSObject {
 		MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled = false
 		MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = false
 
+        MPRemoteCommandCenter.shared().changePlaybackRateCommand.isEnabled = true
+        MPRemoteCommandCenter.shared().changePlaybackRateCommand.supportedPlaybackRates = PWMIDIPlayer.speedValues.map { float in
+            NSNumber(value: float)
+        }
+        MPRemoteCommandCenter.shared().changePlaybackRateCommand.addTarget(self, action: #selector(changePlaybackRateCommand(event:)))
+
 		MPRemoteCommandCenter.shared().skipBackwardCommand.addTarget(self, action: #selector(skipBackwardCommand(event:)))
 		MPRemoteCommandCenter.shared().skipForwardCommand.addTarget(self, action: #selector(skipForwardCommand(event:)))
 		MPRemoteCommandCenter.shared().skipBackwardCommand.preferredIntervals = [NSNumber(value: 10)]
@@ -107,21 +113,20 @@ class NowPlayingCentral: NSObject {
 		}
 
 		let midiTitle = midiPlayer.currentMIDI!.deletingPathExtension().lastPathComponent
-		let midiAlbumTitle = midiPlayer.currentSoundfont?.deletingPathExtension().lastPathComponent ?? midiPlayer.currentMIDI!.deletingLastPathComponent().lastPathComponent
-		let midiArtist = "MinimalMIDIPlayer" // shameless advertising
+		let midiAlbumTitle = midiPlayer.currentSoundfont?.deletingPathExtension().lastPathComponent ?? ""
 
 		let albumArtImage = NSImage(named: "AlbumArt")!
 
 		var nowPlayingInfo: [String: Any] = [
 			MPNowPlayingInfoPropertyMediaType: NSNumber(value: MPNowPlayingInfoMediaType.audio.rawValue),
 			MPNowPlayingInfoPropertyIsLiveStream: NSNumber(value: false),
+            MPNowPlayingInfoPropertyServiceIdentifier: "MinimalMIDIPlayer",
 
-			MPNowPlayingInfoPropertyDefaultPlaybackRate: NSNumber(value: Double(midiPlayer.rate)),
-			MPNowPlayingInfoPropertyPlaybackProgress: NSNumber(value: midiPlayer.currentPosition),
+            MPNowPlayingInfoPropertyDefaultPlaybackRate: NSNumber(value: 1.0),
+            MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: Double(midiPlayer.rate)),
 
 			MPMediaItemPropertyTitle: midiTitle,
 			MPMediaItemPropertyAlbumTitle: midiAlbumTitle,
-			MPMediaItemPropertyArtist: midiArtist,
 
 			MPMediaItemPropertyPlaybackDuration: NSNumber(value: midiPlayer.duration),
 			MPNowPlayingInfoPropertyElapsedPlaybackTime: NSNumber(value: midiPlayer.currentPosition)
@@ -142,7 +147,7 @@ class NowPlayingCentral: NSObject {
 		}
 	}
 
-	func updateNowPlayingInfo(for midiPlayer: PWMIDIPlayer, with updatedDict: [String: Any]) {
+	func updateNowPlayingInfo(_ updatedDict: [String: Any]) {
 		guard MPNowPlayingInfoCenter.default().nowPlayingInfo != nil, !Settings.shared.cacophonyMode else {
 			return
 		}
@@ -151,6 +156,14 @@ class NowPlayingCentral: NSObject {
 			MPNowPlayingInfoCenter.default().nowPlayingInfo![key] = updatedDict[key]
 		}
 	}
+
+    func updatePlaybackRate(playbackRate: Double) {
+        self.updateNowPlayingInfo([MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: playbackRate)])
+    }
+
+    func updateElapsedTime(elapsedTime: TimeInterval) {
+        self.updateNowPlayingInfo([MPNowPlayingInfoPropertyElapsedPlaybackTime: NSNumber(value: elapsedTime)])
+    }
 
 	// MARK: - MPRemoteCommandEvent Handlers
 
@@ -195,6 +208,15 @@ class NowPlayingCentral: NSObject {
 
 		return .noActionableNowPlayingItem
 	}
+
+    @objc func changePlaybackRateCommand(event: MPChangePlaybackRateCommandEvent) -> MPRemoteCommandHandlerStatus {
+        if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {
+            activePlayer.rate = event.playbackRate
+            return .success
+        }
+
+        return .noActionableNowPlayingItem
+    }
 
 	@objc func skipBackwardCommand(event: MPSkipIntervalCommandEvent) -> MPRemoteCommandHandlerStatus {
 		if let activePlayer = self.activePlayer, !Settings.shared.cacophonyMode {

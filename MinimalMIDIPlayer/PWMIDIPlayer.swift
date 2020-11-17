@@ -34,20 +34,21 @@ class PWMIDIPlayer: AVMIDIPlayer {
     private var progressTimer: Timer?
 	private let endOfTrackTolerance = 0.1
 
+    class var speedValues: [Float] {
+        return [0.25, 1/3, 0.5, 2/3, 0.75, 0.8, 0.9, 1.0, 1.1, 1.2, 1.25, 4/3, 1.5, 5/3, 2.0]
+    }
+
 	var acceptsMediaKeys = true
 
     override var rate: Float {
         didSet {
-			NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value: self.rate)])
+            NowPlayingCentral.shared.updatePlaybackRate(playbackRate: Double(self.rate))
             self.delegate?.playbackSpeedChanged(speed: self.rate)
         }
     }
 
 	var realDuration: TimeInterval {
 		return self.duration / Double(self.rate)
-	}
-	var realPosition: TimeInterval {
-		return self.currentPosition / Double(self.rate)
 	}
 
     override var currentPosition: TimeInterval {
@@ -143,11 +144,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 			return
 		}
 
-		// Updating the entire Now Playing dictionary here because macOS's caching(?) really fucks with us here
-		// If I rely on the OS to keep track of song names, durations and whatnot, we'll desync in about 0.02 seconds
-		NowPlayingCentral.shared.initNowPlayingInfo(for: self)
-		NowPlayingCentral.shared.updateNowPlayingInfo(for: self, with: [MPNowPlayingInfoPropertyElapsedPlaybackTime: NSNumber(value: self.currentPosition)])
-
+        NowPlayingCentral.shared.updateElapsedTime(elapsedTime: self.currentPosition)
         self.delegate?.playbackPositionChanged(position: self.currentPosition, duration: self.duration)
     }
 
@@ -166,6 +163,7 @@ class PWMIDIPlayer: AVMIDIPlayer {
 
 		NowPlayingCentral.shared.makeActive(player: self)
 
+        // If we're at the end of the track (or close enough to it), restart playback from the beginning
 		if self.currentPosition >= self.duration - self.endOfTrackTolerance {
 			self.currentPosition = 0
 		}

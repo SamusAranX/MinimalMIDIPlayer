@@ -65,9 +65,9 @@ class PreferencesViewController: NSViewController {
 			self.soundfontPathLabel.stringValue = selectedFileURL.lastPathComponent
 		}
 	}
-    
+
     @IBAction func resetWarningsAction(_ sender: NSButton) {
         Settings.shared.bounceBetaWarningShown = false
     }
-    
+
 }
