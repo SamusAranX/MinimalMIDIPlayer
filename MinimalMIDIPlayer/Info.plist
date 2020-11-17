@@ -12,6 +12,8 @@
 				<string>mid</string>
 				<string>midi</string>
 			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>MIDI file</string>
 			<key>CFBundleTypeRole</key>
@@ -23,22 +25,9 @@
 				<string>public.midi-audio</string>
 			</array>
 			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
+			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).MIDIDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>sf2</string>
-				<string>dls</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>SoundFont</string>
-			<key>CFBundleTypeRole</key>
-			<string>None</string>
-			<key>NSIsRelatedItemType</key>
-			<true/>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -58,7 +47,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1569</string>
+	<string>1592</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
@@ -69,5 +58,87 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.midi-audio</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>MIDI File</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>DocumentFill</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>DocumentIcon</string>
+				<key>UTTypeIconText</key>
+				<string>midi</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>de.peterwunder.MinimalMIDIPlayer.midi</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>midi</string>
+					<string>mid</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.soundblaster.soundfont</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Soundfont (SF2)</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>DocumentFillSoundfont</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>DocumentIcon</string>
+				<key>UTTypeIconText</key>
+				<string>sf2</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>de.peterwunder.MinimalMIDIPlayer.sf2</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>sf2</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.downloadable-sound</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Soundfont (DLS)</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>DocumentFillSoundfont</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>DocumentIcon</string>
+				<key>UTTypeIconText</key>
+				<string>dls</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>de.peterwunder.MinimalMIDIPlayer.dls</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>dls</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

@@ -94,6 +94,9 @@
 	/* Class = "NSTextFieldCell"; title = "If enabled, the soundfont selected below will be used instead of the macOS default soundfont whenever a MIDI file is opened."; ObjectID = "yqS-SE-fCE"; */
 	"yqS-SE-fCE.title" = "Wenn diese Option aktiviert ist, wird die unten ausgewählte Soundfont statt der Standard-macOS-Soundfont verwendet, wenn eine MIDI-Datei geöffnet wird.";
 
+    /* Class = "NSButtonCell"; title = "Reset Warnings"; ObjectID = "Xdx-Bt-jGb"; */
+    "Xdx-Bt-jGb.title" = "Warnungen zurücksetzen";
+
 // Main Menu: MinimalMIDIPlayer
 
 	/* Class = "NSMenuItem"; title = "About MinimalMIDIPlayer"; ObjectID = "tRq-59-WIh"; */
