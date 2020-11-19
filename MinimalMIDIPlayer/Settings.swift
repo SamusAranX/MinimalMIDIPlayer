@@ -20,7 +20,8 @@ class Settings {
 			"cacophonyMode": false,
 			"enableCustomSoundfont": false,
 			"customSoundfontPath": "",
-			"bounceBetaWarningShown": false
+			"bounceBetaWarningShown": false,
+            "automaticUpdates": true,
 		])
 	}
 
@@ -94,6 +95,16 @@ class Settings {
 			UserDefaults.standard.synchronize()
 		}
 	}
+
+    var automaticUpdates: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: #function)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: #function)
+            UserDefaults.standard.synchronize()
+        }
+    }
 
 	// MARK: - Helper properties and methods
 

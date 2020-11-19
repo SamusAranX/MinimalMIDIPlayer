@@ -7,12 +7,15 @@
 //
 
 import Cocoa
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-	@IBAction func closeAllWindows(_ sender: NSMenuItem) {
-		NSDocumentController.shared.closeAllDocuments(withDelegate: nil, didCloseAllSelector: nil, contextInfo: nil)
-	}
+    @IBOutlet weak var updater: SPUStandardUpdaterController!
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        self.updater.updater?.automaticallyChecksForUpdates = Settings.shared.automaticUpdates
+    }
 
 }
