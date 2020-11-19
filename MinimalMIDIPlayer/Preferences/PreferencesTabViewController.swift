@@ -20,7 +20,17 @@ class PreferencesTabViewController: NSTabViewController {
         super.viewDidLoad()
     }
 
+    override func viewDidAppear() {
+        if let window = self.view.window, let newTitle = self.tabViewItems.first?.viewController?.title {
+            window.title = newTitle
+        }
+    }
+
     override func transition(from fromViewController: NSViewController, to toViewController: NSViewController, options: NSViewController.TransitionOptions, completionHandler completion: (() -> Void)?) {
+        if let window = self.view.window, let newTitle = toViewController.title {
+            window.title = newTitle
+        }
+
         NSAnimationContext.runAnimationGroup({ context in
             self.animateWindowFrame(viewController: toViewController)
             super.transition(from: fromViewController, to: toViewController, options: self.transitionOptions, completionHandler: completion)

@@ -275,9 +275,9 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 
 		let selectedSoundfont = self.getSelectedSoundfont()
 		var newActiveSoundfont: URL?
+        var resetSoundfontToPrevious = false
 
 		self.guessedSoundfont = document.midiPresenter.presentedItemURL
-
 		if self.guessedSoundfont != nil && firstLoad {
 			// First load: A guessed soundfont was found and custom default soundfonts are either not set or not enabled
 			newActiveSoundfont = self.guessedSoundfont
@@ -290,7 +290,9 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		} else if selectedSoundfont.soundfont != nil {
 			// A soundfont was already selected
 			newActiveSoundfont = selectedSoundfont.soundfont
-		}
+        } else if selectedSoundfont.soundfontType == .custom && selectedSoundfont.soundfont == nil {
+            resetSoundfontToPrevious = true
+        }
 
 		if let sf = newActiveSoundfont, !FileManager.default.fileExists(atPath: sf.path) {
 			let openSoundfontErrorFormat = NSLocalizedString("Couldn't open Soundfont file \"%@\".", comment: "Message in case Soundfont file can't be opened")
@@ -304,11 +306,16 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		let coordinator = NSFileCoordinator(filePresenter: document.midiPresenter)
 		coordinator.coordinate(readingItemAt: document.midiPresenter.primaryPresentedItemURL!, options: [], error: nil) { url in
 			do {
-				self.activeSoundfont = newActiveSoundfont
+                if resetSoundfontToPrevious {
+                    self.activeSoundfont = self.midiPlayer?.currentSoundfont
+                } else {
+                    self.activeSoundfont = newActiveSoundfont
+                }
 
 				let newMidiPlayer = try PWMIDIPlayer(withMIDI: url, andSoundfont: self.activeSoundfont)
 
 				self.midiPlayer?.stop()
+
 				// remove old player from Now Playing Central to get rid of "phantom" players
 				NowPlayingCentral.shared.removeFromPlayers(player: self.midiPlayer)
 				self.midiPlayer = nil
