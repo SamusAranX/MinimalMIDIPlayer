@@ -25,8 +25,12 @@ class AboutViewController: NSViewController {
 
 	@IBOutlet var acknowledgementTextView: NSTextView!
 
-	let WINDOW_SIZE_COLLAPSED: CGFloat = 256
-	let WINDOW_SIZE_EXTENDED: CGFloat = 376
+    // needed for calculation of extended window height
+    @IBOutlet weak var textScrollView: NSScrollView!
+
+    // these are fallback values. the app attempts to determine their real values in viewDidAppear
+	var WINDOW_HEIGHT_COLLAPSED: CGFloat = 256
+	var WINDOW_HEIGHT_EXTENDED: CGFloat = 376
 
 	let hyperlinksInText: [String: URL] = [:]
 
@@ -42,11 +46,6 @@ class AboutViewController: NSViewController {
 		// Fill in the app name
 		if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
 			appNameLabel.stringValue = appName
-
-			// Select Beta icon if this is a Beta build
-			if appName.hasSuffix("β") {
-				appIconView.image = NSImage(named: "AboutIconBeta")
-			}
 		}
 
 		// Fill in the version number
@@ -111,6 +110,13 @@ class AboutViewController: NSViewController {
 
 	override func viewWillAppear() {
 		super.viewWillAppear()
+
+        if let window = self.view.window {
+            self.WINDOW_HEIGHT_COLLAPSED = window.frame.height - window.titlebarHeight
+            print("collapsed: \(self.WINDOW_HEIGHT_COLLAPSED)")
+
+            self.WINDOW_HEIGHT_EXTENDED = self.WINDOW_HEIGHT_COLLAPSED + self.textScrollView.frame.height + 20
+        }
 	}
 
 	@IBAction func disclosureTriangleToggled(_ sender: NSButton) {
@@ -119,7 +125,7 @@ class AboutViewController: NSViewController {
 		}
 
 		let willExpand = sender.state == .on
-		let newHeight: CGFloat = (willExpand ? WINDOW_SIZE_EXTENDED : WINDOW_SIZE_COLLAPSED) + window.titlebarHeight
+		let newHeight: CGFloat = (willExpand ? WINDOW_HEIGHT_EXTENDED : WINDOW_HEIGHT_COLLAPSED) + window.titlebarHeight
 		var newFrame = window.frame
 
 		if willExpand {

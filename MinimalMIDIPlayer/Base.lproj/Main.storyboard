@@ -221,12 +221,12 @@
                 </tabViewController>
                 <customObject id="AUU-fa-bqf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="740" y="594"/>
+            <point key="canvasLocation" x="740" y="591"/>
         </scene>
-        <!--General-->
+        <!--Playback-->
         <scene sceneID="YkG-UF-cgK">
             <objects>
-                <viewController title="General" showSeguePresentationStyle="single" id="hM7-nV-qdF" customClass="GeneralPreferenceViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Playback" showSeguePresentationStyle="single" id="hM7-nV-qdF" customClass="GeneralPreferenceViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" id="ddd-M9-nn9" userLabel="View">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="309"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -370,7 +370,7 @@
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mYk-KS-EKI">
                                         <rect key="frame" x="17" y="0.0" width="155" height="14"/>
-                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="If unsure, leave this enabled." id="CqY-Xc-9Uv">
+                                        <textFieldCell key="cell" controlSize="small" title="If unsure, leave this enabled." id="CqY-Xc-9Uv">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -602,12 +602,12 @@
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ziI-zW-GbG">
                                         <rect key="frame" x="0.0" y="128" width="310" height="5"/>
                                     </box>
-                                    <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-RN-uVj">
+                                    <stackView distribution="fillProportionally" orientation="horizontal" alignment="firstBaseline" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-RN-uVj">
                                         <rect key="frame" x="0.0" y="108" width="310" height="14"/>
                                         <subviews>
-                                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fac-dV-ibi">
+                                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fac-dV-ibi">
                                                 <rect key="frame" x="0.0" y="1" width="13" height="13"/>
-                                                <buttonCell key="cell" type="disclosureTriangle" bezelStyle="disclosure" imagePosition="only" alignment="left" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="soI-Vj-9pG">
+                                                <buttonCell key="cell" type="disclosureTriangle" bezelStyle="disclosure" imagePosition="leading" alignment="left" borderStyle="border" inset="2" id="soI-Vj-9pG">
                                                     <behavior key="behavior" pushIn="YES" changeBackground="YES" changeGray="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -709,13 +709,14 @@
                         <outlet property="copyrightLabel" destination="PHe-Bm-oKc" id="Qvx-3y-9wv"/>
                         <outlet property="disclosureTriangleButton" destination="Fac-dV-ibi" id="kqs-1F-yKu"/>
                         <outlet property="githubLabel" destination="ZAL-m7-3Lw" id="qGX-g1-kNi"/>
+                        <outlet property="textScrollView" destination="1Pj-MG-EB4" id="FWW-BC-qRy"/>
                         <outlet property="twitterLabel" destination="kRd-lv-0bE" id="Rdc-3s-vpw"/>
                         <outlet property="versionLabel" destination="2Pu-9r-YpS" id="OI7-jm-4bh"/>
                     </connections>
                 </viewController>
                 <customObject id="yrM-dk-g6X" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38" y="646.5"/>
+            <point key="canvasLocation" x="38" y="643"/>
         </scene>
         <!--Document View Controller-->
         <scene sceneID="X2T-wK-x9G">

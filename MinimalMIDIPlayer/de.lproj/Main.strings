@@ -49,7 +49,7 @@
 	"9Kp-FE-D6M.title" = "Sags mir! 😊";
 
 	/* Class = "NSButtonCell"; title = "Acknowledgements"; ObjectID = "x4G-Pq-TIw"; */
-	"x4G-Pq-TIw.title" = "Acknowledgements";
+	"x4G-Pq-TIw.title" = "Danksagungen";
 
 // Bounce Progress Window
 
@@ -58,49 +58,94 @@
 
 // Preferences Window
 
-	/* Class = "NSWindow"; title = "Preferences"; ObjectID = "arr-ef-pgL"; */
-	"arr-ef-pgL.title" = "Einstellungen";
+    /* Class = "NSWindow"; title = "Preferences"; ObjectID = "EVP-E7-2Fr"; */
+    "EVP-E7-2Fr.title" = "Einstellungen";
 
-	/* Class = "NSButtonCell"; title = "Autoplay"; ObjectID = "ez2-21-eaj"; */
-	"ez2-21-eaj.title" = "Autoplay";
+	/* Class = "NSTabViewController"; title = "Preferences"; ObjectID = "Oum-II-U9z"; */
+	"Oum-II-U9z.title" = "Einstellungen";
 
-	/* Class = "NSTextFieldCell"; title = "Playback begins immediately after a file is opened."; ObjectID = "lJh-t6-vVN"; */
-	"lJh-t6-vVN.title" = "Die Wiedergabe beginnt direkt, nachdem eine Datei geöffnet wird.";
+	/* Class = "NSViewController"; title = "Wiedergabe"; ObjectID = "hM7-nV-qdF"; */
+	"hM7-nV-qdF.title" = "Wiedergabe";
 
-	/* Class = "NSButtonCell"; title = "Approximate Soundfont Matching"; ObjectID = "X5z-W6-yfg"; */
-	"X5z-W6-yfg.title" = "Ungefähre Soundfont-Suche";
+	/* Class = "NSViewController"; title = "Soundfonts"; ObjectID = "fT6-D6-Et6"; */
+	"fT6-D6-Et6.title" = "Soundfonts";
 
-	/* Class = "NSTextFieldCell"; title = "MinimalMIDIPlayer already does its best to match MIDI files and soundfonts, but sometimes finding a soundfont is hard.\nWith this option, approximate filename matches will also be considered."; ObjectID = "F5D-vk-fil"; */
-	"F5D-vk-fil.title" = "MinimalMIDIPlayer versucht bereits, passende Soundfonts zu finden, aber manchmal stimmen die Dateinamen nicht exakt überein.\nIst diese Option aktiviert, werden ungenaue Treffer auch in Betracht gezogen.";
+	/* Class = "NSViewController"; title = "Updates"; ObjectID = "E2S-Ug-qiE"; */
+	"E2S-Ug-qiE.title" = "Updates";
 
-	/* Class = "NSButtonCell"; title = "Cacophony Mode 📣"; ObjectID = "SkS-RY-Irw"; */
-	"SkS-RY-Irw.title" = "Kakofonie-Modus 📣";
+    /* Class = "NSTabViewItem"; label = "Playback"; ObjectID = "phh-Uw-TLk"; */
+    "phh-Uw-TLk.label" = "Wiedergabe";
 
-	/* Class = "NSTextFieldCell"; title = "Normally, when you hit Play in a player window, all other player windows are paused. Cacophony Mode disables this behavior, allowing multiple player windows to play at the same time."; ObjectID = "ZtW-rP-Qnj"; */
-	"ZtW-rP-Qnj.title" = "Normalerweise werden alle anderen Player pausiert, wenn in einem neuen Fenster die Wiedergabe beginnt.\nDer Kakofonie-Modus deaktiviert dieses Verhalten und sorgt dafür, dass mehrere Player gleichzeitig aktiv sein können.";
+    /* Class = "NSTabViewItem"; label = "Soundfonts"; ObjectID = "l9Y-jq-g9g"; */
+    "l9Y-jq-g9g.label" = "Soundfonts";
 
-	/* Class = "NSTextFieldCell"; title = "Enabling Cacophony Mode will disable support for the Now Playing widget and media keys. Toggling it will close all open players to reset the Now Playing system."; ObjectID = "BLM-Wt-hRc"; */
-	"BLM-Wt-hRc.title" = "Wenn der Kakofonie-Modus aktiviert wird, wird die Unterstützung für Funktionstasten und das Now Playing-Widget deaktiviert.\nBeim Ändern der Einstellung werden darüberhinaus alle offenen Player geschlossen.";
+    /* Class = "NSTabViewItem"; label = "Updates"; ObjectID = "uQY-iQ-CJi"; */
+    "uQY-iQ-CJi.label" = "Updates";
 
-	/* Class = "NSButtonCell"; title = "Use Custom Default Soundfont"; ObjectID = "nAj-rk-4Qc"; */
-	"nAj-rk-4Qc.title" = "Eigene Standard-Soundfont verwenden";
+// Preferences Tab "Playback"
 
-	/* Class = "NSButtonCell"; title = "Choose Soundfont…"; ObjectID = "5uR-ac-Uqz"; */
-	"5uR-ac-Uqz.title" = "Soundfont wählen…";
+    /* Class = "NSButtonCell"; title = "Autoplay"; ObjectID = "eXT-JT-Fg4"; */
+    "eXT-JT-Fg4.title" = "Autoplay";
 
-	/* Class = "NSTextFieldCell"; placeholderString = "No soundfont chosen"; ObjectID = "fKB-5h-5p5"; */
-	"fKB-5h-5p5.placeholderString" = "Keine Soundfont ausgewählt";
+	/* Class = "NSTextFieldCell"; title = "Playback begins immediately after a file is opened."; ObjectID = "A71-SG-EI3"; */
+	"A71-SG-EI3.title" = "Die Wiedergabe beginnt direkt, nachdem eine Datei geöffnet wird.";
 
-	/* Class = "NSTextFieldCell"; title = "If enabled, the soundfont selected below will be used instead of the macOS default soundfont whenever a MIDI file is opened."; ObjectID = "yqS-SE-fCE"; */
-	"yqS-SE-fCE.title" = "Wenn diese Option aktiviert ist, wird die unten ausgewählte Soundfont statt der Standard-macOS-Soundfont verwendet, wenn eine MIDI-Datei geöffnet wird.";
+    /* Class = "NSButtonCell"; title = "Cacophony Mode 📣"; ObjectID = "Cg0-8e-GZh"; */
+    "Cg0-8e-GZh.title" = "Kakofonie-Modus 📣";
 
-    /* Class = "NSButtonCell"; title = "Reset Warnings"; ObjectID = "Xdx-Bt-jGb"; */
-    "Xdx-Bt-jGb.title" = "Warnungen zurücksetzen";
+    /* Class = "NSTextFieldCell"; title = "Normally, when you hit Play in a player window, all other player windows are paused. Cacophony Mode disables this behavior, allowing multiple player windows to play at the same time."; ObjectID = "Omp-ve-BLH"; */
+    "Omp-ve-BLH.title" = "Normalerweise werden alle anderen Player pausiert, wenn in einem neuen Fenster die Wiedergabe beginnt.\nDer Kakofonie-Modus deaktiviert dieses Verhalten und sorgt dafür, dass mehrere Player gleichzeitig aktiv sein können.";
+
+    /* Class = "NSTextFieldCell"; title = "Enabling Cacophony Mode will disable support for the Now Playing widget and media keys. Toggling it will close all open players to reset the Now Playing system."; ObjectID = "kt5-r2-tub"; */
+    "kt5-r2-tub.title" = "Wenn der Kakofonie-Modus aktiviert wird, wird die Unterstützung für Funktionstasten und das Now Playing-Widget deaktiviert.\nBeim Ändern der Einstellung werden darüberhinaus alle offenen Player geschlossen.";
+
+    /* Class = "NSButtonCell"; title = "Reset Warnings"; ObjectID = "AvB-U7-nTm"; */
+    "AvB-U7-nTm.title" = "Warnungen zurücksetzen";
+
+// Preferences Tab "Soundfonts"
+
+	/* Class = "NSButtonCell"; title = "Approximate Soundfont Matching"; ObjectID = "2Cm-vj-KuJ"; */
+	"2Cm-vj-KuJ.title" = "Ungefähre Soundfont-Suche";
+
+	/* Class = "NSTextFieldCell"; title = "MinimalMIDIPlayer already does its best to match MIDI files and soundfonts, but sometimes finding a soundfont is hard.\nWith this option, approximate filename matches will also be considered."; ObjectID = "xeD-7Y-qdJ"; */
+	"xeD-7Y-qdJ.title" = "MinimalMIDIPlayer versucht bereits, passende Soundfonts zu finden, aber manchmal stimmen die Dateinamen nicht exakt überein.\nIst diese Option aktiviert, werden ungenaue Treffer auch in Betracht gezogen.";
+
+	/* Class = "NSButtonCell"; title = "Use Custom Default Soundfont"; ObjectID = "7Xx-Au-D1s"; */
+	"7Xx-Au-D1s.title" = "Eigene Standard-Soundfont verwenden";
+
+	/* Class = "NSButtonCell"; title = "Choose Soundfont…"; ObjectID = "EjW-bb-wsC"; */
+	"EjW-bb-wsC.title" = "Soundfont wählen…";
+
+	/* Class = "NSTextFieldCell"; placeholderString = "No soundfont chosen"; ObjectID = "weH-fy-Ixt"; */
+	"weH-fy-Ixt.placeholderString" = "Keine Soundfont ausgewählt";
+
+	/* Class = "NSTextFieldCell"; title = "If enabled, the soundfont selected below will be used instead of the macOS default soundfont whenever a MIDI file is opened."; ObjectID = "3xn-Lb-oZi"; */
+	"3xn-Lb-oZi.title" = "Wenn diese Option aktiviert ist, wird die unten ausgewählte Soundfont statt der Standard-macOS-Soundfont verwendet, wenn eine MIDI-Datei geöffnet wird.";
+
+// Preferences Tab "Updates"
+
+    /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "bjm-qe-OxX"; */
+    "bjm-qe-OxX.title" = "Automatisch nach Updates suchen";
+
+    /* Class = "NSTextFieldCell"; title = "If unsure, leave this enabled."; ObjectID = "CqY-Xc-9Uv"; */
+    "CqY-Xc-9Uv.title" = "Wenn du dir nicht sicher bist, lass diese Option aktiviert.";
 
 // Main Menu: MinimalMIDIPlayer
 
+    /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "uS7-lH-ljO"; */
+    "uS7-lH-ljO.title" = "Hauptmenü";
+
+    /* Class = "NSMenuItem"; title = "MinimalMIDIPlayer"; ObjectID = "u37-XR-Aps"; */
+    "u37-XR-Aps.title" = "MinimalMIDIPlayer";
+
+    /* Class = "NSMenu"; title = "MinimalMIDIPlayer"; ObjectID = "eak-KH-Kg5"; */
+    "eak-KH-Kg5.title" = "MinimalMIDIPlayer";
+
 	/* Class = "NSMenuItem"; title = "About MinimalMIDIPlayer"; ObjectID = "tRq-59-WIh"; */
 	"tRq-59-WIh.title" = "Über MinimalMIDIPlayer";
+
+    /* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "KKp-wH-R6h"; */
+    "KKp-wH-R6h.title" = "Nach Updates suchen…";
 
 	/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "lFM-Xo-YMn"; */
 	"lFM-Xo-YMn.title" = "Einstellungen…";

@@ -17,7 +17,6 @@
 		569D77F32004F0010028D9C2 /* PWMIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */; };
 		56A0BD7C21400569006095CE /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7B21400569006095CE /* DocumentWindowController.swift */; };
 		56A0BD7E214005A4006095CE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7D214005A4006095CE /* DocumentViewController.swift */; };
-		56A575C424372AC300F1A86E /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A575C324372AC300F1A86E /* PreferencesViewController.swift */; };
 		56AA5A81256568BA00B715E9 /* org.sparkle-project.InstallerConnection.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 56AA5A51256567DE00B715E9 /* org.sparkle-project.InstallerConnection.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		56AA5A82256568BA00B715E9 /* org.sparkle-project.InstallerLauncher.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 56AA5A4F256567DE00B715E9 /* org.sparkle-project.InstallerLauncher.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		56AA5A83256568BA00B715E9 /* org.sparkle-project.InstallerStatus.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 56AA5A53256567DE00B715E9 /* org.sparkle-project.InstallerStatus.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -242,7 +241,6 @@
 		56A0BD7D214005A4006095CE /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		56A24C472254CCAD00213A4B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		56A3A10E21707E7F008ABA6A /* MinimalMIDIPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalMIDIPlayer.entitlements; sourceTree = "<group>"; };
-		56A575C324372AC300F1A86E /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		56AA5A2E256567DD00B715E9 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = submodules/Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
 		56AA5AA525659F8A00B715E9 /* GeneralPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferenceViewController.swift; sourceTree = "<group>"; };
 		56AA5AA725659F9100B715E9 /* SoundfontPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundfontPreferenceViewController.swift; sourceTree = "<group>"; };
@@ -376,7 +374,6 @@
 				5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */,
 				56654135214045C100283C85 /* MIDIDocument.swift */,
 				569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */,
-				56A575C324372AC300F1A86E /* PreferencesViewController.swift */,
 				56A0BD7B21400569006095CE /* DocumentWindowController.swift */,
 				56A0BD7D214005A4006095CE /* DocumentViewController.swift */,
 				56FEF1562141181B00813975 /* AboutViewController.swift */,
@@ -708,7 +705,6 @@
 				562E3AB9224E1E65001AD319 /* AVAudioUnitMIDISynth.swift in Sources */,
 				56FEF16621411AC000813975 /* Extensions.swift in Sources */,
 				56D6A8D11C3437AA0071DEF4 /* AppDelegate.swift in Sources */,
-				56A575C424372AC300F1A86E /* PreferencesViewController.swift in Sources */,
 				56FEF15D214119FD00813975 /* HyperlinkTextField.m in Sources */,
 				5612BAE821414F3C00AA1882 /* Settings.swift in Sources */,
 				56AA5AD02565E33E00B715E9 /* PreferencesTabViewController.swift in Sources */,
