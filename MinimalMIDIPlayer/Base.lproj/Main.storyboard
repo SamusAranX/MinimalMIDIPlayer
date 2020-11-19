@@ -758,7 +758,7 @@
                                                     <binding destination="DCZ-VH-yTc" name="hidden" keyPath="self.isBouncing" id="8f6-6L-zDt"/>
                                                 </connections>
                                             </slider>
-                                            <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" doubleValue="50" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="pmO-vn-obP">
+                                            <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="pmO-vn-obP">
                                                 <rect key="frame" x="0.0" y="0.0" width="196" height="20"/>
                                                 <contentFilters>
                                                     <ciFilter name="CIColorMonochrome">

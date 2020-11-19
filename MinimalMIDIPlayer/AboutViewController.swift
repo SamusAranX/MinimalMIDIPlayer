@@ -113,8 +113,6 @@ class AboutViewController: NSViewController {
 
         if let window = self.view.window {
             self.WINDOW_HEIGHT_COLLAPSED = window.frame.height - window.titlebarHeight
-            print("collapsed: \(self.WINDOW_HEIGHT_COLLAPSED)")
-
             self.WINDOW_HEIGHT_EXTENDED = self.WINDOW_HEIGHT_COLLAPSED + self.textScrollView.frame.height + 20
         }
 	}
