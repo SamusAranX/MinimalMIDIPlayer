@@ -14,6 +14,7 @@
 		563D9FC21FF46E95008DE194 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563D9FC11FF46E95008DE194 /* MediaPlayer.framework */; };
 		56654136214045C100283C85 /* MIDIDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56654135214045C100283C85 /* MIDIDocument.swift */; };
 		5669F2EB21425B400034D3ED /* NowPlayingCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */; };
+		5696E39A2569CAF10075DEB5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5696E3852569CAF10075DEB5 /* InfoPlist.strings */; };
 		569D77F32004F0010028D9C2 /* PWMIDIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */; };
 		56A0BD7C21400569006095CE /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7B21400569006095CE /* DocumentWindowController.swift */; };
 		56A0BD7E214005A4006095CE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0BD7D214005A4006095CE /* DocumentViewController.swift */; };
@@ -236,6 +237,7 @@
 		563D9FC11FF46E95008DE194 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		56654135214045C100283C85 /* MIDIDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIDocument.swift; sourceTree = "<group>"; };
 		5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCentral.swift; sourceTree = "<group>"; };
+		5696E3862569CAF10075DEB5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWMIDIPlayer.swift; sourceTree = "<group>"; };
 		56A0BD7B21400569006095CE /* DocumentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		56A0BD7D214005A4006095CE /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				56A0BD7D214005A4006095CE /* DocumentViewController.swift */,
 				56FEF1562141181B00813975 /* AboutViewController.swift */,
 				56C2AB86224A33EF0093728A /* Info.plist */,
+				5696E3852569CAF10075DEB5 /* InfoPlist.strings */,
 				56DAB39C224B63F000FF8847 /* Localizable.strings */,
 			);
 			path = MinimalMIDIPlayer;
@@ -628,6 +631,7 @@
 				56DAB39A224B63F000FF8847 /* Localizable.strings in Resources */,
 				56D6A8D31C3437AA0071DEF4 /* Assets.xcassets in Resources */,
 				56B0532A223A3D3D000AB382 /* Acknowledgements.rtf in Resources */,
+				5696E39A2569CAF10075DEB5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,6 +746,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		5696E3852569CAF10075DEB5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5696E3862569CAF10075DEB5 /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		56DAB39C224B63F000FF8847 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -47,7 +47,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1721</string>
+	<string>1725</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
@@ -61,7 +61,7 @@
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>https://apps.peterwunder.de/midiplayer/appcast.xml</string>
+	<string>https://apps.peterwunder.de/midiplayer/updates/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>dxU/yGNAlr8mBj6uS+eGD0C16aO6XxbVMbTVxDIk1zc=</string>
 	<key>UTImportedTypeDeclarations</key>

@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  MinimalMIDIPlayer
+
+  Created by Peter Wunder on 21.11.20.
+  Copyright © 2020 Peter Wunder. All rights reserved.
+*/
+
+// Appcast override for the German localization
+"SUFeedURL" = "https://apps.peterwunder.de/midiplayer/updates/appcast.de.xml";
