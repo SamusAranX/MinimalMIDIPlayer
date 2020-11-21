@@ -227,7 +227,7 @@
         <scene sceneID="YkG-UF-cgK">
             <objects>
                 <viewController title="Playback" showSeguePresentationStyle="single" id="hM7-nV-qdF" customClass="GeneralPreferenceViewController" customModule="MinimalMIDIPlayer" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" misplaced="YES" id="ddd-M9-nn9" userLabel="View">
+                    <customView key="view" id="ddd-M9-nn9" userLabel="View">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="297"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
