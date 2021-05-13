@@ -1,5 +1,8 @@
 # MinimalMIDIPlayer
-A very simple app that does what it says on the tin.
+The best app for quick and easy MIDI playback on macOS.
+
+## This is the app:
+![Screenshot of the app's player window, playing e1m1.mid](screenshots/player2021.png)
 
 ## Features
 
@@ -13,7 +16,7 @@ A very simple app that does what it says on the tin.
 	* <kbd>Space</kbd> toggles playback
 	* <kbd>↑</kbd> and <kbd>↓</kbd> adjust the playback speed
 	* <kbd>←</kbd> and <kbd>→</kbd> respectively skip backwards or forwards by 10 seconds
-		* or 5 seconds if you hold Shift
+		* or 5 seconds if you hold <kbd>Shift</kbd>
 * Can be set as the default player for all MIDI files:
 ![Screenshot of a MIDI file's Info window, cropped to only show the Open With section](screenshots/openwith.png)
 
@@ -21,11 +24,10 @@ A very simple app that does what it says on the tin.
 
 macOS 10.15 Catalina or later
 
-## Screenshots
+## More Screenshots
 
-<details><summary>Click to show 4 screenshots</summary>
+<details><summary>Click to expand</summary>
 
-![Screenshot of a player window, playing e1m1.mid](screenshots/player.png)
 ![Screenshot of the About window](screenshots/about.png)
 ![Screenshot of the Preferences window](screenshots/preferences.png)
 ![Screenshot of the Now Playing widget in Big Sur](screenshots/nowplaying.png)
@@ -33,7 +35,7 @@ macOS 10.15 Catalina or later
 </details>
 
 ## Downloads
-The latest download can be found in the Releases tab: https://github.com/SamusAranX/MinimalMIDIPlayer/releases/latest
+The latest download can be found here: https://github.com/SamusAranX/MinimalMIDIPlayer/releases/latest
 
 ## Known issues
 
