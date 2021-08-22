@@ -9,7 +9,7 @@
 import Cocoa
 import AVFoundation
 
-protocol MIDIFileBouncerDelegate: class {
+protocol MIDIFileBouncerDelegate: AnyObject {
 	func bounceProgress(progress: Double, currentTime: TimeInterval)
 	func bounceError(error: MIDIBounceError)
 	func bounceCompleted()

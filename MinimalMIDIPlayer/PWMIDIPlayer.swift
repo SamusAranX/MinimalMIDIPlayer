@@ -10,7 +10,7 @@ import Cocoa
 import AVFoundation
 import MediaPlayer
 
-protocol PWMIDIPlayerDelegate: class {
+protocol PWMIDIPlayerDelegate: AnyObject {
     func filesLoaded(midi: URL, soundFont: URL?)
 
 	func playbackWillStart(firstTime: Bool)
