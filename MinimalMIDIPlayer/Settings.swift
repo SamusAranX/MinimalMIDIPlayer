@@ -21,7 +21,7 @@ class Settings {
 			"enableCustomSoundfont": false,
 			"customSoundfontPath": "",
 			"bounceBetaWarningShown": false,
-            "automaticUpdates": true,
+			"automaticUpdates": true,
 		])
 	}
 
@@ -96,15 +96,15 @@ class Settings {
 		}
 	}
 
-    var automaticUpdates: Bool {
-        get {
-            return UserDefaults.standard.bool(forKey: #function)
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: #function)
-            UserDefaults.standard.synchronize()
-        }
-    }
+	var automaticUpdates: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: #function)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: #function)
+			UserDefaults.standard.synchronize()
+		}
+	}
 
 	// MARK: - Helper properties and methods
 

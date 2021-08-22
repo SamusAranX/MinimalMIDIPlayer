@@ -11,11 +11,11 @@ import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var updater: SPUStandardUpdaterController!
-
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        self.updater.updater?.automaticallyChecksForUpdates = Settings.shared.automaticUpdates
-    }
-
+	
+	@IBOutlet weak var updaterController: SPUStandardUpdaterController!
+	
+	func applicationDidFinishLaunching(_ notification: Notification) {
+		self.updaterController.updater.automaticallyChecksForUpdates = Settings.shared.automaticUpdates
+	}
+	
 }

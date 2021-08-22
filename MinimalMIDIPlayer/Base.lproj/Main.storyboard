@@ -137,7 +137,7 @@
                 <customObject id="BPK-JZ-IAI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="Chb-lq-zaq" customClass="AppDelegate" customModule="MinimalMIDIPlayer" customModuleProvider="target">
                     <connections>
-                        <outlet property="updater" destination="dGG-U4-KK0" id="2KT-cm-PIT"/>
+                        <outlet property="updaterController" destination="dGG-U4-KK0" id="2KT-cm-PIT"/>
                     </connections>
                 </customObject>
                 <customObject id="dGG-U4-KK0" customClass="SPUStandardUpdaterController"/>
