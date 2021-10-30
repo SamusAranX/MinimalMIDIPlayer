@@ -9,32 +9,32 @@
 import Foundation
 
 class SoundfontPreferenceViewController: NSViewController {
-	
+
 	@IBOutlet weak var approximateSFMatchingCheckbox: NSButton!
 	@IBOutlet weak var customSoundfontCheckbox: NSButton!
 	@IBOutlet weak var soundfontPathLabel: NSTextField!
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		self.prepareUIElements()
 	}
-	
+
 	func prepareUIElements() {
 		self.approximateSFMatchingCheckbox.state = Settings.shared.looseSFMatching ? .on : .off
 		self.customSoundfontCheckbox.state = Settings.shared.enableCustomSoundfont ? .on : .off
-		
+
 		self.soundfontPathLabel.stringValue = Settings.shared.customSoundfontPath?.lastPathComponent ?? ""
 	}
-	
+
 	@IBAction func approximateMatchingCheckboxToggled(_ sender: NSButton) {
 		Settings.shared.looseSFMatching = sender.state == .on
 	}
-	
+
 	@IBAction func soundfontCheckboxToggled(_ sender: NSButton) {
 		Settings.shared.enableCustomSoundfont = sender.state == .on
 	}
-	
+
 	@IBAction func chooseSoundfontAction(_ sender: NSButton) {
 		let panel = NSOpenPanel()
 		panel.allowedFileTypes = [ "sf2", "dls" ]
@@ -45,5 +45,5 @@ class SoundfontPreferenceViewController: NSViewController {
 			self.soundfontPathLabel.stringValue = selectedFileURL.lastPathComponent
 		}
 	}
-	
+
 }

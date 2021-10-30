@@ -45,13 +45,6 @@
 			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = Sparkle;
 		};
-		56AA5A4A256567DE00B715E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 56AA5A2E256567DD00B715E9 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 72A5D59C1D6927730009E5AC;
-			remoteInfo = SparkleCore;
-		};
 		56AA5A4C256567DE00B715E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 56AA5A2E256567DD00B715E9 /* Sparkle.xcodeproj */;
@@ -202,6 +195,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		5673874A26D9493200669042 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56AA5A86256568BA00B715E9 /* Embed XPC Services */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -236,6 +239,7 @@
 		563D9FC11FF46E95008DE194 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		56654135214045C100283C85 /* MIDIDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIDocument.swift; sourceTree = "<group>"; };
 		5669F2EA21425B400034D3ED /* NowPlayingCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCentral.swift; sourceTree = "<group>"; };
+		5673873D26D9493200669042 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		569D77F22004F0010028D9C2 /* PWMIDIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWMIDIPlayer.swift; sourceTree = "<group>"; };
 		56A0BD7B21400569006095CE /* DocumentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		56A0BD7D214005A4006095CE /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 				56AA5A2E256567DD00B715E9 /* Sparkle.xcodeproj */,
 				56AB757F213FD146009ECFB1 /* AVFoundation.framework */,
 				563D9FC11FF46E95008DE194 /* MediaPlayer.framework */,
+				5673873D26D9493200669042 /* Quartz.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -299,7 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				56AA5A49256567DE00B715E9 /* Sparkle.framework */,
-				56AA5A4B256567DE00B715E9 /* SparkleCore.framework */,
 				56AA5A4D256567DE00B715E9 /* Autoupdate */,
 				56AA5A4F256567DE00B715E9 /* org.sparkle-project.InstallerLauncher.xpc */,
 				56AA5A51256567DE00B715E9 /* org.sparkle-project.InstallerConnection.xpc */,
@@ -417,6 +421,7 @@
 				56AA5A87256568BA00B715E9 /* Embed Frameworks */,
 				56AA5A86256568BA00B715E9 /* Embed XPC Services */,
 				56AA5A9025656A2700B715E9 /* Run Script: Code Sign Sparkle */,
+				5673874A26D9493200669042 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -437,7 +442,7 @@
 		56D6A8C51C3437AA0071DEF4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Peter Wunder";
 				TargetAttributes = {
@@ -489,13 +494,6 @@
 			fileType = wrapper.framework;
 			path = Sparkle.framework;
 			remoteRef = 56AA5A48256567DE00B715E9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		56AA5A4B256567DE00B715E9 /* SparkleCore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SparkleCore.framework;
-			remoteRef = 56AA5A4A256567DE00B715E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		56AA5A4D256567DE00B715E9 /* Autoupdate */ = {
@@ -872,6 +870,7 @@
 		56D6A8DB1C3437AA0071DEF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPICON_SUFFIX = "";
 				APPNAME_SUFFIX = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
@@ -903,6 +902,7 @@
 		56D6A8DC1C3437AA0071DEF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPICON_SUFFIX = "";
 				APPNAME_SUFFIX = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";

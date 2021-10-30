@@ -24,14 +24,14 @@ extension String {
 	func fullRange() -> NSRange {
 		return NSRange(location: 0, length: NSString(string: self).length)
 	}
-	
+
 	func hyperlink(with url: URL) -> NSAttributedString {
 		let stringRange = self.fullRange()
 		let attrString = NSMutableAttributedString(string: self)
 		attrString.addAttribute(NSAttributedString.Key.link, value: url, range: stringRange)
 		return attrString
 	}
-	
+
 	func addColor(in range: NSRange, color: NSColor) -> NSAttributedString {
 		let attrString = NSMutableAttributedString(string: self)
 		attrString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
@@ -82,7 +82,7 @@ extension NSWindow {
 extension AVAudioFormat {
 	var commonFormat: AVAudioCommonFormat {
 		let streamDescription = self.streamDescription.pointee
-		
+
 		switch streamDescription.mBitsPerChannel {
 		case 16:
 			return .pcmFormatInt16
