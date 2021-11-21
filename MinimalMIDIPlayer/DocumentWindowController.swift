@@ -34,6 +34,19 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
 		self.delegate = documentViewController
 	}
 
+	func windowDidBecomeMain(_ notification: Notification) {
+		guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
+			fatalError("Couldn't access AppDelegate")
+		}
+
+		guard let documentViewController = self.window?.contentViewController as? DocumentViewController else {
+			fatalError("Couldn't access DocumentViewController instance")
+		}
+
+		print("Loop menu item updated: \(documentViewController.playbackLoop)")
+		appDelegate.loopMenuItem.state = documentViewController.playbackLoop ? .on : .off
+	}
+
 	func windowWillClose(_ notification: Notification) {
 		self.delegate?.windowWillClose(notification)
 	}

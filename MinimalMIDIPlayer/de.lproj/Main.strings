@@ -170,17 +170,11 @@
 	/* Class = "NSMenu"; title = "File"; ObjectID = "Nue-h4-pMH"; */
 	"Nue-h4-pMH.title" = "Ablage";
 
-	/* Class = "NSMenuItem"; title = "File"; ObjectID = "arO-uB-4TR"; */
-	"arO-uB-4TR.title" = "Ablage";
-
 	/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "Pug-Ru-1FN"; */
 	"Pug-Ru-1FN.title" = "Öffnen…";
 
-	/* Class = "NSMenu"; title = "Open Recent"; ObjectID = "NKH-QJ-5xW"; */
-	"NKH-QJ-5xW.title" = "Zuletzt benutzte Objekte";
-
 	/* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "4QE-d3-O4g"; */
-	"4QE-d3-O4g.title" = "Zuletzt benutzte Objekte";
+	"4QE-d3-O4g.title" = "Benutzte Dokumente";
 
 	/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "azl-MT-kh8"; */
 	"azl-MT-kh8.title" = "Einträge löschen";
@@ -197,13 +191,18 @@
 	/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "a4I-NA-d8i"; */
 	"a4I-NA-d8i.title" = "Alle einblenden";
 
+// Main Menu: Playback
+
+	/* Class = "NSMenu"; title = "Playback"; ObjectID = "yW7-S0-dA2"; */
+	"yW7-S0-dA2.title" = "Wiedergabe";
+
+	/* Class = "NSMenuItem"; title = "Loop"; ObjectID = "fJj-53-zfH"; */
+	"fJj-53-zfH.title" = "Endlosschleife";
+
 // Main Menu: Window
 
 	/* Class = "NSMenu"; title = "Window"; ObjectID = "r6q-99-z2d"; */
 	"r6q-99-z2d.title" = "Fenster";
-
-	/* Class = "NSMenuItem"; title = "Window"; ObjectID = "kwX-Kg-DLh"; */
-	"kwX-Kg-DLh.title" = "Fenster";
 
 	/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "N3I-n7-3b0"; */
 	"N3I-n7-3b0.title" = "Im Dock ablegen";
@@ -213,14 +212,3 @@
 
 	/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "o0T-YW-eiL"; */
 	"o0T-YW-eiL.title" = "Alle nach vorne bringen";
-
-// Main Menu: Help
-
-	/* Class = "NSMenu"; title = "Help"; ObjectID = "M7O-yk-ig0"; */
-	"M7O-yk-ig0.title" = "Hilfe";
-
-	/* Class = "NSMenuItem"; title = "Help"; ObjectID = "j3s-4d-0If"; */
-	"j3s-4d-0If.title" = "Hilfe";
-
-	/* Class = "NSMenuItem"; title = "MinimalMIDIPlayer Help"; ObjectID = "dNw-Zl-iz6"; */
-	"dNw-Zl-iz6.title" = "MinimalMIDIPlayer-Hilfe";

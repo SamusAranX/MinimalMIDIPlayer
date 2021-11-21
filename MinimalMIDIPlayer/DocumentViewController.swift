@@ -38,6 +38,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	private var firstLoad = true
 
 	private var playbackSpeed: Float = 1.0
+	var playbackLoop: Bool = false // not private so the window controller can see it
 
 	public var supportedPlaybackRates: [NSNumber] {
 		return PWMIDIPlayer.speedValues.map { float in
@@ -505,7 +506,7 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		return true
 	}
 
-	// MARK: - IBAction for the Bounce to File menu item
+	// MARK: - IBActions for menu items
 
 	@IBAction func bounceToFile(_ sender: NSMenuItem) {
 		guard !self.isBouncing, self.bouncer == nil, let midiPlayer = self.midiPlayer, let sourceMIDI = midiPlayer.currentMIDI else {
@@ -556,6 +557,12 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		}
 	}
 
+	@IBAction func toggleLoop(_ sender: NSMenuItem) {
+		print("Loop menu item clicked!")
+		self.playbackLoop.toggle()
+		sender.state = self.playbackLoop ? .on : .off
+	}
+
 	// MARK: - PWMIDIPlayerDelegate
 
 	func filesLoaded(midi: URL, soundFont: URL?) {
@@ -592,10 +599,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		self.firstLoad = false
 	}
 
-	func playbackWillStart(firstTime: Bool) {
-		// empty because optional protocol methods aren't a thing yet in Swift
-	}
-
 	func playbackStarted(firstTime: Bool) {
 		self.playPauseButton.state = .on
 	}
@@ -605,6 +608,11 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 	}
 
 	func playbackEnded() {
+		if self.playbackLoop {
+			self.midiPlayer?.currentPosition = 0
+			self.midiPlayer?.play()
+			return
+		}
 		self.playPauseButton.state = .off
 	}
 
@@ -612,10 +620,6 @@ class DocumentViewController: NSViewController, WindowControllerDelegate, PWMIDI
 		DispatchQueue.main.async {
 			self.updatePlayerControls(position: position, duration: duration)
 		}
-	}
-
-	func playbackSpeedChanged(speed: Float) {
-		// empty because optional protocol methods aren't a thing yet in Swift
 	}
 
 	// MARK: - MIDIFileBouncerDelegate

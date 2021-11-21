@@ -91,6 +91,19 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Playback" id="1yS-AU-Luc">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Playback" id="yW7-S0-dA2">
+                                    <items>
+                                        <menuItem title="Loop" keyEquivalent="l" id="fJj-53-zfH">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleLoop:" target="BPK-JZ-IAI" id="A46-Ch-V4D"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" id="kwX-Kg-DLh">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="r6q-99-z2d">
@@ -116,18 +129,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Help" id="j3s-4d-0If">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Help" systemMenu="help" id="M7O-yk-ig0">
-                                    <items>
-                                        <menuItem title="MinimalMIDIPlayer Help" keyEquivalent="?" id="dNw-Zl-iz6">
-                                            <connections>
-                                                <action selector="showHelp:" target="BPK-JZ-IAI" id="fEC-Wx-GJd"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                         </items>
                     </menu>
                     <connections>
@@ -137,6 +138,7 @@
                 <customObject id="BPK-JZ-IAI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="Chb-lq-zaq" customClass="AppDelegate" customModule="MinimalMIDIPlayer" customModuleProvider="target">
                     <connections>
+                        <outlet property="loopMenuItem" destination="fJj-53-zfH" id="oVj-Wv-8M2"/>
                         <outlet property="updaterController" destination="dGG-U4-KK0" id="2KT-cm-PIT"/>
                     </connections>
                 </customObject>
@@ -293,7 +295,7 @@
                                         <rect key="frame" x="0.0" y="26" width="260" height="5"/>
                                     </box>
                                     <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-aM-wbN">
-                                        <rect key="frame" x="65" y="-7" width="130" height="32"/>
+                                        <rect key="frame" x="66" y="-7" width="129" height="32"/>
                                         <buttonCell key="cell" type="push" title="Reset Warnings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AvB-U7-nTm">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -497,10 +499,10 @@
                                 </constraints>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KnW-f1-5oB">
-                                <rect key="frame" x="20" y="-100" width="310" height="268"/>
+                                <rect key="frame" x="20" y="-101" width="310" height="269"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pqD-9q-5vb" customClass="HyperlinkTextField">
-                                        <rect key="frame" x="-2" y="208" width="314" height="60"/>
+                                        <rect key="frame" x="-2" y="209" width="314" height="60"/>
                                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="HAx-HL-6NF">
                                             <font key="font" metaFont="cellTitle"/>
                                             <string key="title">When Apple replaced QuickTime Player 7 with the currently shipping version, they also removed support for MIDI file playback. This app aims to be a good, if not better replacement.</string>
@@ -509,7 +511,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KBg-8v-rNM">
-                                        <rect key="frame" x="0.0" y="139" width="310" height="61"/>
+                                        <rect key="frame" x="0.0" y="140" width="310" height="61"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hmT-FF-yLs">
                                                 <rect key="frame" x="0.0" y="0.0" width="151" height="61"/>
@@ -600,13 +602,13 @@
                                         </customSpacing>
                                     </stackView>
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ziI-zW-GbG">
-                                        <rect key="frame" x="0.0" y="128" width="310" height="5"/>
+                                        <rect key="frame" x="0.0" y="129" width="310" height="5"/>
                                     </box>
                                     <stackView distribution="fillProportionally" orientation="horizontal" alignment="firstBaseline" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-RN-uVj">
-                                        <rect key="frame" x="0.0" y="108" width="310" height="14"/>
+                                        <rect key="frame" x="0.0" y="108" width="310" height="15"/>
                                         <subviews>
                                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fac-dV-ibi">
-                                                <rect key="frame" x="0.0" y="1" width="13" height="13"/>
+                                                <rect key="frame" x="0.0" y="2" width="13" height="13"/>
                                                 <buttonCell key="cell" type="disclosureTriangle" bezelStyle="disclosure" imagePosition="leading" alignment="left" borderStyle="border" inset="2" id="soI-Vj-9pG">
                                                     <behavior key="behavior" pushIn="YES" changeBackground="YES" changeGray="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -867,10 +869,10 @@
                                         </connections>
                                     </stackView>
                                     <stackView hidden="YES" distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ssa-nW-7ny">
-                                        <rect key="frame" x="0.0" y="70" width="104" height="32"/>
+                                        <rect key="frame" x="0.0" y="70" width="103" height="32"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ux9-Fn-5bu">
-                                                <rect key="frame" x="-1" y="4" width="106" height="23"/>
+                                                <rect key="frame" x="-1" y="4" width="105" height="23"/>
                                                 <buttonCell key="cell" type="roundTextured" title="Stop Bouncing" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jFn-uF-iCM">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -1140,7 +1142,7 @@ With this option, approximate filename matches will also be considered.</string>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mCK-DF-21L">
-                                        <rect key="frame" x="13" y="15" width="158" height="32"/>
+                                        <rect key="frame" x="13" y="15" width="157" height="32"/>
                                         <buttonCell key="cell" type="push" title="Choose Soundfont…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EjW-bb-wsC">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>

@@ -24,8 +24,13 @@ protocol PWMIDIPlayerDelegate: AnyObject {
 	func playbackSpeedChanged(speed: Float)
 }
 
-class PWMIDIPlayer: AVMIDIPlayer {
+extension PWMIDIPlayerDelegate {
+	// provide default empty implementations for these
+	func playbackWillStart(firstTime: Bool) {}
+	func playbackSpeedChanged(speed: Float) {}
+}
 
+class PWMIDIPlayer: AVMIDIPlayer {
 	var currentMIDI: URL?
 	var currentSoundfont: URL?
 
@@ -256,5 +261,4 @@ class PWMIDIPlayer: AVMIDIPlayer {
 			self.stop()
 		}
 	}
-
 }
