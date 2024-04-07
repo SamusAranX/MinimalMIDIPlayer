@@ -45,5 +45,4 @@ The latest download can be found here: https://github.com/SamusAranX/MinimalMIDI
 * A track might sound out of tune after skipping through it. This can happen if the MIDI you're listening to uses lots of Pitch Bends and is expected behavior. Restart playback from the beginning to avoid this.
 
 ## Feedback and support
-I'm on Twitter as [@SamusAranX](https://twitter.com/SamusAranX).
 Please file an issue if you encounter any bugs or crashes: https://github.com/SamusAranX/MinimalMIDIPlayer/issues
